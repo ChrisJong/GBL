@@ -11,7 +11,7 @@ public class Destroy2 : MonoBehaviour
 	public HealthCounter2 health;
 	Vector3 initialPosition;
 
-	void OnAwake()
+	void Start()
 	{
 		initialPosition = gameObject.transform.position;
 	}
@@ -51,5 +51,6 @@ public class Destroy2 : MonoBehaviour
 	{
 		gameObject.transform.position = initialPosition;
 		score2.score--;
+		health.healthscore = 3;
 	}
 }
