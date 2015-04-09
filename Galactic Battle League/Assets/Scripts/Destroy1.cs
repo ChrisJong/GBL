@@ -9,6 +9,7 @@ public class Destroy1 : MonoBehaviour
 	public ScoreCounter3 score3;
 	public ScoreCounter4 score4;
 	public HealthCounter1 health;
+	public AudioClip sfx;
 	Vector3 initialPosition;
 
 	void Start()
@@ -49,6 +50,7 @@ public class Destroy1 : MonoBehaviour
 
 	void Death()
 	{
+		AudioSource.PlayClipAtPoint(sfx, gameObject.transform.position);
 		gameObject.transform.position = initialPosition;
 		score1.score--;
 		health.healthscore = 3;

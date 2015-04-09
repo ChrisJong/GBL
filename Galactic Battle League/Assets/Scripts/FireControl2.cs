@@ -8,6 +8,7 @@ public class FireControl2 : MonoBehaviour
 	public GameObject shot;
 	public Transform shotSpawn;
 	public float fireRate;
+	public AudioClip sfx;
 	
 	private float nextFire;
 	
@@ -17,7 +18,7 @@ public class FireControl2 : MonoBehaviour
 		{
 			nextFire = Time.time + fireRate;
 			Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-			audio.Play ();
+			AudioSource.PlayClipAtPoint(sfx, shotSpawn.position);
 		}
 	}
 	
