@@ -28,14 +28,29 @@ public class Destroy3 : MonoBehaviour
 				if (other.tag == "Shot1")
 				{
 					score1.score++;
+					if (score1.score >= 5)
+					{
+						PlayerPrefs.SetInt("Winner", 1);
+						Application.LoadLevel("EndScreen");
+					}
 				}
 				if (other.tag == "Shot2")
 				{
 					score2.score++;
+					if (score2.score >= 5)
+					{
+						PlayerPrefs.SetInt("Winner", 2);
+						Application.LoadLevel("EndScreen");
+					}
 				}
 				if (other.tag == "Shot4")
 				{
 					score4.score++;
+					if (score4.score >= 5)
+					{
+						PlayerPrefs.SetInt("Winner", 4);
+						Application.LoadLevel("EndScreen");
+					}
 				}
 				Death ();
 			}
@@ -44,15 +59,17 @@ public class Destroy3 : MonoBehaviour
 	
 	void Update()
 	{
-		if (gameObject.transform.position.y <= -100)
+		if (gameObject.transform.position.y <= -100) 
+		{
+			score3.score--;
 			Death ();
+		}
 	}
 	
 	void Death()
 	{
 		AudioSource.PlayClipAtPoint(sfx, gameObject.transform.position);
 		gameObject.transform.position = initialPosition;
-		score3.score--;
 		health.healthscore = 3;
 	}
 }
