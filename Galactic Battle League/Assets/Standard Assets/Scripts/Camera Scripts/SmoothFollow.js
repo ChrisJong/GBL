@@ -40,6 +40,7 @@ function LateUpdate () {
 
 	// Damp the height
 	currentHeight = Mathf.Lerp (currentHeight, wantedHeight, heightDamping * Time.deltaTime);
+	currentHeight = Mathf.Clamp (currentHeight, target.position.y, 40);
 
 	// Convert the angle into a rotation
 	var currentRotation = Quaternion.Euler (0, currentRotationAngle, 0);
