@@ -1,0 +1,467 @@
+fileFormatVersion: 2
+guid: 682dadd8be1c4ab4fabf6eef8e4dd26c
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: billboard
+    100004: billboard 1
+    100006: billboard_group
+    100008: billboard_group1
+    100010: billboard_holder
+    100012: billboard_holder 1
+    100014: billboard_holder1
+    100016: billboard_holder1 1
+    100018: curve79
+    100020: floor
+    100022: floor_grids
+    100024: floor_guard
+    100026: glass_wall10
+    100028: glass_wall4
+    100030: glass_wall6
+    100032: glass_wall7
+    100034: glass_wall8
+    100036: glass_wall9
+    100038: group1
+    100040: Layout1
+    100042: middle_glass_walls
+    100044: middle_walls
+    100046: rail_bar_1side
+    100048: rail_bar_1side 1
+    100050: rail_bar_1side 2
+    100052: rail_bar_1side 3
+    100054: rail_bar_1side 4
+    100056: rail_bar_1side 5
+    100058: rail_bar_1side 6
+    100060: rail_bar_1side 7
+    100062: rail_bar_1side 8
+    100064: rail_bar_1side 9
+    100066: rail_bar_1side1
+    100068: rail_bar_1side1 1
+    100070: rail_bar_1side1 2
+    100072: rail_bar_1side1 3
+    100074: rail_bar_1side1 4
+    100076: rail_bar_1side1 5
+    100078: rail_bar_1side1 6
+    100080: rail_bar_1side1 7
+    100082: rail_bar_1side1 8
+    100084: rail_bar_1side1 9
+    100086: rail_bar_2side
+    100088: rail_bar_2side 1
+    100090: rail_bar_2side 2
+    100092: rail_bar_2side 3
+    100094: rail_bar_2side 4
+    100096: rail_bar_2side 5
+    100098: rail_bar_2side 6
+    100100: rail_bar_2side 7
+    100102: rail_bar_2side 8
+    100104: rail_bar_2side 9
+    100106: rail_bar_complete
+    100108: rail_bar_complete10
+    100110: rail_bar_complete2
+    100112: rail_bar_complete3
+    100114: rail_bar_complete4
+    100116: rail_bar_complete5
+    100118: rail_bar_complete6
+    100120: rail_bar_complete7
+    100122: rail_bar_complete8
+    100124: rail_bar_complete9
+    100126: rail_wall
+    100128: rail_wall 1
+    100130: rail_wall 2
+    100132: rail_wall 3
+    100134: rail_wall 4
+    100136: rail_wall 5
+    100138: rail_wall 6
+    100140: rail_wall 7
+    100142: rail_wall 8
+    100144: rail_wall 9
+    100146: rail_wall1
+    100148: rail_wall1 1
+    100150: rail_wall1 2
+    100152: rail_wall1 3
+    100154: rail_wall1 4
+    100156: rail_wall1 5
+    100158: rail_wall1 6
+    100160: rail_wall1 7
+    100162: rail_wall1 8
+    100164: rail_wall1 9
+    100166: rails
+    100168: score_board
+    100170: score_board_object
+    100172: score_board_placeHolder
+    100174: side_glass_walls
+    100176: solid_middle_walls
+    100178: solid_wall
+    100180: solid_wall8
+    100182: solid_wall9
+    100184: solid_wall98
+    100186: stadium_box
+    400000: //RootNode
+    400002: billboard
+    400004: billboard 1
+    400006: billboard_group
+    400008: billboard_group1
+    400010: billboard_holder
+    400012: billboard_holder 1
+    400014: billboard_holder1
+    400016: billboard_holder1 1
+    400018: curve79
+    400020: floor
+    400022: floor_grids
+    400024: floor_guard
+    400026: glass_wall10
+    400028: glass_wall4
+    400030: glass_wall6
+    400032: glass_wall7
+    400034: glass_wall8
+    400036: glass_wall9
+    400038: group1
+    400040: Layout1
+    400042: middle_glass_walls
+    400044: middle_walls
+    400046: rail_bar_1side
+    400048: rail_bar_1side 1
+    400050: rail_bar_1side 2
+    400052: rail_bar_1side 3
+    400054: rail_bar_1side 4
+    400056: rail_bar_1side 5
+    400058: rail_bar_1side 6
+    400060: rail_bar_1side 7
+    400062: rail_bar_1side 8
+    400064: rail_bar_1side 9
+    400066: rail_bar_1side1
+    400068: rail_bar_1side1 1
+    400070: rail_bar_1side1 2
+    400072: rail_bar_1side1 3
+    400074: rail_bar_1side1 4
+    400076: rail_bar_1side1 5
+    400078: rail_bar_1side1 6
+    400080: rail_bar_1side1 7
+    400082: rail_bar_1side1 8
+    400084: rail_bar_1side1 9
+    400086: rail_bar_2side
+    400088: rail_bar_2side 1
+    400090: rail_bar_2side 2
+    400092: rail_bar_2side 3
+    400094: rail_bar_2side 4
+    400096: rail_bar_2side 5
+    400098: rail_bar_2side 6
+    400100: rail_bar_2side 7
+    400102: rail_bar_2side 8
+    400104: rail_bar_2side 9
+    400106: rail_bar_complete
+    400108: rail_bar_complete10
+    400110: rail_bar_complete2
+    400112: rail_bar_complete3
+    400114: rail_bar_complete4
+    400116: rail_bar_complete5
+    400118: rail_bar_complete6
+    400120: rail_bar_complete7
+    400122: rail_bar_complete8
+    400124: rail_bar_complete9
+    400126: rail_wall
+    400128: rail_wall 1
+    400130: rail_wall 2
+    400132: rail_wall 3
+    400134: rail_wall 4
+    400136: rail_wall 5
+    400138: rail_wall 6
+    400140: rail_wall 7
+    400142: rail_wall 8
+    400144: rail_wall 9
+    400146: rail_wall1
+    400148: rail_wall1 1
+    400150: rail_wall1 2
+    400152: rail_wall1 3
+    400154: rail_wall1 4
+    400156: rail_wall1 5
+    400158: rail_wall1 6
+    400160: rail_wall1 7
+    400162: rail_wall1 8
+    400164: rail_wall1 9
+    400166: rails
+    400168: score_board
+    400170: score_board_object
+    400172: score_board_placeHolder
+    400174: side_glass_walls
+    400176: solid_middle_walls
+    400178: solid_wall
+    400180: solid_wall8
+    400182: solid_wall9
+    400184: solid_wall98
+    400186: stadium_box
+    2300000: billboard
+    2300002: billboard 1
+    2300004: billboard_holder
+    2300006: billboard_holder 1
+    2300008: billboard_holder1
+    2300010: billboard_holder1 1
+    2300012: floor
+    2300014: floor_grids
+    2300016: floor_guard
+    2300018: glass_wall10
+    2300020: glass_wall4
+    2300022: glass_wall6
+    2300024: glass_wall7
+    2300026: glass_wall8
+    2300028: glass_wall9
+    2300030: middle_walls
+    2300032: rail_bar_1side
+    2300034: rail_bar_1side 1
+    2300036: rail_bar_1side 2
+    2300038: rail_bar_1side 3
+    2300040: rail_bar_1side 4
+    2300042: rail_bar_1side 5
+    2300044: rail_bar_1side 6
+    2300046: rail_bar_1side 7
+    2300048: rail_bar_1side 8
+    2300050: rail_bar_1side 9
+    2300052: rail_bar_1side1
+    2300054: rail_bar_1side1 1
+    2300056: rail_bar_1side1 2
+    2300058: rail_bar_1side1 3
+    2300060: rail_bar_1side1 4
+    2300062: rail_bar_1side1 5
+    2300064: rail_bar_1side1 6
+    2300066: rail_bar_1side1 7
+    2300068: rail_bar_1side1 8
+    2300070: rail_bar_1side1 9
+    2300072: rail_bar_2side
+    2300074: rail_bar_2side 1
+    2300076: rail_bar_2side 2
+    2300078: rail_bar_2side 3
+    2300080: rail_bar_2side 4
+    2300082: rail_bar_2side 5
+    2300084: rail_bar_2side 6
+    2300086: rail_bar_2side 7
+    2300088: rail_bar_2side 8
+    2300090: rail_bar_2side 9
+    2300092: rail_wall
+    2300094: rail_wall 1
+    2300096: rail_wall 2
+    2300098: rail_wall 3
+    2300100: rail_wall 4
+    2300102: rail_wall 5
+    2300104: rail_wall 6
+    2300106: rail_wall 7
+    2300108: rail_wall 8
+    2300110: rail_wall 9
+    2300112: rail_wall1
+    2300114: rail_wall1 1
+    2300116: rail_wall1 2
+    2300118: rail_wall1 3
+    2300120: rail_wall1 4
+    2300122: rail_wall1 5
+    2300124: rail_wall1 6
+    2300126: rail_wall1 7
+    2300128: rail_wall1 8
+    2300130: rail_wall1 9
+    2300132: score_board
+    2300134: score_board_placeHolder
+    2300136: solid_wall
+    2300138: solid_wall8
+    2300140: solid_wall9
+    2300142: solid_wall98
+    2300144: stadium_box
+    3300000: billboard
+    3300002: billboard 1
+    3300004: billboard_holder
+    3300006: billboard_holder 1
+    3300008: billboard_holder1
+    3300010: billboard_holder1 1
+    3300012: floor
+    3300014: floor_grids
+    3300016: floor_guard
+    3300018: glass_wall10
+    3300020: glass_wall4
+    3300022: glass_wall6
+    3300024: glass_wall7
+    3300026: glass_wall8
+    3300028: glass_wall9
+    3300030: middle_walls
+    3300032: rail_bar_1side
+    3300034: rail_bar_1side 1
+    3300036: rail_bar_1side 2
+    3300038: rail_bar_1side 3
+    3300040: rail_bar_1side 4
+    3300042: rail_bar_1side 5
+    3300044: rail_bar_1side 6
+    3300046: rail_bar_1side 7
+    3300048: rail_bar_1side 8
+    3300050: rail_bar_1side 9
+    3300052: rail_bar_1side1
+    3300054: rail_bar_1side1 1
+    3300056: rail_bar_1side1 2
+    3300058: rail_bar_1side1 3
+    3300060: rail_bar_1side1 4
+    3300062: rail_bar_1side1 5
+    3300064: rail_bar_1side1 6
+    3300066: rail_bar_1side1 7
+    3300068: rail_bar_1side1 8
+    3300070: rail_bar_1side1 9
+    3300072: rail_bar_2side
+    3300074: rail_bar_2side 1
+    3300076: rail_bar_2side 2
+    3300078: rail_bar_2side 3
+    3300080: rail_bar_2side 4
+    3300082: rail_bar_2side 5
+    3300084: rail_bar_2side 6
+    3300086: rail_bar_2side 7
+    3300088: rail_bar_2side 8
+    3300090: rail_bar_2side 9
+    3300092: rail_wall
+    3300094: rail_wall 1
+    3300096: rail_wall 2
+    3300098: rail_wall 3
+    3300100: rail_wall 4
+    3300102: rail_wall 5
+    3300104: rail_wall 6
+    3300106: rail_wall 7
+    3300108: rail_wall 8
+    3300110: rail_wall 9
+    3300112: rail_wall1
+    3300114: rail_wall1 1
+    3300116: rail_wall1 2
+    3300118: rail_wall1 3
+    3300120: rail_wall1 4
+    3300122: rail_wall1 5
+    3300124: rail_wall1 6
+    3300126: rail_wall1 7
+    3300128: rail_wall1 8
+    3300130: rail_wall1 9
+    3300132: score_board
+    3300134: score_board_placeHolder
+    3300136: solid_wall
+    3300138: solid_wall8
+    3300140: solid_wall9
+    3300142: solid_wall98
+    3300144: stadium_box
+    4300000: floor
+    4300002: middle_walls
+    4300004: floor_guard
+    4300006: floor_grids
+    4300008: score_board_placeHolder
+    4300010: score_board
+    4300012: stadium_box
+    4300014: glass_wall7
+    4300016: glass_wall6
+    4300018: glass_wall8
+    4300020: glass_wall9
+    4300022: glass_wall10
+    4300024: glass_wall4
+    4300026: solid_wall8
+    4300028: solid_wall9
+    4300030: solid_wall98
+    4300032: solid_wall
+    4300034: rail_wall
+    4300036: rail_wall1
+    4300038: rail_bar_2side
+    4300040: rail_bar_1side1
+    4300042: rail_bar_1side
+    4300044: rail_wall
+    4300046: rail_wall1
+    4300048: rail_bar_2side
+    4300050: rail_bar_1side1
+    4300052: rail_bar_1side
+    4300054: rail_wall
+    4300056: rail_wall1
+    4300058: rail_bar_2side
+    4300060: rail_bar_1side1
+    4300062: rail_bar_1side
+    4300064: rail_wall
+    4300066: rail_wall1
+    4300068: rail_bar_2side
+    4300070: rail_bar_1side1
+    4300072: rail_bar_1side
+    4300074: rail_wall
+    4300076: rail_wall1
+    4300078: rail_bar_2side
+    4300080: rail_bar_1side1
+    4300082: rail_bar_1side
+    4300084: rail_wall
+    4300086: rail_wall1
+    4300088: rail_bar_2side
+    4300090: rail_bar_1side1
+    4300092: rail_bar_1side
+    4300094: rail_wall
+    4300096: rail_wall1
+    4300098: rail_bar_2side
+    4300100: rail_bar_1side1
+    4300102: rail_bar_1side
+    4300104: rail_wall
+    4300106: rail_wall1
+    4300108: rail_bar_2side
+    4300110: rail_bar_1side1
+    4300112: rail_bar_1side
+    4300114: rail_wall
+    4300116: rail_wall1
+    4300118: rail_bar_2side
+    4300120: rail_bar_1side1
+    4300122: rail_bar_1side
+    4300124: rail_wall
+    4300126: rail_wall1
+    4300128: rail_bar_2side
+    4300130: rail_bar_1side1
+    4300132: rail_bar_1side
+    4300134: billboard_holder
+    4300136: billboard
+    4300138: billboard_holder1
+    4300140: billboard_holder
+    4300142: billboard
+    4300144: billboard_holder1
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
