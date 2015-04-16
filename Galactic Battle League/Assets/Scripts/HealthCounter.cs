@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class HealthCounter1 : MonoBehaviour 
+public class HealthCounter : MonoBehaviour 
 {
 	Text health;
 	public int healthscore {get; set;}
