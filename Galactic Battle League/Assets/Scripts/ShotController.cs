@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ShotController : MonoBehaviour 
 {
+	public AudioClip sfxHit;
 	public int shotSpeed;
 	// Use this for initialization
 	void Start () 
@@ -17,8 +18,11 @@ public class ShotController : MonoBehaviour
 	
 	void OnTriggerEnter (Collider other)
 	{
-		if (other.tag != "Player")
+		if (other.tag != "Player") 
+		{
+			AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position);
 			Destroy (gameObject);
+		}
 	}
 
 }

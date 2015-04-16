@@ -42,6 +42,8 @@ public class HoverCarControl : MonoBehaviour
 	private float timer = 0.0f;
 	private bool deathRun = false;
 
+
+
 	//Fire control variables
 	public GameObject shot;
 	public Transform shotSpawn;
@@ -49,6 +51,7 @@ public class HoverCarControl : MonoBehaviour
 	public AudioClip sfxFire;
 	public Vector3 tankVelocity;
 	private float nextFire;
+	public AudioClip sfxHit;
 
   void Start()
 	{
@@ -206,6 +209,7 @@ public class HoverCarControl : MonoBehaviour
 	{
 		if ((other.tag == "Shot1" || other.tag == "Shot2" || other.tag == "Shot3" ||other.tag == "Shot4") && (other.tag != "Shot" + playerNumber)) 
 		{
+			AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position);
 			Destroy (other.gameObject);
 			health.healthscore--;
 			if (health.healthscore <= 0)
@@ -256,6 +260,11 @@ public class HoverCarControl : MonoBehaviour
 	{
 		tempHoverForce = m_hoverForce;
 		m_hoverForce = 0.0f;
+
+		m_currThrust = 0.0f;
+		m_currSideThrust = 0.0f;
+		m_currTurn = 0.0f;
+
 		AudioSource.PlayClipAtPoint(sfxDeath, gameObject.transform.position);
 		timer = 0.0f;
 		deathRun = true;
