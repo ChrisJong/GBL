@@ -55,44 +55,44 @@ public class HoverCarControl : MonoBehaviour
 	public float explosionRadius = 4.0F;
 	public float explosionPower = 25000.0F;
 
-  void Start()
+	void Start()
 	{
 		initialPosition = gameObject.transform.position;
 		initialRotation = gameObject.transform.rotation;
 
-    m_body = GetComponent<Rigidbody>();
+    	m_body = GetComponent<Rigidbody>();
 
-    m_layerMask = 1 << LayerMask.NameToLayer("Characters");
-    m_layerMask = ~m_layerMask;
-  }
+    	m_layerMask = 1 << LayerMask.NameToLayer("Characters");
+    	m_layerMask = ~m_layerMask;
+	}
 
-  void OnDrawGizmos()
-  {
-
-    //  Hover Force
-    RaycastHit hit;
-    for (int i = 0; i < m_hoverPoints.Length; i++)
-    {
-      var hoverPoint = m_hoverPoints [i];
-      if (Physics.Raycast(hoverPoint.transform.position, 
-                          -Vector3.up, out hit,
-                          m_hoverHeight, 
-                          m_layerMask))
-      {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(hoverPoint.transform.position, hit.point);
-        Gizmos.DrawSphere(hit.point, 0.5f);
-      } else
-      {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(hoverPoint.transform.position, 
-                       hoverPoint.transform.position - Vector3.up * m_hoverHeight);
-      }
-    }
-  }
+	void OnDrawGizmos()
+  	{
+    	//  Hover Force
+    	RaycastHit hit;
+    	for (int i = 0; i < m_hoverPoints.Length; i++)
+    	{
+      		var hoverPoint = m_hoverPoints [i];
+      		if (Physics.Raycast(hoverPoint.transform.position, 
+                          		-Vector3.up, out hit,
+                          		m_hoverHeight, 
+                          		m_layerMask))
+      		{
+        		Gizmos.color = Color.blue;
+        		Gizmos.DrawLine(hoverPoint.transform.position, hit.point);
+        		Gizmos.DrawSphere(hit.point, 0.5f);
+      		} 
+			else
+      		{
+        		Gizmos.color = Color.red;
+        		Gizmos.DrawLine(hoverPoint.transform.position, 
+                		       hoverPoint.transform.position - Vector3.up * m_hoverHeight);
+			}
+		}
+  	}
 	
-  void Update()
-  {
+	void Update()
+	{
 		if (!deathRun) 
 		{
 			// Main Thrust
@@ -120,16 +120,9 @@ public class HoverCarControl : MonoBehaviour
 			if (Input.GetButton ("Fire" + playerNumber) && Time.time > nextFire) 
 			{
 				nextFire = Time.time + fireRate;
-				Collider[] colliders = Physics.OverlapSphere(shotSpawn.position, explosionRadius);
-				foreach (Collider hit in colliders) 
-				{
-					if (hit && hit.rigidbody)
-						hit.rigidbody.AddExplosionForce(explosionPower, shotSpawn.position, explosionRadius);
-					
-				}
+				gameObject.rigidbody.AddExplosionForce(explosionPower, shotSpawn.position, explosionRadius);
 				tankVelocity = rigidbody.velocity;
 				createShot (tankVelocity);
-
 				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position);
 			}
 		}
@@ -220,13 +213,7 @@ public class HoverCarControl : MonoBehaviour
 		if ((other.tag == "Shot1" || other.tag == "Shot2" || other.tag == "Shot3" ||other.tag == "Shot4") && (other.tag != "Shot" + playerNumber)) 
 		{
 			AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position);
-			Collider[] colliders = Physics.OverlapSphere(other.gameObject.transform.position, explosionRadius);
-			foreach (Collider hit in colliders) 
-			{
-				if (hit && hit.rigidbody)
-					hit.rigidbody.AddExplosionForce(explosionPower, other.gameObject.transform.position, explosionRadius);
-				
-			}
+			gameObject.rigidbody.AddExplosionForce(explosionPower, other.gameObject.transform.position, explosionRadius);
 			Destroy (other.gameObject);
 			health.healthscore--;
 			if (health.healthscore <= 0)
