@@ -52,6 +52,8 @@ public class HoverCarControl : MonoBehaviour
 	public Vector3 tankVelocity;
 	private float nextFire;
 	public AudioClip sfxHit;
+	public float explosionRadius = 4.0F;
+	public float explosionPower = 25000.0F;
 
   void Start()
 	{
@@ -115,11 +117,19 @@ public class HoverCarControl : MonoBehaviour
 			if (Mathf.Abs (turnAxis) > m_deadZone)
 				m_currTurn = turnAxis;
 
-			if (Input.GetButton ("Fire" + playerNumber) && Time.time > nextFire) {
+			if (Input.GetButton ("Fire" + playerNumber) && Time.time > nextFire) 
+			{
 				nextFire = Time.time + fireRate;
+				Collider[] colliders = Physics.OverlapSphere(shotSpawn.position, explosionRadius);
+				foreach (Collider hit in colliders) 
+				{
+					if (hit && hit.rigidbody)
+						hit.rigidbody.AddExplosionForce(explosionPower, shotSpawn.position, explosionRadius);
+					
+				}
 				tankVelocity = rigidbody.velocity;
 				createShot (tankVelocity);
-			
+
 				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position);
 			}
 		}
@@ -210,6 +220,13 @@ public class HoverCarControl : MonoBehaviour
 		if ((other.tag == "Shot1" || other.tag == "Shot2" || other.tag == "Shot3" ||other.tag == "Shot4") && (other.tag != "Shot" + playerNumber)) 
 		{
 			AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position);
+			Collider[] colliders = Physics.OverlapSphere(other.gameObject.transform.position, explosionRadius);
+			foreach (Collider hit in colliders) 
+			{
+				if (hit && hit.rigidbody)
+					hit.rigidbody.AddExplosionForce(explosionPower, other.gameObject.transform.position, explosionRadius);
+				
+			}
 			Destroy (other.gameObject);
 			health.healthscore--;
 			if (health.healthscore <= 0)
