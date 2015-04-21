@@ -210,10 +210,19 @@ public class HoverCarControl : MonoBehaviour
 
 	void OnTriggerEnter (Collider other)
 	{
+		if (deathRun == true)
+			return;
+
 		if ((other.tag == "Shot1" || other.tag == "Shot2" || other.tag == "Shot3" ||other.tag == "Shot4") && (other.tag != "Shot" + playerNumber)) 
 		{
 			AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position);
-			gameObject.rigidbody.AddExplosionForce(explosionPower, other.gameObject.transform.position, explosionRadius);
+			Vector3 explosionPos = other.gameObject.transform.position;
+			Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
+			foreach (Collider hit in colliders) {
+				if (hit && hit.rigidbody)
+					hit.rigidbody.AddExplosionForce(explosionPower, explosionPos, explosionRadius);
+				
+			}
 			Destroy (other.gameObject);
 			health.healthscore--;
 			if (health.healthscore <= 0)
