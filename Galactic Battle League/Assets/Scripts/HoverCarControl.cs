@@ -30,6 +30,8 @@ public class HoverCarControl : MonoBehaviour
 
 	public ParticleSystem sparkParticle;
 
+	public ParticleSystem[] hoverParticles;
+
 	//Death/respawn variables
 	public ScoreCounter1 score1;
 	public ScoreCounter2 score2;
@@ -300,6 +302,10 @@ public class HoverCarControl : MonoBehaviour
 		AudioSource.PlayClipAtPoint(sfxDeath, gameObject.transform.position);
 		timer = 0.0f;
 		deathRun = true;
+		foreach (ParticleSystem particle in hoverParticles) 
+		{
+			particle.Stop();
+		}
 	}
 
 	void Respawn()
@@ -307,6 +313,10 @@ public class HoverCarControl : MonoBehaviour
 		gameObject.transform.position = initialPosition;
 		gameObject.transform.rotation = initialRotation;
 		m_hoverForce = tempHoverForce;
+		foreach (ParticleSystem particle in hoverParticles) 
+		{
+			particle.Play();
+		}
 		health.healthscore = 3;
 		deathRun = false;
 		if (score1.score >= 5 || score2.score >= 5 || score3.score >= 5 || score4.score >= 5)
