@@ -37,6 +37,7 @@ public class HoverCarControl : MonoBehaviour
 	public AudioClip sfxDeath;
 	Vector3 initialPosition;
 	Quaternion initialRotation;
+	public ParticleSystem hitParticle;
 
 	private float tempHoverForce;
 	private float timer = 0.0f;
@@ -54,6 +55,7 @@ public class HoverCarControl : MonoBehaviour
 	public AudioClip sfxHit;
 	public float explosionRadius = 4.0F;
 	public float explosionPower = 25000.0F;
+	public ParticleSystem fireParticle;
 
 	void Start()
 	{
@@ -123,6 +125,7 @@ public class HoverCarControl : MonoBehaviour
 				gameObject.rigidbody.AddExplosionForce(explosionPower, shotSpawn.position, explosionRadius);
 				tankVelocity = rigidbody.velocity;
 				createShot (tankVelocity);
+				fireParticle.Play();
 				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position);
 			}
 		}
@@ -218,7 +221,10 @@ public class HoverCarControl : MonoBehaviour
 			AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position);
 			Vector3 explosionPos = other.gameObject.transform.position;
 			Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
-			foreach (Collider hit in colliders) {
+			hitParticle.transform.position = other.transform.position;
+			hitParticle.Play();
+			foreach (Collider hit in colliders) 
+			{
 				if (hit && hit.rigidbody)
 					hit.rigidbody.AddExplosionForce(explosionPower, explosionPos, explosionRadius);
 				
