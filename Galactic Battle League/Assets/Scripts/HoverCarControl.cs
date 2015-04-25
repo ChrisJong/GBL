@@ -28,6 +28,8 @@ public class HoverCarControl : MonoBehaviour
 
   	int m_layerMask;
 
+	public ParticleSystem sparkParticle;
+
 	//Death/respawn variables
 	public ScoreCounter1 score1;
 	public ScoreCounter2 score2;
@@ -215,7 +217,6 @@ public class HoverCarControl : MonoBehaviour
 	{
 		if (deathRun == true)
 			return;
-
 		if ((other.tag == "Shot1" || other.tag == "Shot2" || other.tag == "Shot3" ||other.tag == "Shot4") && (other.tag != "Shot" + playerNumber)) 
 		{
 			AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position);
@@ -265,6 +266,18 @@ public class HoverCarControl : MonoBehaviour
 						PlayerPrefs.SetInt("Winner", 4);
 					}
 				}
+			}
+		}
+	}
+
+	void OnCollisionEnter(Collision collision)
+	{
+		foreach (ContactPoint contact in collision.contacts) 
+		{
+			if (contact.otherCollider.tag != "Shot" + playerNumber)
+			{
+				ParticleSystem sparks = (ParticleSystem)Instantiate(sparkParticle, contact.point, shotSpawn.rotation);
+				sparks.Play();
 			}
 		}
 	}
