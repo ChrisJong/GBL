@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using InControl;
 
 [RequireComponent(typeof(Rigidbody))]
 public class HoverCarControl : MonoBehaviour
@@ -99,11 +100,14 @@ public class HoverCarControl : MonoBehaviour
 	
 	void Update()
 	{
-		if (!deathRun) 
+		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
+
+
+		if (!deathRun && inputDevice != null) 
 		{
 			// Main Thrust
 			m_currThrust = 0.0f;
-			float aclAxis = Input.GetAxis ("P" + playerNumber +"_Vertical");
+			float aclAxis = inputDevice.Direction.Y;
 			if (aclAxis > m_deadZone)
 				m_currThrust = aclAxis * m_forwardAcl;
 			else if (aclAxis < -m_deadZone)
@@ -111,7 +115,7 @@ public class HoverCarControl : MonoBehaviour
 
 			// Side Thrust
 			m_currSideThrust = 0.0f;
-			float aclSideAxis = Input.GetAxis ("P" + playerNumber +"_Horizontal");
+			float aclSideAxis = inputDevice.Direction.X;
 			if (aclSideAxis > m_deadZone)
 				m_currSideThrust = aclSideAxis * m_sideAcl;
 			else if (aclSideAxis < -m_deadZone)
@@ -119,17 +123,19 @@ public class HoverCarControl : MonoBehaviour
 
 			// Turning
 			m_currTurn = 0.0f;
-			float turnAxis = Input.GetAxis ("P" + playerNumber +"_HorizontalTurn");
+			float turnAxis = inputDevice.RightStickX;
 			if (Mathf.Abs (turnAxis) > m_deadZone)
 				m_currTurn = turnAxis;
 
-			if (Input.GetButton ("Fire" + playerNumber) && Time.time > nextFire) 
+
+			// Firing
+			if (inputDevice.RightTrigger >= 0.5 && Time.time > nextFire) 
 			{
 				nextFire = Time.time + fireRate;
 				gameObject.rigidbody.AddExplosionForce(explosionPower, shotSpawn.position, explosionRadius);
 				tankVelocity = rigidbody.velocity;
-				createShot (tankVelocity);
 				fireParticle.Play();
+				createShot (tankVelocity);
 				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position);
 			}
 		}
