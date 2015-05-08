@@ -46,44 +46,33 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\JMO Assets\Cartoon FX Easy Editor\Editor\CFXEasyEditor.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Editor\CFX_InspectorHelpEditor.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Editor\CFX_SpawnSystemEditor.cs" />
+     <Compile Include="Assets\InControl\Editor\InControlBuilder.cs" />
+     <Compile Include="Assets\InControl\Editor\InControlManagerEditor.cs" />
+     <Compile Include="Assets\InControl\Editor\InputManagerAssetGenerator.cs" />
+     <Compile Include="Assets\InControl\Editor\ProfileListGenerator.cs" />
+     <Compile Include="Assets\InControl\Editor\ReorderableList\GenericListAdaptor.cs" />
+     <Compile Include="Assets\InControl\Editor\ReorderableList\IReorderableListAdaptor.cs" />
+     <Compile Include="Assets\InControl\Editor\ReorderableList\Internal\GUIHelper.cs" />
+     <Compile Include="Assets\InControl\Editor\ReorderableList\Internal\ReorderableListResources.cs" />
+     <Compile Include="Assets\InControl\Editor\ReorderableList\ReorderableListControl.cs" />
+     <Compile Include="Assets\InControl\Editor\ReorderableList\ReorderableListFlags.cs" />
+     <Compile Include="Assets\InControl\Editor\ReorderableList\ReorderableListGUI.cs" />
+     <Compile Include="Assets\InControl\Editor\ReorderableList\SerializedPropertyAdaptor.cs" />
      <None Include="Assets\Shaders\ToonShaders\Toony-Basic.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAdd_Alpha8.shader" />
      <None Include="Assets\Shaders\Fx\InterlacePatternBlend.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX3 Readme.txt" />
+     <None Include="Assets\InControl\README\README.txt" />
      <None Include="Assets\Sample Assets\Vehicles\Car\Shaders\DiffuseReflectiveShader.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAlphaBlend_Alpha8.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Invert.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Add.shader" />
      <None Include="Assets\Shaders\ToonShaders\Toony-BasicOutline.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+AddSoft.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+AddSoft VColor.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+Add.shader" />
-     <None Include="Assets\JMO Assets\!JMO Assets Readme.txt" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Hidden.shader" />
      <None Include="Assets\Shaders\ToonShaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Shaders\ToonShaders\Toony-Lighted.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_WaterWiggle.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+Add VColor.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Tint.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX4 Readme.txt" />
      <None Include="Assets\Standard Assets\JMO Assets\Toony Colors\Shaders\Toony_Colors_RimOutline.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX2 Readme.txt" />
      <None Include="Assets\Shaders\Fx\InterlacePatternAdditive.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX Readme.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/Editor/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="JMOAssets">
- <HintPath>C:/Users/Supanerd01/Documents/MT3/Galactic Battle League/Assets/JMO Assets/Editor/JMOAssets.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>

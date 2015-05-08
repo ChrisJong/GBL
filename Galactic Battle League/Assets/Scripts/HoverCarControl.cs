@@ -29,7 +29,7 @@ public class HoverCarControl : MonoBehaviour
 
   	int m_layerMask;
 
-	public ParticleSystem sparkParticle;
+	public ParticleEmitter sparkParticle;
 
 	public ParticleSystem[] hoverParticles;
 
@@ -284,8 +284,8 @@ public class HoverCarControl : MonoBehaviour
 		{
 			if (contact.otherCollider.tag != "Shot" + playerNumber)
 			{
-				ParticleSystem sparks = (ParticleSystem)Instantiate(sparkParticle, contact.point, shotSpawn.rotation);
-				sparks.Play();
+				ParticleEmitter sparks = (ParticleEmitter)Instantiate(sparkParticle, contact.point, shotSpawn.rotation);
+				sparks.Emit();
 			}
 		}
 	}
