@@ -6,7 +6,7 @@ public class RestartGame : MonoBehaviour
 
 	public void BeginGame () 
 	{
-		Application.LoadLevel ("OpeningScreen");
+		Application.LoadLevel ("MainMenu");
 	}
 }
 

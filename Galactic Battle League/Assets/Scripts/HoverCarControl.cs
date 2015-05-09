@@ -26,6 +26,7 @@ public class HoverCarControl : MonoBehaviour
 	public GameObject m_rightAirBrake;
 
 	public int playerNumber; 
+	public int tankClass;
 
   	int m_layerMask;
 
@@ -47,7 +48,7 @@ public class HoverCarControl : MonoBehaviour
 	private float tempHoverForce;
 	private float timer = 0.0f;
 	private bool deathRun = false;
-
+	private int maxHealth;
 
 
 	//Fire control variables
@@ -64,6 +65,19 @@ public class HoverCarControl : MonoBehaviour
 
 	void Start()
 	{
+		PlayerPrefs.SetInt ("Player1Tank", 1);
+		PlayerPrefs.SetInt ("Player2Tank", 1);
+		PlayerPrefs.SetInt ("Player3Tank", 1);
+		PlayerPrefs.SetInt ("Player4Tank", 1);
+		if (tankClass != PlayerPrefs.GetInt ("Player" + playerNumber + "Tank"))
+			Destroy (gameObject);
+		if (tankClass == 2)
+			maxHealth = 3;
+		else
+			maxHealth = 6;
+
+		health.healthscore = maxHealth;
+
 		initialPosition = gameObject.transform.position;
 		initialRotation = gameObject.transform.rotation;
 
@@ -225,7 +239,9 @@ public class HoverCarControl : MonoBehaviour
 	{
 		if (deathRun == true)
 			return;
-		if ((other.tag == "Shot1" || other.tag == "Shot2" || other.tag == "Shot3" ||other.tag == "Shot4") && (other.tag != "Shot" + playerNumber)) 
+		if ((other.tag == "Shot1" || other.tag == "Shot1L" || other.tag == "Shot2" || other.tag == "Shot2L" 
+		     || other.tag == "Shot3" ||other.tag == "Shot3L" || other.tag == "Shot4" || other.tag == "Shot4L")
+		    && (other.tag != "Shot" + playerNumber) && (other.tag != "Shot" + playerNumber + "L"))
 		{
 			AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position);
 			Vector3 explosionPos = other.gameObject.transform.position;
@@ -240,6 +256,8 @@ public class HoverCarControl : MonoBehaviour
 			}
 			Destroy (other.gameObject);
 			health.healthscore--;
+			if (other.tag == "Shot1" || other.tag == "Shot2" || other.tag == "Shot3" ||other.tag == "Shot4")
+				health.healthscore--;
 			if (health.healthscore <= 0)
 			{
 				if (other.tag == "Shot1" && playerNumber != 1)
@@ -323,7 +341,7 @@ public class HoverCarControl : MonoBehaviour
 		{
 			particle.Play();
 		}
-		health.healthscore = 3;
+		health.healthscore = maxHealth;
 		deathRun = false;
 		if (score1.score >= 5 || score2.score >= 5 || score3.score >= 5 || score4.score >= 5)
 		{
