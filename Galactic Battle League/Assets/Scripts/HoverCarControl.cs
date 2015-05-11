@@ -49,7 +49,7 @@ public class HoverCarControl : MonoBehaviour
 	private float timer = 0.0f;
 	private bool deathRun = false;
 	private int maxHealth;
-
+	private int healthInt;
 
 	//Fire control variables
 	public GameObject shot;
@@ -71,12 +71,12 @@ public class HoverCarControl : MonoBehaviour
 		PlayerPrefs.SetInt ("Player4Tank", 1);
 		if (tankClass != PlayerPrefs.GetInt ("Player" + playerNumber + "Tank"))
 			Destroy (gameObject);
-		if (tankClass == 2)
+		if (tankClass == 1)
 			maxHealth = 3;
 		else
 			maxHealth = 6;
 
-		health.healthscore = maxHealth;
+		healthInt = maxHealth;
 
 		initialPosition = gameObject.transform.position;
 		initialRotation = gameObject.transform.rotation;
@@ -115,7 +115,7 @@ public class HoverCarControl : MonoBehaviour
 	void Update()
 	{
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
-
+		health.healthscore = healthInt;
 
 		if (!deathRun && inputDevice != null) 
 		{
@@ -175,7 +175,7 @@ public class HoverCarControl : MonoBehaviour
 			Respawn ();
 		}
 
-		if (health.healthscore <= 0) 
+		if (healthInt <= 0) 
 		{
 			if (!deathRun)
 				Death ();
@@ -255,12 +255,12 @@ public class HoverCarControl : MonoBehaviour
 				
 			}
 			Destroy (other.gameObject);
-			health.healthscore--;
+			healthInt--;
 			if (other.tag == "Shot1" || other.tag == "Shot2" || other.tag == "Shot3" ||other.tag == "Shot4")
-				health.healthscore--;
-			if (health.healthscore <= 0)
+				healthInt--;
+			if (healthInt <= 0)
 			{
-				if (other.tag == "Shot1" && playerNumber != 1)
+				if ((other.tag == "Shot1" || other.tag == "Shot1L") && playerNumber != 1)
 				{
 					score1.score++;
 					if (score1.score >= 5)
@@ -268,7 +268,7 @@ public class HoverCarControl : MonoBehaviour
 						PlayerPrefs.SetInt("Winner", 1);
 					}
 				}
-				if (other.tag == "Shot2" && playerNumber != 2)
+				if ((other.tag == "Shot2" || other.tag == "Shot2L") && playerNumber != 2)
 				{
 					score2.score++;
 					if (score2.score >= 5)
@@ -276,7 +276,7 @@ public class HoverCarControl : MonoBehaviour
 						PlayerPrefs.SetInt("Winner", 2);
 					}
 				}
-				if (other.tag == "Shot3" && playerNumber != 3)
+				if ((other.tag == "Shot3" || other.tag == "Shot3L") && playerNumber != 3)
 				{
 					score3.score++;
 					if (score3.score >= 5)
@@ -284,7 +284,7 @@ public class HoverCarControl : MonoBehaviour
 						PlayerPrefs.SetInt("Winner", 3);
 					}
 				}
-				if (other.tag == "Shot4" && playerNumber != 4)
+				if ((other.tag == "Shot4" || other.tag == "Shot4L") && playerNumber != 4)
 				{
 					score4.score++;
 					if (score4.score >= 5)
@@ -341,7 +341,7 @@ public class HoverCarControl : MonoBehaviour
 		{
 			particle.Play();
 		}
-		health.healthscore = maxHealth;
+		healthInt = maxHealth;
 		deathRun = false;
 		if (score1.score >= 5 || score2.score >= 5 || score3.score >= 5 || score4.score >= 5)
 		{

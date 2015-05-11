@@ -9,7 +9,6 @@ public class HealthCounter : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		healthscore = 3;
 		health = GetComponent<Text> ();
 		health.text = "Health: " + healthscore;
 	}
