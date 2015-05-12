@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using InControl;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class HoverCarControl : MonoBehaviour
@@ -40,6 +41,7 @@ public class HoverCarControl : MonoBehaviour
 	public ScoreCounter3 score3;
 	public ScoreCounter4 score4;
 	public HealthCounter health;
+	public GameObject killMessage;
 	public AudioClip sfxDeath;
 	Vector3 initialPosition;
 	Quaternion initialRotation;
@@ -263,6 +265,10 @@ public class HoverCarControl : MonoBehaviour
 				if ((other.tag == "Shot1" || other.tag == "Shot1L") && playerNumber != 1)
 				{
 					score1.score++;
+
+					killMessage.SetActive(true);
+
+					killMessage.GetComponentsInChildren<Text>()[0].text = "Player 1 killed you!";
 					if (score1.score >= 5)
 					{
 						PlayerPrefs.SetInt("Winner", 1);
@@ -271,6 +277,10 @@ public class HoverCarControl : MonoBehaviour
 				if ((other.tag == "Shot2" || other.tag == "Shot2L") && playerNumber != 2)
 				{
 					score2.score++;
+
+					killMessage.SetActive(true);
+
+					killMessage.GetComponentsInChildren<Text>()[0].text = "Player 2 killed you!";
 					if (score2.score >= 5)
 					{
 						PlayerPrefs.SetInt("Winner", 2);
@@ -279,6 +289,10 @@ public class HoverCarControl : MonoBehaviour
 				if ((other.tag == "Shot3" || other.tag == "Shot3L") && playerNumber != 3)
 				{
 					score3.score++;
+
+					killMessage.SetActive(true);
+
+					killMessage.GetComponentsInChildren<Text>()[0].text = "Player 3 killed you!";
 					if (score3.score >= 5)
 					{
 						PlayerPrefs.SetInt("Winner", 3);
@@ -287,6 +301,10 @@ public class HoverCarControl : MonoBehaviour
 				if ((other.tag == "Shot4" || other.tag == "Shot4L") && playerNumber != 4)
 				{
 					score4.score++;
+
+					killMessage.SetActive(true);
+
+					killMessage.GetComponentsInChildren<Text>()[0].text = "Player 4 killed you!";
 					if (score4.score >= 5)
 					{
 						PlayerPrefs.SetInt("Winner", 4);
@@ -347,5 +365,6 @@ public class HoverCarControl : MonoBehaviour
 		{
 			Application.LoadLevel("EndScreen");
 		}
+		killMessage.SetActive(false);
 	}
 }

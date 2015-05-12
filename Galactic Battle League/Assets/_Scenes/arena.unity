@@ -11845,7 +11845,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 473462, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
       propertyPath: score1
@@ -11895,6 +11895,14 @@ Prefab:
       propertyPath: sparkParticle
       value: 
       objectReference: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
+    - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: killMessage
+      value: 
+      objectReference: {fileID: 256085437}
+    - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: killMessage
+      value: 
+      objectReference: {fileID: 256085437}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
   m_RootGameObject: {fileID: 1716396472}
@@ -15917,6 +15925,7 @@ MonoBehaviour:
   score3: {fileID: 1486416957}
   score4: {fileID: 691753884}
   health: {fileID: 595059947}
+  killMessage: {fileID: 671884655}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 867909189}
   shot: {fileID: 100000, guid: 86718743cfcbfcc4b8b97983691d2dff, type: 2}
@@ -16130,6 +16139,14 @@ Prefab:
       propertyPath: sparkParticle
       value: 
       objectReference: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: killMessage
+      value: 
+      objectReference: {fileID: 671884655}
+    - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: killMessage
+      value: 
+      objectReference: {fileID: 671884655}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
   m_RootGameObject: {fileID: 1776996223}
@@ -23241,7 +23258,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 495642, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
       propertyPath: score1
@@ -23291,6 +23308,14 @@ Prefab:
       propertyPath: sparkParticle
       value: 
       objectReference: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
+    - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: killMessage
+      value: 
+      objectReference: {fileID: 657119925}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: killMessage
+      value: 
+      objectReference: {fileID: 657119925}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
   m_RootGameObject: {fileID: 864924550}
@@ -24874,6 +24899,14 @@ Prefab:
       propertyPath: sparkParticle
       value: 
       objectReference: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: killMessage
+      value: 
+      objectReference: {fileID: 916756020}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: killMessage
+      value: 
+      objectReference: {fileID: 916756020}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77192545805124c43902ecc06c78608f, type: 2}
   m_RootGameObject: {fileID: 937733795}
@@ -34121,7 +34154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
 --- !u!1 &832083280
 GameObject:
   m_ObjectHideFlags: 0
@@ -34313,7 +34346,7 @@ Transform:
   - {fileID: 1020648330}
   - {fileID: 1169388142}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
 --- !u!1 &867909187
 GameObject:
   m_ObjectHideFlags: 0
@@ -37021,7 +37054,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &928958149
 GameObject:
   m_ObjectHideFlags: 0
@@ -37266,7 +37299,7 @@ Transform:
   - {fileID: 983664925}
   - {fileID: 1647441471}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
 --- !u!1 &939383210
 GameObject:
   m_ObjectHideFlags: 0
@@ -37564,6 +37597,7 @@ MonoBehaviour:
   score3: {fileID: 1486416957}
   score4: {fileID: 691753884}
   health: {fileID: 734844247}
+  killMessage: {fileID: 916756020}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 1460395410}
   shot: {fileID: 100000, guid: 9f657a0a114cbf14dbfd57ac79e22d61, type: 2}
@@ -37933,6 +37967,7 @@ MonoBehaviour:
   score3: {fileID: 1486416957}
   score4: {fileID: 691753884}
   health: {fileID: 775898917}
+  killMessage: {fileID: 657119925}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 330360248}
   shot: {fileID: 100000, guid: 6cef3e2f90661b54eb53984e9a89be69, type: 2}
@@ -46077,6 +46112,7 @@ MonoBehaviour:
   score3: {fileID: 1486416957}
   score4: {fileID: 691753884}
   health: {fileID: 775898917}
+  killMessage: {fileID: 657119925}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 330360248}
   shot: {fileID: 100000, guid: f4ec271e525e14ca9927a07e6a2e153d, type: 2}
@@ -64543,6 +64579,7 @@ MonoBehaviour:
   score3: {fileID: 1486416957}
   score4: {fileID: 691753884}
   health: {fileID: 827963349}
+  killMessage: {fileID: 256085437}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 1460395410}
   shot: {fileID: 100000, guid: 4a8c587e9715a3941a736bc7935def2d, type: 2}
@@ -64781,6 +64818,7 @@ MonoBehaviour:
   score3: {fileID: 1486416957}
   score4: {fileID: 691753884}
   health: {fileID: 734844247}
+  killMessage: {fileID: 916756020}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 1877271809}
   shot: {fileID: 100000, guid: 6c46baf1326ee9a4bac8e62145b436fe, type: 2}
@@ -66665,7 +66703,7 @@ Transform:
   - {fileID: 2092244964}
   - {fileID: 1622085779}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &1716884132
 GameObject:
   m_ObjectHideFlags: 0
@@ -67222,7 +67260,7 @@ Transform:
   - {fileID: 342446432}
   - {fileID: 867909188}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!1 &1777190506
 GameObject:
   m_ObjectHideFlags: 0
@@ -67325,6 +67363,7 @@ MonoBehaviour:
   score3: {fileID: 1486416957}
   score4: {fileID: 691753884}
   health: {fileID: 595059947}
+  killMessage: {fileID: 671884655}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 867909189}
   shot: {fileID: 100000, guid: c1e9cdfb31d0d38419f686dec147ddfd, type: 2}
@@ -78950,6 +78989,7 @@ MonoBehaviour:
   score3: {fileID: 1486416957}
   score4: {fileID: 691753884}
   health: {fileID: 827963349}
+  killMessage: {fileID: 256085437}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 1460395410}
   shot: {fileID: 100000, guid: f070d07eae5391447948f4ea0e2caa1a, type: 2}
