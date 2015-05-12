@@ -67,10 +67,7 @@ public class HoverCarControl : MonoBehaviour
 
 	void Start()
 	{
-		PlayerPrefs.SetInt ("Player1Tank", 1);
-		PlayerPrefs.SetInt ("Player2Tank", 1);
-		PlayerPrefs.SetInt ("Player3Tank", 1);
-		PlayerPrefs.SetInt ("Player4Tank", 1);
+		
 		if (tankClass != PlayerPrefs.GetInt ("Player" + playerNumber + "Tank"))
 			Destroy (gameObject);
 		if (tankClass == 1)

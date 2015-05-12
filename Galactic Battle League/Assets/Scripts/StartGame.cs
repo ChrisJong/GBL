@@ -13,5 +13,10 @@ public class StartGame : MonoBehaviour
 	{
 		Application.LoadLevel ("arena");
 	}
+
+	public void BeginInferno () 
+	{
+		Application.LoadLevel ("inferno");
+	}
 }
 
