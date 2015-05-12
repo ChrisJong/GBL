@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class HoverCarControl : MonoBehaviour
 {
 	Rigidbody m_body;
+	private bool initialised = false;
   	float m_deadZone = 0.1f;
 
  	public float m_hoverForce = 9.0f;
@@ -67,12 +68,6 @@ public class HoverCarControl : MonoBehaviour
 
 	void Start()
 	{
-		PlayerPrefs.SetInt ("Player1Tank", 1);
-		PlayerPrefs.SetInt ("Player2Tank", 1);
-		PlayerPrefs.SetInt ("Player3Tank", 1);
-		PlayerPrefs.SetInt ("Player4Tank", 1);
-		if (tankClass != PlayerPrefs.GetInt ("Player" + playerNumber + "Tank"))
-			Destroy (gameObject);
 		if (tankClass == 1)
 			maxHealth = 3;
 		else
@@ -87,6 +82,8 @@ public class HoverCarControl : MonoBehaviour
 
     	m_layerMask = 1 << LayerMask.NameToLayer("Characters");
     	m_layerMask = ~m_layerMask;
+
+    	initialised = true;
 	}
 
 	void OnDrawGizmos()
@@ -366,5 +363,14 @@ public class HoverCarControl : MonoBehaviour
 			Application.LoadLevel("EndScreen");
 		}
 		killMessage.SetActive(false);
+	}
+
+	void OnEnable()
+	{
+		if (initialised) {
+			gameObject.transform.position = initialPosition;
+			gameObject.transform.rotation = initialRotation;
+			healthInt = maxHealth;
+		}
 	}
 }
