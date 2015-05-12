@@ -63,7 +63,7 @@ GameObject:
   - 114: {fileID: 11454752}
   - 65: {fileID: 6554750}
   - 82: {fileID: 8229374}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Hover Car Heavy
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -189,6 +189,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 454772}
+  - 114: {fileID: 11481538}
   m_Layer: 0
   m_Name: look2
   m_TagString: Untagged
@@ -237,7 +238,7 @@ GameObject:
   - 54: {fileID: 5465754}
   - 114: {fileID: 11465754}
   - 65: {fileID: 6565754}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Hover Car Light
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -331,6 +332,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 465768}
+  - 114: {fileID: 11481536}
   m_Layer: 0
   m_Name: look2
   m_TagString: Untagged
@@ -484,7 +486,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &185438
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -492,7 +494,7 @@ GameObject:
   - 4: {fileID: 485438}
   - 33: {fileID: 3385438}
   - 23: {fileID: 2385438}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crosshair2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -687,11 +689,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154752}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -80, y: 39, z: -127}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
+  m_LocalPosition: {x: -150, y: 30, z: 255}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 454750}
+  - {fileID: 485438}
   - {fileID: 454756}
   - {fileID: 465756}
   - {fileID: 485452}
@@ -708,7 +711,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454756}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!4 &454756
 Transform:
   m_ObjectHideFlags: 1
@@ -719,13 +722,13 @@ Transform:
   m_LocalPosition: {x: 0, y: .25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 454764}
   - {fileID: 454770}
   - {fileID: 454758}
   - {fileID: 454774}
   - {fileID: 454768}
   - {fileID: 454754}
   - {fileID: 454760}
+  - {fileID: 454764}
   - {fileID: 485458}
   - {fileID: 485456}
   - {fileID: 485450}
@@ -734,9 +737,8 @@ Transform:
   - {fileID: 485442}
   - {fileID: 485446}
   - {fileID: 485454}
-  - {fileID: 485438}
   m_Father: {fileID: 454752}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &454758
 Transform:
   m_ObjectHideFlags: 1
@@ -748,7 +750,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454756}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &454760
 Transform:
   m_ObjectHideFlags: 1
@@ -760,7 +762,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454756}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!4 &454762
 Transform:
   m_ObjectHideFlags: 1
@@ -786,7 +788,7 @@ Transform:
   - {fileID: 454762}
   - {fileID: 454766}
   m_Father: {fileID: 454756}
-  m_RootOrder: 0
+  m_RootOrder: 6
 --- !u!4 &454766
 Transform:
   m_ObjectHideFlags: 1
@@ -812,7 +814,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454756}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &454770
 Transform:
   m_ObjectHideFlags: 1
@@ -824,7 +826,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454756}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!4 &454772
 Transform:
   m_ObjectHideFlags: 1
@@ -848,7 +850,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454756}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!4 &465754
 Transform:
   m_ObjectHideFlags: 1
@@ -882,7 +884,7 @@ Transform:
   - {fileID: 465776}
   - {fileID: 465774}
   m_Father: {fileID: 454752}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &465758
 Transform:
   m_ObjectHideFlags: 1
@@ -1076,11 +1078,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: .25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 454756}
-  m_RootOrder: 15
+  m_Father: {fileID: 454752}
+  m_RootOrder: 1
 --- !u!4 &485440
 Transform:
   m_ObjectHideFlags: 1
@@ -1164,7 +1166,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454752}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!4 &485454
 Transform:
   m_ObjectHideFlags: 1
@@ -1567,21 +1569,22 @@ MonoBehaviour:
   m_rightAirBrake: {fileID: 154760}
   playerNumber: 2
   tankClass: 2
-  sparkParticle: {fileID: 1500000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
+  sparkParticle: {fileID: 19877064, guid: 0e489d591ba226e4d9db0e9b3686f65f, type: 2}
   hoverParticles:
   - {fileID: 19885456}
   - {fileID: 19885454}
   - {fileID: 19885448}
   - {fileID: 19885446}
   - {fileID: 19885442}
-  - {fileID: 19885440}
   - {fileID: 19885444}
+  - {fileID: 19885440}
   - {fileID: 19885452}
   score1: {fileID: 0}
   score2: {fileID: 0}
   score3: {fileID: 0}
   score4: {fileID: 0}
   health: {fileID: 0}
+  killMessage: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19885450}
   shot: {fileID: 100000, guid: c1e9cdfb31d0d38419f686dec147ddfd, type: 2}
@@ -1619,7 +1622,7 @@ MonoBehaviour:
   m_rightAirBrake: {fileID: 165776}
   playerNumber: 2
   tankClass: 1
-  sparkParticle: {fileID: 1500000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
+  sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
   hoverParticles:
   - {fileID: 19865758}
   - {fileID: 19865756}
@@ -1629,6 +1632,7 @@ MonoBehaviour:
   score3: {fileID: 0}
   score4: {fileID: 0}
   health: {fileID: 0}
+  killMessage: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19885450}
   shot: {fileID: 100000, guid: 86718743cfcbfcc4b8b97983691d2dff, type: 2}
@@ -1656,19 +1660,42 @@ MonoBehaviour:
   height: 1.5
   heightDamping: 2
   rotationDamping: 15
+--- !u!114 &11481536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d62bf1e12560b241a0f07852b8c5ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshair: {fileID: 185438}
+--- !u!114 &11481538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d62bf1e12560b241a0f07852b8c5ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshair: {fileID: 185438}
 --- !u!114 &11485438
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154766}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd122a4a52b6c9449af5f9b9381368c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 2
-  crosshair: {fileID: 185438}
 --- !u!124 &12454750
 Behaviour:
   m_ObjectHideFlags: 1

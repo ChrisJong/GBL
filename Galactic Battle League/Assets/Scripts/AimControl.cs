@@ -5,7 +5,6 @@ using InControl;
 public class AimControl : MonoBehaviour {
 
 	public int playerNumber;
-	public GameObject crosshair;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +12,6 @@ public class AimControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		RaycastHit hit;
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
 
 		// up/down aiming
@@ -22,14 +20,5 @@ public class AimControl : MonoBehaviour {
 				gameObject.transform.Rotate(Vector3.left, inputDevice.RightStickY);
 		}
 
-		// crosshair
-		if (Physics.Raycast(gameObject.transform.position, 
-                          		-gameObject.transform.up,
-                          		out hit,
-                          		500.0f)) {
-			crosshair.transform.position = hit.point;
-		} else {
-			crosshair.transform.position = gameObject.transform.position + -gameObject.transform.up * 500.0f;
-		}
 	}
 }

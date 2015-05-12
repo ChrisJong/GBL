@@ -71,6 +71,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 418002}
+  - 114: {fileID: 11473870}
   m_Layer: 0
   m_Name: look4
   m_TagString: Untagged
@@ -366,7 +367,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &128722
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -438,6 +439,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 461132}
+  - 114: {fileID: 11473868}
   m_Layer: 0
   m_Name: look4
   m_TagString: Untagged
@@ -518,7 +520,7 @@ GameObject:
   - 54: {fileID: 5461128}
   - 114: {fileID: 11461128}
   - 65: {fileID: 6561128}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Hover Car Light
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -818,9 +820,8 @@ Transform:
   - {fileID: 428706}
   - {fileID: 428714}
   - {fileID: 428720}
-  - {fileID: 428722}
   m_Father: {fileID: 418016}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!4 &418016
 Transform:
   m_ObjectHideFlags: 1
@@ -832,6 +833,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418008}
+  - {fileID: 428722}
   - {fileID: 428724}
   - {fileID: 461142}
   - {fileID: 418014}
@@ -964,11 +966,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 128722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: .25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 418014}
-  m_RootOrder: 15
+  m_Father: {fileID: 418016}
+  m_RootOrder: 1
 --- !u!4 &428724
 Transform:
   m_ObjectHideFlags: 1
@@ -980,7 +982,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418016}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &461128
 Transform:
   m_ObjectHideFlags: 1
@@ -1086,7 +1088,7 @@ Transform:
   - {fileID: 461154}
   - {fileID: 461146}
   m_Father: {fileID: 418016}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &461144
 Transform:
   m_ObjectHideFlags: 1
@@ -1567,7 +1569,7 @@ MonoBehaviour:
   m_rightAirBrake: {fileID: 118010}
   playerNumber: 4
   tankClass: 2
-  sparkParticle: {fileID: 19877064, guid: 0e489d591ba226e4d9db0e9b3686f65f, type: 2}
+  sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
   hoverParticles:
   - {fileID: 19828704}
   - {fileID: 19828710}
@@ -1582,6 +1584,7 @@ MonoBehaviour:
   score3: {fileID: 0}
   score4: {fileID: 0}
   health: {fileID: 0}
+  killMessage: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19828722}
   shot: {fileID: 100000, guid: 6c46baf1326ee9a4bac8e62145b436fe, type: 2}
@@ -1599,13 +1602,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118004}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd122a4a52b6c9449af5f9b9381368c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 4
-  crosshair: {fileID: 128722}
 --- !u!114 &11461128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1632,7 +1634,7 @@ MonoBehaviour:
   m_rightAirBrake: {fileID: 161154}
   playerNumber: 4
   tankClass: 1
-  sparkParticle: {fileID: 1500000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
+  sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
   hoverParticles:
   - {fileID: 19861132}
   - {fileID: 19861128}
@@ -1642,6 +1644,7 @@ MonoBehaviour:
   score3: {fileID: 0}
   score4: {fileID: 0}
   health: {fileID: 0}
+  killMessage: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19828722}
   shot: {fileID: 100000, guid: 9f657a0a114cbf14dbfd57ac79e22d61, type: 2}
@@ -1669,6 +1672,30 @@ MonoBehaviour:
   height: 1.5
   heightDamping: 2
   rotationDamping: 15
+--- !u!114 &11473868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d62bf1e12560b241a0f07852b8c5ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshair: {fileID: 128722}
+--- !u!114 &11473870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d62bf1e12560b241a0f07852b8c5ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshair: {fileID: 128722}
 --- !u!124 &12417994
 Behaviour:
   m_ObjectHideFlags: 1

@@ -53,7 +53,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &116464
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -307,7 +307,7 @@ GameObject:
   - 54: {fileID: 5450906}
   - 114: {fileID: 11450906}
   - 65: {fileID: 6550906}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Hover Car Light
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -387,6 +387,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 450930}
+  - 114: {fileID: 11473476}
   m_Layer: 0
   m_Name: look1
   m_TagString: Untagged
@@ -470,7 +471,7 @@ GameObject:
   - 114: {fileID: 11495662}
   - 65: {fileID: 6595664}
   - 82: {fileID: 8229374}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Hover Car Heavy
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -615,6 +616,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 495658}
+  - 114: {fileID: 11473474}
   m_Layer: 0
   m_Name: look1
   m_TagString: Untagged
@@ -692,7 +694,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!4 &416462
 Transform:
   m_ObjectHideFlags: 1
@@ -704,7 +706,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!4 &416464
 Transform:
   m_ObjectHideFlags: 1
@@ -712,11 +714,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116464}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: .25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 495640}
-  m_RootOrder: 15
+  m_Father: {fileID: 495642}
+  m_RootOrder: 4
 --- !u!4 &416466
 Transform:
   m_ObjectHideFlags: 1
@@ -740,7 +742,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!4 &416470
 Transform:
   m_ObjectHideFlags: 1
@@ -764,7 +766,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495642}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &416474
 Transform:
   m_ObjectHideFlags: 1
@@ -800,7 +802,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 12
+  m_RootOrder: 10
 --- !u!4 &450906
 Transform:
   m_ObjectHideFlags: 1
@@ -906,7 +908,7 @@ Transform:
   - {fileID: 450906}
   - {fileID: 450922}
   m_Father: {fileID: 495642}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &450922
 Transform:
   m_ObjectHideFlags: 1
@@ -1031,7 +1033,6 @@ Transform:
   m_LocalPosition: {x: 0, y: .25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 495650}
   - {fileID: 495664}
   - {fileID: 495662}
   - {fileID: 495652}
@@ -1039,30 +1040,31 @@ Transform:
   - {fileID: 495654}
   - {fileID: 495656}
   - {fileID: 416462}
+  - {fileID: 495650}
   - {fileID: 416466}
   - {fileID: 416474}
+  - {fileID: 416478}
   - {fileID: 416460}
   - {fileID: 416468}
-  - {fileID: 416478}
   - {fileID: 416476}
   - {fileID: 416470}
-  - {fileID: 416464}
   m_Father: {fileID: 495642}
-  m_RootOrder: 3
+  m_RootOrder: 1
 --- !u!4 &495642
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195642}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 80, y: 39, z: 127}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -150, y: 30, z: -200}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 495646}
+  - {fileID: 495640}
   - {fileID: 416472}
   - {fileID: 450920}
-  - {fileID: 495640}
+  - {fileID: 416464}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &495644
@@ -1076,7 +1078,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &495646
 Transform:
   m_ObjectHideFlags: 1
@@ -1116,7 +1118,7 @@ Transform:
   - {fileID: 495660}
   - {fileID: 495648}
   m_Father: {fileID: 495640}
-  m_RootOrder: 0
+  m_RootOrder: 7
 --- !u!4 &495652
 Transform:
   m_ObjectHideFlags: 1
@@ -1128,7 +1130,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!4 &495654
 Transform:
   m_ObjectHideFlags: 1
@@ -1140,7 +1142,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!4 &495656
 Transform:
   m_ObjectHideFlags: 1
@@ -1152,7 +1154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!4 &495658
 Transform:
   m_ObjectHideFlags: 1
@@ -1188,7 +1190,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &495664
 Transform:
   m_ObjectHideFlags: 1
@@ -1200,7 +1202,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!20 &2095664
 Camera:
   m_ObjectHideFlags: 1
@@ -1531,13 +1533,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195648}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd122a4a52b6c9449af5f9b9381368c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 1
-  crosshair: {fileID: 116464}
 --- !u!114 &11450906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1564,7 +1565,7 @@ MonoBehaviour:
   m_rightAirBrake: {fileID: 150906}
   playerNumber: 1
   tankClass: 1
-  sparkParticle: {fileID: 1500000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
+  sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
   hoverParticles:
   - {fileID: 19850908}
   - {fileID: 19850912}
@@ -1574,6 +1575,7 @@ MonoBehaviour:
   score3: {fileID: 0}
   score4: {fileID: 0}
   health: {fileID: 0}
+  killMessage: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19816472}
   shot: {fileID: 100000, guid: 6cef3e2f90661b54eb53984e9a89be69, type: 2}
@@ -1601,6 +1603,30 @@ MonoBehaviour:
   height: 1.5
   heightDamping: 2
   rotationDamping: 15
+--- !u!114 &11473474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d62bf1e12560b241a0f07852b8c5ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshair: {fileID: 116464}
+--- !u!114 &11473476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d62bf1e12560b241a0f07852b8c5ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshair: {fileID: 116464}
 --- !u!114 &11495662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1627,21 +1653,22 @@ MonoBehaviour:
   m_rightAirBrake: {fileID: 195656}
   playerNumber: 1
   tankClass: 2
-  sparkParticle: {fileID: 1500000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
+  sparkParticle: {fileID: 19877064, guid: 0e489d591ba226e4d9db0e9b3686f65f, type: 2}
   hoverParticles:
   - {fileID: 19816464}
   - {fileID: 19816466}
   - {fileID: 19816474}
   - {fileID: 19816462}
   - {fileID: 19816468}
-  - {fileID: 19816478}
   - {fileID: 19816476}
+  - {fileID: 19816478}
   - {fileID: 19816470}
   score1: {fileID: 0}
   score2: {fileID: 0}
   score3: {fileID: 0}
   score4: {fileID: 0}
   health: {fileID: 0}
+  killMessage: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19816472}
   shot: {fileID: 100000, guid: f4ec271e525e14ca9927a07e6a2e153d, type: 2}
@@ -1652,7 +1679,7 @@ MonoBehaviour:
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
   explosionPower: 1.4e+07
-  fireParticle: {fileID: 19850910}
+  fireParticle: {fileID: 19816460}
 --- !u!114 &11495664
 MonoBehaviour:
   m_ObjectHideFlags: 1
