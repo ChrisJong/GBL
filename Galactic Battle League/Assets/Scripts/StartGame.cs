@@ -23,5 +23,10 @@ public class StartGame : MonoBehaviour
 	{
 		Application.LoadLevel ("inferno");
 	}
+
+	public void BeginMainMenu () 
+	{
+		Application.LoadLevel ("MainMenu");
+	}
 }
 
