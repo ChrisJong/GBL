@@ -142,14 +142,14 @@ public class HoverCarControl : MonoBehaviour
 
 
 			// Firing
-			if (inputDevice.RightBumper.WasPressed && Time.time > nextFire) 
+			if (inputDevice.RightBumper.IsPressed && Time.time > nextFire) 
 			{
 				nextFire = Time.time + fireRate;
 				gameObject.rigidbody.AddExplosionForce(explosionPower, shotSpawn.position, explosionRadius);
 				tankVelocity = rigidbody.velocity;
 				fireParticle.Play();
 				createShot (tankVelocity);
-				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position);
+				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position, 0.5f);
 			}
 		}
 
