@@ -4,6 +4,11 @@ using System.Collections;
 public class StartGame : MonoBehaviour 
 {
 
+	public void BeginCharacterSelect () 
+	{
+		Application.LoadLevel ("CharacterSelect");
+	}
+
 	public void BeginGame () 
 	{
 		Application.LoadLevel ("LevelSelectMenu");
