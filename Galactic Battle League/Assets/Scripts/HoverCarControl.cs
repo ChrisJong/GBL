@@ -142,7 +142,7 @@ public class HoverCarControl : MonoBehaviour
 
 
 			// Firing
-			if (inputDevice.RightTrigger >= 0.5 && Time.time > nextFire) 
+			if (inputDevice.RightBumper.WasPressed && Time.time > nextFire) 
 			{
 				nextFire = Time.time + fireRate;
 				gameObject.rigidbody.AddExplosionForce(explosionPower, shotSpawn.position, explosionRadius);
