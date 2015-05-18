@@ -42,7 +42,11 @@ public class HoverCarControl : MonoBehaviour
 	public ScoreCounter3 score3;
 	public ScoreCounter4 score4;
 	public HealthCounter health;
-	public GameObject killMessage;
+	public GameObject killedMessage;
+	public GameObject killMessage1;
+	public GameObject killMessage2;
+	public GameObject killMessage3;
+	public GameObject killMessage4;
 	public AudioClip sfxDeath;
 	Vector3 initialPosition;
 	Quaternion initialRotation;
@@ -263,9 +267,14 @@ public class HoverCarControl : MonoBehaviour
 				{
 					score1.score++;
 
-					killMessage.SetActive(true);
+					killedMessage.SetActive(true);
 
-					killMessage.GetComponentsInChildren<Text>()[0].text = "Player 1 killed you!";
+					killedMessage.GetComponentsInChildren<Text>()[0].text = "PLAYER 1 KILLED YOU!";
+
+					// player 1 kill message
+					killMessage1.SetActive(true);
+					killMessage1.GetComponentsInChildren<Text>()[0].text = "YOU KILLED PLAYER " + playerNumber + "!";
+
 					if (score1.score >= 5)
 					{
 						PlayerPrefs.SetInt("Winner", 1);
@@ -275,9 +284,14 @@ public class HoverCarControl : MonoBehaviour
 				{
 					score2.score++;
 
-					killMessage.SetActive(true);
+					killedMessage.SetActive(true);
 
-					killMessage.GetComponentsInChildren<Text>()[0].text = "Player 2 killed you!";
+					killedMessage.GetComponentsInChildren<Text>()[0].text = "PLAYER 2 KILLED YOU!";
+
+					// player 2 kill message
+					killMessage2.SetActive(true);
+					killMessage2.GetComponentsInChildren<Text>()[0].text = "YOU KILLED PLAYER " + playerNumber + "!";
+
 					if (score2.score >= 5)
 					{
 						PlayerPrefs.SetInt("Winner", 2);
@@ -287,9 +301,14 @@ public class HoverCarControl : MonoBehaviour
 				{
 					score3.score++;
 
-					killMessage.SetActive(true);
+					killedMessage.SetActive(true);
 
-					killMessage.GetComponentsInChildren<Text>()[0].text = "Player 3 killed you!";
+					killedMessage.GetComponentsInChildren<Text>()[0].text = "PLAYER 3 KILLED YOU!";
+
+					// player 3 kill message
+					killMessage3.SetActive(true);
+					killMessage3.GetComponentsInChildren<Text>()[0].text = "YOU KILLED PLAYER " + playerNumber + "!";
+
 					if (score3.score >= 5)
 					{
 						PlayerPrefs.SetInt("Winner", 3);
@@ -299,9 +318,14 @@ public class HoverCarControl : MonoBehaviour
 				{
 					score4.score++;
 
-					killMessage.SetActive(true);
+					killedMessage.SetActive(true);
 
-					killMessage.GetComponentsInChildren<Text>()[0].text = "Player 4 killed you!";
+					killedMessage.GetComponentsInChildren<Text>()[0].text = "PLAYER 4 KILLED YOU!";
+
+					// player 4 kill message
+					killMessage4.SetActive(true);
+					killMessage4.GetComponentsInChildren<Text>()[0].text = "YOU KILLED PLAYER " + playerNumber + "!";
+
 					if (score4.score >= 5)
 					{
 						PlayerPrefs.SetInt("Winner", 4);
@@ -362,7 +386,7 @@ public class HoverCarControl : MonoBehaviour
 		{
 			Application.LoadLevel("Winscreen");
 		}
-		killMessage.SetActive(false);
+		killedMessage.SetActive(false);
 	}
 
 	void OnEnable()
