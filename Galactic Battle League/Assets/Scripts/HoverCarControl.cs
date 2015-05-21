@@ -42,7 +42,11 @@ public class HoverCarControl : MonoBehaviour
 	public ScoreCounter3 score3;
 	public ScoreCounter4 score4;
 	public HealthCounter health;
-	public GameObject killMessage;
+	public GameObject killedMessage;
+	public GameObject killMessage1;
+	public GameObject killMessage2;
+	public GameObject killMessage3;
+	public GameObject killMessage4;
 	public AudioClip sfxDeath;
 	Vector3 initialPosition;
 	Quaternion initialRotation;
@@ -51,7 +55,7 @@ public class HoverCarControl : MonoBehaviour
 	private float tempHoverForce;
 	private float timer = 0.0f;
 	private bool deathRun = false;
-	private int maxHealth;
+	public int maxHealth = 100;
 	private int healthInt;
 
 	//Fire control variables
@@ -68,10 +72,7 @@ public class HoverCarControl : MonoBehaviour
 
 	void Start()
 	{
-		if (tankClass == 1)
-			maxHealth = 3;
-		else
-			maxHealth = 6;
+		
 
 		healthInt = maxHealth;
 
@@ -238,73 +239,94 @@ public class HoverCarControl : MonoBehaviour
 	{
 		if (deathRun == true)
 			return;
-		if ((other.tag == "Shot1" || other.tag == "Shot1L" || other.tag == "Shot2" || other.tag == "Shot2L" 
-		     || other.tag == "Shot3" ||other.tag == "Shot3L" || other.tag == "Shot4" || other.tag == "Shot4L")
-		    && (other.tag != "Shot" + playerNumber) && (other.tag != "Shot" + playerNumber + "L"))
+		if (other.tag == "Shot")
 		{
-			AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position);
-			Vector3 explosionPos = other.gameObject.transform.position;
-			Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
-			hitParticle.transform.position = other.transform.position;
-			hitParticle.Play();
-			foreach (Collider hit in colliders) 
+			ShotController shotControllerCopy = other.gameObject.GetComponent<ShotController>();
+			if (shotControllerCopy.playerNumber != playerNumber)
 			{
-				if (hit && hit.rigidbody)
-					hit.rigidbody.AddExplosionForce(explosionPower, explosionPos, explosionRadius);
-				
-			}
-			Destroy (other.gameObject);
-			healthInt--;
-			if (other.tag == "Shot1" || other.tag == "Shot2" || other.tag == "Shot3" ||other.tag == "Shot4")
-				healthInt--;
-			if (healthInt <= 0)
-			{
-				if ((other.tag == "Shot1" || other.tag == "Shot1L") && playerNumber != 1)
+				AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position);
+				Vector3 explosionPos = other.gameObject.transform.position;
+				Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
+				hitParticle.transform.position = other.transform.position;
+				hitParticle.Play();
+				foreach (Collider hit in colliders) 
 				{
-					score1.score++;
-
-					killMessage.SetActive(true);
-
-					killMessage.GetComponentsInChildren<Text>()[0].text = "Player 1 killed you!";
-					if (score1.score >= 5)
-					{
-						PlayerPrefs.SetInt("Winner", 1);
-					}
+					if (hit && hit.rigidbody)
+						hit.rigidbody.AddExplosionForce(explosionPower, explosionPos, explosionRadius);
+					
 				}
-				if ((other.tag == "Shot2" || other.tag == "Shot2L") && playerNumber != 2)
+				healthInt -= shotControllerCopy.damage;
+				Destroy (other.gameObject);				
+					
+				if (healthInt <= 0)
 				{
-					score2.score++;
-
-					killMessage.SetActive(true);
-
-					killMessage.GetComponentsInChildren<Text>()[0].text = "Player 2 killed you!";
-					if (score2.score >= 5)
+					if (shotControllerCopy.playerNumber == 1)
 					{
-						PlayerPrefs.SetInt("Winner", 2);
+						score1.score++;
+
+						killedMessage.SetActive(true);
+
+						killedMessage.GetComponentsInChildren<Text>()[0].text = "PLAYER 1 KILLED YOU!";
+
+						// player 1 kill message
+						killMessage1.SetActive(true);
+						killMessage1.GetComponentsInChildren<Text>()[0].text = "YOU KILLED PLAYER " + playerNumber + "!";
+
+						if (score1.score >= 5)
+						{
+							PlayerPrefs.SetInt("Winner", 1);
+						}
 					}
-				}
-				if ((other.tag == "Shot3" || other.tag == "Shot3L") && playerNumber != 3)
-				{
-					score3.score++;
-
-					killMessage.SetActive(true);
-
-					killMessage.GetComponentsInChildren<Text>()[0].text = "Player 3 killed you!";
-					if (score3.score >= 5)
+					if (shotControllerCopy.playerNumber == 2)
 					{
-						PlayerPrefs.SetInt("Winner", 3);
+						score2.score++;
+
+						killedMessage.SetActive(true);
+
+						killedMessage.GetComponentsInChildren<Text>()[0].text = "PLAYER 2 KILLED YOU!";
+
+						// player 2 kill message
+						killMessage2.SetActive(true);
+						killMessage2.GetComponentsInChildren<Text>()[0].text = "YOU KILLED PLAYER " + playerNumber + "!";
+
+						if (score2.score >= 5)
+						{
+							PlayerPrefs.SetInt("Winner", 2);
+						}
 					}
-				}
-				if ((other.tag == "Shot4" || other.tag == "Shot4L") && playerNumber != 4)
-				{
-					score4.score++;
-
-					killMessage.SetActive(true);
-
-					killMessage.GetComponentsInChildren<Text>()[0].text = "Player 4 killed you!";
-					if (score4.score >= 5)
+					if (shotControllerCopy.playerNumber == 3)
 					{
-						PlayerPrefs.SetInt("Winner", 4);
+						score3.score++;
+
+						killedMessage.SetActive(true);
+
+						killedMessage.GetComponentsInChildren<Text>()[0].text = "PLAYER 3 KILLED YOU!";
+
+						// player 3 kill message
+						killMessage3.SetActive(true);
+						killMessage3.GetComponentsInChildren<Text>()[0].text = "YOU KILLED PLAYER " + playerNumber + "!";
+
+						if (score3.score >= 5)
+						{
+							PlayerPrefs.SetInt("Winner", 3);
+						}
+					}
+					if (shotControllerCopy.playerNumber == 4)
+					{
+						score4.score++;
+
+						killedMessage.SetActive(true);
+
+						killedMessage.GetComponentsInChildren<Text>()[0].text = "PLAYER 4 KILLED YOU!";
+
+						// player 4 kill message
+						killMessage4.SetActive(true);
+						killMessage4.GetComponentsInChildren<Text>()[0].text = "YOU KILLED PLAYER " + playerNumber + "!";
+
+						if (score4.score >= 5)
+						{
+							PlayerPrefs.SetInt("Winner", 4);
+						}
 					}
 				}
 			}
@@ -362,7 +384,7 @@ public class HoverCarControl : MonoBehaviour
 		{
 			Application.LoadLevel("Winscreen");
 		}
-		killMessage.SetActive(false);
+		killedMessage.SetActive(false);
 	}
 
 	void OnEnable()

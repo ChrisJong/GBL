@@ -392,7 +392,7 @@ GameObject:
   - 4: {fileID: 428724}
   - 198: {fileID: 19828722}
   - 199: {fileID: 19928722}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: HitParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,7 +850,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 150, y: 30, z: -100}
+  m_LocalPosition: {x: -33, y: 16.7999992, z: -81.0999985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 428722}
@@ -1487,7 +1487,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118014}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 84b70231e0d15714b94d3119d208bb9a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1499,7 +1499,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 161142}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 84b70231e0d15714b94d3119d208bb9a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1664,9 +1664,14 @@ MonoBehaviour:
   score3: {fileID: 0}
   score4: {fileID: 0}
   health: {fileID: 0}
-  killMessage: {fileID: 0}
+  killedMessage: {fileID: 0}
+  killMessage1: {fileID: 0}
+  killMessage2: {fileID: 0}
+  killMessage3: {fileID: 0}
+  killMessage4: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19828722}
+  maxHealth: 100
   shot: {fileID: 100000, guid: 6c46baf1326ee9a4bac8e62145b436fe, type: 2}
   shotSpawn: {fileID: 418002}
   fireRate: 1
@@ -1724,9 +1729,14 @@ MonoBehaviour:
   score3: {fileID: 0}
   score4: {fileID: 0}
   health: {fileID: 0}
-  killMessage: {fileID: 0}
+  killedMessage: {fileID: 0}
+  killMessage1: {fileID: 0}
+  killMessage2: {fileID: 0}
+  killMessage3: {fileID: 0}
+  killMessage4: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
-  hitParticle: {fileID: 19828722}
+  hitParticle: {fileID: 0}
+  maxHealth: 75
   shot: {fileID: 100000, guid: 9f657a0a114cbf14dbfd57ac79e22d61, type: 2}
   shotSpawn: {fileID: 461132}
   fireRate: .5
@@ -1734,7 +1744,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 7e+06
+  explosionPower: 2e+06
   fireParticle: {fileID: 19861134}
 --- !u!114 &11470404
 MonoBehaviour:

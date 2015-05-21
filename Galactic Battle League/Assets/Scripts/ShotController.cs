@@ -7,6 +7,8 @@ public class ShotController : MonoBehaviour
 	public int shotSpeed;
 	public float explosionRadius = 4.0F;
 	public float explosionPower = 25000.0F;
+	public int damage;
+	public int playerNumber;
 	// Use this for initialization
 	void Start () 
 	{

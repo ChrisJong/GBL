@@ -13,7 +13,7 @@ GameObject:
   - 114: {fileID: 11490824}
   m_Layer: 0
   m_Name: Bolt1L
-  m_TagString: Shot1L
+  m_TagString: Shot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!108 &10842754
 Light:
   m_ObjectHideFlags: 1
@@ -153,6 +153,8 @@ MonoBehaviour:
   shotSpeed: 100
   explosionRadius: 4
   explosionPower: 25000
+  damage: 15
+  playerNumber: 1
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
