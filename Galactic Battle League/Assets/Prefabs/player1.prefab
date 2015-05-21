@@ -149,7 +149,7 @@ GameObject:
   - 4: {fileID: 416472}
   - 198: {fileID: 19816472}
   - 199: {fileID: 19916472}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: HitParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1090,8 +1090,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195642}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 80, y: 39, z: 127}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30.8999996, y: 30, z: -28.6000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 495640}
@@ -1693,6 +1693,7 @@ MonoBehaviour:
   killMessage4: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19816472}
+  maxHealth: 75
   shot: {fileID: 100000, guid: 6cef3e2f90661b54eb53984e9a89be69, type: 2}
   shotSpawn: {fileID: 450930}
   fireRate: .5
@@ -1774,6 +1775,7 @@ MonoBehaviour:
   killMessage4: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19816472}
+  maxHealth: 100
   shot: {fileID: 100000, guid: f4ec271e525e14ca9927a07e6a2e153d, type: 2}
   shotSpawn: {fileID: 495658}
   fireRate: 1
