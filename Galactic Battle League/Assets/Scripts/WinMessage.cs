@@ -10,7 +10,7 @@ public class WinMessage : MonoBehaviour
 	void Start () 
 	{
 		winnerText = GetComponent<Text> ();
-		winnerText.text = "PLAYER " + PlayerPrefs.GetInt("Winner") + " WINS" ;
+		winnerText.text = "PLAYER " + PlayerPrefs.GetInt("Winner") ;
 	}
 
 }
