@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SpawnRaisingPlatform
+  m_Name: RspnTower_Door2
   serializedVersion: 4
   m_AnimationType: 2
   m_Compressed: 0
@@ -17,35 +17,35 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: {x: 0, y: 20, z: 0}
+        value: {x: 0, y: 35, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 108068900
-      - time: .333333343
-        value: {x: 0, y: 20, z: 0}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-      - time: 1
-        value: {x: 0, y: 40, z: 0}
+        tangentMode: 1
+      - time: .466666669
+        value: {x: 0, y: 35, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
-      - time: 1.5
-        value: {x: 0, y: 40, z: 0}
+      - time: 1.16666663
+        value: {x: 0, y: 35, z: 5.5}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
-      - time: 2.5
-        value: {x: 0, y: 20, z: 0}
+      - time: 1.83333337
+        value: {x: 0, y: 35, z: 5.5}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-      - time: 2.83333325
-        value: {x: 0, y: 20, z: 0}
+        tangentMode: 139
+      - time: 2.33333325
+        value: {x: 0, y: 35, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
+        tangentMode: 256
+      - time: 2.41666675
+        value: {x: 0, y: 35, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 4
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: 
@@ -69,7 +69,7 @@ AnimationClip:
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: 2.83333325
+    m_StopTime: 2.41666675
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -91,12 +91,32 @@ AnimationClip:
         value: 0
         inSlope: 0
         outSlope: 0
-        tangentMode: 10
-      - time: 1
+        tangentMode: 0
+      - time: .466666669
         value: 0
         inSlope: 0
         outSlope: 0
-        tangentMode: 10
+        tangentMode: 0
+      - time: 1.16666663
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.83333337
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2.33333325
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2.41666675
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalPosition.x
@@ -107,32 +127,32 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 20
+        value: 35
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-      - time: .333333343
-        value: 20
+      - time: .466666669
+        value: 35
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-      - time: 1
-        value: 40
+      - time: 1.16666663
+        value: 35
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-      - time: 1.5
-        value: 40
+      - time: 1.83333337
+        value: 35
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-      - time: 2.5
-        value: 20
+      - time: 2.33333325
+        value: 35
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-      - time: 2.83333325
-        value: 20
+      - time: 2.41666675
+        value: 35
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -149,12 +169,32 @@ AnimationClip:
         value: 0
         inSlope: 0
         outSlope: 0
-        tangentMode: 10
-      - time: 1
+        tangentMode: 0
+      - time: .466666669
         value: 0
         inSlope: 0
         outSlope: 0
-        tangentMode: 10
+        tangentMode: 0
+      - time: 1.16666663
+        value: 5.5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.83333337
+        value: 5.5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2.33333325
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2.41666675
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalPosition.z
