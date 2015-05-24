@@ -73,7 +73,6 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &7847342
 GameObject:
@@ -12420,7 +12419,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 2e+06
+  explosionPower: 1500000
   fireParticle: {fileID: 473687949}
 --- !u!54 &373991199
 Rigidbody:
@@ -17004,7 +17003,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 2e+06
+  explosionPower: 1500000
   fireParticle: {fileID: 1572474734}
 --- !u!54 &415689328
 Rigidbody:
@@ -28615,7 +28614,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 2e+06
+  explosionPower: 1500000
   fireParticle: {fileID: 2075084317}
 --- !u!54 &786203138
 Rigidbody:
@@ -31493,6 +31492,14 @@ Prefab:
       propertyPath: killMessage4
       value: 
       objectReference: {fileID: 88124927}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: explosionPower
+      value: 1500000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: explosionPower
+      value: 1e+07
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77192545805124c43902ecc06c78608f, type: 2}
   m_RootGameObject: {fileID: 937733795}
@@ -39550,6 +39557,14 @@ Prefab:
       propertyPath: killMessage4
       value: 
       objectReference: {fileID: 88124927}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: explosionPower
+      value: 1e+07
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: explosionPower
+      value: 1500000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
   m_RootGameObject: {fileID: 864924550}
@@ -42048,7 +42063,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 1.4e+07
+  explosionPower: 1e+07
   fireParticle: {fileID: 2075084317}
 --- !u!54 &1169388148
 Rigidbody:
@@ -49923,7 +49938,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 2e+06
+  explosionPower: 1500000
   fireParticle: {fileID: 313387048}
 --- !u!54 &1445083056
 Rigidbody:
@@ -56179,7 +56194,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 1.4e+07
+  explosionPower: 1e+07
   fireParticle: {fileID: 2144011358}
 --- !u!54 &1622085784
 Rigidbody:
@@ -56431,7 +56446,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 1.4e+07
+  explosionPower: 1e+07
   fireParticle: {fileID: 1609262931}
 --- !u!54 &1647441476
 Rigidbody:
@@ -59347,6 +59362,14 @@ Prefab:
       propertyPath: killMessage4
       value: 
       objectReference: {fileID: 88124927}
+    - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: explosionPower
+      value: 1500000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: explosionPower
+      value: 1e+07
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
   m_RootGameObject: {fileID: 1716396472}
@@ -59891,7 +59914,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 1.4e+07
+  explosionPower: 1e+07
   fireParticle: {fileID: 1695018084}
 --- !u!54 &1777190512
 Rigidbody:
@@ -66140,8 +66163,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  ignoreReversedGraphics: 1
+  blockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -68314,6 +68337,14 @@ Prefab:
       propertyPath: killMessage4
       value: 
       objectReference: {fileID: 88124927}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: explosionPower
+      value: 1500000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: explosionPower
+      value: 1e+07
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
   m_RootGameObject: {fileID: 1776996223}

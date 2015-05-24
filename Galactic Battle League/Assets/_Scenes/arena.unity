@@ -1588,6 +1588,14 @@ Prefab:
       propertyPath: killMessage4
       value: 
       objectReference: {fileID: 338584932}
+    - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: explosionPower
+      value: 1e+07
+      objectReference: {fileID: 0}
+    - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: explosionPower
+      value: 1500000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
   m_RootGameObject: {fileID: 1716396472}
@@ -15387,6 +15395,14 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: explosionPower
+      value: 1e+07
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: explosionPower
+      value: 1500000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
   m_RootGameObject: {fileID: 864924550}
@@ -17456,7 +17472,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 2e+06
+  explosionPower: 1500000
   fireParticle: {fileID: 1231816036}
 --- !u!54 &342446435
 Rigidbody:
@@ -23072,6 +23088,14 @@ Prefab:
       propertyPath: killMessage4
       value: 
       objectReference: {fileID: 338584932}
+    - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: explosionPower
+      value: 1e+07
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: explosionPower
+      value: 1500000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
   m_RootGameObject: {fileID: 1776996223}
@@ -23555,6 +23579,14 @@ Prefab:
       propertyPath: killMessage4
       value: 
       objectReference: {fileID: 338584932}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: explosionPower
+      value: 1e+07
+      objectReference: {fileID: 0}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: explosionPower
+      value: 1500000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77192545805124c43902ecc06c78608f, type: 2}
   m_RootGameObject: {fileID: 937733795}
@@ -41201,7 +41233,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 2e+06
+  explosionPower: 1500000
   fireParticle: {fileID: 2145870825}
 --- !u!54 &983664928
 Rigidbody:
@@ -41714,7 +41746,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 2e+06
+  explosionPower: 1500000
   fireParticle: {fileID: 1212569646}
 --- !u!54 &1020648333
 Rigidbody:
@@ -50348,7 +50380,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 1.4e+07
+  explosionPower: 1e+07
   fireParticle: {fileID: 1212569646}
 --- !u!54 &1169388148
 Rigidbody:
@@ -70267,7 +70299,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 1.4e+07
+  explosionPower: 1e+07
   fireParticle: {fileID: 1335509618}
 --- !u!54 &1622085784
 Rigidbody:
@@ -70511,7 +70543,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 1.4e+07
+  explosionPower: 1e+07
   fireParticle: {fileID: 903237028}
 --- !u!54 &1647441476
 Rigidbody:
@@ -73279,7 +73311,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 1.4e+07
+  explosionPower: 1e+07
   fireParticle: {fileID: 170584234}
 --- !u!54 &1777190512
 Rigidbody:
@@ -85402,7 +85434,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 2e+06
+  explosionPower: 1500000
   fireParticle: {fileID: 716186727}
 --- !u!54 &2092244967
 Rigidbody:
