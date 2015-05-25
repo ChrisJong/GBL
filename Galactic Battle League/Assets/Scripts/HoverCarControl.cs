@@ -348,7 +348,7 @@ public class HoverCarControl : MonoBehaviour
 	void createShot(Vector3 tankVelocity)
 	{
 		GameObject zBullet = (GameObject)Instantiate (shot, shotSpawn.position, shotSpawn.rotation);
-		zBullet.GetComponent<ShotController> ().SetVelocity (tankVelocity);
+		zBullet.GetComponent<ShotController> ().SetVelocity ();
 	}
 
 	void Death()

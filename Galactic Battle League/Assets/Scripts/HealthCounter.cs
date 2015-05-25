@@ -10,12 +10,12 @@ public class HealthCounter : MonoBehaviour
 	void Start () 
 	{
 		health = GetComponent<Text> ();
-		health.text = "Health: " + healthscore;
+		health.text = " " + healthscore;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		health.text = "Health: " + healthscore;
+		health.text = " " + healthscore;
 	}
 }

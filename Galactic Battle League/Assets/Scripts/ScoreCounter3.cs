@@ -11,12 +11,12 @@ public class ScoreCounter3 : MonoBehaviour
 	{
 		score = 0;
 		scoreText = GetComponent<Text> ();
-		scoreText.text = "Score: " + score;
+		scoreText.text = " " + score;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		scoreText.text = "Score: " + score;
+		scoreText.text = " " + score;
 	}
 }

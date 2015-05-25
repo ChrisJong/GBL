@@ -15,9 +15,9 @@ public class ShotController : MonoBehaviour
 
 	}
 
-	public void SetVelocity (Vector3 tankVelocity)
+	public void SetVelocity ()
 	{
-		rigidbody.velocity = tankVelocity + transform.forward * shotSpeed;
+		rigidbody.velocity = transform.forward * shotSpeed;
 	}
 	
 	void OnTriggerEnter (Collider other)
