@@ -266,7 +266,7 @@ GameObject:
   - 4: {fileID: 431996}
   - 114: {fileID: 11408560}
   m_Layer: 0
-  m_Name: look3
+  m_Name: look3L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,7 +301,7 @@ GameObject:
   - 114: {fileID: 11473452}
   - 45: {fileID: 4547630}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Camera3L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,7 +317,7 @@ GameObject:
   - 4: {fileID: 473456}
   - 114: {fileID: 11408558}
   m_Layer: 0
-  m_Name: look3
+  m_Name: look3H
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -685,7 +685,7 @@ GameObject:
   - 114: {fileID: 11492954}
   - 45: {fileID: 4592952}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Camera3H
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -698,7 +698,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 473454}
@@ -931,7 +931,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173454}
   m_LocalRotation: {x: 0, y: -4.37113883e-08, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: -8}
+  m_LocalPosition: {x: 0, y: 3.75, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 431964}
@@ -955,7 +955,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173458}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 492952}
@@ -994,8 +994,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173462}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: -.707106829}
-  m_LocalPosition: {x: -57.7000008, y: 30, z: -24.7000008}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
+  m_LocalPosition: {x: -80, y: 36, z: 127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 473458}
@@ -1231,7 +1231,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.75, z: -8}
+  m_LocalPosition: {x: 0, y: 3.75, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 473458}
@@ -1252,7 +1252,7 @@ Camera:
     y: 0
     width: .5
     height: .5
-  near clip plane: .300000012
+  near clip plane: 2
   far clip plane: 1000
   field of view: 55
   orthographic: 0
@@ -1284,7 +1284,7 @@ Camera:
     y: 0
     width: .5
     height: .5
-  near clip plane: .300000012
+  near clip plane: 2
   far clip plane: 1000
   field of view: 55
   orthographic: 0
@@ -1682,7 +1682,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 2e+06
+  explosionPower: 1500000
   fireParticle: {fileID: 19831996}
 --- !u!114 &11473452
 MonoBehaviour:
@@ -1692,14 +1692,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 173454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 885b1972ad11a921d000d37b8d76c639, type: 3}
+  m_Script: {fileID: 11500000, guid: e73619eaf25210f469ef67000d371945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 431996}
-  distance: 7
-  height: 1.5
-  heightDamping: 2
+  distance: 9
+  height: 2
+  damping: 5
+  smoothRotation: 1
   rotationDamping: 15
+  targetLookAtOffset: {x: 0, y: 0, z: 0}
+  bumperDistanceCheck: 9
+  bumperCameraHeight: 2
+  bumperRayOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &11473454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1756,7 +1761,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 1.4e+07
+  explosionPower: 1e+07
   fireParticle: {fileID: 19892418}
 --- !u!114 &11492426
 MonoBehaviour:
@@ -1783,7 +1788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightVehicle: {fileID: 131964}
   heavyVehicle: {fileID: 173458}
-  spawnHeight: 35
+  spawnHeight: 34
   playerNumber: 3
 --- !u!114 &11492954
 MonoBehaviour:
@@ -1793,14 +1798,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 192952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 885b1972ad11a921d000d37b8d76c639, type: 3}
+  m_Script: {fileID: 11500000, guid: e73619eaf25210f469ef67000d371945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 473456}
-  distance: 7
-  height: 1.5
-  heightDamping: 2
+  distance: 9
+  height: 2
+  damping: 5
+  smoothRotation: 1
   rotationDamping: 15
+  targetLookAtOffset: {x: 0, y: 0, z: 0}
+  bumperDistanceCheck: 9
+  bumperCameraHeight: 2
+  bumperRayOffset: {x: 0, y: 0, z: 0}
 --- !u!124 &12473452
 Behaviour:
   m_ObjectHideFlags: 1

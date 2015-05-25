@@ -73,7 +73,7 @@ GameObject:
   - 4: {fileID: 418002}
   - 114: {fileID: 11473870}
   m_Layer: 0
-  m_Name: look4
+  m_Name: look4H
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +126,7 @@ GameObject:
   - 114: {fileID: 11417994}
   - 45: {fileID: 4598410}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Camera4L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -441,7 +441,7 @@ GameObject:
   - 4: {fileID: 461132}
   - 114: {fileID: 11473868}
   m_Layer: 0
-  m_Name: look4
+  m_Name: look4L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -685,7 +685,7 @@ GameObject:
   - 114: {fileID: 11470404}
   - 45: {fileID: 4570406}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Camera4H
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -786,7 +786,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: -8}
+  m_LocalPosition: {x: 0, y: 3.75, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 461142}
@@ -822,7 +822,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 470406}
@@ -850,7 +850,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33, y: 16.7999992, z: -81.0999985}
+  m_LocalPosition: {x: 80, y: 36, z: -127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 428722}
@@ -1094,7 +1094,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 161142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418008}
@@ -1231,7 +1231,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.75, z: -8}
+  m_LocalPosition: {x: 0, y: 3.75, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418014}
@@ -1252,7 +1252,7 @@ Camera:
     y: 0
     width: .5
     height: .5
-  near clip plane: .300000012
+  near clip plane: 2
   far clip plane: 1000
   field of view: 55
   orthographic: 0
@@ -1284,7 +1284,7 @@ Camera:
     y: 0
     width: .5
     height: .5
-  near clip plane: .300000012
+  near clip plane: 2
   far clip plane: 1000
   field of view: 55
   orthographic: 0
@@ -1615,14 +1615,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 118008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 885b1972ad11a921d000d37b8d76c639, type: 3}
+  m_Script: {fileID: 11500000, guid: e73619eaf25210f469ef67000d371945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 461132}
-  distance: 7
-  height: 1.5
-  heightDamping: 2
+  distance: 9
+  height: 2
+  damping: 5
+  smoothRotation: 1
   rotationDamping: 15
+  targetLookAtOffset: {x: 0, y: 0, z: 0}
+  bumperDistanceCheck: 9
+  bumperCameraHeight: 2
+  bumperRayOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &11417996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1679,7 +1684,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 1.4e+07
+  explosionPower: 1e+07
   fireParticle: {fileID: 19828712}
 --- !u!114 &11428704
 MonoBehaviour:
@@ -1744,7 +1749,7 @@ MonoBehaviour:
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
-  explosionPower: 2e+06
+  explosionPower: 1500000
   fireParticle: {fileID: 19861134}
 --- !u!114 &11470404
 MonoBehaviour:
@@ -1754,14 +1759,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 170406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 885b1972ad11a921d000d37b8d76c639, type: 3}
+  m_Script: {fileID: 11500000, guid: e73619eaf25210f469ef67000d371945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 418002}
-  distance: 7
-  height: 1.5
-  heightDamping: 2
+  distance: 9
+  height: 2
+  damping: 5
+  smoothRotation: 1
   rotationDamping: 15
+  targetLookAtOffset: {x: 0, y: 0, z: 0}
+  bumperDistanceCheck: 9
+  bumperCameraHeight: 2
+  bumperRayOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &11470406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1775,7 +1785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightVehicle: {fileID: 161142}
   heavyVehicle: {fileID: 118014}
-  spawnHeight: 35
+  spawnHeight: 34
   playerNumber: 4
 --- !u!114 &11473868
 MonoBehaviour:
