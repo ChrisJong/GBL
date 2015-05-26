@@ -35,7 +35,7 @@ public class TowerController : MonoBehaviour
 	{
 		if (done) 
 		{
-			time = Time.time + 5.0;
+			time = Time.time + 2;
 			piston.Play (pistonAnimation, -1, 0f);
 			door1.Play(door1Animation, -1, 0f);
 			door2.Play(door2Animation, -1, 0f);
