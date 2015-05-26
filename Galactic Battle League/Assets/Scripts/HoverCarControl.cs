@@ -136,16 +136,8 @@ public class HoverCarControl : MonoBehaviour
 				m_currSideThrust = aclSideAxis * m_sideAcl;
 
 			// Turning
-
 			m_currTurn = 0.0f;
-			// float turnAxis;
-			// if (inputDevice.RightStickX < 0)
-				// turnAxis = -inputDevice.RightStickX * inputDevice.RightStickX;
-			// else
-				// turnAxis = inputDevice.RightStickX * inputDevice.RightStickX;
 			float turnAxis = inputDevice.RightStickX * inputDevice.RightStickX * inputDevice.RightStickX;
-
-
 			if (Mathf.Abs (turnAxis) > m_deadZone)
 				m_currTurn = turnAxis;
 
