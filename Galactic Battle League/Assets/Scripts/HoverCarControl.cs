@@ -69,6 +69,7 @@ public class HoverCarControl : MonoBehaviour
 	public float explosionRadius = 4.0F;
 	public float explosionPower = 25000.0F;
 	public ParticleSystem fireParticle;
+	private float rumbleTime;
 
 	void Start()
 	{
@@ -146,6 +147,7 @@ public class HoverCarControl : MonoBehaviour
 			if (inputDevice.RightBumper.IsPressed && Time.time > nextFire) 
 			{
 				nextFire = Time.time + fireRate;
+				Rumble(0.15f);
 				gameObject.rigidbody.AddExplosionForce(explosionPower, shotSpawn.position, explosionRadius);
 				tankVelocity = rigidbody.velocity;
 				fireParticle.Play();
@@ -187,53 +189,62 @@ public class HoverCarControl : MonoBehaviour
 		}
   }
 
-  void FixedUpdate()
-  {
+	void FixedUpdate()
+	{
 
-    //  Hover Force
-    RaycastHit hit;
-    for (int i = 0; i < m_hoverPoints.Length; i++)
-    {
-      var hoverPoint = m_hoverPoints [i];
-      if (Physics.Raycast(hoverPoint.transform.position, 
-                          -Vector3.up, out hit,
-                          m_hoverHeight,
-                          m_layerMask))
-        m_body.AddForceAtPosition(Vector3.up 
-          * m_hoverForce
-          * (1.0f - (hit.distance / m_hoverHeight)), 
-                                  hoverPoint.transform.position);
-      else
-      {
-        if (transform.position.y > hoverPoint.transform.position.y)
-          m_body.AddForceAtPosition(
-            hoverPoint.transform.up * m_hoverForce,
-            hoverPoint.transform.position);
-        else
-          m_body.AddForceAtPosition(
-            hoverPoint.transform.up * -m_hoverForce,
-            hoverPoint.transform.position);
-      }
-    }
-
-    // Forward
-    if (Mathf.Abs(m_currThrust) > 0)
-      m_body.AddForce(transform.forward * m_currThrust);
-
+		//  Hover Force
+		RaycastHit hit;
+		for (int i = 0; i < m_hoverPoints.Length; i++)
+		{
+			var hoverPoint = m_hoverPoints [i];
+			if (Physics.Raycast(hoverPoint.transform.position, 
+			                    -Vector3.up, out hit,
+			                    m_hoverHeight,
+			                    m_layerMask))
+				m_body.AddForceAtPosition(Vector3.up 
+				    * m_hoverForce
+				    * (1.0f - (hit.distance / m_hoverHeight)), 
+				                            hoverPoint.transform.position);
+			else
+			{
+				if (transform.position.y > hoverPoint.transform.position.y)
+					m_body.AddForceAtPosition(
+					  hoverPoint.transform.up * m_hoverForce,
+					  hoverPoint.transform.position);
+				else
+					m_body.AddForceAtPosition(
+					  hoverPoint.transform.up * -m_hoverForce,
+					  hoverPoint.transform.position);
+			}
+		}
 
 		// Forward
-    if (Mathf.Abs(m_currSideThrust) > 0)
-      m_body.AddForce(transform.right * m_currSideThrust);
+		if (Mathf.Abs(m_currThrust) > 0)
+			m_body.AddForce(transform.forward * m_currThrust);
 
-    // Turn
-    if (m_currTurn > 0)
-    {
-      m_body.AddRelativeTorque(Vector3.up * m_currTurn * m_turnStrength);
-    } else if (m_currTurn < 0)
-    {
-      m_body.AddRelativeTorque(Vector3.up * m_currTurn * m_turnStrength);
-    }
-  }
+
+		// Sideways
+		if (Mathf.Abs(m_currSideThrust) > 0)
+			m_body.AddForce(transform.right * m_currSideThrust);
+
+		// Turn
+		if (m_currTurn > 0)
+		{
+			m_body.AddRelativeTorque(Vector3.up * m_currTurn * m_turnStrength);
+		} else if (m_currTurn < 0)
+		{
+			m_body.AddRelativeTorque(Vector3.up * m_currTurn * m_turnStrength);
+		}
+
+		// Rumble
+		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
+		if (inputDevice !=null && Time.time < rumbleTime)
+			{
+				inputDevice.Vibrate(1.0f, 1.0f);
+			} else {
+				inputDevice.Vibrate(0.0f, 0.0f);
+			}
+	}
 
 	void OnTriggerEnter (Collider other)
 	{
@@ -257,7 +268,7 @@ public class HoverCarControl : MonoBehaviour
 				}
 				healthInt -= shotControllerCopy.damage;
 				Destroy (other.gameObject);				
-					
+				Rumble(0.15f);
 				if (healthInt <= 0)
 				{
 					if (shotControllerCopy.playerNumber == 1)
@@ -341,6 +352,7 @@ public class HoverCarControl : MonoBehaviour
 			{
 				ParticleEmitter sparks = ((GameObject)Instantiate(sparkParticle, contact.point, shotSpawn.rotation)).GetComponent<ParticleEmitter>();
 				sparks.Emit();
+				Rumble(0.1f);
 			}
 		}
 	}
@@ -385,6 +397,11 @@ public class HoverCarControl : MonoBehaviour
 			Application.LoadLevel("Winscreen");
 		}
 		killedMessage.SetActive(false);
+	}
+
+	void Rumble(float duration) {
+		if (rumbleTime < Time.time + duration)
+			rumbleTime = Time.time + duration;
 	}
 
 	void OnEnable()
