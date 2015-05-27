@@ -966,7 +966,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173462}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: -80, y: 32, z: 127}
+  m_LocalPosition: {x: -100, y: 32, z: 127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 473458}
@@ -1401,7 +1401,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131964}
   serializedVersion: 2
-  m_Mass: 24500
+  m_Mass: 50000
   m_Drag: 1
   m_AngularDrag: 2
   m_UseGravity: 1
@@ -1416,7 +1416,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173458}
   serializedVersion: 2
-  m_Mass: 49000
+  m_Mass: 100000
   m_Drag: 1
   m_AngularDrag: 2
   m_UseGravity: 1
@@ -1585,17 +1585,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4d62c4386d46f4b9d6db8a6d3081c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_hoverForce: 280000
+  m_hoverForce: 500000
   m_hoverHeight: 1.5
   m_hoverPoints:
   - {fileID: 131992}
   - {fileID: 131968}
   - {fileID: 131980}
   - {fileID: 131984}
-  m_forwardAcl: 1750000
-  m_backwardAcl: 1400000
-  m_sideAcl: 1400000
-  m_turnStrength: 700000
+  m_forwardAcl: 3e+06
+  m_backwardAcl: 2500000
+  m_sideAcl: 2500000
+  m_turnStrength: 950000
   m_leftAirBrake: {fileID: 131988}
   m_rightAirBrake: {fileID: 131966}
   playerNumber: 3
@@ -1621,7 +1621,7 @@ MonoBehaviour:
   shot: {fileID: 100000, guid: f070d07eae5391447948f4ea0e2caa1a, type: 2}
   shotSpawn: {fileID: 431996}
   fireRate: .5
-  sfxFire: {fileID: 8300000, guid: 3cd9d86e7b443d141936d8892bbc5262, type: 3}
+  sfxFire: {fileID: 8300000, guid: e0a2eb38b18251046beadea9584e03f9, type: 3}
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
@@ -1659,17 +1659,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4d62c4386d46f4b9d6db8a6d3081c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_hoverForce: 560000
+  m_hoverForce: 1300000
   m_hoverHeight: 1.5
   m_hoverPoints:
   - {fileID: 173470}
   - {fileID: 173464}
   - {fileID: 173472}
   - {fileID: 173468}
-  m_forwardAcl: 3500000
-  m_backwardAcl: 2800000
-  m_sideAcl: 2800000
-  m_turnStrength: 1400000
+  m_forwardAcl: 4500000
+  m_backwardAcl: 3500000
+  m_sideAcl: 3500000
+  m_turnStrength: 2500000
   m_leftAirBrake: {fileID: 173474}
   m_rightAirBrake: {fileID: 173452}
   playerNumber: 3
