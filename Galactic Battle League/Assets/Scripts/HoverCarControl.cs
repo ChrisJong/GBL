@@ -144,7 +144,7 @@ public class HoverCarControl : MonoBehaviour
 
 
 			// Firing
-			if (inputDevice.RightBumper.IsPressed && Time.time > nextFire) 
+			if (inputDevice.RightTrigger.IsPressed && Time.time > nextFire) 
 			{
 				nextFire = Time.time + fireRate;
 				Rumble(0.15f);
@@ -239,11 +239,11 @@ public class HoverCarControl : MonoBehaviour
 		// Rumble
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
 		if (inputDevice !=null && Time.time < rumbleTime)
-			{
-				inputDevice.Vibrate(1.0f, 1.0f);
-			} else {
-				inputDevice.Vibrate(0.0f, 0.0f);
-			}
+		{
+			inputDevice.Vibrate(1.0f, 1.0f);
+		} else if (inputDevice != null) {
+			inputDevice.Vibrate(0.0f, 0.0f);
+		}
 	}
 
 	void OnTriggerEnter (Collider other)
