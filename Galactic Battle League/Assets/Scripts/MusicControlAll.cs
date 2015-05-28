@@ -13,14 +13,16 @@ public class MusicControlAll : MonoBehaviour {
 	public ScoreCounter3 score3;
 	public ScoreCounter4 score4;
 
+	public float maxVolPirate = 0.4f;
+	public float maxVolTech = 0.6f;
+	public float maxVolMilitary = 0.8f;
+	public float maxVolIndustrial = 0.6f;
 
-	public float maxVol;
-	
 	// Update is called once per frame
 	void Update () {
-		pirate.volume = (float)score1.score/(float)4.0 * maxVol;
-		hiTech.volume = (float)score2.score/(float)4.0 * maxVol;
-		military.volume = (float)score3.score/(float)4.0 * maxVol;
-		industrial.volume = (float)score4.score/(float)4.0 * maxVol;
+		pirate.volume = (float)score1.score/(float)4.0 * maxVolPirate;
+		hiTech.volume = (float)score2.score/(float)4.0 * maxVolTech;
+		military.volume = (float)score3.score/(float)4.0 * maxVolMilitary;
+		industrial.volume = (float)score4.score/(float)4.0 * maxVolIndustrial;
 	}
 }
