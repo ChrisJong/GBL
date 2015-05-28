@@ -388,7 +388,8 @@ public class HoverCarControl : MonoBehaviour
 		m_hoverForce = tempHoverForce;
 		foreach (ParticleSystem particle in hoverParticles) 
 		{
-			particle.Play();
+			if (particle)
+				particle.Play();
 		}
 		healthInt = maxHealth;
 		deathRun = false;
