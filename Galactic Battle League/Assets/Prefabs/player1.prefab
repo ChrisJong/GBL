@@ -835,7 +835,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195642}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 100, y: 32, z: 127}
+  m_LocalPosition: {x: 100, y: 29, z: 127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 495640}
@@ -1638,7 +1638,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightVehicle: {fileID: 150920}
+  lightControl: {fileID: 11450906}
   heavyVehicle: {fileID: 195640}
+  heavyControl: {fileID: 11495662}
   spawnHeight: 30
   playerNumber: 1
 --- !u!114 &11414426
@@ -1705,6 +1707,11 @@ MonoBehaviour:
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19816472}
   maxHealth: 75
+  hasRespawned: 1
+  spawnAnimators:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   shot: {fileID: 100000, guid: 6cef3e2f90661b54eb53984e9a89be69, type: 2}
   shotSpawn: {fileID: 450930}
   fireRate: .5
@@ -1782,6 +1789,11 @@ MonoBehaviour:
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19816472}
   maxHealth: 100
+  hasRespawned: 1
+  spawnAnimators:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   shot: {fileID: 100000, guid: f4ec271e525e14ca9927a07e6a2e153d, type: 2}
   shotSpawn: {fileID: 495658}
   fireRate: 1

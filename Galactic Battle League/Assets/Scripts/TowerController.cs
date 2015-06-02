@@ -22,6 +22,10 @@ public class TowerController : MonoBehaviour
 		door1Animation = door1Info.nameHash;
 		AnimatorStateInfo door2Info = door2.GetCurrentAnimatorStateInfo(0);
 		door2Animation = door2Info.nameHash;
+		print (pistonInfo);
+		print (door1Animation.ToString());
+		print (door2Animation.ToString());
+		piston.enabled = false;
 	}
 
 	// Update is called once per frame
@@ -33,7 +37,7 @@ public class TowerController : MonoBehaviour
 
 	void OnCollisionEnter(Collision collision)
 	{
-		if (done) 
+		if (false) 
 		{
 			time = Time.time + 2;
 			piston.Play (pistonAnimation, -1, 0f);

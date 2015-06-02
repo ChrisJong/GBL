@@ -58,6 +58,10 @@ public class HoverCarControl : MonoBehaviour
 	public int maxHealth = 100;
 	private int healthInt;
 
+	public bool hasRespawned = true;
+
+	public Animator[] spawnAnimators;
+
 	//Fire control variables
 	public GameObject shot;
 	public Transform shotSpawn;
@@ -73,7 +77,10 @@ public class HoverCarControl : MonoBehaviour
 
 	void Start()
 	{
-		
+		foreach (Animator anim in spawnAnimators) 
+		{
+			anim.enabled = false;
+		}
 
 		healthInt = maxHealth;
 
@@ -117,8 +124,19 @@ public class HoverCarControl : MonoBehaviour
 	{
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
 		health.healthscore = healthInt;
-
-		if (!deathRun && inputDevice != null) 
+		if (hasRespawned && inputDevice != null) 
+		{
+			if (inputDevice.RightTrigger.IsPressed) 
+			{
+				foreach (Animator anim in spawnAnimators)
+				{
+					anim.enabled = true;
+					anim.Play(anim.GetCurrentAnimatorStateInfo(0).nameHash,-1,0f);
+				}
+				hasRespawned = false;
+			}
+		}
+		else if (!deathRun && inputDevice != null) 
 		{
 			// Main Thrust
 			m_currThrust = 0.0f;
@@ -271,6 +289,7 @@ public class HoverCarControl : MonoBehaviour
 				Rumble(0.15f);
 				if (healthInt <= 0)
 				{
+					healthInt = 0;
 					if (shotControllerCopy.playerNumber == 1)
 					{
 						score1.score++;
@@ -398,6 +417,7 @@ public class HoverCarControl : MonoBehaviour
 			Application.LoadLevel("Winscreen");
 		}
 		killedMessage.SetActive(false);
+		hasRespawned = true;
 	}
 
 	void Rumble(float duration) {
