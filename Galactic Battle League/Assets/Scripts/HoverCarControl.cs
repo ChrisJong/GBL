@@ -259,9 +259,9 @@ public class HoverCarControl : MonoBehaviour
 		if (inputDevice !=null && Time.time < rumbleTime)
 		{
 			inputDevice.Vibrate(1.0f, 1.0f);
-		} else if (inputDevice != null) {
+		} /*else if (inputDevice != null) {
 			inputDevice.Vibrate(0.0f, 0.0f);
-		}
+		}*/
 	}
 
 	void OnTriggerEnter (Collider other)
@@ -431,6 +431,13 @@ public class HoverCarControl : MonoBehaviour
 			gameObject.transform.position = initialPosition;
 			gameObject.transform.rotation = initialRotation;
 			healthInt = maxHealth;
+		}
+	}
+	void OnDisable()
+	{
+		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
+		if (inputDevice != null) {
+			inputDevice.Vibrate(0.0f, 0.0f);
 		}
 	}
 }
