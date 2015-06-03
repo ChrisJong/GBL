@@ -259,9 +259,9 @@ public class HoverCarControl : MonoBehaviour
 		if (inputDevice !=null && Time.time < rumbleTime)
 		{
 			inputDevice.Vibrate(1.0f, 1.0f);
-		} /*else if (inputDevice != null) {
+		} else if (inputDevice != null) {
 			inputDevice.Vibrate(0.0f, 0.0f);
-		}*/
+		}
 	}
 
 	void OnTriggerEnter (Collider other)
