@@ -55,5 +55,11 @@ public class SmoothCameraWithBumper : MonoBehaviour
         } 
         else 
             transform.rotation = Quaternion.LookRotation(lookPosition - transform.position, target.up);
+
+		Vector3 euler = transform.rotation.eulerAngles;
+
+		euler.z = 0;
+
+		transform.rotation = Quaternion.Euler(euler);
     }
 }
