@@ -143,10 +143,11 @@ public class HoverCarControl : MonoBehaviour
 				
 				respawnMessage1.SetActive(false);
 				respawnMessage2.SetActive(false);
+				spawnActiveTimer = Time.time + 1.0f;
 				hasRespawned = false;
 			}
 		}
-		else if (!deathRun && inputDevice != null) 
+		else if (!deathRun && inputDevice != null && spawnActiveTimer < Time.time) 
 		{
 			// Main Thrust
 			m_currThrust = 0.0f;
