@@ -877,8 +877,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195642}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.98999977, y: 0, z: 8.36999989}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
+  m_LocalPosition: {x: 100, y: 29, z: 127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 495640}
@@ -1706,6 +1706,8 @@ MonoBehaviour:
   killMessage4: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19816472}
+  respawnMessage1: {fileID: 0}
+  respawnMessage2: {fileID: 0}
   maxHealth: 75
   hasRespawned: 1
   spawnAnimators:
@@ -1721,6 +1723,7 @@ MonoBehaviour:
   explosionRadius: 4
   explosionPower: 1500000
   fireParticle: {fileID: 19816460}
+  killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
 --- !u!114 &11473474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1788,6 +1791,8 @@ MonoBehaviour:
   killMessage4: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19816472}
+  respawnMessage1: {fileID: 0}
+  respawnMessage2: {fileID: 0}
   maxHealth: 100
   hasRespawned: 1
   spawnAnimators:
@@ -1803,6 +1808,7 @@ MonoBehaviour:
   explosionRadius: 4
   explosionPower: 1e+07
   fireParticle: {fileID: 19816460}
+  killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
 --- !u!114 &11495664
 MonoBehaviour:
   m_ObjectHideFlags: 1
