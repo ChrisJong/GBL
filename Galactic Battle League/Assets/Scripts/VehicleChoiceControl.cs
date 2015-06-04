@@ -28,7 +28,7 @@ public class VehicleChoiceControl : MonoBehaviour {
 			var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
 
 			if (inputDevice != null) {
-				if (inputDevice.MenuWasPressed) {
+				if (inputDevice.DPadLeft.WasPressed || inputDevice.DPadRight.WasPressed) {
 					if (PlayerPrefs.GetInt("Player" + playerNumber + "Tank") == 1) {
 						PlayerPrefs.SetInt("Player" + playerNumber + "Tank", 2);
 						lightVehicle.SetActive(false);

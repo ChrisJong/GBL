@@ -51,6 +51,10 @@ public class HoverCarControl : MonoBehaviour
 	Vector3 initialPosition;
 	Quaternion initialRotation;
 	public ParticleSystem hitParticle;
+	private double spawnActiveTimer;
+
+	public GameObject respawnMessage1;
+	public GameObject respawnMessage2;
 
 	private float tempHoverForce;
 	private float timer = 0.0f;
@@ -91,6 +95,9 @@ public class HoverCarControl : MonoBehaviour
 
     	m_layerMask = 1 << LayerMask.NameToLayer("Characters");
     	m_layerMask = ~m_layerMask;
+		
+		respawnMessage1.SetActive(true);
+		respawnMessage2.SetActive(true);
 
     	initialised = true;
 	}
@@ -133,6 +140,9 @@ public class HoverCarControl : MonoBehaviour
 					anim.enabled = true;
 					anim.Play(anim.GetCurrentAnimatorStateInfo(0).nameHash,-1,0f);
 				}
+				
+				respawnMessage1.SetActive(false);
+				respawnMessage2.SetActive(false);
 				hasRespawned = false;
 			}
 		}
@@ -418,6 +428,9 @@ public class HoverCarControl : MonoBehaviour
 		}
 		killedMessage.SetActive(false);
 		hasRespawned = true;
+		
+		respawnMessage1.SetActive(true);
+		respawnMessage2.SetActive(true);
 	}
 
 	void Rumble(float duration) {
