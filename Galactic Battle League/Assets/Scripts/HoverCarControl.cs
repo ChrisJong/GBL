@@ -79,6 +79,8 @@ public class HoverCarControl : MonoBehaviour
 	public ParticleSystem fireParticle;
 	private float rumbleTime;
 
+	public AudioClip killCheer = null;
+
 	void Start()
 	{
 		foreach (Animator anim in spawnAnimators) 
@@ -403,6 +405,9 @@ public class HoverCarControl : MonoBehaviour
 		m_currTurn = 0.0f;
 
 		AudioSource.PlayClipAtPoint(sfxDeath, gameObject.transform.position);
+		if (killCheer) {
+		AudioSource.PlayClipAtPoint(killCheer, gameObject.transform.position);
+		}
 		timer = 0.0f;
 		deathRun = true;
 		foreach (ParticleSystem particle in hoverParticles) 
@@ -450,6 +455,7 @@ public class HoverCarControl : MonoBehaviour
 	void OnDisable()
 	{
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
+		rumbleTime = 0.0f;
 		if (inputDevice != null) {
 			inputDevice.Vibrate(0.0f, 0.0f);
 		}
