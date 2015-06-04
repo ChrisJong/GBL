@@ -13,9 +13,9 @@ public class GuiCrosshair : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (playerCameraHeavy.activeInHierarchy) {
-			transform.position = playerCameraHeavy.GetComponent<Camera>().WorldToScreenPoint(worldCrosshair.position);
+			transform.position = Vector3.Lerp(transform.position, playerCameraHeavy.GetComponent<Camera>().WorldToScreenPoint(worldCrosshair.position), 10 * Time.deltaTime);
 		} else {
-			transform.position = playerCameraLight.GetComponent<Camera>().WorldToScreenPoint(worldCrosshair.position);
+			transform.position = Vector3.Lerp(transform.position, playerCameraLight.GetComponent<Camera>().WorldToScreenPoint(worldCrosshair.position), 10 * Time.deltaTime);
 		}
 	}
 }
