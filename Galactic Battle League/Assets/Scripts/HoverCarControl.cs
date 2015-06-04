@@ -449,6 +449,7 @@ public class HoverCarControl : MonoBehaviour
 	void OnDisable()
 	{
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
+		rumbleTime = 0.0f;
 		if (inputDevice != null) {
 			inputDevice.Vibrate(0.0f, 0.0f);
 		}
