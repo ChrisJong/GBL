@@ -6,7 +6,9 @@ using InControl;
 public class VehicleChoiceControl : MonoBehaviour {
 	
 	public GameObject lightVehicle;
+	public HoverCarControl lightControl;
 	public GameObject heavyVehicle;
+	public HoverCarControl heavyControl;
 	public float spawnHeight;
 	public int playerNumber;
 
@@ -17,15 +19,16 @@ public class VehicleChoiceControl : MonoBehaviour {
 		} else {
 			lightVehicle.SetActive(false);
 		}
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (lightVehicle.transform.position.y > spawnHeight && heavyVehicle.transform.position.y > spawnHeight) {
+		if (lightControl.hasRespawned && heavyControl.hasRespawned) {
 			var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
 
 			if (inputDevice != null) {
-				if (inputDevice.MenuWasPressed) {
+				if (inputDevice.DPadLeft.WasPressed || inputDevice.DPadRight.WasPressed) {
 					if (PlayerPrefs.GetInt("Player" + playerNumber + "Tank") == 1) {
 						PlayerPrefs.SetInt("Player" + playerNumber + "Tank", 2);
 						lightVehicle.SetActive(false);

@@ -16,11 +16,13 @@ public class StartGame : MonoBehaviour
 
 	public void BeginArena () 
 	{
+		GameObject.Destroy(GameObject.Find("MenuMusic"));
 		Application.LoadLevel ("arena");
 	}
 
 	public void BeginInferno () 
 	{
+		GameObject.Destroy(GameObject.Find("MenuMusic"));
 		Application.LoadLevel ("inferno");
 	}
 
