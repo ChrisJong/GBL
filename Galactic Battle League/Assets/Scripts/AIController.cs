@@ -23,8 +23,12 @@ public class AIController : MonoBehaviour {
 	}
 	
 	// AIUpdate updates movex, movey, turn and fire based on location of enemy and such
-	GameObject[] players = new GameObject[4] {null, null, null, null};
 	public void AIUpdate (int playerNumber) {
+		// players is an array to hold the active tank for each player
+		GameObject[] players = new GameObject[4] {null, null, null, null};
+
+		// Populate the array of players
+		// For each player, if they have selected their light tank, set their index of that array to their light tank, otherwise, set it to their heavy tank
 		if (PlayerPrefs.GetInt("Player1Tank") == 1) {
 			players[0] = player1Light;
 		} else {
@@ -46,7 +50,9 @@ public class AIController : MonoBehaviour {
 			players[3] = player4Heavy;
 		}
 
+		// self is the tank the AI calculations are being done for
 		GameObject self = null;
+		// enemies is an array of all the other tanks
 		GameObject[] enemies = new GameObject[3] {null, null, null};
 		for (int i = 0; i < 4; i++)
 		{
@@ -60,6 +66,7 @@ public class AIController : MonoBehaviour {
 			}
 		}
 
+		// closest enemy to self is calculated 
 		GameObject closestTarget = enemies[0];
 		float targetDistance = Vector3.Distance(self.transform.position, enemies[0].transform.position);
 		for (int i = 1; i < 3; i++)
@@ -71,15 +78,20 @@ public class AIController : MonoBehaviour {
 				closestTarget = enemies[i];
 			}
 		}
-		Vector3 direction = closestTarget.transform.position - self.transform.position;
-		
-		direction.y = 0;
-		direction = direction.normalized;
 
+		// Direction to closest target
+		Vector3 direction = closestTarget.transform.position - self.transform.position;
+		// We don't care about height difference
+		direction.y = 0;
+		// We need a vector of up to 1 magnitude, so normalized for now
+		direction = direction.normalized;
+		// We need the local direction vector, so InverseTransformDirection
 		direction = self.transform.InverseTransformDirection(direction);
 
+		//moveX, moveY set to the appropriate values to make the tank move in the direction vector
 		moveX = direction.x;
 		moveY = direction.z;
+		
 		turn = direction.x;
 		fire = true;
 
