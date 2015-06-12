@@ -80,6 +80,8 @@ public class HoverCarControl : MonoBehaviour
 	private float rumbleTime;
 
 	public AudioClip killCheer = null;
+	public bool isAI = false;
+	public AIController aiController;
 
 	void Start()
 	{
@@ -131,11 +133,9 @@ public class HoverCarControl : MonoBehaviour
 	
 	void Update()
 	{
-		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
-		health.healthscore = healthInt;
-		if (hasRespawned && inputDevice != null) 
+		if (isAI) // AI control
 		{
-			if (inputDevice.RightTrigger.IsPressed) 
+			if (hasRespawned) 
 			{
 				foreach (Animator anim in spawnAnimators)
 				{
@@ -148,43 +148,102 @@ public class HoverCarControl : MonoBehaviour
 				spawnActiveTimer = Time.time + 1.0f;
 				hasRespawned = false;
 			}
-		}
-		else if (!deathRun && inputDevice != null && spawnActiveTimer < Time.time) 
-		{
-			// Main Thrust
-			m_currThrust = 0.0f;
-			float aclAxis = inputDevice.Direction.Y;
-			if (aclAxis > m_deadZone)
-				m_currThrust = aclAxis * m_forwardAcl;
-			else if (aclAxis < -m_deadZone)
-				m_currThrust = aclAxis * m_backwardAcl;
 
-			// Side Thrust
-			m_currSideThrust = 0.0f;
-			float aclSideAxis = inputDevice.Direction.X;
-			if (aclSideAxis > m_deadZone)
-				m_currSideThrust = aclSideAxis * m_sideAcl;
-			else if (aclSideAxis < -m_deadZone)
-				m_currSideThrust = aclSideAxis * m_sideAcl;
-
-			// Turning
-			m_currTurn = 0.0f;
-			float turnAxis = inputDevice.RightStickX * inputDevice.RightStickX * inputDevice.RightStickX;
-			if (Mathf.Abs (turnAxis) > m_deadZone)
-				m_currTurn = turnAxis;
-
-
-			// Firing
-			if (inputDevice.RightTrigger.IsPressed && Time.time > nextFire) 
+			else if (!deathRun && spawnActiveTimer < Time.time) 
 			{
-				nextFire = Time.time + fireRate;
-				Rumble(0.15f);
-				gameObject.rigidbody.AddExplosionForce(explosionPower, shotSpawn.position, explosionRadius);
-				tankVelocity = rigidbody.velocity;
-				fireParticle.Play();
-				createShot (tankVelocity);
-				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position, 0.5f);
+				aiController.AIUpdate(playerNumber);
+				// Main Thrust
+				m_currThrust = 0.0f;
+				float aclAxis = aiController.moveY;
+				if (aclAxis > m_deadZone)
+					m_currThrust = aclAxis * m_forwardAcl;
+				else if (aclAxis < -m_deadZone)
+					m_currThrust = aclAxis * m_backwardAcl;
+
+				// Side Thrust
+				m_currSideThrust = 0.0f;
+				float aclSideAxis = aiController.moveX;
+				if (aclSideAxis > m_deadZone)
+					m_currSideThrust = aclSideAxis * m_sideAcl;
+				else if (aclSideAxis < -m_deadZone)
+					m_currSideThrust = aclSideAxis * m_sideAcl;
+
+				// Turning
+				m_currTurn = 0.0f;
+				float turnAxis = aiController.turn;
+				if (Mathf.Abs (turnAxis) > m_deadZone)
+					m_currTurn = turnAxis;
+
+
+				// Firing
+				if (aiController.fire && Time.time > nextFire) 
+				{
+					nextFire = Time.time + fireRate;
+					Rumble(0.15f);
+					gameObject.rigidbody.AddExplosionForce(explosionPower, shotSpawn.position, explosionRadius);
+					tankVelocity = rigidbody.velocity;
+					fireParticle.Play();
+					createShot (tankVelocity);
+					AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position, 0.5f);
+				}
+				aiController.AIReset();
 			}
+		} else { // Player control
+			var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
+			health.healthscore = healthInt;
+			if (hasRespawned && inputDevice != null) 
+			{
+				if (inputDevice.RightTrigger.IsPressed) 
+				{
+					foreach (Animator anim in spawnAnimators)
+					{
+						anim.enabled = true;
+						anim.Play(anim.GetCurrentAnimatorStateInfo(0).nameHash,-1,0f);
+					}
+					
+					respawnMessage1.SetActive(false);
+					respawnMessage2.SetActive(false);
+					spawnActiveTimer = Time.time + 1.0f;
+					hasRespawned = false;
+				}
+			}
+			else if (!deathRun && inputDevice != null && spawnActiveTimer < Time.time) 
+			{
+				// Main Thrust
+				m_currThrust = 0.0f;
+				float aclAxis = inputDevice.Direction.Y;
+				if (aclAxis > m_deadZone)
+					m_currThrust = aclAxis * m_forwardAcl;
+				else if (aclAxis < -m_deadZone)
+					m_currThrust = aclAxis * m_backwardAcl;
+
+				// Side Thrust
+				m_currSideThrust = 0.0f;
+				float aclSideAxis = inputDevice.Direction.X;
+				if (aclSideAxis > m_deadZone)
+					m_currSideThrust = aclSideAxis * m_sideAcl;
+				else if (aclSideAxis < -m_deadZone)
+					m_currSideThrust = aclSideAxis * m_sideAcl;
+
+				// Turning
+				m_currTurn = 0.0f;
+				float turnAxis = inputDevice.RightStickX * inputDevice.RightStickX * inputDevice.RightStickX;
+				if (Mathf.Abs (turnAxis) > m_deadZone)
+					m_currTurn = turnAxis;
+
+
+				// Firing
+				if (inputDevice.RightTrigger.IsPressed && Time.time > nextFire) 
+				{
+					nextFire = Time.time + fireRate;
+					Rumble(0.15f);
+					gameObject.rigidbody.AddExplosionForce(explosionPower, shotSpawn.position, explosionRadius);
+					tankVelocity = rigidbody.velocity;
+					fireParticle.Play();
+					createShot (tankVelocity);
+					AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position, 0.5f);
+				}
+			}	
 		}
 
 		if (gameObject.transform.position.y <= -100) 
@@ -440,6 +499,8 @@ public class HoverCarControl : MonoBehaviour
 	}
 
 	void Rumble(float duration) {
+		if (isAI)
+			return;
 		if (rumbleTime < Time.time + duration)
 			rumbleTime = Time.time + duration;
 	}

@@ -3071,6 +3071,14 @@ Prefab:
       propertyPath: spawnAnimators.Array.data[2]
       value: 
       objectReference: {fileID: 215171860}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: aiController
+      value: 
+      objectReference: {fileID: 318773397}
+    - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: aiController
+      value: 
+      objectReference: {fileID: 318773397}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
   m_RootGameObject: {fileID: 1776996223}
@@ -5713,6 +5721,57 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &318773396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 318773398}
+  - 114: {fileID: 318773397}
+  m_Layer: 0
+  m_Name: AIController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &318773397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 318773396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0827b6931c68f3c4a9e07879310129e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1Heavy: {fileID: 0}
+  player1Light: {fileID: 0}
+  player2Heavy: {fileID: 0}
+  player2Light: {fileID: 0}
+  player3Heavy: {fileID: 0}
+  player3Light: {fileID: 0}
+  player4Heavy: {fileID: 0}
+  player4Light: {fileID: 0}
+  moveX: 0
+  moveY: 0
+  turn: 0
+  fire: 0
+--- !u!4 &318773398
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 318773396}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 810.598755, y: 487.469482, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
 --- !u!1 &320669562
 GameObject:
   m_ObjectHideFlags: 0
@@ -7710,6 +7769,8 @@ MonoBehaviour:
   explosionPower: 1500000
   fireParticle: {fileID: 1231816036}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  isAI: 0
+  aiController: {fileID: 318773397}
 --- !u!54 &342446435
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10959,6 +11020,14 @@ Prefab:
       propertyPath: spawnAnimators.Array.data[2]
       value: 
       objectReference: {fileID: 934286016}
+    - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: aiController
+      value: 
+      objectReference: {fileID: 318773397}
+    - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: aiController
+      value: 
+      objectReference: {fileID: 318773397}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
   m_RootGameObject: {fileID: 1716396472}
@@ -13936,6 +14005,18 @@ Prefab:
       propertyPath: spawnAnimators.Array.data[2]
       value: 
       objectReference: {fileID: 213551542}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: isAI
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: aiController
+      value: 
+      objectReference: {fileID: 318773397}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: aiController
+      value: 
+      objectReference: {fileID: 318773397}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
   m_RootGameObject: {fileID: 864924550}
@@ -30908,6 +30989,8 @@ MonoBehaviour:
   explosionPower: 1500000
   fireParticle: {fileID: 2145870825}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  isAI: 0
+  aiController: {fileID: 318773397}
 --- !u!54 &983664928
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33301,6 +33384,8 @@ MonoBehaviour:
   explosionPower: 1500000
   fireParticle: {fileID: 1212569646}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  isAI: 0
+  aiController: {fileID: 318773397}
 --- !u!54 &1020648333
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -36468,6 +36553,8 @@ MonoBehaviour:
   explosionPower: 1e+07
   fireParticle: {fileID: 1212569646}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  isAI: 1
+  aiController: {fileID: 318773397}
 --- !u!54 &1169388148
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -50334,6 +50421,8 @@ MonoBehaviour:
   explosionPower: 1e+07
   fireParticle: {fileID: 1335509618}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  isAI: 0
+  aiController: {fileID: 318773397}
 --- !u!54 &1622085784
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -50638,6 +50727,8 @@ MonoBehaviour:
   explosionPower: 1e+07
   fireParticle: {fileID: 903237028}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  isAI: 0
+  aiController: {fileID: 318773397}
 --- !u!54 &1647441476
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -54847,6 +54938,8 @@ MonoBehaviour:
   explosionPower: 1e+07
   fireParticle: {fileID: 170584234}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  isAI: 0
+  aiController: {fileID: 318773397}
 --- !u!54 &1777190512
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -55621,6 +55714,14 @@ Prefab:
       propertyPath: spawnAnimators.Array.data[2]
       value: 
       objectReference: {fileID: 897344754}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: aiController
+      value: 
+      objectReference: {fileID: 318773397}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: aiController
+      value: 
+      objectReference: {fileID: 318773397}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77192545805124c43902ecc06c78608f, type: 2}
   m_RootGameObject: {fileID: 937733795}
@@ -60285,6 +60386,8 @@ MonoBehaviour:
   explosionPower: 1500000
   fireParticle: {fileID: 716186727}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  isAI: 0
+  aiController: {fileID: 318773397}
 --- !u!54 &2092244967
 Rigidbody:
   m_ObjectHideFlags: 0
