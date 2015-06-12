@@ -22,7 +22,7 @@ public class AIController : MonoBehaviour {
 	
 	}
 	
-	// Update is called once per frame
+	// AIUpdate updates movex, movey, turn and fire based on location of enemy and such
 	GameObject[] players = new GameObject[4] {null, null, null, null};
 	public void AIUpdate (int playerNumber) {
 		if (PlayerPrefs.GetInt("Player1Tank") == 1) {
@@ -80,6 +80,10 @@ public class AIController : MonoBehaviour {
 
 		moveX = direction.x;
 		moveY = direction.z;
+		turn = direction.x;
+		fire = true;
+
+
 
 	}
 
