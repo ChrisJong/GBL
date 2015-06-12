@@ -91,9 +91,17 @@ public class AIController : MonoBehaviour {
 		//moveX, moveY set to the appropriate values to make the tank move in the direction vector
 		moveX = direction.x;
 		moveY = direction.z;
-		
+		//Set the direction to turn towards to direction.x (the direction the enemy is in)
 		turn = direction.x;
-		fire = true;
+		// if the direction it is facing in is close enough to the direction the enemy is at, fire
+		if (direction.z > 0.98)
+		{
+			fire = true;
+
+		} else {
+
+			fire = false;
+		}
 
 
 
