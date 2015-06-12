@@ -23,12 +23,12 @@ public class AIController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void AIUpdate (int playerNumber) {
+	public void AIUpdate (int playerNumber) {
 	
 	}
 
 	// Resets the variables back to original values
-	void AIReset () {
+	public void AIReset () {
 
 	}
 }
