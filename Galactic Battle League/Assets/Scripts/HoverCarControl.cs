@@ -135,6 +135,8 @@ public class HoverCarControl : MonoBehaviour
 	{
 		if (isAI) // AI control
 		{
+			health.healthscore = healthInt;
+
 			if (hasRespawned) 
 			{
 				foreach (Animator anim in spawnAnimators)

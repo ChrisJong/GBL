@@ -3079,6 +3079,14 @@ Prefab:
       propertyPath: aiController
       value: 
       objectReference: {fileID: 318773397}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: isAI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: isAI
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
   m_RootGameObject: {fileID: 1776996223}
@@ -5748,14 +5756,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0827b6931c68f3c4a9e07879310129e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1Heavy: {fileID: 0}
-  player1Light: {fileID: 0}
-  player2Heavy: {fileID: 0}
-  player2Light: {fileID: 0}
-  player3Heavy: {fileID: 0}
-  player3Light: {fileID: 0}
-  player4Heavy: {fileID: 0}
-  player4Light: {fileID: 0}
+  player1Heavy: {fileID: 1169388141}
+  player1Light: {fileID: 1020648329}
+  player2Heavy: {fileID: 1777190506}
+  player2Light: {fileID: 342446431}
+  player3Heavy: {fileID: 1622085778}
+  player3Light: {fileID: 2092244963}
+  player4Heavy: {fileID: 1647441470}
+  player4Light: {fileID: 983664924}
   moveX: 0
   moveY: 0
   turn: 0
@@ -11028,6 +11036,18 @@ Prefab:
       propertyPath: aiController
       value: 
       objectReference: {fileID: 318773397}
+    - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: isAI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: isAI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 173462, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
   m_RootGameObject: {fileID: 1716396472}
@@ -14007,7 +14027,7 @@ Prefab:
       objectReference: {fileID: 213551542}
     - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
       propertyPath: isAI
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
       propertyPath: aiController
@@ -36553,7 +36573,7 @@ MonoBehaviour:
   explosionPower: 1e+07
   fireParticle: {fileID: 1212569646}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
-  isAI: 1
+  isAI: 0
   aiController: {fileID: 318773397}
 --- !u!54 &1169388148
 Rigidbody:
@@ -55722,6 +55742,18 @@ Prefab:
       propertyPath: aiController
       value: 
       objectReference: {fileID: 318773397}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: isAI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: isAI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 118016, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77192545805124c43902ecc06c78608f, type: 2}
   m_RootGameObject: {fileID: 937733795}
