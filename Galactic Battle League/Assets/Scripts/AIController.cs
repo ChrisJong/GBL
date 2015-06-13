@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class AIController : MonoBehaviour {
 
@@ -91,18 +92,20 @@ public class AIController : MonoBehaviour {
 		//moveX, moveY set to the appropriate values to make the tank move in the direction vector
 		moveX = direction.x;
 		moveY = direction.z;
-		//Set the direction to turn towards to direction.x (the direction the enemy is in)
-		turn = direction.x;
-		// if the direction it is facing in is close enough to the direction the enemy is at, fire
-		if (direction.z > 0.98)
-		{
-			fire = true;
+		
+		//Sets aimdirection (the direction the turret needs to aim at) using the aim function	
+		Vector3 aimDirection = aim(self, closestTarget);
+		aimDirection = self.transform.InverseTransformDirection(aimDirection);
 
-		} else {
-
-			fire = false;
+		if (aimDirection.x > 0){
+			turn = 1;
+		}else if (aimDirection.x < 0){
+			turn = -1;
 		}
-
+		
+		if (aimDirection.z > 0.999){
+			fire = true;
+		}
 
 
 	}
@@ -113,5 +116,45 @@ public class AIController : MonoBehaviour {
 		moveY = 0.0f;
 		turn = 0.0f;
 		fire = false;
+
+
+	}
+
+	//Returns aimDirection, the direction the hovertank needs to aim in
+	public Vector3 aim (GameObject self, GameObject target) {
+		Vector3 aimDirection = new Vector3();
+
+		Vector3 aimPos;
+
+		float aimDistance;
+
+		float bulletDistance;
+
+		float time = 1.0f;
+
+		bool aimed = false;
+
+		while (!aimed)
+		{
+			aimPos = target.transform.position + target.GetComponent<Rigidbody>().velocity * time;
+
+			aimDistance = Vector3.Distance(self.transform.position, target.transform.position);
+
+			bulletDistance = 100 * time;
+
+			aimDirection = aimPos - self.transform.position;
+
+			if (Math.Abs(aimDistance - bulletDistance) < 0.2)
+			{
+				aimed = true;
+				return aimDirection;
+			}else if (aimDistance > bulletDistance){
+				time = time * 1.2f;
+			} else if (aimDistance < bulletDistance){
+				time = time * 0.8f;
+			}
+		}
+		return aimDirection;
+
 	}
 }
