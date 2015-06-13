@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
 public class AIController : MonoBehaviour {
 
@@ -17,6 +16,15 @@ public class AIController : MonoBehaviour {
 	public float moveY;
 	public float turn;
 	public bool fire;
+
+	public float wanderJitter = 0.2f;
+	public float wanderRadius = 2.0f;
+	public float wanderDistance = 2.2f;
+
+	Vector3 player1WanderTarget = Vector3.forward;
+	Vector3 player2WanderTarget = Vector3.forward;
+	Vector3 player3WanderTarget = Vector3.forward;
+	Vector3 player4WanderTarget = Vector3.forward;
 
 	// Use this for initialization
 	void Start () {
@@ -68,9 +76,9 @@ public class AIController : MonoBehaviour {
 		}
 
 		// closest enemy to self is calculated 
-		GameObject closestTarget = enemies[0];
-		float targetDistance = Vector3.Distance(self.transform.position, enemies[0].transform.position);
-		for (int i = 1; i < 3; i++)
+		GameObject closestTarget = null;
+		float targetDistance = 100.0f;
+		for (int i = 0; i < 3; i++)
 		{
 			float enemyDistance = Vector3.Distance(self.transform.position, enemies[i].transform.position);
 			if (enemyDistance < targetDistance)
@@ -80,34 +88,48 @@ public class AIController : MonoBehaviour {
 			}
 		}
 
-		// Direction to closest target
-		Vector3 direction = closestTarget.transform.position - self.transform.position;
-		// We don't care about height difference
-		direction.y = 0;
-		// We need a vector of up to 1 magnitude, so normalized for now
-		direction = direction.normalized;
-		// We need the local direction vector, so InverseTransformDirection
-		direction = self.transform.InverseTransformDirection(direction);
+		if (closestTarget != null) {
+			Vector3 behindTarget = closestTarget.transform.position + closestTarget.transform.forward * -10;
+			Vector3 direction = seek(self, behindTarget);
+			// We need the local direction vector, so InverseTransformDirection
+			direction = self.transform.InverseTransformDirection(direction);
 
-		//moveX, moveY set to the appropriate values to make the tank move in the direction vector
-		moveX = direction.x;
-		moveY = direction.z;
-		
-		//Sets aimdirection (the direction the turret needs to aim at) using the aim function	
-		Vector3 aimDirection = aim(self, closestTarget);
-		aimDirection = self.transform.InverseTransformDirection(aimDirection);
+			// Wall avoidance
+			direction += wallAvoidance(self)*2;
+			direction = direction.normalized;
 
-		if (aimDirection.x > 0){
-			turn = 1;
-		}else if (aimDirection.x < 0){
-			turn = -1;
+			//moveX, moveY set to the appropriate values to make the tank move in the direction vector
+			moveX = direction.x;
+			moveY = direction.z;
+			
+			//Sets aimdirection (the direction the turret needs to aim at) using the aim function	
+			Vector3 aimDirection = aim(self, closestTarget);
+			aimDirection = self.transform.InverseTransformDirection(aimDirection);
+
+			if (aimDirection.x > 0){
+				turn = 1;
+			}else if (aimDirection.x < 0){
+				turn = -1;
+			}
+			
+			if (aimDirection.normalized.z > 0.999){
+				fire = true;
+			}		
+		} else {
+			// get wander vector
+			Vector3 direction = wander(self, playerNumber);
+
+			// Wall avoidance
+			direction += wallAvoidance(self)*2;
+			direction = direction.normalized;
+
+			// moveX, moveY set to the appropriate values to make the tank move in the direction vector
+			moveX = direction.x;
+			moveY = direction.z;
+
+			// Turn so that it faces forwards always
+			turn = direction.x;
 		}
-		
-		if (aimDirection.z > 0.999){
-			fire = true;
-		}
-
-
 	}
 
 	// Resets the variables back to original values
@@ -116,12 +138,25 @@ public class AIController : MonoBehaviour {
 		moveY = 0.0f;
 		turn = 0.0f;
 		fire = false;
+	}
 
+	// Returns a steering direction (world space, normalised) to lead the agent to the target
+	Vector3 seek(GameObject self, Vector3 target) {
+		// Direction to closest target
+		Vector3 direction = target - self.transform.position;
+		// We don't care about height difference
+		direction.y = 0;
+		// We just want the direction, so normalized for now
+		direction = direction.normalized;
 
+		// Our current direction
+		Vector3 currentDir = self.GetComponent<Rigidbody>().velocity.normalized;
+
+		return (direction * 2 - currentDir).normalized;
 	}
 
 	//Returns aimDirection, the direction the hovertank needs to aim in
-	public Vector3 aim (GameObject self, GameObject target) {
+	Vector3 aim (GameObject self, GameObject target) {
 		Vector3 aimDirection = new Vector3();
 
 		Vector3 aimPos;
@@ -144,7 +179,7 @@ public class AIController : MonoBehaviour {
 
 			aimDirection = aimPos - self.transform.position;
 
-			if (Math.Abs(aimDistance - bulletDistance) < 0.2)
+			if (Mathf.Abs(aimDistance - bulletDistance) < 3.0f)
 			{
 				aimed = true;
 				return aimDirection;
@@ -156,5 +191,94 @@ public class AIController : MonoBehaviour {
 		}
 		return aimDirection;
 
+	}
+
+	// Returns a direction for wandering, local space, normalised
+	Vector3 wander(GameObject self, int playerNumber) {
+		// Get the correct player's wander target
+		Vector3 wanderTarget;
+		if (playerNumber == 1) {
+			wanderTarget = player1WanderTarget;
+		} else if (playerNumber == 2) {
+			wanderTarget = player2WanderTarget;
+		} else if (playerNumber == 3) {
+			wanderTarget = player3WanderTarget;
+		} else {
+			wanderTarget = player4WanderTarget;
+		}
+
+		wanderTarget.x += UnityEngine.Random.Range(-1.0f, 1.0f) * wanderJitter;
+		wanderTarget.z += UnityEngine.Random.Range(-1.0f, 1.0f) * wanderJitter;
+
+		// project onto unit circle
+		wanderTarget = wanderTarget.normalized;
+
+		// increase circle size
+		wanderTarget *= wanderRadius;
+
+		// Store the wander target for this player
+		if (playerNumber == 1) {
+			player1WanderTarget = wanderTarget;
+		} else if (playerNumber == 2) {
+			player2WanderTarget = wanderTarget;
+		} else if (playerNumber == 3) {
+			player3WanderTarget = wanderTarget;
+		} else if (playerNumber == 4) {
+			player4WanderTarget = wanderTarget;
+		}
+
+
+		// project in front of agent
+		wanderTarget.z += wanderDistance;
+
+		return wanderTarget.normalized;
+	}
+
+	// wall avoidance direction vector, local space, normalised
+	Vector3 wallAvoidance(GameObject self) {
+		// Feeler intersections
+		RaycastHit forwardHit;
+		RaycastHit leftHit;
+		RaycastHit rightHit;
+
+		// default values for no hits on feelers
+		float minDistance = Mathf.Infinity;
+		RaycastHit minHit = new RaycastHit();
+		bool hitWall = false;
+
+		// forward feeler
+		if (Physics.Raycast(self.transform.position, self.transform.forward, out forwardHit, 10.0f)) {
+			// if it's the shortest distance, it's the most important
+			if (forwardHit.distance < minDistance) {
+				minDistance = forwardHit.distance;
+				minHit = forwardHit;
+				hitWall = true;
+			}
+		}
+		// left feeler
+		if (Physics.Raycast(self.transform.position, self.transform.forward - self.transform.right, out leftHit, 8.0f)) {
+			// if it's the shortest distance, it's the most important
+			if (leftHit.distance < minDistance) {
+				minDistance = leftHit.distance;
+				minHit = leftHit;
+				hitWall = true;
+			}
+		}
+		// right feeler
+		if (Physics.Raycast(self.transform.position, self.transform.forward + self.transform.right, out rightHit, 8.0f)) {
+			// if it's the shortest distance, it's the most important
+			if (rightHit.distance < minDistance) {
+				minDistance = rightHit.distance;
+				minHit = rightHit;
+				hitWall = true;
+			}
+		}
+
+		// if a feeler hits a wall, return local space normal direction, else return a zero vector 
+		if (hitWall) {
+			return self.transform.InverseTransformDirection(minHit.normal);
+		} else {
+			return Vector3.zero;
+		}
 	}
 }
