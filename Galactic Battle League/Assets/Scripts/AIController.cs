@@ -75,18 +75,30 @@ public class AIController : MonoBehaviour {
 			}
 		}
 
+
+
 		// closest enemy to self is calculated 
 		GameObject closestTarget = null;
-		float targetDistance = 100.0f;
+		float targetDistance = Mathf.Infinity;
+		RaycastHit hit;
 		for (int i = 0; i < 3; i++)
 		{
-			float enemyDistance = Vector3.Distance(self.transform.position, enemies[i].transform.position);
-			if (enemyDistance < targetDistance)
+			Vector3 rayOrigin = self.transform.position;
+			rayOrigin.y += 1.4f;
+			if (Physics.Raycast(rayOrigin, enemies[i].transform.position - self.transform.position, out hit))
 			{
-				targetDistance = enemyDistance;
-				closestTarget = enemies[i];
+					if (hit.distance < targetDistance)
+					{
+						if(hit.collider.tag == "Player"){
+							targetDistance = hit.distance;
+							closestTarget = hit.collider.gameObject;
+						}
+					}
+				
 			}
 		}
+
+
 
 		if (closestTarget != null) {
 			Vector3 behindTarget = closestTarget.transform.position + closestTarget.transform.forward * -10;
