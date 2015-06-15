@@ -17,9 +17,9 @@ public class AIController : MonoBehaviour {
 	public float turn;
 	public bool fire;
 
-	public float wanderJitter = 0.2f;
-	public float wanderRadius = 2.0f;
-	public float wanderDistance = 2.2f;
+//	 public float wanderJitter = 0.2f;
+//	 public float wanderRadius = 2.0f;
+//	 public float wanderDistance = 2.2f;
 
 //	 Vector3 player1WanderTarget = Vector3.forward;
 //	 Vector3 player2WanderTarget = Vector3.forward;
@@ -309,95 +309,62 @@ public class AIController : MonoBehaviour {
 		rayOrigin.y += 1.4f;
 
 		// default values for no hits on feelers
-		float maxDistance = 0.0f;
-		RaycastHit maxHit = new RaycastHit();
-		bool hitWall = false;
+		int wallHits = 0;
 		Vector3 avg = Vector3.zero;
 
 		// forward feeler
 		if (Physics.Raycast(rayOrigin, self.transform.forward, out hit)) {
-			// if it's the shortest distance, it's the most important
+			// add position to the current sum of the positions
 			avg += hit.point;
-			if (hit.distance > maxDistance) {
-				maxDistance = hit.distance;
-				maxHit = hit;
-				hitWall = true;
-			}
+			wallHits++;
 		}
 		// forward right feeler
 		if (Physics.Raycast(rayOrigin, self.transform.forward + self.transform.right, out hit)) {
-			// if it's the shortest distance, it's the most important
+			// add position to the current sum of the positions
 			avg += hit.point;
-			if (hit.distance > maxDistance) {
-				maxDistance = hit.distance;
-				maxHit = hit;
-				hitWall = true;
-			}
+			wallHits++;
 		}
 		// right feeler
 		if (Physics.Raycast(rayOrigin, self.transform.right, out hit)) {
-			// if it's the shortest distance, it's the most important
+			// add position to the current sum of the positions
 			avg += hit.point;
-			if (hit.distance > maxDistance) {
-				maxDistance = hit.distance;
-				maxHit = hit;
-				hitWall = true;
-			}
+			wallHits++;
 		}
 		// back right feeler
 		if (Physics.Raycast(rayOrigin, -self.transform.forward + self.transform.right, out hit)) {
-			// if it's the shortest distance, it's the most important
+			// add position to the current sum of the positions
 			avg += hit.point;
-			if (hit.distance > maxDistance) {
-				maxDistance = hit.distance;
-				maxHit = hit;
-				hitWall = true;
-			}
+			wallHits++;
 		}
 		// back feeler
 		if (Physics.Raycast(rayOrigin, -self.transform.forward, out hit)) {
-			// if it's the shortest distance, it's the most important
+			// add position to the current sum of the positions
 			avg += hit.point;
-			if (hit.distance > maxDistance) {
-				maxDistance = hit.distance;
-				maxHit = hit;
-				hitWall = true;
-			}
+			wallHits++;
 		}
 		// back left feeler
 		if (Physics.Raycast(rayOrigin, -self.transform.forward + -self.transform.right, out hit)) {
-			// if it's the shortest distance, it's the most important
+			// add position to the current sum of the positions
 			avg += hit.point;
-			if (hit.distance > maxDistance) {
-				maxDistance = hit.distance;
-				maxHit = hit;
-				hitWall = true;
-			}
+			wallHits++;
 		}
 		// left feeler
 		if (Physics.Raycast(rayOrigin, -self.transform.right, out hit)) {
-			// if it's the shortest distance, it's the most important
+			// add position to the current sum of the positions
 			avg += hit.point;
-			if (hit.distance > maxDistance) {
-				maxDistance = hit.distance;
-				maxHit = hit;
-				hitWall = true;
-			}
+			wallHits++;
 		}
 		// forward left feeler
 		if (Physics.Raycast(rayOrigin, self.transform.forward + -self.transform.right, out hit)) {
-			// if it's the shortest distance, it's the most important
+			// add position to the current sum of the positions
 			avg += hit.point;
-			if (hit.distance > maxDistance) {
-				maxDistance = hit.distance;
-				maxHit = hit;
-				hitWall = true;
-			}
+			wallHits++;
 		}
 
-		avg = avg / 8.0f;
+		// get the avg position of the wall collisions
+		avg = avg / wallHits;
 
-		// if a feeler hits a wall, return local space normal direction, else return a zero vector 
+		// seek the average location of all of the feelers. 
 		if (hitWall) {
 			return seek(self, avg);
 		} else {
