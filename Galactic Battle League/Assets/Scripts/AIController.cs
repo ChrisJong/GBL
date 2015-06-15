@@ -81,28 +81,27 @@ public class AIController : MonoBehaviour {
 		GameObject closestTarget = null;
 		float targetDistance = Mathf.Infinity;
 		RaycastHit hit;
+		Vector3 rayOrigin = self.transform.position;
+		rayOrigin.y += 1.4f;
 		for (int i = 0; i < 3; i++)
 		{
-			Vector3 rayOrigin = self.transform.position;
-			rayOrigin.y += 1.4f;
 			if (Physics.Raycast(rayOrigin, enemies[i].transform.position - self.transform.position, out hit))
 			{
-					if (hit.distance < targetDistance)
-					{
-						if(hit.collider.tag == "Player" && !hit.collider.GetComponent<HoverCarControl>().deathRun){
-							targetDistance = hit.distance;
-							closestTarget = hit.collider.gameObject;
-						}
+				if (hit.distance < targetDistance)
+				{
+					if(hit.collider.tag == "Player" && !hit.collider.GetComponent<HoverCarControl>().deathRun){
+						targetDistance = hit.distance;
+						closestTarget = hit.collider.gameObject;
 					}
-				
+				}				
 			}
 		}
 
 
 
 		if (closestTarget != null) {
-			Vector3 behindTarget = closestTarget.transform.position + closestTarget.transform.forward * -10;
-			Vector3 direction = seek(self, behindTarget);
+			Vector3 flankingTarget = closestTarget.transform.position + closestTarget.transform.right * -10;
+			Vector3 direction = seek(self, flankingTarget);
 			// We need the local direction vector, so InverseTransformDirection
 			direction = self.transform.InverseTransformDirection(direction);
 
@@ -124,9 +123,14 @@ public class AIController : MonoBehaviour {
 				turn = -1;
 			}
 			
-			if (aimDirection.normalized.z > 0.999){
+			if (aimDirection.normalized.z > 0.999) {
 				fire = true;
-			}		
+			} else if (Physics.Raycast(rayOrigin, self.transform.forward, out hit, 10.0f)) {
+				if (hit.collider.tag == "Player" && !hit.collider.GetComponent<HoverCarControl>().deathRun)
+				{
+					fire = true;
+				}
+			}
 		} else {
 			// get wander vector
 			// Vector3 direction = wander(self, playerNumber);
