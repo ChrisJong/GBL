@@ -3081,7 +3081,7 @@ Prefab:
       objectReference: {fileID: 318773397}
     - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
       propertyPath: isAI
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
       propertyPath: isAI
@@ -5768,6 +5768,9 @@ MonoBehaviour:
   moveY: 0
   turn: 0
   fire: 0
+  wanderJitter: .200000003
+  wanderRadius: 2
+  wanderDistance: 2.20000005
 --- !u!4 &318773398
 Transform:
   m_ObjectHideFlags: 0
@@ -7761,6 +7764,7 @@ MonoBehaviour:
   hitParticle: {fileID: 867909189}
   respawnMessage1: {fileID: 280650872}
   respawnMessage2: {fileID: 224455705}
+  deathRun: 0
   maxHealth: 75
   hasRespawned: 1
   spawnAnimators:
@@ -7777,7 +7781,7 @@ MonoBehaviour:
   explosionPower: 1500000
   fireParticle: {fileID: 1231816036}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
-  isAI: 0
+  isAI: 1
   aiController: {fileID: 318773397}
 --- !u!54 &342446435
 Rigidbody:
@@ -11038,11 +11042,11 @@ Prefab:
       objectReference: {fileID: 318773397}
     - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
       propertyPath: isAI
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
       propertyPath: isAI
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 173462, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
       propertyPath: m_IsActive
@@ -14027,7 +14031,7 @@ Prefab:
       objectReference: {fileID: 213551542}
     - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
       propertyPath: isAI
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
       propertyPath: aiController
@@ -14037,6 +14041,10 @@ Prefab:
       propertyPath: aiController
       value: 
       objectReference: {fileID: 318773397}
+    - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: isAI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
   m_RootGameObject: {fileID: 864924550}
@@ -30993,6 +31001,7 @@ MonoBehaviour:
   hitParticle: {fileID: 1877271809}
   respawnMessage1: {fileID: 1943774910}
   respawnMessage2: {fileID: 1643296923}
+  deathRun: 0
   maxHealth: 75
   hasRespawned: 1
   spawnAnimators:
@@ -31009,7 +31018,7 @@ MonoBehaviour:
   explosionPower: 1500000
   fireParticle: {fileID: 2145870825}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
-  isAI: 0
+  isAI: 1
   aiController: {fileID: 318773397}
 --- !u!54 &983664928
 Rigidbody:
@@ -33388,6 +33397,7 @@ MonoBehaviour:
   hitParticle: {fileID: 330360248}
   respawnMessage1: {fileID: 676217522}
   respawnMessage2: {fileID: 2041120800}
+  deathRun: 0
   maxHealth: 75
   hasRespawned: 1
   spawnAnimators:
@@ -33404,7 +33414,7 @@ MonoBehaviour:
   explosionPower: 1500000
   fireParticle: {fileID: 1212569646}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
-  isAI: 0
+  isAI: 1
   aiController: {fileID: 318773397}
 --- !u!54 &1020648333
 Rigidbody:
@@ -36557,6 +36567,7 @@ MonoBehaviour:
   hitParticle: {fileID: 330360248}
   respawnMessage1: {fileID: 676217522}
   respawnMessage2: {fileID: 2041120800}
+  deathRun: 0
   maxHealth: 100
   hasRespawned: 1
   spawnAnimators:
@@ -36573,7 +36584,7 @@ MonoBehaviour:
   explosionPower: 1e+07
   fireParticle: {fileID: 1212569646}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
-  isAI: 0
+  isAI: 1
   aiController: {fileID: 318773397}
 --- !u!54 &1169388148
 Rigidbody:
@@ -50425,6 +50436,7 @@ MonoBehaviour:
   hitParticle: {fileID: 1460395410}
   respawnMessage1: {fileID: 326225974}
   respawnMessage2: {fileID: 1417450430}
+  deathRun: 0
   maxHealth: 100
   hasRespawned: 1
   spawnAnimators:
@@ -50441,7 +50453,7 @@ MonoBehaviour:
   explosionPower: 1e+07
   fireParticle: {fileID: 1335509618}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
-  isAI: 0
+  isAI: 1
   aiController: {fileID: 318773397}
 --- !u!54 &1622085784
 Rigidbody:
@@ -50731,6 +50743,7 @@ MonoBehaviour:
   hitParticle: {fileID: 1877271809}
   respawnMessage1: {fileID: 1943774910}
   respawnMessage2: {fileID: 1643296923}
+  deathRun: 0
   maxHealth: 100
   hasRespawned: 1
   spawnAnimators:
@@ -50747,7 +50760,7 @@ MonoBehaviour:
   explosionPower: 1e+07
   fireParticle: {fileID: 903237028}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
-  isAI: 0
+  isAI: 1
   aiController: {fileID: 318773397}
 --- !u!54 &1647441476
 Rigidbody:
@@ -54942,6 +54955,7 @@ MonoBehaviour:
   hitParticle: {fileID: 867909189}
   respawnMessage1: {fileID: 280650872}
   respawnMessage2: {fileID: 224455705}
+  deathRun: 0
   maxHealth: 100
   hasRespawned: 1
   spawnAnimators:
@@ -55744,11 +55758,11 @@ Prefab:
       objectReference: {fileID: 318773397}
     - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: isAI
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: isAI
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 118016, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: m_IsActive
@@ -60402,6 +60416,7 @@ MonoBehaviour:
   hitParticle: {fileID: 1460395410}
   respawnMessage1: {fileID: 326225974}
   respawnMessage2: {fileID: 1417450430}
+  deathRun: 0
   maxHealth: 75
   hasRespawned: 1
   spawnAnimators:
@@ -60418,7 +60433,7 @@ MonoBehaviour:
   explosionPower: 1500000
   fireParticle: {fileID: 716186727}
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
-  isAI: 0
+  isAI: 1
   aiController: {fileID: 318773397}
 --- !u!54 &2092244967
 Rigidbody:
