@@ -187,18 +187,20 @@ public class AIController : MonoBehaviour {
 
 		while (!aimed)
 		{
+			// calculating all of the starting variables
 			aimPos = target.transform.position + target.GetComponent<Rigidbody>().velocity * time;
 
 			aimDistance = Vector3.Distance(self.transform.position, target.transform.position);
-
+			//bullet distance is bullet speed multiplied by time, a constant number is currently used as at the moment bullet speed is a constant. this might be changed in the future to allow heavy and light tanks to have different bullet speeds
 			bulletDistance = 100 * time;
 
 			aimDirection = aimPos - self.transform.position;
-
+			//testing if the time has been estimated correctly
 			if (Mathf.Abs(aimDistance - bulletDistance) < 3.0f)
 			{
 				aimed = true;
 				return aimDirection;
+			//increments or decrements time based on whether it was estimating under or over
 			}else if (aimDistance > bulletDistance){
 				time = time * 1.2f;
 			} else if (aimDistance < bulletDistance){
