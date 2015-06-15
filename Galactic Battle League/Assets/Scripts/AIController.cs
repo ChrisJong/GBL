@@ -365,10 +365,6 @@ public class AIController : MonoBehaviour {
 		avg = avg / wallHits;
 
 		// seek the average location of all of the feelers. 
-		if (hitWall) {
-			return seek(self, avg);
-		} else {
-			return Vector3.zero;
-		}
+		return seek(self, avg);
 	}
 }
