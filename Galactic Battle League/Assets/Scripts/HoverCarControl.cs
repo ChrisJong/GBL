@@ -58,7 +58,7 @@ public class HoverCarControl : MonoBehaviour
 
 	private float tempHoverForce;
 	private float timer = 0.0f;
-	private bool deathRun = false;
+	public bool deathRun = false;
 	public int maxHealth = 100;
 	private int healthInt;
 

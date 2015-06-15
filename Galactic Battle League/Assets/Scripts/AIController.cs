@@ -89,7 +89,7 @@ public class AIController : MonoBehaviour {
 			{
 					if (hit.distance < targetDistance)
 					{
-						if(hit.collider.tag == "Player"){
+						if(hit.collider.tag == "Player" && !hit.collider.GetComponent<HoverCarControl>().deathRun){
 							targetDistance = hit.distance;
 							closestTarget = hit.collider.gameObject;
 						}
