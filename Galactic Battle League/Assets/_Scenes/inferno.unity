@@ -73,7 +73,6 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &934353
 GameObject:
@@ -18314,7 +18313,7 @@ GameObject:
   m_Icon: {fileID: -2065832391, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &924691646
 AudioListener:
   m_ObjectHideFlags: 0
@@ -26130,8 +26129,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  ignoreReversedGraphics: 1
+  blockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -38220,7 +38219,7 @@ MonoBehaviour:
   maxHealth: 100
   hasRespawned: 1
   spawnAnimators: []
-  shot: {fileID: 100000, guid: c1e9cdfb31d0d38419f686dec147ddfd, type: 2}
+  shot: {fileID: 100000, guid: 4a8c587e9715a3941a736bc7935def2d, type: 2}
   shotSpawn: {fileID: 491184395}
   fireRate: 1
   sfxFire: {fileID: 8300000, guid: 4a95ab8250774fa43af254a3fe62dade, type: 3}
@@ -40726,7 +40725,7 @@ MonoBehaviour:
   maxHealth: 100
   hasRespawned: 1
   spawnAnimators: []
-  shot: {fileID: 100000, guid: 4a8c587e9715a3941a736bc7935def2d, type: 2}
+  shot: {fileID: 100000, guid: c1e9cdfb31d0d38419f686dec147ddfd, type: 2}
   shotSpawn: {fileID: 1161273596}
   fireRate: 1
   sfxFire: {fileID: 8300000, guid: 4a95ab8250774fa43af254a3fe62dade, type: 3}
