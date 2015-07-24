@@ -4,20 +4,19 @@ using System.Collections;
 public class SelfDeactivate : MonoBehaviour 
 {
 	public float deactivate;
-	private float deactivateTime;
 
 	// Use this for initialization
 	void OnEnable () 
 	{
-		deactivateTime = Time.time + deactivate;
+		Invoke("Deactivate", deactivate);
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Time.time > deactivateTime) 
-		{
-			gameObject.SetActive(false);
-		}
+	}
+
+	void Deactivate(){
+		gameObject.SetActive(false);
 	}
 }
