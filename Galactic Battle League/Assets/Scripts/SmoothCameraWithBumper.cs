@@ -23,7 +23,7 @@ public class SmoothCameraWithBumper : MonoBehaviour
     /// </Summary>
     private void Awake()
     {
-        camera.transform.parent = target;
+        GetComponent<Camera>().transform.parent = target;
     }
  
     private void FixedUpdate() 

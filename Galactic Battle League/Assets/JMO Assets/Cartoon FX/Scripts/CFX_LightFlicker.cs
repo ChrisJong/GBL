@@ -23,7 +23,7 @@ public class CFX_LightFlicker : MonoBehaviour
 	
 	void Awake()
 	{
-		baseIntensity = light.intensity;
+		baseIntensity = GetComponent<Light>().intensity;
 	}
 	
 	void OnEnable()
@@ -34,6 +34,6 @@ public class CFX_LightFlicker : MonoBehaviour
 	
 	void Update ()
 	{
-		light.intensity = Mathf.Lerp(minIntensity, maxIntensity, Mathf.PerlinNoise(Time.time * smoothFactor, 0f));
+		GetComponent<Light>().intensity = Mathf.Lerp(minIntensity, maxIntensity, Mathf.PerlinNoise(Time.time * smoothFactor, 0f));
 	}
 }

@@ -15,7 +15,7 @@ var runSidestepSpeed = 12.0;
 var rotateSpeed = 1.0;
 var rotateInAir = false;
 */
-private var grounded = false;private var groundVelocity : Vector3;private var capsule : CapsuleCollider; @script RequireComponent(Rigidbody, CapsuleCollider) function Awake (){   rigidbody.freezeRotation = true;   rigidbody.useGravity = false;   capsule = GetComponent(CapsuleCollider);} function FixedUpdate (){
+private var grounded = false;private var groundVelocity : Vector3;private var capsule : CapsuleCollider; @script RequireComponent(Rigidbody, CapsuleCollider) function Awake (){   GetComponent.<Rigidbody>().freezeRotation = true;   GetComponent.<Rigidbody>().useGravity = false;   capsule = GetComponent(CapsuleCollider);} function FixedUpdate (){
     if (grounded)    {
         // Calculate how fast we should rotate
         // var rotation = Input.GetAxis("Horizontal") * rotateSpeed;
@@ -42,7 +42,7 @@ private var grounded = false;private var groundVelocity : Vector3;private var 
         }
         */
         
-        // Apply a force that attempts to reach our target velocity        var velocity = rigidbody.velocity;        var velocityChange = (targetVelocity - velocity) + groundVelocity;        velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);        velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);        velocityChange.y = 0;        rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);               // Jump        if (canJump && Input.GetButton("Jump"))        {            rigidbody.velocity = Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);        }               grounded = false;    }    
+        // Apply a force that attempts to reach our target velocity        var velocity = GetComponent.<Rigidbody>().velocity;        var velocityChange = (targetVelocity - velocity) + groundVelocity;        velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);        velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);        velocityChange.y = 0;        GetComponent.<Rigidbody>().AddForce(velocityChange, ForceMode.VelocityChange);               // Jump        if (canJump && Input.GetButton("Jump"))        {            GetComponent.<Rigidbody>().velocity = Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);        }               grounded = false;    }    
     else    {
         // Add in air
         
@@ -61,7 +61,7 @@ private var grounded = false;private var groundVelocity : Vector3;private var 
         {
             transform.Rotate(0, rotation, 0);
         }
-        */        rigidbody.AddForce(targetVelocity, ForceMode.VelocityChange);    }           // We apply gravity manually for more tuning control    rigidbody.AddForce(Vector3 (0, -gravity * rigidbody.mass, 0));}function TrackGrounded (col : Collision) 
+        */        GetComponent.<Rigidbody>().AddForce(targetVelocity, ForceMode.VelocityChange);    }           // We apply gravity manually for more tuning control    GetComponent.<Rigidbody>().AddForce(Vector3 (0, -gravity * GetComponent.<Rigidbody>().mass, 0));}function TrackGrounded (col : Collision) 
 {   var minimumHeight = capsule.bounds.min.y + capsule.radius;   for (var c : ContactPoint in col.contacts) 
    {      if (c.point.y < minimumHeight) 
       {         //we track velocity for rigidbodies we're standing on         if (col.rigidbody) groundVelocity = col.rigidbody.velocity;         //and become children of non-rigidbody colliders         else transform.parent = col.transform;         grounded = true;      }   }   }//unparent if we are no longer standing on our parentfunction OnCollisionExit (col : Collision) 

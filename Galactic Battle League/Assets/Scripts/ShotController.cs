@@ -17,7 +17,7 @@ public class ShotController : MonoBehaviour
 
 	public void SetVelocity ()
 	{
-		rigidbody.velocity = transform.forward * shotSpeed;
+		GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed;
 	}
 	
 	void OnTriggerEnter (Collider other)
@@ -28,8 +28,8 @@ public class ShotController : MonoBehaviour
 			Vector3 explosionPos = transform.position;
 			Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
 			foreach (Collider hit in colliders) {
-				if (hit && hit.rigidbody)
-					hit.rigidbody.AddExplosionForce(explosionPower, explosionPos, explosionRadius);
+				if (hit && hit.GetComponent<Rigidbody>())
+					hit.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, explosionPos, explosionRadius);
 				
 			}
 			Destroy (gameObject);

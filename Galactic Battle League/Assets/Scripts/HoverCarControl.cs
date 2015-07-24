@@ -140,7 +140,7 @@ public class HoverCarControl : MonoBehaviour
 				foreach (Animator anim in spawnAnimators)
 				{
 					anim.enabled = true;
-					anim.Play(anim.GetCurrentAnimatorStateInfo(0).nameHash,-1,0f);
+					anim.Play(0, -1, 0f);
 				}
 				
 				respawnMessage1.SetActive(false);
@@ -179,8 +179,8 @@ public class HoverCarControl : MonoBehaviour
 			{
 				nextFire = Time.time + fireRate;
 				Rumble(0.15f);
-				gameObject.rigidbody.AddExplosionForce(explosionPower, shotSpawn.position, explosionRadius);
-				tankVelocity = rigidbody.velocity;
+				gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, shotSpawn.position, explosionRadius);
+				tankVelocity = GetComponent<Rigidbody>().velocity;
 				fireParticle.Play();
 				createShot (tankVelocity);
 				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position, 0.5f);
@@ -293,8 +293,8 @@ public class HoverCarControl : MonoBehaviour
 				hitParticle.Play();
 				foreach (Collider hit in colliders) 
 				{
-					if (hit && hit.rigidbody)
-						hit.rigidbody.AddExplosionForce(explosionPower, explosionPos, explosionRadius);
+					if (hit && hit.GetComponent<Rigidbody>())
+						hit.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, explosionPos, explosionRadius);
 					
 				}
 				healthInt -= shotControllerCopy.damage;
