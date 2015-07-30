@@ -420,6 +420,7 @@ public class HoverCarControl : MonoBehaviour
 	{
 		gameObject.transform.position = initialPosition;
 		gameObject.transform.rotation = initialRotation;
+		m_body.velocity = Vector3.zero;
 		m_hoverForce = tempHoverForce;
 		foreach (ParticleSystem particle in hoverParticles) 
 		{
