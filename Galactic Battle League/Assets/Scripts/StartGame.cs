@@ -30,5 +30,10 @@ public class StartGame : MonoBehaviour
 	{
 		Application.LoadLevel ("MainMenu");
 	}
+
+	public void BeginControls ()
+	{
+		Application.LoadLevel ("ControlsController");
+	}
 }
 

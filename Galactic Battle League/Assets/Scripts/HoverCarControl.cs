@@ -431,7 +431,7 @@ public class HoverCarControl : MonoBehaviour
 		deathRun = false;
 		if (score1.score >= 5 || score2.score >= 5 || score3.score >= 5 || score4.score >= 5)
 		{
-			Application.LoadLevel("Winscreen");
+			Application.LoadLevel("WinscreenController");
 		}
 		killedMessage.SetActive(false);
 		hasRespawned = true;
