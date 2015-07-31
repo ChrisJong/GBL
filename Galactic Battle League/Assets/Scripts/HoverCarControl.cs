@@ -183,7 +183,7 @@ public class HoverCarControl : MonoBehaviour
 				tankVelocity = GetComponent<Rigidbody>().velocity;
 				fireParticle.Play();
 				createShot (tankVelocity);
-				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position, 0.5f);
+				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position, 0.25f);
 			}
 		}
 
@@ -286,15 +286,15 @@ public class HoverCarControl : MonoBehaviour
 			ShotController shotControllerCopy = other.gameObject.GetComponent<ShotController>();
 			if (shotControllerCopy.playerNumber != playerNumber)
 			{
-				AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position);
+				AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position, 0.25f);
 				Vector3 explosionPos = other.gameObject.transform.position;
 				Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
 				hitParticle.transform.position = other.transform.position;
 				hitParticle.Play();
 				foreach (Collider hit in colliders) 
 				{
-					if (hit && hit.GetComponent<Rigidbody>())
-						hit.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, explosionPos, explosionRadius);
+					// if (hit && hit.GetComponent<Rigidbody>())
+						// hit.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, explosionPos, explosionRadius);
 					
 				}
 				healthInt -= shotControllerCopy.damage;
@@ -404,9 +404,9 @@ public class HoverCarControl : MonoBehaviour
 		m_currSideThrust = 0.0f;
 		m_currTurn = 0.0f;
 
-		AudioSource.PlayClipAtPoint(sfxDeath, gameObject.transform.position);
+		AudioSource.PlayClipAtPoint(sfxDeath, gameObject.transform.position, 0.25f);
 		if (killCheer) {
-		AudioSource.PlayClipAtPoint(killCheer, gameObject.transform.position);
+		AudioSource.PlayClipAtPoint(killCheer, gameObject.transform.position, 0.25f);
 		}
 		timer = 0.0f;
 		deathRun = true;

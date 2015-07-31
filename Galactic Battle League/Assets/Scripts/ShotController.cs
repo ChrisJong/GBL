@@ -24,12 +24,12 @@ public class ShotController : MonoBehaviour
 	{
 		if (other.tag != "Player") 
 		{
-			AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position);
+			AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position, 0.25f);
 			Vector3 explosionPos = transform.position;
 			Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
 			foreach (Collider hit in colliders) {
-				if (hit && hit.GetComponent<Rigidbody>())
-					hit.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, explosionPos, explosionRadius);
+				// if (hit && hit.GetComponent<Rigidbody>())
+					// hit.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, explosionPos, explosionRadius);
 				
 			}
 			Destroy (gameObject);
