@@ -1186,7 +1186,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CHANGE HOVERTANK WITH LEFT AND RIGHT
+  m_Text: CHOOSE HOVERTANK WITH BUMPERS
 --- !u!114 &11407880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1212,7 +1212,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CHANGE HOVERTANK WITH LEFT AND RIGHT
+  m_Text: CHOOSE HOVERTANK WITH BUMPERS
 --- !u!114 &11407882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1259,7 +1259,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CHANGE HOVERTANK WITH LEFT AND RIGHT
+  m_Text: CHOOSE HOVERTANK WITH BUMPERS
 --- !u!114 &11407886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1306,7 +1306,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CHANGE HOVERTANK WITH LEFT AND RIGHT
+  m_Text: CHOOSE HOVERTANK WITH BUMPERS
 --- !u!114 &11407890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1618,8 +1618,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreReversedGraphics: 1
-  blockingObjects: 0
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -3778,4 +3778,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 135056}
   m_IsPrefabParent: 1
-  m_IsExploded: 1

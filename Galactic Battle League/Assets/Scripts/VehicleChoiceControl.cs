@@ -28,16 +28,15 @@ public class VehicleChoiceControl : MonoBehaviour {
 			var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
 
 			if (inputDevice != null) {
-				if (inputDevice.DPadLeft.WasPressed || inputDevice.DPadRight.WasPressed) {
-					if (PlayerPrefs.GetInt("Player" + playerNumber + "Tank") == 1) {
-						PlayerPrefs.SetInt("Player" + playerNumber + "Tank", 2);
-						lightVehicle.SetActive(false);
-						heavyVehicle.SetActive(true);
-					} else {
-						PlayerPrefs.SetInt("Player" + playerNumber + "Tank", 1);
-						lightVehicle.SetActive(true);
-						heavyVehicle.SetActive(false);
-					}
+				if (inputDevice.LeftBumper.WasPressed) {
+					PlayerPrefs.SetInt("Player" + playerNumber + "Tank", 1);
+					heavyVehicle.SetActive(false);
+					lightVehicle.SetActive(true);
+				}
+				if (inputDevice.RightBumper.WasPressed) {
+					PlayerPrefs.SetInt("Player" + playerNumber + "Tank", 2);
+					lightVehicle.SetActive(false);
+					heavyVehicle.SetActive(true);
 				}
 			}
 		}
