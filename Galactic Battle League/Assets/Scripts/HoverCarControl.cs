@@ -35,6 +35,7 @@ public class HoverCarControl : MonoBehaviour
 	public GameObject sparkParticle;
 
 	public ParticleSystem[] hoverParticles;
+	public ParticleSystem baseParticle;
 	public float particleLength;
 
 	//Death/respawn variables
@@ -155,9 +156,7 @@ public class HoverCarControl : MonoBehaviour
 		{
 			foreach(ParticleSystem particle in hoverParticles)
 			{
-				//TODO: remove hover force rings from particle array.
-				if (particle.name != "CFX4 Hover Force Rings Small")
-					particle.startLifetime = particleLength;
+				particle.startLifetime = particleLength;
 			}
 
 			// Main Thrust
@@ -167,8 +166,7 @@ public class HoverCarControl : MonoBehaviour
 			{
 				foreach(ParticleSystem particle in hoverParticles)
 				{
-					if (particle.name != "CFX4 Hover Force Rings Small")
-						particle.startLifetime = particleLength*2;
+					particle.startLifetime = particleLength*2;
 				}
 				m_currThrust = aclAxis * m_forwardAcl;
 			}
@@ -176,8 +174,7 @@ public class HoverCarControl : MonoBehaviour
 			{
 				foreach(ParticleSystem particle in hoverParticles)
 				{
-					if (particle.name != "CFX4 Hover Force Rings Small")
-						particle.startLifetime = particleLength*0.5f;
+					particle.startLifetime = particleLength*0.5f;
 				}
 				m_currThrust = aclAxis * m_backwardAcl;
 			}
@@ -437,6 +434,7 @@ public class HoverCarControl : MonoBehaviour
 		{
 			particle.Stop();
 		}
+		baseParticle.Stop ();
 	}
 
 	void Respawn()
@@ -451,6 +449,8 @@ public class HoverCarControl : MonoBehaviour
 			if (particle)
 				particle.Play();
 		}
+		if (baseParticle)
+			baseParticle.Play ();
 		healthInt = maxHealth;
 		deathRun = false;
 		if (score1.score >= 5 || score2.score >= 5 || score3.score >= 5 || score4.score >= 5)

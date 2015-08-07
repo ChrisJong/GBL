@@ -5304,6 +5304,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: hoverParticles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: hoverParticles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 100
@@ -5464,9 +5472,35 @@ Prefab:
       propertyPath: m_Drag
       value: .75
       objectReference: {fileID: 0}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: baseParticle
+      value: 
+      objectReference: {fileID: 1462948743}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: hoverParticles.Array.data[2]
+      value: 
+      objectReference: {fileID: 1462948743}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: baseParticle
+      value: 
+      objectReference: {fileID: 1462948742}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: hoverParticles.Array.data[1]
+      value: 
+      objectReference: {fileID: 1462948742}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77192545805124c43902ecc06c78608f, type: 2}
   m_IsPrefabParent: 0
+--- !u!198 &1462948742 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19857518, guid: 77192545805124c43902ecc06c78608f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1462948741}
+--- !u!198 &1462948743 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19857512, guid: 77192545805124c43902ecc06c78608f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1462948741}
 --- !u!1 &1480874863
 GameObject:
   m_ObjectHideFlags: 0
@@ -6118,6 +6152,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: hoverParticles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: hoverParticles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
       propertyPath: m_LocalPosition.x
       value: -100
@@ -6278,9 +6320,35 @@ Prefab:
       propertyPath: m_Drag
       value: .75
       objectReference: {fileID: 0}
+    - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: baseParticle
+      value: 
+      objectReference: {fileID: 1626062662}
+    - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: hoverParticles.Array.data[2]
+      value: 
+      objectReference: {fileID: 1626062662}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: baseParticle
+      value: 
+      objectReference: {fileID: 1626062661}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: hoverParticles.Array.data[1]
+      value: 
+      objectReference: {fileID: 1626062661}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
   m_IsPrefabParent: 0
+--- !u!198 &1626062661 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19897516, guid: e850b6d29478ee242aea8be5a6893a06,
+    type: 2}
+  m_PrefabInternal: {fileID: 1626062660}
+--- !u!198 &1626062662 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19897518, guid: e850b6d29478ee242aea8be5a6893a06,
+    type: 2}
+  m_PrefabInternal: {fileID: 1626062660}
 --- !u!1 &1629210470
 GameObject:
   m_ObjectHideFlags: 0
@@ -6928,6 +6996,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: hoverParticles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: hoverParticles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 473462, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
       propertyPath: m_LocalPosition.x
       value: -100
@@ -7088,9 +7164,44 @@ Prefab:
       propertyPath: m_Drag
       value: .75
       objectReference: {fileID: 0}
+    - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: baseParticle
+      value: 
+      objectReference: {fileID: 1734356677}
+    - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: hoverParticles.Array.data[2]
+      value: 
+      objectReference: {fileID: 1734356677}
+    - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: baseParticle
+      value: 
+      objectReference: {fileID: 1734356676}
+    - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: hoverParticles.Array.data[0]
+      value: 
+      objectReference: {fileID: 1734356675}
+    - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: hoverParticles.Array.data[1]
+      value: 
+      objectReference: {fileID: 1734356675}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
   m_IsPrefabParent: 0
+--- !u!198 &1734356675 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19812202, guid: 3b8654d5f528b824c95bbcfe77c44a3e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1734356674}
+--- !u!198 &1734356676 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19812200, guid: 3b8654d5f528b824c95bbcfe77c44a3e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1734356674}
+--- !u!198 &1734356677 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19812208, guid: 3b8654d5f528b824c95bbcfe77c44a3e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1734356674}
 --- !u!1 &1736149205 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100026, guid: 6a8ebfa3351ed04478f167c6b622596e, type: 3}
@@ -7268,6 +7379,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 495642, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
       propertyPath: m_LocalPosition.x
       value: 100
@@ -7428,9 +7547,115 @@ Prefab:
       propertyPath: m_Drag
       value: .75
       objectReference: {fileID: 0}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: baseParticle
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[3]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[4]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[5]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[6]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[7]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[8]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[9]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[10]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[11]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[12]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[13]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[14]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[15]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[16]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[17]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[18]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[19]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[20]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[21]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[22]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[2]
+      value: 
+      objectReference: {fileID: 1769008145}
+    - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: baseParticle
+      value: 
+      objectReference: {fileID: 1769008144}
+    - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: hoverParticles.Array.data[1]
+      value: 
+      objectReference: {fileID: 1769008144}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
   m_IsPrefabParent: 0
+--- !u!198 &1769008144 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19899320, guid: cef0f835f3608b243a1da485aac107c5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1769008143}
+--- !u!198 &1769008145 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19899316, guid: cef0f835f3608b243a1da485aac107c5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1769008143}
 --- !u!1 &1786429059
 GameObject:
   m_ObjectHideFlags: 0
