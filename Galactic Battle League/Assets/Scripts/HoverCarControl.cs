@@ -35,6 +35,7 @@ public class HoverCarControl : MonoBehaviour
 	public GameObject sparkParticle;
 
 	public ParticleSystem[] hoverParticles;
+	public float particleLength;
 
 	//Death/respawn variables
 	public ScoreCounter1 score1;
@@ -101,7 +102,8 @@ public class HoverCarControl : MonoBehaviour
 		respawnMessage1.SetActive(true);
 		respawnMessage2.SetActive(true);
 
-    	initialised = true;
+		initialised = true;
+		particleLength = hoverParticles[0].startLifetime;
 	}
 
 	void OnDrawGizmos()
@@ -151,13 +153,34 @@ public class HoverCarControl : MonoBehaviour
 		}
 		else if (!deathRun && inputDevice != null && spawnActiveTimer < Time.time) 
 		{
+			foreach(ParticleSystem particle in hoverParticles)
+			{
+				//TODO: remove hover force rings from particle array.
+				if (particle.name != "CFX4 Hover Force Rings Small")
+					particle.startLifetime = particleLength;
+			}
+
 			// Main Thrust
 			m_currThrust = 0.0f;
 			float aclAxis = inputDevice.Direction.Y;
 			if (aclAxis > m_deadZone)
+			{
+				foreach(ParticleSystem particle in hoverParticles)
+				{
+					if (particle.name != "CFX4 Hover Force Rings Small")
+						particle.startLifetime = particleLength*2;
+				}
 				m_currThrust = aclAxis * m_forwardAcl;
+			}
 			else if (aclAxis < -m_deadZone)
+			{
+				foreach(ParticleSystem particle in hoverParticles)
+				{
+					if (particle.name != "CFX4 Hover Force Rings Small")
+						particle.startLifetime = particleLength*0.5f;
+				}
 				m_currThrust = aclAxis * m_backwardAcl;
+			}
 
 			// Side Thrust
 			m_currSideThrust = 0.0f;
