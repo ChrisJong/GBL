@@ -34,6 +34,8 @@ public class HoverCarControl : MonoBehaviour
 
 	public GameObject sparkParticle;
 
+	public ParticleSystem damage33;
+	public ParticleSystem damage66;
 	public ParticleSystem[] hoverParticles;
 	public ParticleSystem baseParticle;
 	public float particleLength;
@@ -320,6 +322,12 @@ public class HoverCarControl : MonoBehaviour
 				healthInt -= shotControllerCopy.damage;
 				Destroy (other.gameObject);				
 				Rumble(0.15f);
+				if ((float)healthInt/(float)maxHealth < .66f)
+					if (damage66)
+						damage66.Play();
+				if ((float)healthInt/(float)maxHealth < .33f)
+					if (damage33)
+						damage33.Play();
 				if (healthInt <= 0)
 				{
 					healthInt = 0;
@@ -439,6 +447,10 @@ public class HoverCarControl : MonoBehaviour
 
 	void Respawn()
 	{
+		if (damage33)
+			damage33.Stop ();
+		if (damage66)
+			damage66.Stop ();
 		gameObject.transform.position = initialPosition;
 		gameObject.transform.rotation = initialRotation;
 		m_body.velocity = Vector3.zero;
