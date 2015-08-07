@@ -282,12 +282,13 @@ public class HoverCarControl : MonoBehaviour
 			m_body.AddForce(transform.right * m_currSideThrust);
 
 		// Turn
-		if (m_currTurn > 0)
+		if (Mathf.Abs(m_currTurn) > 0)
 		{
-			m_body.AddRelativeTorque(Vector3.up * m_currTurn * m_turnStrength);
-		} else if (m_currTurn < 0)
-		{
-			m_body.AddRelativeTorque(Vector3.up * m_currTurn * m_turnStrength);
+			if (m_body.angularVelocity.magnitude < 1.0f) {
+				m_body.AddTorque(transform.up * m_currTurn * m_turnStrength * 4);
+			} else {
+				m_body.AddTorque(transform.up * m_currTurn * m_turnStrength);
+			}
 		}
 
 		// Rumble
