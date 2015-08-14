@@ -16,46 +16,69 @@ namespace InControl
 
 		public static event Action OnSetup;
 		public static event Action<ulong,float> OnUpdate;
+		public static event Action OnReset;
+
 		public static event Action<InputDevice> OnDeviceAttached;
 		public static event Action<InputDevice> OnDeviceDetached;
 		public static event Action<InputDevice> OnActiveDeviceChanged;
 
-		static List<InputDeviceManager> inputDeviceManagers = new List<InputDeviceManager>();
+		internal static event Action<ulong,float> OnUpdateDevices;
+		internal static event Action<ulong,float> OnCommitDevices;
+
+		static List<InputDeviceManager> deviceManagers = new List<InputDeviceManager>();
+		static Dictionary<Type,InputDeviceManager> deviceManagerTable = new Dictionary<Type, InputDeviceManager>();
 
 		static InputDevice activeDevice = InputDevice.Null;
 		static List<InputDevice> devices = new List<InputDevice>();
+
+		/// <summary>
+		/// A readonly collection of devices.
+		/// Not every device in this list is guaranteed to be attached or even a controller.
+		/// This collection should be treated as a pool from which devices may be selected.
+		/// The collection is in no particular order and the order may change at any time.
+		/// Do not treat this collection as a list of players.
+		/// </summary>
 		public static ReadOnlyCollection<InputDevice> Devices;
 
-		public static string Platform { get; private set; }
+		/// <summary>
+		/// Query whether a command button was pressed on any device during the last frame of input.
+		/// </summary>
 		public static bool MenuWasPressed { get; private set; }
-		public static bool InvertYAxis;
 
-		static bool enableXInput;
+		/// <summary>
+		/// Gets or sets a value indicating whether the Y axis should be inverted for
+		/// two-axis (directional) controls. When false (default), the Y axis will be positive up,
+		/// the same as Unity.
+		/// </summary>
+		public static bool InvertYAxis { get; set; }
+
+		internal static string Platform { get; private set; }
+
 		static bool isSetup;
-
 		static float initialTime;
 		static float currentTime;
 		static float lastUpdateTime;
-
 		static ulong currentTick;
-
 		static VersionInfo? unityVersion;
 
 
 		/// <summary>
 		/// DEPRECATED: Use the InControlManager component instead.
 		/// </summary>
-		[Obsolete( "Calling InputManager.Setup() manually is deprecated. Use the InControlManager component instead." )]
+		/// @deprecated
+		/// Calling this method directly is no longer supported. Use the InControlManager component to
+		/// manage the lifecycle of the input manager instead.
+		[Obsolete( "Calling InputManager.Setup() directly is no longer supported. Use the InControlManager component to manage the lifecycle of the input manager instead.", true )]
 		public static void Setup()
 		{
 			SetupInternal();
 		}
 
-		internal static void SetupInternal()
+		internal static bool SetupInternal()
 		{
 			if (isSetup)
 			{
-				return;
+				return false;
 			}
 
 			Platform = (SystemInfo.operatingSystem + " " + SystemInfo.deviceModel).ToUpper();
@@ -65,7 +88,8 @@ namespace InControl
 			lastUpdateTime = 0.0f;
 			currentTick = 0;
 
-			inputDeviceManagers.Clear();
+			deviceManagers.Clear();
+			deviceManagerTable.Clear();
 			devices.Clear();
 			Devices = new ReadOnlyCollection<InputDevice>( devices );
 			activeDevice = InputDevice.Null;
@@ -73,7 +97,7 @@ namespace InControl
 			isSetup = true;
 
 			#if UNITY_STANDALONE_WIN || UNITY_EDITOR
-			if (enableXInput)
+			if (EnableXInput)
 			{
 				XInputDeviceManager.Enable();
 			}
@@ -95,13 +119,18 @@ namespace InControl
 			{
 				AddDeviceManager<UnityInputDeviceManager>();
 			}
+
+			return true;
 		}
 
 
 		/// <summary>
 		/// DEPRECATED: Use the InControlManager component instead.
 		/// </summary>
-		[Obsolete( "Calling InputManager.Reset() manually is deprecated. Use the InControlManager component instead." )]
+		/// @deprecated
+		/// Calling this method directly is no longer supported. Use the InControlManager component to
+		/// manage the lifecycle of the input manager instead.
+		[Obsolete( "Calling InputManager.Reset() method directly is no longer supported. Use the InControlManager component to manage the lifecycle of the input manager instead.", true )]
 		public static void Reset()
 		{
 			ResetInternal();
@@ -109,13 +138,22 @@ namespace InControl
 
 		internal static void ResetInternal()
 		{
+			if (OnReset != null)
+			{
+				OnReset.Invoke();
+			}
+
 			OnSetup = null;
 			OnUpdate = null;
+			OnReset = null;
 			OnActiveDeviceChanged = null;
 			OnDeviceAttached = null;
 			OnDeviceDetached = null;
+			OnUpdateDevices = null;
+			OnCommitDevices = null;
 
-			inputDeviceManagers.Clear();
+			DestroyDeviceManagers();
+
 			devices.Clear();
 			activeDevice = InputDevice.Null;
 
@@ -123,20 +161,13 @@ namespace InControl
 		}
 
 
-		static void AssertIsSetup()
-		{
-			if (!isSetup)
-			{
-				throw new Exception( "InputManager is not initialized. Call InputManager.Setup() first." );
-			}
-		}
-
-
-
 		/// <summary>
 		/// DEPRECATED: Use the InControlManager component instead.
 		/// </summary>
-		[Obsolete( "Calling InputManager.Update() manually is deprecated. Use the InControlManager component instead." )]
+		/// @deprecated
+		/// Calling this method directly is no longer supported. Use the InControlManager component to
+		/// manage the lifecycle of the input manager instead.
+		[Obsolete( "Calling InputManager.Update() directly is no longer supported. Use the InControlManager component to manage the lifecycle of the input manager instead.", true )]
 		public static void Update()
 		{
 			UpdateInternal();
@@ -157,13 +188,56 @@ namespace InControl
 
 			UpdateDeviceManagers( deltaTime );
 
-			PreUpdateDevices( deltaTime );
+			MenuWasPressed = false;
 			UpdateDevices( deltaTime );
-			PostUpdateDevices( deltaTime );
+			CommitDevices( deltaTime );
 
 			UpdateActiveDevice();
 
+			if (OnUpdate != null)
+			{
+				OnUpdate.Invoke( currentTick, deltaTime );
+			}
+
 			lastUpdateTime = currentTime;
+		}
+
+
+		/// <summary>
+		/// Force the input manager to reset and setup.
+		/// </summary>
+		public static void Reload()
+		{
+			ResetInternal();
+			SetupInternal();
+		}
+
+
+		static void AssertIsSetup()
+		{
+			if (!isSetup)
+			{
+				throw new Exception( "InputManager is not initialized. Call InputManager.Setup() first." );
+			}
+		}
+
+
+		static void SetZeroTickOnAllControls()
+		{
+			int deviceCount = devices.Count;
+			for (int i = 0; i < deviceCount; i++)
+			{
+				var inputControls = devices[i].Controls;
+				var inputControlCount = inputControls.Length;
+				for (int j = 0; j < inputControlCount; j++)
+				{
+					var inputControl = inputControls[j];
+					if (inputControl != null)
+					{
+						inputControl.SetZeroTick();
+					}
+				}
+			}
 		}
 
 
@@ -171,20 +245,7 @@ namespace InControl
 		{
 			if (!focusState)
 			{
-				int deviceCount = devices.Count;
-				for (int i = 0; i < deviceCount; i++)
-				{
-					var inputControls = devices[i].Controls;
-					var inputControlCount = inputControls.Length;
-					for (int j = 0; j < inputControlCount; j++)
-					{
-						var inputControl = inputControls[j];
-						if (inputControl != null)
-						{
-							inputControl.SetZeroTick();
-						}
-					}
-				}
+				SetZeroTickOnAllControls();
 			}
 		}
 
@@ -196,64 +257,74 @@ namespace InControl
 
 		internal static void OnApplicationQuit()
 		{
+			ResetInternal();
 		}
 
 
-		static void UpdateActiveDevice()
+		internal static void OnLevelWasLoaded()
 		{
-			var lastActiveDevice = ActiveDevice;
-
-			int deviceCount = devices.Count;
-			for (int i = 0; i < deviceCount; i++)
-			{
-				var inputDevice = devices[i];
-				if (ActiveDevice == InputDevice.Null ||
-				    inputDevice.LastChangedAfter( ActiveDevice ))
-				{
-					ActiveDevice = inputDevice;
-				}
-			}
-
-			if (lastActiveDevice != ActiveDevice)
-			{
-				if (OnActiveDeviceChanged != null)
-				{
-					OnActiveDeviceChanged( ActiveDevice );
-				}
-			}
+			SetZeroTickOnAllControls();
 		}
 
 
-		public static void AddDeviceManager( InputDeviceManager inputDeviceManager )
+		/// <summary>
+		/// Adds a device manager.
+		/// Only one instance of a given type can be added. An error will be raised if
+		/// you try to add more than one.
+		/// </summary>
+		/// <param name="inputDeviceManager">The device manager to add.</param>
+		public static void AddDeviceManager( InputDeviceManager deviceManager )
 		{
 			AssertIsSetup();
 
-			inputDeviceManagers.Add( inputDeviceManager );
-			inputDeviceManager.Update( currentTick, currentTime - lastUpdateTime );
+			var type = deviceManager.GetType();
+
+			if (deviceManagerTable.ContainsKey( type ))
+			{
+				Logger.LogError( "A device manager of type '" + type.Name + "' already exists; cannot add another." );
+				return;
+			}
+
+			deviceManagers.Add( deviceManager );
+			deviceManagerTable.Add( type, deviceManager );
+
+			deviceManager.Update( currentTick, currentTime - lastUpdateTime );
 		}
 
 
+		/// <summary>
+		/// Adds a device manager by type.
+		/// </summary>
+		/// <typeparam name="T">A subclass of InputDeviceManager.</typeparam>
 		public static void AddDeviceManager<T>() where T : InputDeviceManager, new()
 		{
-			if (!HasDeviceManager<T>())
-			{
-				AddDeviceManager( new T() );
-			}
+			AddDeviceManager( new T() );
 		}
 
 
-		public static bool HasDeviceManager<T>() where T : InputDeviceManager
+		/// <summary>
+		/// Get a device manager from the input manager by type if it one is present.
+		/// </summary>
+		/// <typeparam name="T">A subclass of InputDeviceManager.</typeparam>
+		public static T GetDeviceManager<T>() where T : InputDeviceManager
 		{
-			int inputDeviceManagerCount = inputDeviceManagers.Count;
-			for (int i = 0; i < inputDeviceManagerCount; i++)
+			InputDeviceManager deviceManager;
+			if (deviceManagerTable.TryGetValue( typeof(T), out deviceManager ))
 			{
-				if (inputDeviceManagers[i] is T)
-				{
-					return true;
-				}
+				return deviceManager as T;
 			}
 
-			return false;
+			return null;
+		}
+
+
+		/// <summary>
+		/// Query whether a device manager is present by type.
+		/// </summary>
+		/// <typeparam name="T">A subclass of InputDeviceManager.</typeparam>
+		public static bool HasDeviceManager<T>() where T : InputDeviceManager
+		{
+			return deviceManagerTable.ContainsKey( typeof(T) );
 		}
 
 
@@ -271,25 +342,24 @@ namespace InControl
 
 		static void UpdateDeviceManagers( float deltaTime )
 		{
-			int inputDeviceManagerCount = inputDeviceManagers.Count;
+			int inputDeviceManagerCount = deviceManagers.Count;
 			for (int i = 0; i < inputDeviceManagerCount; i++)
 			{
-				var inputDeviceManager = inputDeviceManagers[i];
-				inputDeviceManager.Update( currentTick, deltaTime );
+				deviceManagers[i].Update( currentTick, deltaTime );
 			}
 		}
 
 
-		static void PreUpdateDevices( float deltaTime )
+		static void DestroyDeviceManagers()
 		{
-			MenuWasPressed = false;
-
-			int deviceCount = devices.Count;
-			for (int i = 0; i < deviceCount; i++)
+			int inputDeviceManagerCount = deviceManagers.Count;
+			for (int i = 0; i < inputDeviceManagerCount; i++)
 			{
-				var device = devices[i];
-				device.PreUpdate( currentTick, deltaTime );
+				deviceManagers[i].Destroy();
 			}
+
+			deviceManagers.Clear();
+			deviceManagerTable.Clear();
 		}
 
 
@@ -302,30 +372,62 @@ namespace InControl
 				device.Update( currentTick, deltaTime );
 			}
 
-			if (OnUpdate != null)
+			if (OnUpdateDevices != null)
 			{
-				OnUpdate.Invoke( currentTick, deltaTime );
+				OnUpdateDevices.Invoke( currentTick, deltaTime );
 			}
 		}
 
 
-		static void PostUpdateDevices( float deltaTime )
+		static void CommitDevices( float deltaTime )
 		{
 			int deviceCount = devices.Count;
 			for (int i = 0; i < deviceCount; i++)
 			{
 				var device = devices[i];
-
-				device.PostUpdate( currentTick, deltaTime );
+				device.Commit( currentTick, deltaTime );
 
 				if (device.MenuWasPressed)
 				{
 					MenuWasPressed = true;
 				}
 			}
+
+			if (OnCommitDevices != null)
+			{
+				OnCommitDevices.Invoke( currentTick, deltaTime );
+			}
 		}
 
 
+		static void UpdateActiveDevice()
+		{
+			var lastActiveDevice = ActiveDevice;
+
+			int deviceCount = devices.Count;
+			for (int i = 0; i < deviceCount; i++)
+			{
+				var inputDevice = devices[i];
+				if (inputDevice.LastChangedAfter( ActiveDevice ))
+				{
+					ActiveDevice = inputDevice;
+				}
+			}
+
+			if (lastActiveDevice != ActiveDevice)
+			{
+				if (OnActiveDeviceChanged != null)
+				{
+					OnActiveDeviceChanged( ActiveDevice );
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Attach a device to the input manager.
+		/// </summary>
+		/// <param name="inputDevice">The input device to attach.</param>
 		public static void AttachDevice( InputDevice inputDevice )
 		{
 			AssertIsSetup();
@@ -338,24 +440,26 @@ namespace InControl
 			devices.Add( inputDevice );
 			devices.Sort( ( d1, d2 ) => d1.SortOrder.CompareTo( d2.SortOrder ) );
 
+			inputDevice.IsAttached = true;
+
 			if (OnDeviceAttached != null)
 			{
 				OnDeviceAttached( inputDevice );
 			}
-
-			if (ActiveDevice == InputDevice.Null)
-			{
-				ActiveDevice = inputDevice;
-			}
 		}
 
 
+		/// <summary>
+		/// Detach a device from the input manager.
+		/// </summary>
+		/// <param name="inputDevice">The input device to attach.</param>
 		public static void DetachDevice( InputDevice inputDevice )
 		{
 			AssertIsSetup();
 
 			devices.Remove( inputDevice );
-			devices.Sort( ( d1, d2 ) => d1.SortOrder.CompareTo( d2.SortOrder ) );
+
+			inputDevice.IsAttached = false;
 
 			if (ActiveDevice == inputDevice)
 			{
@@ -369,9 +473,14 @@ namespace InControl
 		}
 
 
+		/// <summary>
+		/// Hides the devices with a given profile.
+		/// This must be called before the input manager is initialized.
+		/// </summary>
+		/// <param name="type">Type.</param>
 		public static void HideDevicesWithProfile( Type type )
 		{
-			#if !UNITY_EDITOR && UNITY_METRO
+			#if NETFX_CORE
 			if (type.GetTypeInfo().IsAssignableFrom( typeof( UnityInputDeviceProfile ).GetTypeInfo() ))
 			#else
 			if (type.IsSubclassOf( typeof(UnityInputDeviceProfile) ))
@@ -382,15 +491,24 @@ namespace InControl
 		}
 
 
-		static InputDevice DefaultActiveDevice
+		/// <summary>
+		/// Detects whether any (keyboard) key is currently pressed.
+		/// For more flexibility, see <see cref="KeyCombo.Detect()"/>
+		/// </summary>
+		public static bool AnyKeyIsPressed
 		{
 			get
 			{
-				return (devices.Count > 0) ? devices[0] : InputDevice.Null;
+				return KeyCombo.Detect( true ).Count > 0;
 			}
 		}
 
 
+		/// <summary>
+		/// Gets the currently active device if present, otherwise returns a null device which does nothing.
+		/// The currently active device is defined as the last device that provided input events. This is
+		/// a good way to query for a device in single player applications.
+		/// </summary>
 		public static InputDevice ActiveDevice
 		{
 			get
@@ -405,21 +523,32 @@ namespace InControl
 		}
 
 
-		public static bool EnableXInput
-		{
-			get
-			{
-				return enableXInput;
-			}
-
-			set
-			{
-				enableXInput = value;
-			}
-		}
+		/// <summary>
+		/// Enable XInput support.
+		/// When enabled on initialization, the input manager will first check
+		/// whether XInput is supported on this platform and if so, it will add
+		/// an XInputDeviceManager.
+		/// </summary>
+		public static bool EnableXInput { get; internal set; }
 
 
-		public static VersionInfo UnityVersion
+		/// <summary>
+		/// Set the XInput background thread polling rate.
+		/// When set to zero (default) it will equal the projects fixed updated rate.
+		/// </summary>
+		public static uint XInputUpdateRate { get; internal set; }
+
+
+		/// <summary>
+		/// Set the XInput buffer size. (Experimental)
+		/// Usually you want this to be zero (default). Setting it higher will introduce 
+		/// latency, but may smooth out input if querying input on FixedUpdate, which 
+		/// tends to cluster calls at the end of a frame.
+		/// </summary>
+		public static uint XInputBufferSize { get; internal set; }
+
+
+		internal static VersionInfo UnityVersion
 		{
 			get
 			{
@@ -429,6 +558,15 @@ namespace InControl
 				}
 
 				return unityVersion.Value;
+			}
+		}
+
+
+		internal static ulong CurrentTick
+		{
+			get
+			{
+				return currentTick;
 			}
 		}
 	}
