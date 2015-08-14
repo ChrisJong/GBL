@@ -9,10 +9,10 @@ public class MusicControlLeader : MonoBehaviour {
 	public AudioSource military;
 	public AudioSource industrial;
 
-	public ScoreCounter1 score1;
-	public ScoreCounter2 score2;
-	public ScoreCounter3 score3;
-	public ScoreCounter4 score4;
+	public ScoreCounter score1;
+	public ScoreCounter score2;
+	public ScoreCounter score3;
+	public ScoreCounter score4;
 
 
 	public float maxVol;

@@ -8,71 +8,63 @@ public class HoverCarControl : MonoBehaviour
 {
 	Rigidbody m_body;
 	private bool initialised = false;
-  	float m_deadZone = 0.1f;
-
- 	public float m_hoverForce = 9.0f;
+	float m_deadZone = 0.1f;
+	
+	public float m_hoverForce = 9.0f;
 	public float m_hoverHeight = 2.0f;
 	public GameObject[] m_hoverPoints;
-
-  	public float m_forwardAcl = 100.0f;
-  	public float m_backwardAcl = 25.0f;
-  	float m_currThrust = 0.0f;
-
-  	public float m_sideAcl = 25.0f;
-  	float m_currSideThrust = 0.0f;
-  
-  	public float m_turnStrength = 10f;
-  	float m_currTurn = 0.0f;
-
-  	public GameObject m_leftAirBrake;
+	
+	public float m_forwardAcl = 100.0f;
+	public float m_backwardAcl = 25.0f;
+	float m_currThrust = 0.0f;
+	
+	public float m_sideAcl = 25.0f;
+	float m_currSideThrust = 0.0f;
+	
+	public float m_turnStrength = 10f;
+	float m_currTurn = 0.0f;
+	
+	public GameObject m_leftAirBrake;
 	public GameObject m_rightAirBrake;
-
+	
 	private float nextAbility;
 	public float abilityRate;
-
+	
 	public int playerNumber; 
 	public int tankClass;
-
-  	int m_layerMask;
-
+	
+	int m_layerMask;
+	
 	public GameObject sparkParticle;
-
+	
 	public ParticleSystem damage33;
 	public ParticleSystem damage66;
 	public ParticleSystem[] hoverParticles;
 	public ParticleSystem baseParticle;
 	private float particleLength;
-
+	
 	//Death/respawn variables
-	public ScoreCounter1 score1;
-	public ScoreCounter2 score2;
-	public ScoreCounter3 score3;
-	public ScoreCounter4 score4;
+	public UIController uiController;
 	public HealthCounter health;
-	public GameObject killedMessage;
-	public GameObject killMessage1;
-	public GameObject killMessage2;
-	public GameObject killMessage3;
-	public GameObject killMessage4;
 	public AudioClip sfxDeath;
 	Vector3 initialPosition;
 	Quaternion initialRotation;
 	public ParticleSystem hitParticle;
 	private double spawnActiveTimer;
-
+	
 	public GameObject respawnMessage1;
 	public GameObject respawnMessage2;
-
+	
 	private float tempHoverForce;
 	private float timer = 0.0f;
 	private bool deathRun = false;
 	public int maxHealth = 100;
 	private int healthInt;
-
+	
 	public bool hasRespawned = true;
-
+	
 	public Animator[] spawnAnimators;
-
+	
 	//Fire control variables
 	public GameObject shot;
 	public Transform shotSpawn;
@@ -84,59 +76,59 @@ public class HoverCarControl : MonoBehaviour
 	public float explosionRadius = 4.0F;
 	public float explosionPower = 25000.0F;
 	public ParticleSystem fireParticle;
-
+	
 	private float rumbleTime;
-
+	
 	public AudioClip killCheer = null;
-
+	
 	void Start()
 	{
 		foreach (Animator anim in spawnAnimators) 
 		{
 			anim.enabled = false;
 		}
-
+		
 		healthInt = maxHealth;
-
+		
 		initialPosition = gameObject.transform.position;
 		initialRotation = gameObject.transform.rotation;
-
-    	m_body = GetComponent<Rigidbody>();
-
-    	m_layerMask = 1 << LayerMask.NameToLayer("Characters");
-    	m_layerMask = ~m_layerMask;
+		
+		m_body = GetComponent<Rigidbody>();
+		
+		m_layerMask = 1 << LayerMask.NameToLayer("Characters");
+		m_layerMask = ~m_layerMask;
 		
 		respawnMessage1.SetActive(true);
 		respawnMessage2.SetActive(true);
-
+		
 		initialised = true;
 		particleLength = hoverParticles[0].startLifetime;
 	}
-
+	
 	void OnDrawGizmos()
-  	{
-    	//  Hover Force
-    	RaycastHit hit;
-    	for (int i = 0; i < m_hoverPoints.Length; i++)
-    	{
-      		var hoverPoint = m_hoverPoints [i];
-      		if (Physics.Raycast(hoverPoint.transform.position, 
-                          		-Vector3.up, out hit,
-                          		m_hoverHeight, 
-                          		m_layerMask))
-      		{
-        		Gizmos.color = Color.blue;
-        		Gizmos.DrawLine(hoverPoint.transform.position, hit.point);
-        		Gizmos.DrawSphere(hit.point, 0.5f);
-      		} 
+	{
+		//  Hover Force
+		RaycastHit hit;
+		for (int i = 0; i < m_hoverPoints.Length; i++)
+		{
+			var hoverPoint = m_hoverPoints [i];
+			if (Physics.Raycast(hoverPoint.transform.position, 
+			                    -Vector3.up, out hit,
+			                    m_hoverHeight, 
+			                    m_layerMask))
+			{
+				Gizmos.color = Color.blue;
+				Gizmos.DrawLine(hoverPoint.transform.position, hit.point);
+				Gizmos.DrawSphere(hit.point, 0.5f);
+			} 
 			else
-      		{
-        		Gizmos.color = Color.red;
-        		Gizmos.DrawLine(hoverPoint.transform.position, 
-                		       hoverPoint.transform.position - Vector3.up * m_hoverHeight);
+			{
+				Gizmos.color = Color.red;
+				Gizmos.DrawLine(hoverPoint.transform.position, 
+				                hoverPoint.transform.position - Vector3.up * m_hoverHeight);
 			}
 		}
-  	}
+	}
 	
 	void Update()
 	{
@@ -164,7 +156,7 @@ public class HoverCarControl : MonoBehaviour
 			{
 				particle.startLifetime = particleLength;
 			}
-
+			
 			// Main Thrust
 			m_currThrust = 0.0f;
 			float aclAxis = inputDevice.Direction.Y;
@@ -184,7 +176,7 @@ public class HoverCarControl : MonoBehaviour
 				}
 				m_currThrust = aclAxis * m_backwardAcl;
 			}
-
+			
 			// Side Thrust
 			m_currSideThrust = 0.0f;
 			float aclSideAxis = inputDevice.Direction.X;
@@ -192,14 +184,14 @@ public class HoverCarControl : MonoBehaviour
 				m_currSideThrust = aclSideAxis * m_sideAcl;
 			else if (aclSideAxis < -m_deadZone)
 				m_currSideThrust = aclSideAxis * m_sideAcl;
-
+			
 			// Turning
 			m_currTurn = 0.0f;
 			float turnAxis = inputDevice.RightStickX * inputDevice.RightStickX * inputDevice.RightStickX;
 			if (Mathf.Abs (turnAxis) > m_deadZone)
 				m_currTurn = turnAxis;
-
-
+			
+			
 			// Firing
 			if (inputDevice.RightTrigger.IsPressed && Time.time > nextFire) 
 			{
@@ -211,24 +203,24 @@ public class HoverCarControl : MonoBehaviour
 				createShot (tankVelocity);
 				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position, 0.25f);
 			}
-
+			
 			//Ability
 			if (inputDevice.LeftTrigger.IsPressed && Time.time > nextAbility)
 			{
 				//nextAbility = Time.time + abilityRate;
-
+				
 				//Laser ability
-
+				/*
 				RaycastHit hitscan;
 				Physics.Raycast(shotSpawn.position, shotSpawn.forward, out hitscan, 300);
 				Debug.DrawLine (shotSpawn.position, hitscan.point, Color.cyan);
 				//print(hitscan.collider.name);
-
+				*/
 				//Shield ability
 				/*
 				
 				*/
-
+				
 				//Boost ability
 				/*
 				m_currThrust = 25.0f * aclAxis * m_forwardAcl;
@@ -241,28 +233,13 @@ public class HoverCarControl : MonoBehaviour
 				*/
 			}
 		}
-
+		
 		if (gameObject.transform.position.y <= -100) 
 		{
-			switch(playerNumber)
-			{
-				case(1):
-					score1.score--;
-					break;
-				case(2):
-					score2.score--;
-					break;
-				case(3):
-					score3.score--;
-					break;
-				case(4):
-					score4.score--;
-					break;
-			}
 			Death ();
 			Respawn ();
 		}
-
+		
 		if (healthInt <= 0) 
 		{
 			if (!deathRun)
@@ -273,11 +250,11 @@ public class HoverCarControl : MonoBehaviour
 				Respawn();
 			}
 		}
-  }
-
+	}
+	
 	void FixedUpdate()
 	{
-
+		
 		//  Hover Force
 		RaycastHit hit;
 		for (int i = 0; i < m_hoverPoints.Length; i++)
@@ -288,31 +265,31 @@ public class HoverCarControl : MonoBehaviour
 			                    m_hoverHeight,
 			                    m_layerMask))
 				m_body.AddForceAtPosition(Vector3.up 
-				    * m_hoverForce
-				    * (1.0f - (hit.distance / m_hoverHeight)), 
-				                            hoverPoint.transform.position);
+				                          * m_hoverForce
+				                          * (1.0f - (hit.distance / m_hoverHeight)), 
+				                          hoverPoint.transform.position);
 			else
 			{
 				if (transform.position.y > hoverPoint.transform.position.y)
 					m_body.AddForceAtPosition(
-					  hoverPoint.transform.up * m_hoverForce,
-					  hoverPoint.transform.position);
+						hoverPoint.transform.up * m_hoverForce,
+						hoverPoint.transform.position);
 				else
 					m_body.AddForceAtPosition(
-					  hoverPoint.transform.up * -m_hoverForce,
-					  hoverPoint.transform.position);
+						hoverPoint.transform.up * -m_hoverForce,
+						hoverPoint.transform.position);
 			}
 		}
-
+		
 		// Forward
 		if (Mathf.Abs(m_currThrust) > 0)
 			m_body.AddForce(transform.forward * m_currThrust);
-
-
+		
+		
 		// Sideways
 		if (Mathf.Abs(m_currSideThrust) > 0)
 			m_body.AddForce(transform.right * m_currSideThrust);
-
+		
 		// Turn
 		if (m_currTurn > 0)
 		{
@@ -321,7 +298,7 @@ public class HoverCarControl : MonoBehaviour
 		{
 			m_body.AddRelativeTorque(Vector3.up * m_currTurn * m_turnStrength);
 		}
-
+		
 		// Rumble
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
 		if (inputDevice !=null && Time.time < rumbleTime)
@@ -331,7 +308,7 @@ public class HoverCarControl : MonoBehaviour
 			inputDevice.Vibrate(0.0f, 0.0f);
 		}
 	}
-
+	
 	void OnTriggerEnter (Collider other)
 	{
 		if (deathRun == true)
@@ -349,7 +326,7 @@ public class HoverCarControl : MonoBehaviour
 				foreach (Collider hit in colliders) 
 				{
 					// if (hit && hit.GetComponent<Rigidbody>())
-						// hit.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, explosionPos, explosionRadius);
+					// hit.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, explosionPos, explosionRadius);
 					
 				}
 				healthInt -= shotControllerCopy.damage;
@@ -364,79 +341,12 @@ public class HoverCarControl : MonoBehaviour
 				if (healthInt <= 0)
 				{
 					healthInt = 0;
-					if (shotControllerCopy.playerNumber == 1)
-					{
-						score1.score++;
-
-						killedMessage.SetActive(true);
-
-						killedMessage.GetComponentsInChildren<Text>()[0].text = "PLAYER 1 KILLED YOU!";
-
-						// player 1 kill message
-						killMessage1.SetActive(true);
-						killMessage1.GetComponentsInChildren<Text>()[0].text = "YOU KILLED PLAYER " + playerNumber + "!";
-
-						if (score1.score >= 5)
-						{
-							PlayerPrefs.SetInt("Winner", 1);
-						}
-					}
-					if (shotControllerCopy.playerNumber == 2)
-					{
-						score2.score++;
-
-						killedMessage.SetActive(true);
-
-						killedMessage.GetComponentsInChildren<Text>()[0].text = "PLAYER 2 KILLED YOU!";
-
-						// player 2 kill message
-						killMessage2.SetActive(true);
-						killMessage2.GetComponentsInChildren<Text>()[0].text = "YOU KILLED PLAYER " + playerNumber + "!";
-
-						if (score2.score >= 5)
-						{
-							PlayerPrefs.SetInt("Winner", 2);
-						}
-					}
-					if (shotControllerCopy.playerNumber == 3)
-					{
-						score3.score++;
-
-						killedMessage.SetActive(true);
-
-						killedMessage.GetComponentsInChildren<Text>()[0].text = "PLAYER 3 KILLED YOU!";
-
-						// player 3 kill message
-						killMessage3.SetActive(true);
-						killMessage3.GetComponentsInChildren<Text>()[0].text = "YOU KILLED PLAYER " + playerNumber + "!";
-
-						if (score3.score >= 5)
-						{
-							PlayerPrefs.SetInt("Winner", 3);
-						}
-					}
-					if (shotControllerCopy.playerNumber == 4)
-					{
-						score4.score++;
-
-						killedMessage.SetActive(true);
-
-						killedMessage.GetComponentsInChildren<Text>()[0].text = "PLAYER 4 KILLED YOU!";
-
-						// player 4 kill message
-						killMessage4.SetActive(true);
-						killMessage4.GetComponentsInChildren<Text>()[0].text = "YOU KILLED PLAYER " + playerNumber + "!";
-
-						if (score4.score >= 5)
-						{
-							PlayerPrefs.SetInt("Winner", 4);
-						}
-					}
+					uiController.PlayerKill(shotControllerCopy.playerNumber, playerNumber);
 				}
 			}
 		}
 	}
-
+	
 	void OnCollisionEnter(Collision collision)
 	{
 		foreach (ContactPoint contact in collision.contacts) 
@@ -449,7 +359,7 @@ public class HoverCarControl : MonoBehaviour
 			}
 		}
 	}
-
+	
 	void createShot(Vector3 tankVelocity)
 	{
 		Quaternion shotAngle = shotSpawn.rotation;
@@ -462,19 +372,19 @@ public class HoverCarControl : MonoBehaviour
 		GameObject zBullet = (GameObject)Instantiate (shot, shotSpawn.position, shotAngle);
 		zBullet.GetComponent<ShotController> ().SetVelocity ();
 	}
-
+	
 	void Death()
 	{
 		tempHoverForce = m_hoverForce;
 		m_hoverForce = 0.0f;
-
+		
 		m_currThrust = 0.0f;
 		m_currSideThrust = 0.0f;
 		m_currTurn = 0.0f;
-
+		
 		AudioSource.PlayClipAtPoint(sfxDeath, gameObject.transform.position, 0.25f);
 		if (killCheer) {
-		AudioSource.PlayClipAtPoint(killCheer, gameObject.transform.position, 0.25f);
+			AudioSource.PlayClipAtPoint(killCheer, gameObject.transform.position, 0.25f);
 		}
 		timer = 0.0f;
 		deathRun = true;
@@ -484,7 +394,7 @@ public class HoverCarControl : MonoBehaviour
 		}
 		baseParticle.Stop ();
 	}
-
+	
 	void Respawn()
 	{
 		if (damage33)
@@ -505,22 +415,17 @@ public class HoverCarControl : MonoBehaviour
 			baseParticle.Play ();
 		healthInt = maxHealth;
 		deathRun = false;
-		if (score1.score >= 5 || score2.score >= 5 || score3.score >= 5 || score4.score >= 5)
-		{
-			Application.LoadLevel("WinscreenController");
-		}
-		killedMessage.SetActive(false);
 		hasRespawned = true;
 		
 		respawnMessage1.SetActive(true);
 		respawnMessage2.SetActive(true);
 	}
-
+	
 	void Rumble(float duration) {
 		if (rumbleTime < Time.time + duration)
 			rumbleTime = Time.time + duration;
 	}
-
+	
 	void OnEnable()
 	{
 		if (initialised) {

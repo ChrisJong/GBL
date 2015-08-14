@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class ScoreCounter2 : MonoBehaviour 
+public class ScoreCounter : MonoBehaviour 
 {
 	Text scoreText;
 	public int score {get; set;}

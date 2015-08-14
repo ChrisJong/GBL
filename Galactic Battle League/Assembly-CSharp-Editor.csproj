@@ -59,6 +59,7 @@
      <Compile Include="Assets\Editor\ImageEffects\SunShaftsEditor.cs" />
      <Compile Include="Assets\Editor\ImageEffects\TonemappingEditor.cs" />
      <Compile Include="Assets\Editor\ImageEffects\VignetteAndChromaticAberrationEditor.cs" />
+     <Compile Include="Assets\InControl\Editor\EditorUtility.cs" />
      <Compile Include="Assets\InControl\Editor\InControlBuilder.cs" />
      <Compile Include="Assets\InControl\Editor\InControlManagerEditor.cs" />
      <Compile Include="Assets\InControl\Editor\InputManagerAssetGenerator.cs" />
@@ -71,6 +72,13 @@
      <Compile Include="Assets\InControl\Editor\ReorderableList\ReorderableListFlags.cs" />
      <Compile Include="Assets\InControl\Editor\ReorderableList\ReorderableListGUI.cs" />
      <Compile Include="Assets\InControl\Editor\ReorderableList\SerializedPropertyAdaptor.cs" />
+     <Compile Include="Assets\InControl\Source\Touch\Editor\TouchBuilder.cs" />
+     <Compile Include="Assets\InControl\Source\Touch\Editor\TouchButtonControlEditor.cs" />
+     <Compile Include="Assets\InControl\Source\Touch\Editor\TouchControlEditor.cs" />
+     <Compile Include="Assets\InControl\Source\Touch\Editor\TouchManagerEditor.cs" />
+     <Compile Include="Assets\InControl\Source\Touch\Editor\TouchStickControlEditor.cs" />
+     <Compile Include="Assets\InControl\Source\Touch\Editor\TouchSwipeControlEditor.cs" />
+     <Compile Include="Assets\InControl\Source\Touch\Editor\TouchTrackControlEditor.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX Easy Editor\Editor\CFXEasyEditor.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Editor\CFX_InspectorHelpEditor.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Editor\CFX_SpawnSystemEditor.cs" />
@@ -194,7 +202,7 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="JMOAssets">
- <HintPath>C:/Users/210234X/Desktop/MT3/Galactic Battle League/Assets/JMO Assets/Editor/JMOAssets.dll</HintPath>
+ <HintPath>C:/Users/9525173/Documents/MT3/Galactic Battle League/Assets/JMO Assets/Editor/JMOAssets.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>

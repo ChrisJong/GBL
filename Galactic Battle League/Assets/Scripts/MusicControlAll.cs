@@ -2,22 +2,22 @@ using UnityEngine;
 using System.Collections;
 
 public class MusicControlAll : MonoBehaviour {
-
+	
 	public AudioSource pirate;
 	public AudioSource hiTech;
 	public AudioSource military;
 	public AudioSource industrial;
-
-	public ScoreCounter1 score1;
-	public ScoreCounter2 score2;
-	public ScoreCounter3 score3;
-	public ScoreCounter4 score4;
-
+	
+	public ScoreCounter score1;
+	public ScoreCounter score2;
+	public ScoreCounter score3;
+	public ScoreCounter score4;
+	
 	public float maxVolPirate = 0.4f;
 	public float maxVolTech = 0.6f;
 	public float maxVolMilitary = 0.8f;
 	public float maxVolIndustrial = 0.6f;
-
+	
 	// Update is called once per frame
 	void Update () {
 		pirate.volume = (float)score1.score/(float)4.0 * maxVolPirate;
