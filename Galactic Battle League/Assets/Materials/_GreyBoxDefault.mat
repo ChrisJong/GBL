@@ -2,14 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 3
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: _GreyBoxDefault
-  m_Shader: {fileID: 4800000, guid: 054a31a99d11e49d110086ba44295342, type: 3}
-  m_ShaderKeywords: []
+  m_Shader: {fileID: 4800000, guid: 6782973e3ca8b2543beddb0a3dc3175e, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
   m_CustomRenderQueue: -1
+  stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -43,6 +45,38 @@ Material:
         first:
           name: _Outline
         second: .00499999989
+      data:
+        first:
+          name: _RampThreshold
+        second: .5
+      data:
+        first:
+          name: _RampSmooth
+        second: .100000001
+      data:
+        first:
+          name: _TexLod
+        second: 5
+      data:
+        first:
+          name: _ZSmooth
+        second: -.5
+      data:
+        first:
+          name: _Offset1
+        second: 0
+      data:
+        first:
+          name: _Offset2
+        second: 0
+      data:
+        first:
+          name: _SrcBlendOutline
+        second: 0
+      data:
+        first:
+          name: _DstBlendOutline
+        second: 0
     m_Colors:
       data:
         first:
@@ -56,3 +90,11 @@ Material:
         first:
           name: _OutlineColor
         second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _SColor
+        second: {r: .400000006, g: .400000006, b: .400000006, a: 1}
+      data:
+        first:
+          name: _HColor
+        second: {r: .600000024, g: .600000024, b: .600000024, a: 1}
