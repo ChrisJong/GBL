@@ -27,6 +27,9 @@ public class HoverCarControl : MonoBehaviour
   	public GameObject m_leftAirBrake;
 	public GameObject m_rightAirBrake;
 
+	private float nextAbility;
+	public float abilityRate;
+
 	public int playerNumber; 
 	public int tankClass;
 
@@ -38,7 +41,7 @@ public class HoverCarControl : MonoBehaviour
 	public ParticleSystem damage66;
 	public ParticleSystem[] hoverParticles;
 	public ParticleSystem baseParticle;
-	public float particleLength;
+	private float particleLength;
 
 	//Death/respawn variables
 	public ScoreCounter1 score1;
@@ -81,6 +84,7 @@ public class HoverCarControl : MonoBehaviour
 	public float explosionRadius = 4.0F;
 	public float explosionPower = 25000.0F;
 	public ParticleSystem fireParticle;
+
 	private float rumbleTime;
 
 	public AudioClip killCheer = null;
@@ -206,6 +210,35 @@ public class HoverCarControl : MonoBehaviour
 				fireParticle.Play();
 				createShot (tankVelocity);
 				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position, 0.25f);
+			}
+
+			//Ability
+			if (inputDevice.LeftTrigger.IsPressed && Time.time > nextAbility)
+			{
+				//nextAbility = Time.time + abilityRate;
+
+				//Laser ability
+
+				RaycastHit hitscan;
+				Physics.Raycast(shotSpawn.position, shotSpawn.forward, out hitscan, 300);
+				Debug.DrawLine (shotSpawn.position, hitscan.point, Color.cyan);
+				//print(hitscan.collider.name);
+
+				//Shield ability
+				/*
+				
+				*/
+
+				//Boost ability
+				/*
+				m_currThrust = 25.0f * aclAxis * m_forwardAcl;
+				m_currSideThrust = 25.0f * aclSideAxis * m_sideAcl;
+
+				foreach(ParticleSystem particle in hoverParticles)
+				{
+					particle.startLifetime = particleLength*4;
+				}
+				*/
 			}
 		}
 
@@ -419,7 +452,14 @@ public class HoverCarControl : MonoBehaviour
 
 	void createShot(Vector3 tankVelocity)
 	{
-		GameObject zBullet = (GameObject)Instantiate (shot, shotSpawn.position, shotSpawn.rotation);
+		Quaternion shotAngle = shotSpawn.rotation;
+		if (tankClass == 1) 
+		{
+			Vector2 error = Random.insideUnitCircle * 7.5f;
+			Quaternion errorRotation = Quaternion.Euler(error.x/2, error.y, 0);
+			shotAngle = shotAngle * errorRotation;
+		}
+		GameObject zBullet = (GameObject)Instantiate (shot, shotSpawn.position, shotAngle);
 		zBullet.GetComponent<ShotController> ().SetVelocity ();
 	}
 
