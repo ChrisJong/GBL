@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxHit: {fileID: 8300000, guid: ccdbe76b5bdb63c4c82be4eddbe0082a, type: 3}
-  shotSpeed: 100
+  shotSpeed: 200
   explosionRadius: 4
   explosionPower: 25000
   damage: 20
@@ -188,7 +188,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: shotSpeed
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
