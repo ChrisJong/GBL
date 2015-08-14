@@ -201,7 +201,7 @@ public class HoverCarControl : MonoBehaviour
 				tankVelocity = GetComponent<Rigidbody>().velocity;
 				fireParticle.Play();
 				createShot (tankVelocity);
-				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position, 0.25f);
+				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position, 0.5f);
 			}
 			
 			//Ability
