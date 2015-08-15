@@ -167,7 +167,7 @@ MonoBehaviour:
   shotSpeed: 100
   explosionRadius: 4
   explosionPower: 25000
-  damage: 3
+  damage: 4
   playerNumber: 2
 --- !u!136 &13600000
 CapsuleCollider:
@@ -188,7 +188,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: damage
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
