@@ -76,6 +76,8 @@ public class HoverCarControl : MonoBehaviour
 	public float explosionRadius = 4.0F;
 	public float explosionPower = 25000.0F;
 	public ParticleSystem fireParticle;
+	private float maxError = 6.0f;
+	private float currError = 0.0f;
 	
 	private float rumbleTime;
 	
@@ -205,24 +207,24 @@ public class HoverCarControl : MonoBehaviour
 			}
 			
 			//Ability
-			if (inputDevice.LeftTrigger.IsPressed && Time.time > nextAbility)
+			/*if (inputDevice.LeftTrigger.IsPressed && Time.time > nextAbility)
 			{
 				//nextAbility = Time.time + abilityRate;
 				
 				//Laser ability
-				/*
+
 				RaycastHit hitscan;
 				Physics.Raycast(shotSpawn.position, shotSpawn.forward, out hitscan, 300);
 				Debug.DrawLine (shotSpawn.position, hitscan.point, Color.cyan);
 				//print(hitscan.collider.name);
-				*/
+
 				//Shield ability
-				/*
+
 				
-				*/
+
 				
 				//Boost ability
-				/*
+
 				m_currThrust = 25.0f * aclAxis * m_forwardAcl;
 				m_currSideThrust = 25.0f * aclSideAxis * m_sideAcl;
 
@@ -230,10 +232,13 @@ public class HoverCarControl : MonoBehaviour
 				{
 					particle.startLifetime = particleLength*4;
 				}
-				*/
-			}
+
+			}*/
 		}
-		
+
+		if (currError > 0 && !inputDevice.RightTrigger.IsPressed) 
+			currError -= 1.0f * Time.deltaTime;
+
 		if (gameObject.transform.position.y <= -100) 
 		{
 			Death ();
@@ -365,9 +370,11 @@ public class HoverCarControl : MonoBehaviour
 		Quaternion shotAngle = shotSpawn.rotation;
 		if (tankClass == 1) 
 		{
-			Vector2 error = Random.insideUnitCircle * 7.5f;
+			Vector2 error = Random.insideUnitCircle * currError;
 			Quaternion errorRotation = Quaternion.Euler(error.x/2, error.y, 0);
 			shotAngle = shotAngle * errorRotation;
+			if (currError < maxError)
+				currError += 0.1f;
 		}
 		GameObject zBullet = (GameObject)Instantiate (shot, shotSpawn.position, shotAngle);
 		zBullet.GetComponent<ShotController> ().SetVelocity ();
