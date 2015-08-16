@@ -1921,16 +1921,8 @@ MonoBehaviour:
   - {fileID: 19857508}
   - {fileID: 19857510}
   baseParticle: {fileID: 19887420}
-  score1: {fileID: 0}
-  score2: {fileID: 0}
-  score3: {fileID: 0}
-  score4: {fileID: 0}
+  uiController: {fileID: 0}
   health: {fileID: 0}
-  killedMessage: {fileID: 0}
-  killMessage1: {fileID: 0}
-  killMessage2: {fileID: 0}
-  killMessage3: {fileID: 0}
-  killMessage4: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19828722}
   respawnMessage1: {fileID: 0}
@@ -2112,16 +2104,8 @@ MonoBehaviour:
   hoverParticles:
   - {fileID: 19857514}
   baseParticle: {fileID: 19857518}
-  score1: {fileID: 0}
-  score2: {fileID: 0}
-  score3: {fileID: 0}
-  score4: {fileID: 0}
+  uiController: {fileID: 0}
   health: {fileID: 0}
-  killedMessage: {fileID: 0}
-  killMessage1: {fileID: 0}
-  killMessage2: {fileID: 0}
-  killMessage3: {fileID: 0}
-  killMessage4: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 19828722}
   respawnMessage1: {fileID: 0}
@@ -18590,7 +18574,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 118016}
