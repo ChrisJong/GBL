@@ -33,7 +33,7 @@ public class StartGame : MonoBehaviour
 
 	public void BeginControls ()
 	{
-		Application.LoadLevel ("ControlsController");
+		Application.LoadLevel ("Controls");
 	}
 }
 
