@@ -119,7 +119,7 @@ Light:
   m_Type: 2
   m_Color: {r: .996078432, g: .968627453, b: .0509803928, a: 1}
   m_Intensity: 16
-  m_Range: .75
+  m_Range: .5
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -155,7 +155,7 @@ MonoBehaviour:
   shotSpeed: 100
   explosionRadius: 4
   explosionPower: 25000
-  damage: 4
+  damage: 3
   playerNumber: 4
 --- !u!114 &11457418
 MonoBehaviour:
@@ -191,7 +191,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: damage
-      value: 4
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Range
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
