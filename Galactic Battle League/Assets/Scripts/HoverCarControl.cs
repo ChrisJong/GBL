@@ -27,8 +27,10 @@ public class HoverCarControl : MonoBehaviour
 	public GameObject m_leftAirBrake;
 	public GameObject m_rightAirBrake;
 	
-	private float nextAbility;
-	public float abilityRate;
+	public float maxAbilityCharge;
+	private float abilityCharge;
+	public float abilityChargeRate;
+	public float abilityUseRate;
 	
 	public int playerNumber; 
 	public int tankClass;
@@ -91,7 +93,8 @@ public class HoverCarControl : MonoBehaviour
 		}
 		
 		healthInt = maxHealth;
-		
+		abilityCharge = maxAbilityCharge;
+
 		initialPosition = gameObject.transform.position;
 		initialRotation = gameObject.transform.rotation;
 		
@@ -207,37 +210,41 @@ public class HoverCarControl : MonoBehaviour
 			}
 			
 			//Ability
-			/*if (inputDevice.LeftTrigger.IsPressed && Time.time > nextAbility)
+			if (inputDevice.LeftTrigger.IsPressed && abilityCharge > 0f)
 			{
-				//nextAbility = Time.time + abilityRate;
+				abilityCharge -= abilityUseRate * Time.deltaTime;
 				
-				//Laser ability
+				if (tankClass == 1) {
+					//Boost ability
+					m_currThrust = 25.0f * aclAxis * m_forwardAcl;
+					m_currSideThrust = 25.0f * aclSideAxis * m_sideAcl;
 
-				RaycastHit hitscan;
-				Physics.Raycast(shotSpawn.position, shotSpawn.forward, out hitscan, 300);
-				Debug.DrawLine (shotSpawn.position, hitscan.point, Color.cyan);
-				//print(hitscan.collider.name);
+					foreach(ParticleSystem particle in hoverParticles)
+					{
+						particle.startLifetime = particleLength*4;
+					}
+				} else {
+					//Laser ability
+					RaycastHit hitscan;
+					Physics.Raycast(shotSpawn.position, shotSpawn.forward, out hitscan, 300);
+					Debug.DrawLine (shotSpawn.position, hitscan.point, Color.cyan);
+					//print(hitscan.collider.name);
+				}
 
 				//Shield ability
 
 				
 
-				
-				//Boost ability
-
-				m_currThrust = 25.0f * aclAxis * m_forwardAcl;
-				m_currSideThrust = 25.0f * aclSideAxis * m_sideAcl;
-
-				foreach(ParticleSystem particle in hoverParticles)
-				{
-					particle.startLifetime = particleLength*4;
-				}
-
-			}*/
+			}
 		}
 
 		if (currError > 0 && !inputDevice.RightTrigger.IsPressed) 
 			currError -= 1.0f * Time.deltaTime;
+
+		if (abilityCharge < maxAbilityCharge && !inputDevice.LeftTrigger.IsPressed){
+			abilityCharge += abilityChargeRate * Time.deltaTime;
+
+		}
 
 		if (gameObject.transform.position.y <= -100) 
 		{
