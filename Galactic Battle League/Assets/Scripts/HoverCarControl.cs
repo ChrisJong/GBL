@@ -375,7 +375,14 @@ public class HoverCarControl : MonoBehaviour
 					
 				//}
 				healthInt -= shotControllerCopy.damage;
+
+				//Destroy other shot and smoke trail properly
+				ParticleSystem smoke = other.GetComponentInChildren<ParticleSystem> ();
+				smoke.enableEmission = false;
+				smoke.transform.parent=null;
+				Destroy(smoke, 3);
 				Destroy (other.gameObject);
+
 				if (shotControllerCopy.damage >= 10 )
 					Rumble(0.3f);
 				else

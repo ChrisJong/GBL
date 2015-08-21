@@ -9,10 +9,11 @@ public class ShotController : MonoBehaviour
 	public float explosionPower = 25000.0F;
 	public int damage;
 	public int playerNumber;
+	private ParticleSystem smoke;
 	// Use this for initialization
 	void Start () 
 	{
-
+		smoke = GetComponentInChildren<ParticleSystem> ();
 	}
 
 	public void SetVelocity ()
@@ -32,8 +33,12 @@ public class ShotController : MonoBehaviour
 					// hit.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, explosionPos, explosionRadius);
 				
 			//}
-			Destroy (gameObject);
+
+			//Separate smoke trail from shot, so smoke disperses normally
+			smoke.enableEmission = false;
+			smoke.transform.parent=null;
+			Destroy(smoke, 3);
+			Destroy(gameObject);
 		}
 	}
-
 }
