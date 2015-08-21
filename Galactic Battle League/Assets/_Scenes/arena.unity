@@ -405,7 +405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &103339437
 RectTransform:
   m_ObjectHideFlags: 0
@@ -434,7 +434,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f7370a9366cac4382bf3cfbf4da535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
 --- !u!114 &103339439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1353,6 +1352,7 @@ MonoBehaviour:
   - {fileID: 1486416957}
   - {fileID: 691753884}
   score: 00000000000000000000000000000000
+  timer: {fileID: 0}
   killedMessage:
   - {fileID: 657119925}
   - {fileID: 671884655}

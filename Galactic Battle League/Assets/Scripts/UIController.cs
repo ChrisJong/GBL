@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public class UIController : MonoBehaviour
 {
 	public ScoreCounter[] scoreText;
 	public int[] score;
+	public GameTimer timer;
 	
 	public GameObject[] killedMessage;
 	public GameObject[] killMessage;
@@ -13,15 +15,15 @@ public class UIController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		
+		timer = GameObject.Find ("TimerText").GetComponent<GameTimer> ();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (score[0] >= 5 || score[1] >= 5 || score[2] >= 5 || score[3] >= 5)
+		if (score[0] >= 5 || score[1] >= 5 || score[2] >= 5 || score[3] >= 5 || timer.time == 0)
 		{
-			Application.LoadLevel("WinscreenController");
+			GameOver();
 		}
 	}
 	
@@ -38,9 +40,23 @@ public class UIController : MonoBehaviour
 		
 		if (score[attacker-1] >= 5)
 		{
-			PlayerPrefs.SetInt("Winner", attacker);
-			Application.LoadLevel("WinscreenController");
+			GameOver();
 		}
-		
+	}
+
+
+	// Ranks players and stores the 1st/2nd/3rd in the PlayerPrefs
+	public void GameOver()
+	{
+		int[] playerNumbers = {1,2,3,4};
+
+		Array.Sort (score, playerNumbers);
+		Array.Reverse (score);
+		Array.Reverse (playerNumbers);
+
+		PlayerPrefs.SetInt ("Winner", playerNumbers[0]);
+		PlayerPrefs.SetInt ("Second", playerNumbers[1]);
+		PlayerPrefs.SetInt ("Third", playerNumbers[2]);
+		Application.LoadLevel("WinscreenController");
 	}
 }
