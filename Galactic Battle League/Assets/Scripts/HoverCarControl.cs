@@ -52,7 +52,7 @@ public class HoverCarControl : MonoBehaviour
 	public AudioClip sfxDeath;
 	Vector3 initialPosition;
 	Quaternion initialRotation;
-	public ParticleSystem hitParticle;
+	public GameObject hitParticle;
 	private double spawnActiveTimer;
 	
 	public GameObject respawnMessage1;
@@ -347,8 +347,14 @@ public class HoverCarControl : MonoBehaviour
 				AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position, 0.25f);
 				Vector3 explosionPos = other.gameObject.transform.position;
 				Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
-				hitParticle.transform.position = other.transform.position;
-				hitParticle.Play();
+				ParticleSystem hitExplosion = ((GameObject)Instantiate(hitParticle, other.transform.position, shotSpawn.rotation)).GetComponent<ParticleSystem>();
+				//hitExplosion.startLifetime = (float)shotControllerCopy.damage/10.0f;
+				if (shotControllerCopy.damage >= 10 )
+					hitExplosion.startSize = 6;
+				else
+					hitExplosion.startSize = 3;
+				
+				hitExplosion.Play();
 				foreach (Collider hit in colliders) 
 				{
 					// if (hit && hit.GetComponent<Rigidbody>())
