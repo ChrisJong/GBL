@@ -23,9 +23,6 @@ public class HoverCarControl : MonoBehaviour
 	
 	public float m_turnStrength = 10f;
 	float m_currTurn = 0.0f;
-
-	public float m_aimStrength = 10f;
-	float m_currAim = 0.0f;
 	
 	public GameObject m_leftAirBrake;
 	public GameObject m_rightAirBrake;
@@ -195,13 +192,6 @@ public class HoverCarControl : MonoBehaviour
 			float turnAxis = inputDevice.RightStickX * inputDevice.RightStickX * inputDevice.RightStickX;
 			if (Mathf.Abs (turnAxis) > m_deadZone)
 				m_currTurn = turnAxis;
-
-			// up/down aiming
-			m_currAim = 0.0f;
-			float aimAxis = inputDevice.RightStickY * inputDevice.RightStickY * inputDevice.RightStickY;
-			if (Mathf.Abs(aimAxis) > m_deadZone){
-			    m_currAim = aimAxis;
-			}
 			
 			
 			// Firing
@@ -313,17 +303,6 @@ public class HoverCarControl : MonoBehaviour
 		{
 			m_body.AddRelativeTorque(Vector3.up * m_currTurn * m_turnStrength);
 		}
-
-		// up down aiming
-
-		if (m_currAim > 0) {
-			m_body.AddTorque (-transform.right * m_currAim * m_aimStrength);
-		} else if (m_currAim < 0) {
-			m_body.AddTorque (-transform.right * m_currAim * m_turnStrength / 2);
-		}
-
-
-
 		
 		// Rumble
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
