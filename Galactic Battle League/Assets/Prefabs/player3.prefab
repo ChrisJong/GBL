@@ -651,7 +651,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 431996}
-  - 114: {fileID: 11408560}
   m_Layer: 0
   m_Name: Cannon2
   m_TagString: Untagged
@@ -1585,7 +1584,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 434618}
-  - 114: {fileID: 11488030}
   m_Layer: 0
   m_Name: Cannon1
   m_TagString: Untagged
@@ -3606,18 +3604,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshair: {fileID: 192420}
---- !u!114 &11408560
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 131996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d62bf1e12560b241a0f07852b8c5ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crosshair: {fileID: 192420}
 --- !u!114 &11412200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4122,18 +4108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
---- !u!114 &11488030
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 189960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d62bf1e12560b241a0f07852b8c5ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crosshair: {fileID: 192420}
 --- !u!114 &11492952
 MonoBehaviour:
   m_ObjectHideFlags: 1

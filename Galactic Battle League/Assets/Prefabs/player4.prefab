@@ -633,7 +633,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 417214}
-  - 114: {fileID: 11421170}
   m_Layer: 0
   m_Name: Cannon1
   m_TagString: Untagged
@@ -1148,7 +1147,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 461132}
-  - 114: {fileID: 11473868}
   m_Layer: 0
   m_Name: Cannon2
   m_TagString: Untagged
@@ -3739,18 +3737,6 @@ MonoBehaviour:
   explosionRadius: 4
   explosionPower: 1e+07
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
---- !u!114 &11421170
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 143340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d62bf1e12560b241a0f07852b8c5ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crosshair: {fileID: 128722}
 --- !u!114 &11422370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4100,18 +4086,6 @@ MonoBehaviour:
   heavyControl: {fileID: 11417996}
   spawnHeight: 30
   playerNumber: 4
---- !u!114 &11473868
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 161132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d62bf1e12560b241a0f07852b8c5ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crosshair: {fileID: 128722}
 --- !u!114 &11473870
 MonoBehaviour:
   m_ObjectHideFlags: 1
