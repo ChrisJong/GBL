@@ -23,6 +23,9 @@ public class HoverCarControl : MonoBehaviour
 	
 	public float m_turnStrength = 10f;
 	float m_currTurn = 0.0f;
+
+	public float m_aimStrength = 10f;
+	float m_currAim = 0.0f;
 	
 	public GameObject m_leftAirBrake;
 	public GameObject m_rightAirBrake;
@@ -51,7 +54,7 @@ public class HoverCarControl : MonoBehaviour
 	public AudioClip sfxDeath;
 	Vector3 initialPosition;
 	Quaternion initialRotation;
-	public ParticleSystem hitParticle;
+	public GameObject hitParticle;
 	private double spawnActiveTimer;
 	
 	public GameObject respawnMessage1;
@@ -195,6 +198,13 @@ public class HoverCarControl : MonoBehaviour
 			float turnAxis = inputDevice.RightStickX * inputDevice.RightStickX * inputDevice.RightStickX;
 			if (Mathf.Abs (turnAxis) > m_deadZone)
 				m_currTurn = turnAxis;
+
+			// up/down aiming
+			m_currAim = 0.0f;
+			float aimAxis = inputDevice.RightStickY * inputDevice.RightStickY * inputDevice.RightStickY;
+			if (Mathf.Abs(aimAxis) > m_deadZone){
+			    m_currAim = aimAxis;
+			}
 			
 			
 			// Firing
@@ -323,6 +333,17 @@ public class HoverCarControl : MonoBehaviour
 		{
 			m_body.AddRelativeTorque(Vector3.up * m_currTurn * m_turnStrength);
 		}
+
+		// up down aiming
+
+		if (m_currAim > 0) {
+			m_body.AddTorque (-transform.right * m_currAim * m_aimStrength);
+		} else if (m_currAim < 0) {
+			m_body.AddTorque (-transform.right * m_currAim * m_turnStrength / 2);
+		}
+
+
+
 		
 		// Rumble
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
@@ -346,8 +367,14 @@ public class HoverCarControl : MonoBehaviour
 				AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position, 0.25f);
 				Vector3 explosionPos = other.gameObject.transform.position;
 				Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
-				hitParticle.transform.position = other.transform.position;
-				hitParticle.Play();
+				ParticleSystem hitExplosion = ((GameObject)Instantiate(hitParticle, other.transform.position, shotSpawn.rotation)).GetComponent<ParticleSystem>();
+				//hitExplosion.startLifetime = (float)shotControllerCopy.damage/10.0f;
+				if (shotControllerCopy.damage >= 10 )
+					hitExplosion.startSize = 6;
+				else
+					hitExplosion.startSize = 3;
+				
+				hitExplosion.Play();
 				foreach (Collider hit in colliders) 
 				{
 					// if (hit && hit.GetComponent<Rigidbody>())
