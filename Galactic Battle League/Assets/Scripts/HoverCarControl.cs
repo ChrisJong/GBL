@@ -53,8 +53,10 @@ public class HoverCarControl : MonoBehaviour
 	Vector3 initialPosition;
 	Quaternion initialRotation;
 	public GameObject hitParticle;
+	public GameObject deathParticle;
 	private double spawnActiveTimer;
-	
+
+
 	public GameObject respawnMessage1;
 	public GameObject respawnMessage2;
 	
@@ -422,6 +424,13 @@ public class HoverCarControl : MonoBehaviour
 		}
 		timer = 0.0f;
 		deathRun = true;
+		Vector3 point = gameObject.transform.position;
+		point.y += 4;
+		Quaternion vertical = new Quaternion();
+
+		ParticleSystem deathExplosion = ((GameObject)Instantiate(deathParticle, point, shotSpawn.rotation)).GetComponent<ParticleSystem>();
+		deathExplosion.Play();
+
 		foreach (ParticleSystem particle in hoverParticles) 
 		{
 			particle.Stop();
