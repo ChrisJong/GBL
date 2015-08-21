@@ -225,9 +225,22 @@ public class HoverCarControl : MonoBehaviour
 					}
 				} else {
 					//Laser ability
-					RaycastHit hitscan;
-					Physics.Raycast(shotSpawn.position, shotSpawn.forward, out hitscan, 300);
-					Debug.DrawLine (shotSpawn.position, hitscan.point, Color.cyan);
+					RaycastHit hit;
+					bool hitWall = false;
+					Physics.Raycast(shotSpawn.position, shotSpawn.forward, out hit, 300);
+					if (hit.collider.tag != "Player"){
+						hitWall = true;
+					}
+
+					/*while (!hitWall){
+						Physics.Raycast(hit.point, shotSpawn.forward, out hit, 300);
+						Physics.IgnoreCollision(hit.collider, collider); 
+						if (hit.collider.tag != "Player"){
+							hitWall = true;
+						}
+					}*/
+
+					Debug.DrawLine (shotSpawn.position, hit.point, Color.cyan);
 					//print(hitscan.collider.name);
 				}
 
