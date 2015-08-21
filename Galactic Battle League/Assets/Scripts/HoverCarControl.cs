@@ -53,7 +53,7 @@ public class HoverCarControl : MonoBehaviour
 	Vector3 initialPosition;
 	Quaternion initialRotation;
 	public GameObject hitParticle;
-	public GameObject deathParticle;
+	public ParticleSystem[] deathParticle;
 	private double spawnActiveTimer;
 
 
@@ -428,8 +428,8 @@ public class HoverCarControl : MonoBehaviour
 		point.y += 4;
 		Quaternion vertical = new Quaternion();
 
-		ParticleSystem deathExplosion = ((GameObject)Instantiate(deathParticle, point, shotSpawn.rotation)).GetComponent<ParticleSystem>();
-		deathExplosion.Play();
+		foreach (ParticleSystem deathExplosion in deathParticle)
+			deathExplosion.Play();
 
 		foreach (ParticleSystem particle in hoverParticles) 
 		{
@@ -440,10 +440,22 @@ public class HoverCarControl : MonoBehaviour
 	
 	void Respawn()
 	{
-		if (damage33)
+		if (damage33) 
+		{
 			damage33.Stop ();
-		if (damage66)
+			damage33.Clear ();
+		}
+		if (damage66) 
+		{
 			damage66.Stop ();
+			damage66.Clear ();
+		}
+		foreach (ParticleSystem deathExplosion in deathParticle) 
+		{
+			deathExplosion.Stop ();
+			deathExplosion.Clear();
+		}
+
 		gameObject.transform.position = initialPosition;
 		gameObject.transform.rotation = initialRotation;
 		m_body.velocity = Vector3.zero;
