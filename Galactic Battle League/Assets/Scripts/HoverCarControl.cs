@@ -72,7 +72,10 @@ public class HoverCarControl : MonoBehaviour
 	
 	//Fire control variables
 	public GameObject shot;
-	public Transform shotSpawn;
+	public Transform[] shotSpawn;
+	public ParticleSystem[] fireParticle;
+	//Int declares which cannon to use
+	private int spawnInt;
 	public float fireRate;
 	public AudioClip sfxFire;
 	public Vector3 tankVelocity;
@@ -80,7 +83,6 @@ public class HoverCarControl : MonoBehaviour
 	public AudioClip sfxHit;
 	public float explosionRadius = 4.0F;
 	public float explosionPower = 25000.0F;
-	public ParticleSystem fireParticle;
 	private float maxError = 6.0f;
 	private float currError = 0.0f;
 	
@@ -110,6 +112,7 @@ public class HoverCarControl : MonoBehaviour
 		
 		initialised = true;
 		particleLength = hoverParticles[0].startLifetime;
+		spawnInt = 0;
 	}
 	
 	void OnDrawGizmos()
@@ -210,12 +213,20 @@ public class HoverCarControl : MonoBehaviour
 			if (inputDevice.RightTrigger.IsPressed && Time.time > nextFire) 
 			{
 				nextFire = Time.time + fireRate;
-				Rumble(0.15f);
-				gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, shotSpawn.position, explosionRadius);
+				if (tankClass == 1)
+					Rumble(0.15f);
+				else
+					Rumble (0.3f);
+				gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, shotSpawn[spawnInt].position, explosionRadius);
 				tankVelocity = GetComponent<Rigidbody>().velocity;
-				fireParticle.Play();
+				fireParticle[spawnInt].Play();
 				createShot (tankVelocity);
-				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn.position, 0.5f);
+				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn[spawnInt].position, 0.5f);
+				spawnInt++;
+				if (spawnInt >= shotSpawn.Length)
+				{
+					spawnInt = 0;
+				}
 			}
 			
 			//Ability
@@ -347,9 +358,9 @@ public class HoverCarControl : MonoBehaviour
 			if (shotControllerCopy.playerNumber != playerNumber)
 			{
 				AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position, 0.25f);
-				Vector3 explosionPos = other.gameObject.transform.position;
-				Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
-				ParticleSystem hitExplosion = ((GameObject)Instantiate(hitParticle, other.transform.position, shotSpawn.rotation)).GetComponent<ParticleSystem>();
+				//Vector3 explosionPos = other.gameObject.transform.position;
+				//Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
+				ParticleSystem hitExplosion = ((GameObject)Instantiate(hitParticle, other.transform.position, shotSpawn[0].rotation)).GetComponent<ParticleSystem>();
 				//hitExplosion.startLifetime = (float)shotControllerCopy.damage/10.0f;
 				if (shotControllerCopy.damage >= 10 )
 					hitExplosion.startSize = 6;
@@ -357,15 +368,19 @@ public class HoverCarControl : MonoBehaviour
 					hitExplosion.startSize = 3;
 				
 				hitExplosion.Play();
-				foreach (Collider hit in colliders) 
-				{
+				//foreach (Collider hit in colliders) 
+				//{
 					// if (hit && hit.GetComponent<Rigidbody>())
 					// hit.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, explosionPos, explosionRadius);
 					
-				}
+				//}
 				healthInt -= shotControllerCopy.damage;
-				Destroy (other.gameObject);				
-				Rumble(0.15f);
+				Destroy (other.gameObject);
+				if (shotControllerCopy.damage >= 10 )
+					Rumble(0.3f);
+				else
+					Rumble(0.15f);
+
 				if ((float)healthInt/(float)maxHealth < .66f)
 					if (damage66)
 						damage66.Play();
@@ -387,7 +402,7 @@ public class HoverCarControl : MonoBehaviour
 		{
 			if (contact.otherCollider.tag != "Shot" + playerNumber)
 			{
-				ParticleEmitter sparks = ((GameObject)Instantiate(sparkParticle, contact.point, shotSpawn.rotation)).GetComponent<ParticleEmitter>();
+				ParticleEmitter sparks = ((GameObject)Instantiate(sparkParticle, contact.point, shotSpawn[0].rotation)).GetComponent<ParticleEmitter>();
 				sparks.Emit();
 				Rumble(0.1f);
 			}
@@ -396,7 +411,7 @@ public class HoverCarControl : MonoBehaviour
 	
 	void createShot(Vector3 tankVelocity)
 	{
-		Quaternion shotAngle = shotSpawn.rotation;
+		Quaternion shotAngle = shotSpawn[spawnInt].rotation;
 		if (tankClass == 1) 
 		{
 			Vector2 error = Random.insideUnitCircle * currError;
@@ -405,7 +420,7 @@ public class HoverCarControl : MonoBehaviour
 			if (currError < maxError)
 				currError += 0.1f;
 		}
-		GameObject zBullet = (GameObject)Instantiate (shot, shotSpawn.position, shotAngle);
+		GameObject zBullet = (GameObject)Instantiate (shot, shotSpawn[spawnInt].position, shotAngle);
 		zBullet.GetComponent<ShotController> ().SetVelocity ();
 	}
 	
@@ -426,7 +441,6 @@ public class HoverCarControl : MonoBehaviour
 		deathRun = true;
 		Vector3 point = gameObject.transform.position;
 		point.y += 4;
-		Quaternion vertical = new Quaternion();
 
 		foreach (ParticleSystem deathExplosion in deathParticle)
 			deathExplosion.Play();
