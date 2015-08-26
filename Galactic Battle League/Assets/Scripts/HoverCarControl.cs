@@ -235,23 +235,20 @@ public class HoverCarControl : MonoBehaviour
 					}
 				} else {
 					//Laser ability
+					var layermask = 1 << 12;
+					layermask = ~layermask;
 					RaycastHit hit;
 					bool hitWall = false;
-					Physics.Raycast(shotSpawn.position, shotSpawn.forward, out hit, 300);
-					if (hit.collider.tag != "Player"){
-						hitWall = true;
-					}
-
-					/*while (!hitWall){
-						Physics.Raycast(hit.point, shotSpawn.forward, out hit, 300);
-						Physics.IgnoreCollision(hit.collider, collider); 
-						if (hit.collider.tag != "Player"){
-							hitWall = true;
-						}
-					}*/
+					Physics.Raycast(shotSpawn.position, shotSpawn.forward, out hit, 300, layermask);
 
 					Debug.DrawLine (shotSpawn.position, hit.point, Color.cyan);
 					//print(hitscan.collider.name);
+					RaycastHit[] hits;
+					hits = Physics.RaycastAll(shotSpawn.position, shotSpawn.forward, hit.distance);
+					for (int i = 0; i < hits.Length; i++) {
+						if (hits[i].collider.tag == "Player")
+							Debug.Log(hits[i].collider.gameObject.name, hits[i].collider.gameObject);
+					}
 				}
 
 				//Shield ability
