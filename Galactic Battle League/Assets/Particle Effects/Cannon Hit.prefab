@@ -89,7 +89,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: .400000006
+      scalar: .25
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -226,7 +226,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4284793816
+        rgba: 4290111732
       minMaxState: 0
     startSize:
       scalar: 4
@@ -257,7 +257,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startRotation:
-      scalar: 6.28318501
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -278,7 +278,7 @@ ParticleSystem:
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-      minMaxState: 3
+      minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
     maxNumParticles: 11
@@ -337,10 +337,10 @@ ParticleSystem:
     cnt2: 5
     cnt3: 30
     time0: 0
-    time1: .075000003
+    time1: .0199999996
     time2: .200000003
     time3: 0
-    m_BurstCount: 1
+    m_BurstCount: 2
   SizeModule:
     enabled: 1
     curve:
@@ -415,16 +415,16 @@ ParticleSystem:
           rgba: 1682328302
         key1:
           serializedVersion: 2
-          rgba: 2384688110
+          rgba: 2391717620
         key2:
           serializedVersion: 2
-          rgba: 4279024624
+          rgba: 4287356406
         key3:
           serializedVersion: 2
           rgba: 16777215
         key4:
           serializedVersion: 2
-          rgba: 16711689
+          rgba: 16777215
         key5:
           serializedVersion: 2
           rgba: 16711858
@@ -438,7 +438,7 @@ ParticleSystem:
         ctime1: 10794
         ctime2: 27949
         ctime3: 65535
-        ctime4: 42983
+        ctime4: 65535
         ctime5: 52428
         ctime6: 65535
         ctime7: 0
@@ -2148,6 +2148,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lengthInSec
+      value: .25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

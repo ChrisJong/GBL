@@ -11,7 +11,7 @@ GameObject:
   - 198: {fileID: 19800000}
   - 199: {fileID: 19900000}
   m_Layer: 0
-  m_Name: Cannon SmokeTrail
+  m_Name: Cannon SmokeTrail Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,7 +183,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 2161765620
+        rgba: 2162961716
       minMaxState: 0
     startSize:
       scalar: .300000012
@@ -238,7 +238,7 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: -.0399999991
     inheritVelocity: 0
-    maxNumParticles: 100
+    maxNumParticles: 250
   ShapeModule:
     serializedVersion: 2
     enabled: 1
@@ -257,7 +257,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 50
+      scalar: 75
       maxCurve:
         serializedVersion: 2
         m_Curve:
