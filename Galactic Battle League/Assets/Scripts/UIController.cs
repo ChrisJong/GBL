@@ -57,6 +57,6 @@ public class UIController : MonoBehaviour
 		PlayerPrefs.SetInt ("Winner", playerNumbers[0]);
 		PlayerPrefs.SetInt ("Second", playerNumbers[1]);
 		PlayerPrefs.SetInt ("Third", playerNumbers[2]);
-		Application.LoadLevel("WinscreenController");
+		Application.LoadLevel("WinScreen");
 	}
 }
