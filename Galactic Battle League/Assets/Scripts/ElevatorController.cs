@@ -4,7 +4,7 @@ using System.Collections;
 public class ElevatorController : MonoBehaviour {
 
 	float riseDelayTime = 2;
-	float descendDelayTime = 3;
+	float descendDelayTime = 5;
 	bool elevatorAtBottom = true;
 
 	// Use this for initialization
