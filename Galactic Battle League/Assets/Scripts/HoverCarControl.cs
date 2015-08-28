@@ -78,6 +78,8 @@ public class HoverCarControl : MonoBehaviour
 	private int spawnInt;
 	public float fireRate;
 	public AudioClip sfxFire;
+	public AudioClip fireLoopEnd;
+	public AudioSource weaponSound;
 	public Vector3 tankVelocity;
 	private float nextFire;
 	public AudioClip sfxHit;
@@ -85,10 +87,14 @@ public class HoverCarControl : MonoBehaviour
 	public float explosionPower = 25000.0F;
 	private float maxError = 6.0f;
 	private float currError = 0.0f;
-	
+	private float fireTime;
+
+	private bool holdingTrigger;
 	private float rumbleTime;
 	
 	public AudioClip killCheer = null;
+	public float movingHoverPitch;
+	public AudioSource hoverSound;
 	
 	void Start()
 	{
@@ -113,6 +119,8 @@ public class HoverCarControl : MonoBehaviour
 		initialised = true;
 		particleLength = hoverParticles[0].startLifetime;
 		spawnInt = 0;
+		holdingTrigger = false;
+		nextFire = 0;
 	}
 	
 	void OnDrawGizmos()
@@ -142,6 +150,7 @@ public class HoverCarControl : MonoBehaviour
 	
 	void Update()
 	{
+		hoverSound.pitch = 1;
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
 		health.healthscore = healthInt;
 		if (hasRespawned && inputDevice != null) 
@@ -177,6 +186,7 @@ public class HoverCarControl : MonoBehaviour
 					particle.startLifetime = particleLength*2;
 				}
 				m_currThrust = aclAxis * m_forwardAcl;
+				hoverSound.pitch = movingHoverPitch;
 			}
 			else if (aclAxis < -m_deadZone)
 			{
@@ -185,15 +195,22 @@ public class HoverCarControl : MonoBehaviour
 					particle.startLifetime = particleLength*0.5f;
 				}
 				m_currThrust = aclAxis * m_backwardAcl;
+				hoverSound.pitch = movingHoverPitch;
 			}
 			
 			// Side Thrust
 			m_currSideThrust = 0.0f;
 			float aclSideAxis = inputDevice.Direction.X;
 			if (aclSideAxis > m_deadZone)
+			{
 				m_currSideThrust = aclSideAxis * m_sideAcl;
+				hoverSound.pitch = movingHoverPitch;
+			}
 			else if (aclSideAxis < -m_deadZone)
+			{
 				m_currSideThrust = aclSideAxis * m_sideAcl;
+				hoverSound.pitch = movingHoverPitch;
+			}
 			
 			// Turning
 			m_currTurn = 0.0f;
@@ -212,6 +229,8 @@ public class HoverCarControl : MonoBehaviour
 			// Firing
 			if (inputDevice.RightTrigger.IsPressed && Time.time > nextFire) 
 			{
+				if (fireTime + 0.6 > Time.time)
+					holdingTrigger = true;
 				nextFire = Time.time + fireRate;
 				if (tankClass == 1)
 					Rumble(0.15f);
@@ -221,14 +240,34 @@ public class HoverCarControl : MonoBehaviour
 				tankVelocity = GetComponent<Rigidbody>().velocity;
 				fireParticle[spawnInt].Play();
 				createShot (tankVelocity);
-				AudioSource.PlayClipAtPoint (sfxFire, shotSpawn[spawnInt].position, 0.5f);
+				if (holdingTrigger == false)
+					AudioSource.PlayClipAtPoint (sfxFire, shotSpawn[spawnInt].position, 0.5f);
+				else
+				{
+					if (!weaponSound.isPlaying)
+					{
+						weaponSound.Play ();
+					}
+				}
 				spawnInt++;
 				if (spawnInt >= shotSpawn.Length)
 				{
 					spawnInt = 0;
 				}
+				fireTime = Time.time;
 			}
-			
+
+			//Firing cancellation
+			if (!inputDevice.RightTrigger.IsPressed && weaponSound)
+			{
+				if (weaponSound.isPlaying)
+				{
+				holdingTrigger = false;
+				weaponSound.Stop();
+				AudioSource.PlayClipAtPoint(fireLoopEnd, shotSpawn[spawnInt].position, 0.5f);
+				}
+			}
+
 			//Ability
 			/*if (inputDevice.LeftTrigger.IsPressed && Time.time > nextAbility)
 			{
