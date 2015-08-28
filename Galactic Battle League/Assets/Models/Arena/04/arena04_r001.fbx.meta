@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 547dadc95afc188469dc48edaf94ec5e
-timeCreated: 1440731994
+guid: 4085605f02b74024a9a059d82cbbf624
+timeCreated: 1440742645
 licenseType: Pro
 ModelImporter:
   serializedVersion: 18
@@ -8,10 +8,10 @@ ModelImporter:
     100000: //RootNode
     100002: bottom_level
     100004: floor
-    100006: middle_building
-    100008: middle_building1
-    100010: middle_structure
-    100012: middle_structure1
+    100006: middle_billboard
+    100008: middle_building
+    100010: polySurface2
+    100012: polySurface3
     100014: rail
     100016: rail1
     100018: rail10
@@ -20,40 +20,40 @@ ModelImporter:
     100024: rail13
     100026: rail14
     100028: rail15
-    100030: rail2
-    100032: rail3
-    100034: rail4
-    100036: rail5
-    100038: rail6
-    100040: rail7
-    100042: rail8
-    100044: rail9
+    100030: rail16
+    100032: rail2
+    100034: rail3
+    100036: rail4
+    100038: rail5
+    100040: rail6
+    100042: rail7
+    100044: rail8
     100046: rails
-    100048: ramp
-    100050: ramp1
-    100052: ramp2
-    100054: ramp3
-    100056: ramp4
-    100058: ramp5
-    100060: ramp6
-    100062: ramp7
+    100048: ramp10
+    100050: ramp12
+    100052: ramp13
+    100054: ramp14
+    100056: ramp2
+    100058: ramp3
+    100060: ramp8
+    100062: ramp9
     100064: ramps
     100066: top_building
     100068: top_building1
     100070: top_building3
     100072: top_building4
-    100074: top_building5
-    100076: top_building6
-    100078: top_floor
-    100080: top_floor1
+    100074: top_building6
+    100076: top_building7
+    100078: top_floor1
+    100080: top_floor2
     100082: top_level
     400000: //RootNode
     400002: bottom_level
     400004: floor
-    400006: middle_building
-    400008: middle_building1
-    400010: middle_structure
-    400012: middle_structure1
+    400006: middle_billboard
+    400008: middle_building
+    400010: polySurface2
+    400012: polySurface3
     400014: rail
     400016: rail1
     400018: rail10
@@ -62,38 +62,38 @@ ModelImporter:
     400024: rail13
     400026: rail14
     400028: rail15
-    400030: rail2
-    400032: rail3
-    400034: rail4
-    400036: rail5
-    400038: rail6
-    400040: rail7
-    400042: rail8
-    400044: rail9
+    400030: rail16
+    400032: rail2
+    400034: rail3
+    400036: rail4
+    400038: rail5
+    400040: rail6
+    400042: rail7
+    400044: rail8
     400046: rails
-    400048: ramp
-    400050: ramp1
-    400052: ramp2
-    400054: ramp3
-    400056: ramp4
-    400058: ramp5
-    400060: ramp6
-    400062: ramp7
+    400048: ramp10
+    400050: ramp12
+    400052: ramp13
+    400054: ramp14
+    400056: ramp2
+    400058: ramp3
+    400060: ramp8
+    400062: ramp9
     400064: ramps
     400066: top_building
     400068: top_building1
     400070: top_building3
     400072: top_building4
-    400074: top_building5
-    400076: top_building6
-    400078: top_floor
-    400080: top_floor1
+    400074: top_building6
+    400076: top_building7
+    400078: top_floor1
+    400080: top_floor2
     400082: top_level
     2300000: floor
-    2300002: middle_building
-    2300004: middle_building1
-    2300006: middle_structure
-    2300008: middle_structure1
+    2300002: middle_billboard
+    2300004: middle_building
+    2300006: polySurface2
+    2300008: polySurface3
     2300010: rail
     2300012: rail1
     2300014: rail10
@@ -102,35 +102,35 @@ ModelImporter:
     2300020: rail13
     2300022: rail14
     2300024: rail15
-    2300026: rail2
-    2300028: rail3
-    2300030: rail4
-    2300032: rail5
-    2300034: rail6
-    2300036: rail7
-    2300038: rail8
-    2300040: rail9
-    2300042: ramp
-    2300044: ramp1
-    2300046: ramp2
-    2300048: ramp3
-    2300050: ramp4
-    2300052: ramp5
-    2300054: ramp6
-    2300056: ramp7
+    2300026: rail16
+    2300028: rail2
+    2300030: rail3
+    2300032: rail4
+    2300034: rail5
+    2300036: rail6
+    2300038: rail7
+    2300040: rail8
+    2300042: ramp10
+    2300044: ramp12
+    2300046: ramp13
+    2300048: ramp14
+    2300050: ramp2
+    2300052: ramp3
+    2300054: ramp8
+    2300056: ramp9
     2300058: top_building
     2300060: top_building1
     2300062: top_building3
     2300064: top_building4
-    2300066: top_building5
-    2300068: top_building6
-    2300070: top_floor
-    2300072: top_floor1
+    2300066: top_building6
+    2300068: top_building7
+    2300070: top_floor1
+    2300072: top_floor2
     3300000: floor
-    3300002: middle_building
-    3300004: middle_building1
-    3300006: middle_structure
-    3300008: middle_structure1
+    3300002: middle_billboard
+    3300004: middle_building
+    3300006: polySurface2
+    3300008: polySurface3
     3300010: rail
     3300012: rail1
     3300014: rail10
@@ -139,30 +139,30 @@ ModelImporter:
     3300020: rail13
     3300022: rail14
     3300024: rail15
-    3300026: rail2
-    3300028: rail3
-    3300030: rail4
-    3300032: rail5
-    3300034: rail6
-    3300036: rail7
-    3300038: rail8
-    3300040: rail9
-    3300042: ramp
-    3300044: ramp1
-    3300046: ramp2
-    3300048: ramp3
-    3300050: ramp4
-    3300052: ramp5
-    3300054: ramp6
-    3300056: ramp7
+    3300026: rail16
+    3300028: rail2
+    3300030: rail3
+    3300032: rail4
+    3300034: rail5
+    3300036: rail6
+    3300038: rail7
+    3300040: rail8
+    3300042: ramp10
+    3300044: ramp12
+    3300046: ramp13
+    3300048: ramp14
+    3300050: ramp2
+    3300052: ramp3
+    3300054: ramp8
+    3300056: ramp9
     3300058: top_building
     3300060: top_building1
     3300062: top_building3
     3300064: top_building4
-    3300066: top_building5
-    3300068: top_building6
-    3300070: top_floor
-    3300072: top_floor1
+    3300066: top_building6
+    3300068: top_building7
+    3300070: top_floor1
+    3300072: top_floor2
     4300000: rail
     4300002: rail1
     4300004: rail3
@@ -172,34 +172,34 @@ ModelImporter:
     4300012: rail6
     4300014: rail7
     4300016: rail8
-    4300018: rail9
-    4300020: rail10
-    4300022: rail11
-    4300024: rail12
-    4300026: rail13
-    4300028: rail14
-    4300030: rail15
+    4300018: rail10
+    4300020: rail11
+    4300022: rail12
+    4300024: rail13
+    4300026: rail14
+    4300028: rail15
+    4300030: rail16
     4300032: ramp3
     4300034: ramp2
-    4300036: ramp1
-    4300038: ramp
-    4300040: ramp4
-    4300042: ramp5
-    4300044: ramp6
-    4300046: ramp7
+    4300036: ramp8
+    4300038: ramp9
+    4300040: ramp10
+    4300042: ramp12
+    4300044: ramp13
+    4300046: ramp14
     4300048: top_building1
     4300050: top_building
-    4300052: top_floor
-    4300054: top_building3
-    4300056: top_building4
-    4300058: top_building5
-    4300060: top_floor1
-    4300062: top_building6
-    4300064: middle_structure1
-    4300066: middle_structure
-    4300068: middle_building
-    4300070: floor
-    4300072: middle_building1
+    4300052: top_building3
+    4300054: top_building4
+    4300056: top_floor1
+    4300058: top_building6
+    4300060: top_building7
+    4300062: top_floor2
+    4300064: middle_billboard
+    4300066: middle_building
+    4300068: floor
+    4300070: polySurface2
+    4300072: polySurface3
   materials:
     importMaterials: 1
     materialName: 0
