@@ -47,6 +47,7 @@ GameObject:
   - 4: {fileID: 409956}
   - 198: {fileID: 19871164}
   - 199: {fileID: 19917414}
+  - 114: {fileID: 11440612}
   m_Layer: 0
   m_Name: CannonSmokeTrail
   m_TagString: Untagged
@@ -170,6 +171,18 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11440612
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e903b1257464143a87f475d7c8a57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  death: 5
 --- !u!114 &11454754
 MonoBehaviour:
   m_ObjectHideFlags: 1
