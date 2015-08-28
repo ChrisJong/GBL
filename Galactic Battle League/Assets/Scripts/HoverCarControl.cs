@@ -89,6 +89,8 @@ public class HoverCarControl : MonoBehaviour
 	private float rumbleTime;
 	
 	public AudioClip killCheer = null;
+	public float movingHoverPitch;
+	private AudioSource hoverSound;
 	
 	void Start()
 	{
@@ -113,6 +115,7 @@ public class HoverCarControl : MonoBehaviour
 		initialised = true;
 		particleLength = hoverParticles[0].startLifetime;
 		spawnInt = 0;
+		hoverSound = GetComponent<AudioSource> ();
 	}
 	
 	void OnDrawGizmos()
@@ -142,6 +145,7 @@ public class HoverCarControl : MonoBehaviour
 	
 	void Update()
 	{
+		hoverSound.pitch = 1;
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
 		health.healthscore = healthInt;
 		if (hasRespawned && inputDevice != null) 
@@ -177,6 +181,7 @@ public class HoverCarControl : MonoBehaviour
 					particle.startLifetime = particleLength*2;
 				}
 				m_currThrust = aclAxis * m_forwardAcl;
+				hoverSound.pitch = movingHoverPitch;
 			}
 			else if (aclAxis < -m_deadZone)
 			{
@@ -185,15 +190,22 @@ public class HoverCarControl : MonoBehaviour
 					particle.startLifetime = particleLength*0.5f;
 				}
 				m_currThrust = aclAxis * m_backwardAcl;
+				hoverSound.pitch = movingHoverPitch;
 			}
 			
 			// Side Thrust
 			m_currSideThrust = 0.0f;
 			float aclSideAxis = inputDevice.Direction.X;
 			if (aclSideAxis > m_deadZone)
+			{
 				m_currSideThrust = aclSideAxis * m_sideAcl;
+				hoverSound.pitch = movingHoverPitch;
+			}
 			else if (aclSideAxis < -m_deadZone)
+			{
 				m_currSideThrust = aclSideAxis * m_sideAcl;
+				hoverSound.pitch = movingHoverPitch;
+			}
 			
 			// Turning
 			m_currTurn = 0.0f;
