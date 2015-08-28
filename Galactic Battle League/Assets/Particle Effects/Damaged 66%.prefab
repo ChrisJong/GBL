@@ -24,7 +24,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154822}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -330.459991, y: -30.5300007, z: -261.910004}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -69,7 +69,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 1
+      scalar: .75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -180,11 +180,11 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minColor:
         serializedVersion: 2
-        rgba: 4294967295
+        rgba: 4285822068
       maxColor:
         serializedVersion: 2
-        rgba: 2161300178
-      minMaxState: 0
+        rgba: 4280690214
+      minMaxState: 2
     startSize:
       scalar: 1
       maxCurve:
@@ -242,10 +242,10 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 2
     enabled: 1
-    type: 4
-    radius: 1
+    type: 8
+    radius: 1.5
     angle: 20
-    length: 5
+    length: 1
     boxX: 1
     boxY: 1
     boxZ: 1
@@ -257,7 +257,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 15
+      scalar: 20
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -306,17 +306,17 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .300000012
+          value: 0
           inSlope: 2.41323876
           outSlope: 2.41323876
           tangentMode: 0
-        - time: .5
+        - time: .610410094
           value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
         - time: 1
-          value: .5
+          value: .675675631
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -844,7 +844,7 @@ ParticleSystem:
   RotationBySpeedModule:
     enabled: 0
     curve:
-      scalar: .785398185
+      scalar: .785398126
       maxCurve:
         serializedVersion: 2
         m_Curve:
