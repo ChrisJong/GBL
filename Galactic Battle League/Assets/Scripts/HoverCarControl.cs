@@ -390,7 +390,11 @@ public class HoverCarControl : MonoBehaviour
 
 				if ((float)healthInt/(float)maxHealth < .66f)
 					if (damage66)
+					{
+					damage66.maxParticles = 200-healthInt*4;
+					damage66.emissionRate = 25-healthInt/2;
 						damage66.Play();
+					}
 				if ((float)healthInt/(float)maxHealth < .33f)
 					if (damage33)
 						damage33.Play();
@@ -469,12 +473,10 @@ public class HoverCarControl : MonoBehaviour
 		if (damage66) 
 		{
 			damage66.Stop ();
-			damage66.Clear ();
 		}
 		foreach (ParticleSystem deathExplosion in deathParticle) 
 		{
 			deathExplosion.Stop ();
-			deathExplosion.Clear();
 		}
 
 		gameObject.transform.position = initialPosition;
