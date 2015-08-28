@@ -3,12 +3,9 @@ using System.Collections;
 
 public class ElevatorController : MonoBehaviour {
 
-	Rigidbody elevator;
-	float delayTime = 2;
-	float upSpeed = 3;
-	float downSpeed = 3;
-	bool moving = false;
-	bool goingUp = false;
+	float riseDelayTime = 2;
+	float descendDelayTime = 3;
+	bool elevatorAtBottom = true;
 
 	// Use this for initialization
 	void Start () 
@@ -19,46 +16,30 @@ public class ElevatorController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (moving) 
-		{
-			if (goingUp)
-			{
-				transform.Translate (Vector3.up * Time.deltaTime * upSpeed);
-			}
-			else
-			{
-				transform.Translate (Vector3.down * Time.deltaTime * downSpeed);
-			}
-		}
+
 	}
 
 	void OnTriggerEnter()
 	{
-		Invoke ("RaiseElevator", delayTime);
-	}
-
-	void OnTriggerExit()
-	{
-
+		if (elevatorAtBottom) 
+		{
+			elevatorAtBottom = false;
+			Invoke ("RaiseElevator", riseDelayTime);
+		}
 	}
 
 	void RaiseElevator()
 	{
-		print ("Raise elevator");
-		moving = true;
-		goingUp = true;
+		Animator anim = GetComponent<Animator> ();
+		anim.Play ("Elevator_Rise");
+
+		Invoke ("LowerElevator", descendDelayTime);
 	}
 
 	void LowerElevator()
 	{
-		print ("Lower elevator");
-		moving = true;
-		goingUp = false;
-	}
-
-	void StopElevator()
-	{
-		print ("Stopping elevator");
-		moving = false;
+		Animator anim = GetComponent<Animator> ();
+		anim.Play ("Elevator_Fall");
+		elevatorAtBottom = true;
 	}
 }
