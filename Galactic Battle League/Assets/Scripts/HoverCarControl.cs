@@ -34,6 +34,7 @@ public class HoverCarControl : MonoBehaviour
 	private float abilityCharge;
 	public float abilityChargeRate;
 	public float abilityUseRate;
+	public float abilityPower;
 	
 	public int playerNumber; 
 	public int tankClass;
@@ -50,7 +51,7 @@ public class HoverCarControl : MonoBehaviour
 	
 	//Death/respawn variables
 	public UIController uiController;
-	public HealthCounter health;
+	public HealthCounter healthCounter;
 	public AudioClip sfxDeath;
 	Vector3 initialPosition;
 	Quaternion initialRotation;
@@ -65,8 +66,8 @@ public class HoverCarControl : MonoBehaviour
 	private float tempHoverForce;
 	private float timer = 0.0f;
 	private bool deathRun = false;
-	public int maxHealth = 100;
-	private int healthInt;
+	public float maxHealth = 100;
+	private float health;
 	
 	public bool hasRespawned = true;
 	
@@ -91,6 +92,8 @@ public class HoverCarControl : MonoBehaviour
 	private float rumbleTime;
 	
 	public AudioClip killCheer = null;
+
+	public GameObject laserBeam = null;
 	
 	void Start()
 	{
@@ -99,7 +102,7 @@ public class HoverCarControl : MonoBehaviour
 			anim.enabled = false;
 		}
 		
-		healthInt = maxHealth;
+		health = maxHealth;
 		abilityCharge = maxAbilityCharge;
 
 		initialPosition = gameObject.transform.position;
@@ -146,7 +149,7 @@ public class HoverCarControl : MonoBehaviour
 	void Update()
 	{
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
-		health.healthscore = healthInt;
+		healthCounter.healthscore = (int)health;
 		if (hasRespawned && inputDevice != null) 
 		{
 			if (inputDevice.RightTrigger.IsPressed) 
@@ -233,14 +236,18 @@ public class HoverCarControl : MonoBehaviour
 			}
 			
 			//Ability
+			if (tankClass != 0) {
+				laserBeam.transform.localScale = new Vector3(laserBeam.transform.localScale.x, 0, laserBeam.transform.localScale.z);
+				laserBeam.transform.position = m_body.position;
+			}
 			if (inputDevice.LeftTrigger.IsPressed && abilityCharge > 0f)
 			{
 				abilityCharge -= abilityUseRate * Time.deltaTime;
 				
 				if (tankClass == 1) {
 					//Boost ability
-					m_currThrust = 25.0f * aclAxis * m_forwardAcl;
-					m_currSideThrust = 25.0f * aclSideAxis * m_sideAcl;
+					m_currThrust = abilityPower * aclAxis * m_forwardAcl;
+					m_currSideThrust = abilityPower * aclSideAxis * m_sideAcl;
 
 					foreach(ParticleSystem particle in hoverParticles)
 					{
@@ -252,15 +259,20 @@ public class HoverCarControl : MonoBehaviour
 					layermask = ~layermask;
 					RaycastHit hit;
 					bool hitWall = false;
-					Physics.Raycast(shotSpawn.position, shotSpawn.forward, out hit, 300, layermask);
+					Physics.Raycast(shotSpawn[0].position, shotSpawn[0].forward, out hit, 300, layermask);
 
-					Debug.DrawLine (shotSpawn.position, hit.point, Color.cyan);
-					//print(hitscan.collider.name);
+					Debug.DrawLine (shotSpawn[0].position, hit.point, Color.cyan);
+
+					//draw laser
+
+					laserBeam.transform.localScale = new Vector3(laserBeam.transform.localScale.x, hit.distance/2, laserBeam.transform.localScale.z);
+					laserBeam.transform.position = (shotSpawn[0].position+hit.point) / 2;
+
 					RaycastHit[] hits;
-					hits = Physics.RaycastAll(shotSpawn.position, shotSpawn.forward, hit.distance);
+					hits = Physics.RaycastAll(shotSpawn[0].position, shotSpawn[0].forward, hit.distance);
 					for (int i = 0; i < hits.Length; i++) {
 						if (hits[i].collider.tag == "Player")
-							Debug.Log(hits[i].collider.gameObject.name, hits[i].collider.gameObject);
+							hits[i].collider.gameObject.SendMessage("Damage", abilityPower * Time.deltaTime);
 					}
 				}
 
@@ -285,7 +297,7 @@ public class HoverCarControl : MonoBehaviour
 			Respawn ();
 		}
 		
-		if (healthInt <= 0) 
+		if (health <= 0) 
 		{
 			if (!deathRun)
 				Death ();
@@ -391,7 +403,7 @@ public class HoverCarControl : MonoBehaviour
 					// hit.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, explosionPos, explosionRadius);
 					
 				//}
-				healthInt -= shotControllerCopy.damage;
+				health -= shotControllerCopy.damage;
 
 				//Destroy other shot and smoke trail properly
 				ParticleSystem smoke = other.GetComponentInChildren<ParticleSystem> ();
@@ -405,15 +417,15 @@ public class HoverCarControl : MonoBehaviour
 				else
 					Rumble(0.15f);
 
-				if ((float)healthInt/(float)maxHealth < .66f)
+				if (health/maxHealth < .66f)
 					if (damage66)
 						damage66.Play();
-				if ((float)healthInt/(float)maxHealth < .33f)
+				if (health/maxHealth < .33f)
 					if (damage33)
 						damage33.Play();
-				if (healthInt <= 0)
+				if (health <= 0)
 				{
-					healthInt = 0;
+					health = 0;
 					uiController.PlayerKill(shotControllerCopy.playerNumber, playerNumber);
 				}
 			}
@@ -506,7 +518,7 @@ public class HoverCarControl : MonoBehaviour
 		}
 		if (baseParticle)
 			baseParticle.Play ();
-		healthInt = maxHealth;
+		health = maxHealth;
 		deathRun = false;
 		hasRespawned = true;
 		
@@ -518,13 +530,17 @@ public class HoverCarControl : MonoBehaviour
 		if (rumbleTime < Time.time + duration)
 			rumbleTime = Time.time + duration;
 	}
+
+	void Damage(float dmg) {
+		health -= dmg;
+	}
 	
 	void OnEnable()
 	{
 		if (initialised) {
 			gameObject.transform.position = initialPosition;
 			gameObject.transform.rotation = initialRotation;
-			healthInt = maxHealth;
+			health = maxHealth;
 		}
 	}
 	void OnDisable()
