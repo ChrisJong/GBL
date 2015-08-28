@@ -49,14 +49,11 @@ public class UIController : MonoBehaviour
 	public void GameOver()
 	{
 		int[] playerNumbers = {1,2,3,4};
-
 		Array.Sort (score, playerNumbers);
-		Array.Reverse (score);
-		Array.Reverse (playerNumbers);
 
-		PlayerPrefs.SetInt ("Winner", playerNumbers[0]);
-		PlayerPrefs.SetInt ("Second", playerNumbers[1]);
-		PlayerPrefs.SetInt ("Third", playerNumbers[2]);
+		PlayerPrefs.SetInt ("Winner", playerNumbers[3]);
+		PlayerPrefs.SetInt ("Second", playerNumbers[2]);
+		PlayerPrefs.SetInt ("Third", playerNumbers[1]);
 		Application.LoadLevel("WinScreen");
 	}
 }
