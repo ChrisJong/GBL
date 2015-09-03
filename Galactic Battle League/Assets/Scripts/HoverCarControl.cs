@@ -315,11 +315,9 @@ public class HoverCarControl : MonoBehaviour
 
 
 		// ability stuff
-		if (tankClass != 1) {
-			if (laserBeam != null) {
-				laserBeam.transform.localScale = new Vector3(laserBeam.transform.localScale.x, 0, laserBeam.transform.localScale.z);
-				laserBeam.transform.position = m_body.position;
-			}
+		if (laserBeam != null) {
+			laserBeam.transform.localScale = new Vector3(laserBeam.transform.localScale.x, 0, laserBeam.transform.localScale.z);
+			laserBeam.transform.position = new Vector3(0, 0, -10000);
 		}
 
 		if (abilityActive && abilityCharge > 0f)
@@ -532,11 +530,16 @@ public class HoverCarControl : MonoBehaviour
 			return;
 		else {
 			ParticleSystem hitExplosion = ((GameObject)Instantiate (hitParticle, damageData.position, shotSpawn [0].rotation)).GetComponent<ParticleSystem> ();
+
 			//hitExplosion.startLifetime = (float)shotControllerCopy.damage/10.0f;
 			if (damageData.damage >= 10)
 				hitExplosion.startSize = 6;
-			else
+			else if (damageData.damage >=2)
 				hitExplosion.startSize = 3;
+			else {
+				hitExplosion.startSize = 1;
+				Destroy(hitExplosion.transform.GetChild(0).gameObject);
+			}
 			
 			hitExplosion.Play ();
 			//foreach (Collider hit in colliders) 
@@ -550,8 +553,10 @@ public class HoverCarControl : MonoBehaviour
 	
 			if (damageData.damage >= 10)
 				Rumble (0.3f);
-			else
+			else if (damageData.damage >= 2)
 				Rumble (0.15f);
+			else
+				Rumble (0.5f);
 			
 			if (health / maxHealth < .66f)
 			if (damage66)
