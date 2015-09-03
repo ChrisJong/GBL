@@ -440,7 +440,7 @@ public class HoverCarControl : MonoBehaviour
 				if (healthInt <= 0)
 				{
 					healthInt = 0;
-					uiController.PlayerKill(shotControllerCopy.playerNumber, playerNumber);
+					uiController.PlayerKill(shotControllerCopy.playerNumber, shotControllerCopy.damage, playerNumber, tankClass);
 				}
 			}
 		}
