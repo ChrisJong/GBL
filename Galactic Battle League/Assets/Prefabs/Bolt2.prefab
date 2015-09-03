@@ -47,6 +47,7 @@ GameObject:
   - 4: {fileID: 408108}
   - 198: {fileID: 19845636}
   - 199: {fileID: 19973114}
+  - 114: {fileID: 11426556}
   m_Layer: 0
   m_Name: CannonSmokeTrail
   m_TagString: Untagged
@@ -170,6 +171,18 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11426556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 140480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e903b1257464143a87f475d7c8a57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  death: 5
 --- !u!114 &11428894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -366,7 +379,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 2161765620
+        rgba: 4291707904
       minMaxState: 0
     startSize:
       scalar: .300000012
@@ -1236,6 +1249,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: shotSpeed
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: InitialModule.startColor.maxColor.rgba
+      value: 4291707904
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

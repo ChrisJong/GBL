@@ -612,6 +612,7 @@ GameObject:
   - 114: {fileID: 11450906}
   - 65: {fileID: 6550906}
   - 82: {fileID: 8262506}
+  - 82: {fileID: 8215132}
   m_Layer: 0
   m_Name: Hover Car Light
   m_TagString: Player
@@ -1091,23 +1092,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &176612
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 412174}
-  - 33: {fileID: 3302042}
-  - 23: {fileID: 2335550}
-  m_Layer: 0
-  m_Name: LaserBeam
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &177082
 GameObject:
   m_ObjectHideFlags: 1
@@ -1445,6 +1429,7 @@ GameObject:
   - 114: {fileID: 11495662}
   - 65: {fileID: 6595664}
   - 82: {fileID: 8229374}
+  - 82: {fileID: 8233768}
   m_Layer: 0
   m_Name: Hover Car Heavy
   m_TagString: Player
@@ -1933,18 +1918,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 484004}
   m_RootOrder: 3
---- !u!4 &412174
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176612}
-  m_LocalRotation: {x: -3.09086197e-08, y: -.707106709, z: .707106829, w: -3.09086161e-08}
-  m_LocalPosition: {x: 100, y: -26.4200001, z: 124.330009}
-  m_LocalScale: {x: .25, y: 1, z: .25}
-  m_Children: []
-  m_Father: {fileID: 495640}
-  m_RootOrder: 0
 --- !u!4 &412662
 Transform:
   m_ObjectHideFlags: 1
@@ -1970,7 +1943,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &414710
 Transform:
   m_ObjectHideFlags: 1
@@ -2729,7 +2702,7 @@ Transform:
   - {fileID: 471670}
   - {fileID: 422108}
   m_Father: {fileID: 495640}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!4 &480752
 Transform:
   m_ObjectHideFlags: 1
@@ -2935,7 +2908,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 412174}
   - {fileID: 480750}
   - {fileID: 414424}
   - {fileID: 495664}
@@ -2972,7 +2944,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!4 &495646
 Transform:
   m_ObjectHideFlags: 1
@@ -2996,7 +2968,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!4 &495654
 Transform:
   m_ObjectHideFlags: 1
@@ -3008,7 +2980,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!4 &495656
 Transform:
   m_ObjectHideFlags: 1
@@ -3020,7 +2992,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!4 &495658
 Transform:
   m_ObjectHideFlags: 1
@@ -3044,7 +3016,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &495664
 Transform:
   m_ObjectHideFlags: 1
@@ -3056,7 +3028,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495640}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!4 &496956
 Transform:
   m_ObjectHideFlags: 1
@@ -3355,30 +3327,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!23 &2335550
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176612}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_Materials:
-  - {fileID: 2100000, guid: b2ed36fafaf03e043820e5d6e01af708, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!23 &2380752
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -3475,13 +3423,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3302042
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176612}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3316478
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -3587,6 +3528,75 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 1.79999995, z: 5.5}
   m_Center: {x: 0, y: 1.39999998, z: 0}
+--- !u!82 &8215132
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150920}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2c82ac60056fc7c46beb053e093f12fe, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!82 &8229374
 AudioSource:
   m_ObjectHideFlags: 1
@@ -3601,6 +3611,75 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!82 &8233768
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195640}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
   Mute: 0
   Priority: 128
   DopplerLevel: 1
@@ -4056,8 +4135,8 @@ MonoBehaviour:
   m_rightAirBrake: {fileID: 150906}
   maxAbilityCharge: 100
   abilityChargeRate: 50
-  abilityUseRate: 500
-  abilityPower: 2
+  abilityUseRate: 1000
+  abilityPower: 5
   playerNumber: 1
   tankClass: 1
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
@@ -4090,12 +4169,16 @@ MonoBehaviour:
   - {fileID: 19862056}
   fireRate: .100000001
   sfxFire: {fileID: 8300000, guid: d1eaf090483e4f745b1f5d87dad22fad, type: 3}
+  fireLoopEnd: {fileID: 8300000, guid: 75a5820f5d9e3db4cba3059a044c7927, type: 3}
+  weaponSound: {fileID: 8215132}
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
   explosionPower: 150000
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
   laserBeam: {fileID: 0}
+  movingHoverPitch: 1.10000002
+  hoverSound: {fileID: 8262506}
 --- !u!114 &11454702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4280,7 +4363,7 @@ MonoBehaviour:
   m_leftAirBrake: {fileID: 195654}
   m_rightAirBrake: {fileID: 195656}
   maxAbilityCharge: 100
-  abilityChargeRate: 50
+  abilityChargeRate: 10
   abilityUseRate: 100
   abilityPower: 25
   playerNumber: 1
@@ -4314,12 +4397,16 @@ MonoBehaviour:
   - {fileID: 19811614}
   fireRate: 1
   sfxFire: {fileID: 8300000, guid: a62ac33126b541746aa9c6a1c07858bd, type: 3}
+  fireLoopEnd: {fileID: 0}
+  weaponSound: {fileID: 0}
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
   explosionPower: 1e+07
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
-  laserBeam: {fileID: 176612}
+  laserBeam: {fileID: 0}
+  movingHoverPitch: 1.125
+  hoverSound: {fileID: 8229374}
 --- !u!114 &11495664
 MonoBehaviour:
   m_ObjectHideFlags: 1
