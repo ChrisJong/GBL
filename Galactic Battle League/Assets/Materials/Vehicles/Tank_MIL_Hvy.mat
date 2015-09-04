@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Tank_MIL_Hvy
-  m_Shader: {fileID: 4800000, guid: 35b7c6ba7e7041445a6bcfab3a36db38, type: 3}
-  m_ShaderKeywords: OUTLINE_BLENDING TCP2_RAMPTEXT TCP2_ZSMOOTH_ON
+  m_Shader: {fileID: 4800000, guid: d6a8acbf22ad87b468b8f2b8aa8ec97e, type: 3}
+  m_ShaderKeywords: OUTLINE_BLENDING TCP2_RAMPTEXT TCP2_SPEC_TOON TCP2_ZSMOOTH_ON
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -40,7 +40,7 @@ Material:
       data:
         first:
           name: _Shininess
-        second: .078125
+        second: 2
       data:
         first:
           name: _Outline
@@ -77,6 +77,10 @@ Material:
         first:
           name: _DstBlendOutline
         second: 0
+      data:
+        first:
+          name: _SpecSmooth
+        second: 1
     m_Colors:
       data:
         first:
