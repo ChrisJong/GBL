@@ -608,7 +608,7 @@ public class HoverCarControl : MonoBehaviour
 				damage33.Play ();
 			if (health <= 0) {
 				health = 0;
-				uiController.PlayerKill (damageData.playerNumber, playerNumber);
+				uiController.PlayerKill (damageData.playerNumber, damageData.damage, playerNumber, tankClass);
 			}
 		}
 	}

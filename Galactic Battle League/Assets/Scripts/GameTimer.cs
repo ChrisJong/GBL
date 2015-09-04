@@ -9,7 +9,7 @@ public class GameTimer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		time = 30;
+		time = 300;
 		gameTime = GetComponent<Text> ();
 		InvokeRepeating ("DecreasingTime", 1, 1);
 		gameTime.text = DisplayTime ();

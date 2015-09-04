@@ -20,7 +20,8 @@ public class UIController : MonoBehaviour
 	void Start () 
 	{
 		fileName = DateTime.Now.ToString("ddMMyyyyHHmm") + ".txt";
-		trackingFile = File.CreateText(fileName);
+		trackingFile = new StreamWriter(fileName, true);
+		trackingFile.Close ();
 		timer = GameObject.Find ("TimerText").GetComponent<GameTimer> ();
 	}
 	
@@ -46,6 +47,7 @@ public class UIController : MonoBehaviour
 
 		if (File.Exists (fileName)) 
 		{
+			trackingFile = new StreamWriter(fileName, true);
 			string victimClassString = "NOT FOUND";
 			if(victimClass == 1)
 				victimClassString = "LIGHT";
@@ -60,6 +62,8 @@ public class UIController : MonoBehaviour
 				attackerClassString = "HEAVY";
 
 			trackingFile.WriteLine("Player " + attacker.ToString() + " (" + attackerClassString + ") killed player " + victim.ToString() + " (" + victimClassString + ").");
+			trackingFile.WriteLine ("Time Remaining: " + timer.time.ToString());
+			trackingFile.Close();
 		}
 		if (score[attacker-1] >= 5)
 		{
@@ -71,13 +75,16 @@ public class UIController : MonoBehaviour
 	// Ranks players and stores the 1st/2nd/3rd in the PlayerPrefs
 	public void GameOver()
 	{
-		trackingFile.Close ();
+
 		int[] playerNumbers = {1,2,3,4};
 		Array.Sort (score, playerNumbers);
 
 		PlayerPrefs.SetInt ("Winner", playerNumbers[3]);
 		PlayerPrefs.SetInt ("Second", playerNumbers[2]);
 		PlayerPrefs.SetInt ("Third", playerNumbers[1]);
+		trackingFile = new StreamWriter (fileName, true);
+		trackingFile.WriteLine("Winner: " + playerNumbers[3].ToString());
+		trackingFile.Close ();
 		Application.LoadLevel("WinScreen");
 	}
 }
