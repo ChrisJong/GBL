@@ -20,7 +20,7 @@ public class UIController : MonoBehaviour
 	void Start () 
 	{
 		Directory.CreateDirectory("tracking");
-		fileName = "tracking\\" + DateTime.Now.ToString("ddMMyyyyHHmm") + ".txt";
+		fileName = "tracking\\" + DateTime.Now.ToString("ddMMyyyyHHmm") + "kills.txt";
 		trackingFile = new StreamWriter(fileName, true);
 		trackingFile.Close ();
 		timer = GameObject.Find ("TimerText").GetComponent<GameTimer> ();

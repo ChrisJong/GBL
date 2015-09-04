@@ -2,7 +2,8 @@
 using System.Collections;
 using InControl;
 using UnityEngine.UI;
-
+using System;
+using System.IO;
 
 public struct DamageData {
 	public float damage;
@@ -110,9 +111,18 @@ public class HoverCarControl : MonoBehaviour
 	private bool abilityActive = false;
 	public float movingHoverPitch;
 	public AudioSource hoverSound;
+
+	private string fileName;
+	private StreamWriter trackingFile;
 	
 	void Start()
 	{
+		
+		Directory.CreateDirectory("tracking");
+		fileName = "tracking\\" + DateTime.Now.ToString("ddMMyyyyHHmm") + "damage.txt";
+		trackingFile = new StreamWriter(fileName, true);
+		trackingFile.Close ();
+
 		foreach (Animator anim in spawnAnimators) 
 		{
 			anim.enabled = false;
@@ -467,6 +477,10 @@ public class HoverCarControl : MonoBehaviour
 				damageData.playerNumber = shotControllerCopy.playerNumber;
 
 				Damage(damageData);
+
+				trackingFile = new StreamWriter(fileName, true);
+				trackingFile.WriteLine(playerNumber.ToString() + "\t" + shotControllerCopy.playerNumber.ToString() + "\t" + shotControllerCopy.damage.ToString());
+				trackingFile.Close ();
 			}
 		}
 	}
@@ -494,7 +508,7 @@ public class HoverCarControl : MonoBehaviour
 		Quaternion shotAngle = shotSpawn[spawnInt].rotation;
 		if (tankClass == 1) 
 		{
-			Vector2 error = Random.insideUnitCircle * currError;
+			Vector2 error = UnityEngine.Random.insideUnitCircle * currError;
 			Quaternion errorRotation = Quaternion.Euler(error.x/2, error.y, 0);
 			shotAngle = shotAngle * errorRotation;
 			if (currError < maxError)
@@ -615,6 +629,7 @@ public class HoverCarControl : MonoBehaviour
 				health = 0;
 				uiController.PlayerKill (damageData.playerNumber, (int)damageData.damage, playerNumber, tankClass);
 			}
+
 		}
 	}
 	
