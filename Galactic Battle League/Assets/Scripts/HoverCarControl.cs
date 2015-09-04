@@ -514,9 +514,8 @@ public class HoverCarControl : MonoBehaviour
 		m_currTurn = 0.0f;
 		
 		AudioSource.PlayClipAtPoint(sfxDeath, gameObject.transform.position, 1);
-		if (killCheer) {
+		if (killCheer)
 			AudioSource.PlayClipAtPoint(killCheer, gameObject.transform.position, 1f);
-		}
 		timer = 0.0f;
 		deathRun = true;
 		Vector3 point = gameObject.transform.position;
