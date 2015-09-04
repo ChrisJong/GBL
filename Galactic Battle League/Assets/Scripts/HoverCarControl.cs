@@ -9,6 +9,7 @@ public struct DamageData {
 	public float damage;
 	public Vector3 position;
 	public int playerNumber;
+	public float distance;
 }
 
 [RequireComponent(typeof(Rigidbody))]
@@ -114,6 +115,7 @@ public class HoverCarControl : MonoBehaviour
 
 	private string fileName;
 	private StreamWriter trackingFile;
+	private float damageSinceLastPrint;
 	
 	void Start()
 	{
@@ -122,6 +124,7 @@ public class HoverCarControl : MonoBehaviour
 		fileName = "tracking\\" + DateTime.Now.ToString("ddMMyyyyHHmm") + "damage.txt";
 		trackingFile = new StreamWriter(fileName, true);
 		trackingFile.Close ();
+		damageSinceLastPrint = 0;
 
 		foreach (Animator anim in spawnAnimators) 
 		{
@@ -406,6 +409,7 @@ public class HoverCarControl : MonoBehaviour
 							damageData.damage = abilityPower * Time.deltaTime;
 							damageData.position = hits[i].point;
 							damageData.playerNumber = playerNumber;
+							damageData.distance = 0;
 							hits[i].collider.gameObject.SendMessage("Damage", damageData);
 							Rumble(0.05f);
 						}
@@ -476,12 +480,10 @@ public class HoverCarControl : MonoBehaviour
 				damageData.damage = shotControllerCopy.damage;
 				damageData.position = other.transform.position;
 				damageData.playerNumber = shotControllerCopy.playerNumber;
+				damageData.distance = Vector3.Distance(shotControllerCopy.startPoint, other.transform.position);
 
 				Damage(damageData);
 
-				trackingFile = new StreamWriter(fileName, true);
-				trackingFile.WriteLine(playerNumber.ToString() + "\t" + shotControllerCopy.playerNumber.ToString() + "\t" + shotControllerCopy.damage.ToString());
-				trackingFile.Close ();
 			}
 		}
 	}
@@ -630,7 +632,14 @@ public class HoverCarControl : MonoBehaviour
 				health = 0;
 				uiController.PlayerKill (damageData.playerNumber, (int)damageData.damage, playerNumber, tankClass);
 			}
-
+			damageSinceLastPrint += damageData.damage;
+			if (damageSinceLastPrint >= 1)
+			{
+				trackingFile = new StreamWriter(fileName, true);
+				trackingFile.WriteLine(playerNumber.ToString() + "\t" + damageData.playerNumber.ToString() + "\t" + damageSinceLastPrint.ToString() + "\t" + damageData.distance.ToString());
+				trackingFile.Close ();
+				damageSinceLastPrint = 0;
+			}
 		}
 	}
 	
