@@ -4133,7 +4133,10 @@ MonoBehaviour:
   m_aimStrength: 1e+06
   m_leftAirBrake: {fileID: 150936}
   m_rightAirBrake: {fileID: 150906}
-  abilityRate: 0
+  maxAbilityCharge: 100
+  abilityChargeRate: 50
+  abilityUseRate: 1000
+  abilityPower: 5
   playerNumber: 1
   tankClass: 1
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
@@ -4143,7 +4146,7 @@ MonoBehaviour:
   - {fileID: 19899318}
   baseParticle: {fileID: 19899320}
   uiController: {fileID: 0}
-  health: {fileID: 0}
+  healthCounter: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 182872, guid: 614f2b7626b648d41bf91c287789ad1a, type: 2}
   deathParticle:
@@ -4173,6 +4176,7 @@ MonoBehaviour:
   explosionRadius: 4
   explosionPower: 150000
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  laserBeam: {fileID: 0}
   movingHoverPitch: 1.10000002
   hoverSound: {fileID: 8262506}
 --- !u!114 &11454702
@@ -4358,7 +4362,10 @@ MonoBehaviour:
   m_aimStrength: 2500000
   m_leftAirBrake: {fileID: 195654}
   m_rightAirBrake: {fileID: 195656}
-  abilityRate: 0
+  maxAbilityCharge: 100
+  abilityChargeRate: 10
+  abilityUseRate: 100
+  abilityPower: 25
   playerNumber: 1
   tankClass: 2
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
@@ -4369,7 +4376,7 @@ MonoBehaviour:
   - {fileID: 19899314}
   baseParticle: {fileID: 19845950}
   uiController: {fileID: 0}
-  health: {fileID: 0}
+  healthCounter: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 182872, guid: 614f2b7626b648d41bf91c287789ad1a, type: 2}
   deathParticle:
@@ -4397,6 +4404,7 @@ MonoBehaviour:
   explosionRadius: 4
   explosionPower: 1e+07
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  laserBeam: {fileID: 0}
   movingHoverPitch: 1.125
   hoverSound: {fileID: 8229374}
 --- !u!114 &11495664
