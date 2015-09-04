@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Floor
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: 9ec7ccbd4289d0543939f61121224d93, type: 3}
+  m_ShaderKeywords: TCP2_SPEC_TOON
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -32,6 +32,13 @@ Material:
       data:
         first:
           name: _DetailNormalMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Ramp
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -93,8 +100,24 @@ Material:
         second: .5
       data:
         first:
+          name: _Shininess
+        second: .75
+      data:
+        first:
           name: _Parallax
         second: .0199999996
+      data:
+        first:
+          name: _RampThreshold
+        second: .5
+      data:
+        first:
+          name: _RampSmooth
+        second: .100000001
+      data:
+        first:
+          name: _SpecSmooth
+        second: 1
       data:
         first:
           name: _ZWrite
@@ -135,4 +158,16 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .720588207, g: .12186417, b: .12186417, a: 1}
+        second: {r: .242647052, g: .242647052, b: .242647052, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .5, g: .5, b: .5, a: 1}
+      data:
+        first:
+          name: _HColor
+        second: {r: .286764681, g: .286764681, b: .286764681, a: 1}
+      data:
+        first:
+          name: _SColor
+        second: {r: 0, g: 0, b: 0, a: 1}

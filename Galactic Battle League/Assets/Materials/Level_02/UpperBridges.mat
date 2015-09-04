@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: UpperBridges
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: d6a8acbf22ad87b468b8f2b8aa8ec97e, type: 3}
+  m_ShaderKeywords: OUTLINE_BLENDING TCP2_SPEC
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -32,6 +32,13 @@ Material:
       data:
         first:
           name: _DetailNormalMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Ramp
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -93,8 +100,52 @@ Material:
         second: .5
       data:
         first:
+          name: _Shininess
+        second: .800000012
+      data:
+        first:
+          name: _Outline
+        second: 10
+      data:
+        first:
           name: _Parallax
         second: .0199999996
+      data:
+        first:
+          name: _RampThreshold
+        second: .5
+      data:
+        first:
+          name: _RampSmooth
+        second: .100000001
+      data:
+        first:
+          name: _TexLod
+        second: 5
+      data:
+        first:
+          name: _ZSmooth
+        second: -.5
+      data:
+        first:
+          name: _Offset1
+        second: 0
+      data:
+        first:
+          name: _Offset2
+        second: 0
+      data:
+        first:
+          name: _SrcBlendOutline
+        second: 5
+      data:
+        first:
+          name: _DstBlendOutline
+        second: 10
+      data:
+        first:
+          name: _SpecSmooth
+        second: .0500000007
       data:
         first:
           name: _ZWrite
@@ -135,4 +186,20 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .360402226, g: .394672364, b: .742647052, a: 1}
+        second: {r: .875, g: .886206865, b: 1, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .5, g: .5, b: .5, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+      data:
+        first:
+          name: _HColor
+        second: {r: .634569585, g: .635112166, b: .713235259, a: 1}
+      data:
+        first:
+          name: _SColor
+        second: {r: .0661764741, g: .0661764741, b: .0661764741, a: 1}

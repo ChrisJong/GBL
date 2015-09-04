@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: column
+  m_Name: fence_Tall
   m_Shader: {fileID: 4800000, guid: d6a8acbf22ad87b468b8f2b8aa8ec97e, type: 3}
-  m_ShaderKeywords: OUTLINE_BLENDING TCP2_SPEC
+  m_ShaderKeywords: OUTLINE_BLENDING TCP2_SPEC_TOON
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: fa4c79f1f7118f14591cea7a6edb01f6, type: 3}
+          m_Texture: {fileID: 2800000, guid: 66df7d3028634d64eb163f1b7ad57eed, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -101,7 +101,7 @@ Material:
       data:
         first:
           name: _Shininess
-        second: .5
+        second: .100000001
       data:
         first:
           name: _Outline
@@ -190,7 +190,7 @@ Material:
       data:
         first:
           name: _SpecColor
-        second: {r: .845588207, g: .845588207, b: .845588207, a: 1}
+        second: {r: .514705896, g: .484429091, b: .484429091, a: 1}
       data:
         first:
           name: _OutlineColor
@@ -198,7 +198,7 @@ Material:
       data:
         first:
           name: _HColor
-        second: {r: .411764681, g: .411764681, b: .411764681, a: 1}
+        second: {r: .808823526, g: .808823526, b: .808823526, a: 1}
       data:
         first:
           name: _SColor
