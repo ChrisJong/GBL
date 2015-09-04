@@ -3,8 +3,10 @@ using System.Collections;
 
 public class ElevatorController : MonoBehaviour {
 
-	float riseDelayTime = 2;
-	float descendDelayTime = 5;
+	float doorCloseDelayTime = 1;
+	float doorOpenDelayTime = 5;
+	float riseDelayTime = 3;
+	float descendDelayTime = 10;
 	bool elevatorAtBottom = true;
 
 	// Use this for initialization
@@ -24,22 +26,73 @@ public class ElevatorController : MonoBehaviour {
 		if (elevatorAtBottom) 
 		{
 			elevatorAtBottom = false;
-			Invoke ("RaiseElevator", riseDelayTime);
+			Invoke ("CloseDoors", doorCloseDelayTime);
 		}
+	}
+
+	void CloseDoors()
+	{
+		foreach (Transform child in transform) 
+		{
+			if (child.name == "elevatorDoor_Left")
+			{
+				Animator anim = child.GetComponent<Animator>();
+				anim.Play("elevator_Door_Left");
+			}
+			else if (child.name == "elevatorDoor_Right")
+			{
+				Animator anim = child.GetComponent<Animator>();
+				anim.Play("elevator_Door_Right");
+			}
+		}
+
+		Invoke ("RaiseElevator", riseDelayTime);
 	}
 
 	void RaiseElevator()
 	{
-		Animator anim = GetComponent<Animator> ();
-		anim.Play ("Elevator_Rise");
-
+		foreach (Transform child in transform) 
+		{
+			if (child.name == "elevatorInterior") 
+			{
+				Animator anim = child.GetComponent<Animator> ();
+				anim.Play ("elevator_Floor_Rise");
+			}
+		}
+		
 		Invoke ("LowerElevator", descendDelayTime);
 	}
-
+	
 	void LowerElevator()
 	{
-		Animator anim = GetComponent<Animator> ();
-		anim.Play ("Elevator_Fall");
+		foreach (Transform child in transform) 
+		{
+			if (child.name == "elevatorInterior") 
+			{
+				Animator anim = child.GetComponent<Animator> ();
+				anim.Play ("elevator_Floor_Fall");
+			}
+		}
+
+		Invoke ("OpenDoors", doorOpenDelayTime);
+	}
+
+	void OpenDoors()
+	{
+		foreach (Transform child in transform) 
+		{
+			if (child.name == "elevatorDoor_Left")
+			{
+				Animator anim = child.GetComponent<Animator>();
+				anim.Play("elevator_Door_Left_Open");
+			}
+			else if (child.name == "elevatorDoor_Right")
+			{
+				Animator anim = child.GetComponent<Animator>();
+				anim.Play("elevator_Door_Right_Open");
+			}
+		}
+
 		elevatorAtBottom = true;
 	}
 }
