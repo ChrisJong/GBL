@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using UnityEngine.UI;
+using System.IO;
 
 public class UIController : MonoBehaviour 
 {
@@ -11,10 +12,15 @@ public class UIController : MonoBehaviour
 	
 	public GameObject[] killedMessage;
 	public GameObject[] killMessage;
-	
+
+	private string fileName;
+	private StreamWriter trackingFile;
+
 	// Use this for initialization
 	void Start () 
 	{
+		fileName = DateTime.Now.ToString("ddMMyyyyHHmm") + ".txt";
+		trackingFile = File.CreateText(fileName);
 		timer = GameObject.Find ("TimerText").GetComponent<GameTimer> ();
 	}
 	
@@ -27,7 +33,7 @@ public class UIController : MonoBehaviour
 		}
 	}
 	
-	public void PlayerKill(int attacker, int victim) 
+	public void PlayerKill(int attacker, int attackerClass, int victim, int victimClass) 
 	{
 		score [attacker - 1]++;
 		scoreText[attacker - 1].score++;
@@ -37,7 +43,24 @@ public class UIController : MonoBehaviour
 		
 		killMessage[attacker-1].SetActive(true);
 		killMessage[attacker-1].GetComponentsInChildren<Text>()[0].text = "YOU KILLED PLAYER " + victim.ToString() + "!";
-		
+
+		if (File.Exists (fileName)) 
+		{
+			string victimClassString = "NOT FOUND";
+			if(victimClass == 1)
+				victimClassString = "LIGHT";
+			else
+				victimClassString = "HEAVY";
+
+			//attacker class just uses damaage of shot. Will need to be reworked for laser.
+			string attackerClassString = "NOT FOUND";
+			if (attackerClass < 10)
+				attackerClassString = "LIGHT";
+			else
+				attackerClassString = "HEAVY";
+
+			trackingFile.WriteLine("Player " + attacker.ToString() + " (" + attackerClassString + ") killed player " + victim.ToString() + " (" + victimClassString + ").");
+		}
 		if (score[attacker-1] >= 5)
 		{
 			GameOver();
@@ -48,6 +71,7 @@ public class UIController : MonoBehaviour
 	// Ranks players and stores the 1st/2nd/3rd in the PlayerPrefs
 	public void GameOver()
 	{
+		trackingFile.Close ();
 		int[] playerNumbers = {1,2,3,4};
 		Array.Sort (score, playerNumbers);
 
