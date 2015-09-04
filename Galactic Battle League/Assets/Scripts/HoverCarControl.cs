@@ -167,7 +167,8 @@ public class HoverCarControl : MonoBehaviour
 	{
 		hoverSound.pitch = 1;
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
-		healthCounter.healthscore = (int)health;
+		healthCounter.health = health;
+		healthCounter.maxHealth = maxHealth;
 		if (hasRespawned && inputDevice != null) 
 		{
 			if (inputDevice.RightTrigger.IsPressed) 
