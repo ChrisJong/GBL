@@ -378,25 +378,29 @@ public class HoverCarControl : MonoBehaviour
 				var layermask = 1 << 12;
 				layermask = ~layermask;
 				bool hitWall = false;
-				Physics.Raycast(shotSpawn[0].position, shotSpawn[0].forward, out hit, 300, layermask);
-				
-				Debug.DrawLine (shotSpawn[0].position, hit.point, Color.cyan);
-				
-				//draw laser
-				
-				laserBeam.transform.localScale = new Vector3(laserBeam.transform.localScale.x, hit.distance/2, laserBeam.transform.localScale.z);
-				laserBeam.transform.position = (shotSpawn[0].position+hit.point) / 2;
-				
-				RaycastHit[] hits;
-				hits = Physics.RaycastAll(shotSpawn[0].position, shotSpawn[0].forward, hit.distance);
-				for (int i = 0; i < hits.Length; i++) {
-					if (hits[i].collider.tag == "Player") {
-						DamageData damageData;
-						damageData.damage = abilityPower * Time.deltaTime;
-						damageData.position = hits[i].point;
-						damageData.playerNumber = playerNumber;
-						hits[i].collider.gameObject.SendMessage("Damage", damageData);
+				if (Physics.Raycast(shotSpawn[0].position, shotSpawn[0].forward, out hit, Mathf.Infinity, layermask)) {
+					Debug.DrawLine (shotSpawn[0].position, hit.point, Color.cyan);
+					
+					//draw laser
+					
+					laserBeam.transform.localScale = new Vector3(laserBeam.transform.localScale.x, hit.distance/2, laserBeam.transform.localScale.z);
+					laserBeam.transform.position = (shotSpawn[0].position+hit.point) / 2;
+					
+					RaycastHit[] hits;
+					hits = Physics.RaycastAll(shotSpawn[0].position, shotSpawn[0].forward, hit.distance);
+					for (int i = 0; i < hits.Length; i++) {
+						if (hits[i].collider.tag == "Player") {
+							DamageData damageData;
+							damageData.damage = abilityPower * Time.deltaTime;
+							damageData.position = hits[i].point;
+							damageData.playerNumber = playerNumber;
+							hits[i].collider.gameObject.SendMessage("Damage", damageData);
+							Rumble(0.05f);
+						}
 					}
+				} else {
+					laserBeam.transform.localScale = new Vector3(laserBeam.transform.localScale.x, 500, laserBeam.transform.localScale.z);
+					laserBeam.transform.position = (shotSpawn[0].position+shotSpawn[0].forward * 500);
 				}
 			}
 		}
