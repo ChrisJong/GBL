@@ -9,7 +9,7 @@ public class StartGame : MonoBehaviour
 		Application.LoadLevel ("CharacterSelect");
 	}
 
-	public void BeginGame () 
+	public void BeginLevelSelect () 
 	{
 		Application.LoadLevel ("LevelSelectMenu");
 	}
@@ -23,7 +23,13 @@ public class StartGame : MonoBehaviour
 	public void BeginInferno () 
 	{
 		GameObject.Destroy(GameObject.Find("MenuMusic"));
-		Application.LoadLevel ("inferno");
+		Application.LoadLevel ("arena02");
+	}
+
+	public void BeginArenaThree ()
+	{
+		GameObject.Destroy(GameObject.Find("MenuMusic"));
+		Application.LoadLevel ("arena04");
 	}
 
 	public void BeginMainMenu () 

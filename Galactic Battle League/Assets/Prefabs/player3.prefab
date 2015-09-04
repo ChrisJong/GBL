@@ -4082,13 +4082,14 @@ MonoBehaviour:
   m_aimStrength: 1e+06
   m_leftAirBrake: {fileID: 131988}
   m_rightAirBrake: {fileID: 131966}
-  maxAbilityCharge: 0
-  abilityChargeRate: 0
-  abilityUseRate: 0
-  abilityPower: 0
+  maxAbilityCharge: 100
+  abilityChargeRate: 50
+  abilityUseRate: 1000
+  abilityPower: 5
   playerNumber: 3
   tankClass: 1
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
+  sfxBump: {fileID: 8300000, guid: 3d2e4b7cec6a54d4c9b97cb29301c076, type: 3}
   damage33: {fileID: 19875012}
   damage66: {fileID: 19884146}
   hoverParticles:
@@ -4332,13 +4333,14 @@ MonoBehaviour:
   m_aimStrength: 2500000
   m_leftAirBrake: {fileID: 173474}
   m_rightAirBrake: {fileID: 173452}
-  maxAbilityCharge: 0
+  maxAbilityCharge: 100
   abilityChargeRate: 50
-  abilityUseRate: 0
-  abilityPower: 0
+  abilityUseRate: 100
+  abilityPower: 25
   playerNumber: 3
   tankClass: 2
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
+  sfxBump: {fileID: 8300000, guid: 3d2e4b7cec6a54d4c9b97cb29301c076, type: 3}
   damage33: {fileID: 19879932}
   damage66: {fileID: 19890902}
   hoverParticles:

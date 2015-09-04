@@ -19,7 +19,8 @@ public class UIController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		fileName = DateTime.Now.ToString("ddMMyyyyHHmm") + ".txt";
+		Directory.CreateDirectory("tracking");
+		fileName = "tracking\\" + DateTime.Now.ToString("ddMMyyyyHHmm") + "kills.txt";
 		trackingFile = new StreamWriter(fileName, true);
 		trackingFile.Close ();
 		timer = GameObject.Find ("TimerText").GetComponent<GameTimer> ();
@@ -56,7 +57,9 @@ public class UIController : MonoBehaviour
 
 			//attacker class just uses damaage of shot. Will need to be reworked for laser.
 			string attackerClassString = "NOT FOUND";
-			if (attackerClass < 10)
+			if (attackerClass >= 10)
+				attackerClassString = "HEAVY";
+			else if (attackerClass >= 2)
 				attackerClassString = "LIGHT";
 			else
 				attackerClassString = "HEAVY";
