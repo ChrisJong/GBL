@@ -49,6 +49,7 @@ public class HoverCarControl : MonoBehaviour
 	int m_layerMask;
 	
 	public GameObject sparkParticle;
+	public AudioClip sfxBump;
 	
 	public ParticleSystem damage33;
 	public ParticleSystem damage66;
@@ -472,6 +473,11 @@ public class HoverCarControl : MonoBehaviour
 	
 	void OnCollisionEnter(Collision collision)
 	{
+		if (sfxBump) 
+		{
+			AudioSource.PlayClipAtPoint(sfxBump, this.transform.position, 2);
+		}
+
 		foreach (ContactPoint contact in collision.contacts) 
 		{
 			if (contact.otherCollider.tag != "Shot" + playerNumber)
