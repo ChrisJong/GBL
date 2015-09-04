@@ -10,10 +10,12 @@ public class ShotController : MonoBehaviour
 	public int damage;
 	public int playerNumber;
 	private ParticleSystem smoke;
+	public Vector3 startPoint;
 	// Use this for initialization
 	void Start () 
 	{
 		smoke = GetComponentInChildren<ParticleSystem> ();
+		startPoint = this.transform.position;
 	}
 
 	public void SetVelocity ()
