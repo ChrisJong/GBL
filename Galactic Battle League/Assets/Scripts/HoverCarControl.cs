@@ -256,7 +256,7 @@ public class HoverCarControl : MonoBehaviour
 				fireParticle[spawnInt].Play();
 				createShot (tankVelocity);
 				if (holdingTrigger == false)
-					AudioSource.PlayClipAtPoint (sfxFire, shotSpawn[spawnInt].position, 0.5f);
+					AudioSource.PlayClipAtPoint (sfxFire, shotSpawn[spawnInt].position, 1);
 				else
 				{
 					if (!weaponSound.isPlaying)
@@ -274,13 +274,13 @@ public class HoverCarControl : MonoBehaviour
 
 
 			//Firing cancellation
-			if (!inputDevice.RightTrigger.IsPressed && weaponSound)
+			if (!inputDevice.RightTrigger.IsPressed && weaponSound && Time.time > nextFire)
 			{
 				if (weaponSound.isPlaying)
 				{
-				holdingTrigger = false;
-				weaponSound.Stop();
-				AudioSource.PlayClipAtPoint(fireLoopEnd, shotSpawn[spawnInt].position, 0.5f);
+					holdingTrigger = false;
+					weaponSound.Stop();
+					AudioSource.PlayClipAtPoint(fireLoopEnd, shotSpawn[spawnInt].position, 1);
 				}
 			}
 
@@ -507,9 +507,9 @@ public class HoverCarControl : MonoBehaviour
 		m_currSideThrust = 0.0f;
 		m_currTurn = 0.0f;
 		
-		AudioSource.PlayClipAtPoint(sfxDeath, gameObject.transform.position, 0.25f);
+		AudioSource.PlayClipAtPoint(sfxDeath, gameObject.transform.position, 1);
 		if (killCheer) {
-			AudioSource.PlayClipAtPoint(killCheer, gameObject.transform.position, 0.25f);
+			AudioSource.PlayClipAtPoint(killCheer, gameObject.transform.position, 1f);
 		}
 		timer = 0.0f;
 		deathRun = true;

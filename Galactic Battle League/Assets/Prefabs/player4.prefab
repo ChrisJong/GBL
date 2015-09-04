@@ -1665,6 +1665,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &185856
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 481494}
+  - 33: {fileID: 3376678}
+  - 23: {fileID: 2345982}
+  m_Layer: 0
+  m_Name: LaserBeam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &187304
 GameObject:
   m_ObjectHideFlags: 1
@@ -2154,6 +2171,7 @@ Transform:
   - {fileID: 457488}
   - {fileID: 427582}
   - {fileID: 462508}
+  - {fileID: 481494}
   m_Father: {fileID: 418016}
   m_RootOrder: 1
 --- !u!4 &418016
@@ -3012,6 +3030,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 441234}
   m_RootOrder: 5
+--- !u!4 &481494
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185856}
+  m_LocalRotation: {x: -3.09086197e-08, y: .707106709, z: -.707106829, w: -3.09086161e-08}
+  m_LocalPosition: {x: 0, y: -1000, z: 0}
+  m_LocalScale: {x: .25, y: 1, z: .249999985}
+  m_Children: []
+  m_Father: {fileID: 418014}
+  m_RootOrder: 10
 --- !u!4 &482434
 Transform:
   m_ObjectHideFlags: 1
@@ -3270,6 +3300,30 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!23 &2345982
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185856}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 02bbc87d0f819cc48845f10933c41f3c, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!23 &2357512
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -3401,6 +3455,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157514}
   m_Mesh: {fileID: 4300002, guid: 3e3606a8e1137c14daf4bbe706391383, type: 3}
+--- !u!33 &3376678
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185856}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!45 &4570406
 Skybox:
   m_ObjectHideFlags: 1
@@ -3930,10 +3991,10 @@ MonoBehaviour:
   m_aimStrength: 2500000
   m_leftAirBrake: {fileID: 118012}
   m_rightAirBrake: {fileID: 118010}
-  maxAbilityCharge: 100
-  abilityChargeRate: 10
-  abilityUseRate: 100
-  abilityPower: 25
+  maxAbilityCharge: 0
+  abilityChargeRate: 50
+  abilityUseRate: 0
+  abilityPower: 0
   playerNumber: 4
   tankClass: 2
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
@@ -3972,7 +4033,7 @@ MonoBehaviour:
   explosionRadius: 4
   explosionPower: 1e+07
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
-  laserBeam: {fileID: 0}
+  laserBeam: {fileID: 185856}
   movingHoverPitch: 1.125
   hoverSound: {fileID: 8229374}
 --- !u!114 &11422370
@@ -4236,10 +4297,10 @@ MonoBehaviour:
   m_aimStrength: 1e+06
   m_leftAirBrake: {fileID: 161140}
   m_rightAirBrake: {fileID: 161154}
-  maxAbilityCharge: 100
-  abilityChargeRate: 50
-  abilityUseRate: 1000
-  abilityPower: 5
+  maxAbilityCharge: 0
+  abilityChargeRate: 0
+  abilityUseRate: 0
+  abilityPower: 0
   playerNumber: 4
   tankClass: 1
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
@@ -4272,7 +4333,7 @@ MonoBehaviour:
   - {fileID: 19872786}
   fireRate: .100000001
   sfxFire: {fileID: 8300000, guid: d1eaf090483e4f745b1f5d87dad22fad, type: 3}
-  fireLoopEnd: {fileID: 8300000, guid: 75a5820f5d9e3db4cba3059a044c7927, type: 3}
+  fireLoopEnd: {fileID: 8300000, guid: d2bf6237087f7bd4aa9d1297c2165647, type: 3}
   weaponSound: {fileID: 8239506}
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
