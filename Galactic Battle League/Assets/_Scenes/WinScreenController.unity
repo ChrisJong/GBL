@@ -87,7 +87,7 @@ NavMeshSettings:
     cellSize: .166666657
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &165831585
+--- !u!1 &165831585 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 63bd18969a311734eb43acd6d832546e, type: 3}
   m_PrefabInternal: {fileID: 1966774660}
@@ -215,9 +215,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logDebugInfo: 0
   invertYAxis: 0
-  enableXInput: 1
   useFixedUpdate: 0
   dontDestroyOnLoad: 0
+  enableXInput: 1
+  xInputUpdateRate: 0
+  xInputBufferSize: 0
   customProfiles: []
 --- !u!4 &260377876
 Transform:
@@ -752,7 +754,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!1 &928756577
+--- !u!1 &928756577 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 63bd18969a311734eb43acd6d832546e, type: 3}
   m_PrefabInternal: {fileID: 1047654339}
@@ -1983,7 +1985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1180908709
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2119,6 +2121,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+  m_StereoMirrorMode: 0
 --- !u!4 &1351908254
 Transform:
   m_ObjectHideFlags: 0
@@ -2224,8 +2227,7 @@ MonoBehaviour:
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3784,6 +3786,10 @@ Prefab:
       propertyPath: m_Name
       value: 1stTrophy
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 63bd18969a311734eb43acd6d832546e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 63bd18969a311734eb43acd6d832546e, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 63bd18969a311734eb43acd6d832546e, type: 3}
@@ -3904,6 +3910,7 @@ MonoBehaviour:
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
+  m_RepeatDelay: .5
   m_AllowActivationOnMobileDevice: 0
 --- !u!114 &2042053634
 MonoBehaviour:
@@ -4029,7 +4036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2116599069
 RectTransform:
   m_ObjectHideFlags: 0
