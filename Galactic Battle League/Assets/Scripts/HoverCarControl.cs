@@ -44,6 +44,7 @@ public class HoverCarControl : MonoBehaviour
 	public float abilityChargeRate;
 	public float abilityUseRate;
 	public float abilityPower;
+	public EnergyCounter energyCounter;
 	
 	public int playerNumber; 
 	public int tankClass;
@@ -183,6 +184,8 @@ public class HoverCarControl : MonoBehaviour
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
 		healthCounter.health = health;
 		healthCounter.maxHealth = maxHealth;
+		energyCounter.energy = abilityCharge;
+		energyCounter.maxEnergy = maxAbilityCharge;
 		if (hasRespawned && inputDevice != null) 
 		{
 			if (inputDevice.RightTrigger.IsPressed) 
