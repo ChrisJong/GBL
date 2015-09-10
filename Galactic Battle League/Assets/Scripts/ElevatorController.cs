@@ -4,9 +4,9 @@ using System.Collections;
 public class ElevatorController : MonoBehaviour {
 
 	float doorCloseDelayTime = 1;
-	float doorOpenDelayTime = 5;
+	float doorOpenDelayTime = 8;
 	float riseDelayTime = 3;
-	float descendDelayTime = 10;
+	float descendDelayTime = 12;
 	bool elevatorAtBottom = true;
 
 	// Use this for initialization
@@ -21,12 +21,15 @@ public class ElevatorController : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter()
+	void OnTriggerEnter(Collider collider)
 	{
-		if (elevatorAtBottom) 
+		if (collider.name == "Hover Car Heavy" || collider.name == "Hover Car Light") 
 		{
-			elevatorAtBottom = false;
-			Invoke ("CloseDoors", doorCloseDelayTime);
+			if (elevatorAtBottom) 
+			{
+				elevatorAtBottom = false;
+				Invoke ("CloseDoors", doorCloseDelayTime);
+			}
 		}
 	}
 
