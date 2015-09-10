@@ -202,9 +202,7 @@ public class HoverCarControl : MonoBehaviour
 		else if (!deathRun && inputDevice != null && spawnActiveTimer < Time.time) 
 		{
 			foreach(ParticleSystem particle in hoverParticles)
-			{
 				particle.startLifetime = particleLength;
-			}
 			
 			// Main Thrust
 			m_currThrust = 0.0f;
@@ -212,18 +210,14 @@ public class HoverCarControl : MonoBehaviour
 			if (aclAxis > m_deadZone)
 			{
 				foreach(ParticleSystem particle in hoverParticles)
-				{
 					particle.startLifetime = particleLength*2;
-				}
 				m_currThrust = aclAxis * m_forwardAcl;
 				hoverSound.pitch = movingHoverPitch;
 			}
 			else if (aclAxis < -m_deadZone)
 			{
 				foreach(ParticleSystem particle in hoverParticles)
-				{
 					particle.startLifetime = particleLength*0.5f;
-				}
 				m_currThrust = aclAxis * m_backwardAcl;
 				hoverSound.pitch = movingHoverPitch;
 			}
@@ -251,9 +245,8 @@ public class HoverCarControl : MonoBehaviour
 			// up/down aiming
 			m_currAim = 0.0f;
 			float aimAxis = inputDevice.RightStickY * inputDevice.RightStickY * inputDevice.RightStickY;
-			if (Mathf.Abs(aimAxis) > m_deadZone){
+			if (Mathf.Abs(aimAxis) > m_deadZone)
 			    m_currAim = aimAxis;
-			}
 			
 			
 			// Firing
@@ -273,17 +266,11 @@ public class HoverCarControl : MonoBehaviour
 				if (holdingTrigger == false)
 					AudioSource.PlayClipAtPoint (sfxFire, shotSpawn[spawnInt].position, 1);
 				else
-				{
 					if (!weaponSound.isPlaying)
-					{
 						weaponSound.Play ();
-					}
-				}
 				spawnInt++;
 				if (spawnInt >= shotSpawn.Length)
-				{
 					spawnInt = 0;
-				}
 				fireTime = Time.time;
 			}
 
@@ -300,10 +287,18 @@ public class HoverCarControl : MonoBehaviour
 			}
 
 			//Ability
-			if (inputDevice.LeftTrigger.IsPressed) {
+			if (inputDevice.LeftTrigger.IsPressed)
 				abilityActive = true;
-			} else {
+			else
 				abilityActive = false;
+		}
+		else if(deathRun && weaponSound && Time.time > nextFire)
+		{
+			if (weaponSound.isPlaying)
+			{
+				holdingTrigger = false;
+				weaponSound.Stop();
+				AudioSource.PlayClipAtPoint(fireLoopEnd, shotSpawn[spawnInt].position, 1);
 			}
 		}
 
