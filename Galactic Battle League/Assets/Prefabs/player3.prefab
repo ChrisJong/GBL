@@ -1272,6 +1272,7 @@ GameObject:
   - 114: {fileID: 11473454}
   - 65: {fileID: 6573452}
   - 82: {fileID: 8229374}
+  - 82: {fileID: 8242384}
   m_Layer: 0
   m_Name: Hover Car Heavy
   m_TagString: Player
@@ -3739,6 +3740,75 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!82 &8242384
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173458}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0c3005558a9e91046b75daf845f30029, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!92 &9273452
 Behaviour:
   m_ObjectHideFlags: 1
@@ -4086,6 +4156,7 @@ MonoBehaviour:
   abilityChargeRate: 50
   abilityUseRate: 1000
   abilityPower: 5
+  energyCounter: {fileID: 0}
   playerNumber: 3
   tankClass: 1
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
@@ -4337,6 +4408,7 @@ MonoBehaviour:
   abilityChargeRate: 50
   abilityUseRate: 100
   abilityPower: 25
+  energyCounter: {fileID: 0}
   playerNumber: 3
   tankClass: 2
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
@@ -4369,8 +4441,8 @@ MonoBehaviour:
   - {fileID: 19879482}
   fireRate: 1
   sfxFire: {fileID: 8300000, guid: a62ac33126b541746aa9c6a1c07858bd, type: 3}
-  fireLoopEnd: {fileID: 0}
-  weaponSound: {fileID: 0}
+  fireLoopEnd: {fileID: 8300000, guid: e7b0f7f15fa413d4fac063da6d9bdaf3, type: 3}
+  weaponSound: {fileID: 8242384}
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
