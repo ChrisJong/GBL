@@ -99,7 +99,7 @@ public class HoverCarControl : MonoBehaviour
 	public AudioClip sfxHit;
 	public float explosionRadius = 4.0F;
 	public float explosionPower = 25000.0F;
-	private float maxError = 6.0f;
+	private float maxError = 7.0f;
 	private float currError = 0.0f;
 	private float fireTime;
 
@@ -527,7 +527,7 @@ public class HoverCarControl : MonoBehaviour
 			Quaternion errorRotation = Quaternion.Euler(error.x/2, error.y, 0);
 			shotAngle = shotAngle * errorRotation;
 			if (currError < maxError)
-				currError += 0.1f;
+				currError += 0.15f;
 		}
 		GameObject zBullet = (GameObject)Instantiate (shot, shotSpawn[spawnInt].position, shotAngle);
 		zBullet.GetComponent<ShotController> ().SetVelocity ();
