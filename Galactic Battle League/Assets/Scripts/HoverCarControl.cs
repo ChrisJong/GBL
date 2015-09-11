@@ -230,13 +230,11 @@ public class HoverCarControl : MonoBehaviour
 			float aclSideAxis = inputDevice.Direction.X;
 			if (aclSideAxis > m_deadZone)
 			{
-				this.transform.RotateAround(Vector3.forward, aclSideAxis*0.01f);
 				m_currSideThrust = aclSideAxis * m_sideAcl;
 				hoverSound.pitch = movingHoverPitch;
 			}
 			else if (aclSideAxis < -m_deadZone)
 			{
-				this.transform.RotateAround(Vector3.forward, aclSideAxis*0.01f);
 				m_currSideThrust = aclSideAxis * m_sideAcl;
 				hoverSound.pitch = movingHoverPitch;
 			}
