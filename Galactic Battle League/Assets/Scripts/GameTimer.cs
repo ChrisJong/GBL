@@ -4,12 +4,11 @@ using System.Collections;
 
 public class GameTimer : MonoBehaviour {
 
-	public float time { get; set;}
+	public float time = 300;
 	Text gameTime;
 
 	// Use this for initialization
 	void Start () {
-		time = 300;
 		gameTime = GetComponent<Text> ();
 		InvokeRepeating ("DecreasingTime", 1, 1);
 		gameTime.text = DisplayTime ();
