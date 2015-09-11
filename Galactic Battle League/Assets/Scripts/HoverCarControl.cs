@@ -535,6 +535,7 @@ public class HoverCarControl : MonoBehaviour
 	
 	void Death()
 	{
+		abilityCharge = 0f;
 		tempHoverForce = m_hoverForce;
 		m_hoverForce = 0.0f;
 		
@@ -594,6 +595,8 @@ public class HoverCarControl : MonoBehaviour
 		
 		respawnMessage1.SetActive(true);
 		respawnMessage2.SetActive(true);
+		abilityCharge = maxAbilityCharge;
+		abilityActive = false;
 	}
 	
 	void Rumble(float duration) {
