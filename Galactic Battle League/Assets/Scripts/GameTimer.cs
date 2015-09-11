@@ -5,6 +5,10 @@ using System.Collections;
 public class GameTimer : MonoBehaviour {
 
 	public float time = 300;
+	public AudioClip warning = null;
+	public AudioClip countdown = null;
+	public int warningTime = 30;
+	public int countdownTime = 10;
 	Text gameTime;
 
 	// Use this for initialization
@@ -30,6 +34,13 @@ public class GameTimer : MonoBehaviour {
 			time--;
 		else
 			time = 0;
+
+		if (time == warningTime) {
+			AudioSource.PlayClipAtPoint(warning, Vector3.zero);
+		}
+		if (time < countdownTime && time > 0) {
+			AudioSource.PlayClipAtPoint(countdown, Vector3.zero);
+		}
 	}
 
 	string DisplayTime()
