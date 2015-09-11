@@ -5,7 +5,7 @@ public class ElevatorController : MonoBehaviour {
 
 	float doorCloseDelayTime = 1;
 	float doorOpenDelayTime = 8;
-	float riseDelayTime = 3;
+	float riseDelayTime = 1.5f;
 	float descendDelayTime = 12;
 	bool elevatorAtBottom = true;
 
