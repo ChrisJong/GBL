@@ -3,9 +3,9 @@ using System.Collections;
 
 public class ElevatorController : MonoBehaviour {
 
-	float doorCloseDelayTime = 1;
+	float doorCloseDelayTime = .5f;
 	float doorOpenDelayTime = 8;
-	float riseDelayTime = 1.5f;
+	float riseDelayTime = 1;
 	float descendDelayTime = 12;
 	bool elevatorAtBottom = true;
 
