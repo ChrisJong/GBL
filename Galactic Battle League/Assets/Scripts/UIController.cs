@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (score[0] >= 5 || score[1] >= 5 || score[2] >= 5 || score[3] >= 5 || timer.time == 0)
+		if (timer.time == 0)
 		{
 			GameOver();
 		}
@@ -68,10 +68,7 @@ public class UIController : MonoBehaviour
 			trackingFile.WriteLine ("Time Remaining: " + timer.time.ToString());
 			trackingFile.Close();
 		}
-		if (score[attacker-1] >= 5)
-		{
-			GameOver();
-		}
+
 	}
 
 
@@ -80,6 +77,18 @@ public class UIController : MonoBehaviour
 	{
 
 		int[] playerNumbers = {1,2,3,4};
+		//int highScore = -1;
+		//int highPlayer = 0;
+
+		//for (int i = 0; i < 4; i++) {
+		//	if (score[i] > highScore)
+		//	{
+		//		highScore = score[i];
+		//		highPlayer = i + 1;
+		//	}
+		//}
+
+
 		Array.Sort (score, playerNumbers);
 
 		PlayerPrefs.SetInt ("Winner", playerNumbers[3]);
