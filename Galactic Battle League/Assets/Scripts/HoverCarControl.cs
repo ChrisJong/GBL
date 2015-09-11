@@ -279,7 +279,17 @@ public class HoverCarControl : MonoBehaviour
 
 
 			//Firing cancellation
-			if (!inputDevice.RightTrigger.IsPressed && weaponSound && Time.time > nextFire)
+			if (!inputDevice.RightTrigger.IsPressed && weaponSound && Time.time > nextFire && tankClass == 1)
+			{
+				if (weaponSound.isPlaying)
+				{
+					holdingTrigger = false;
+					weaponSound.Stop();
+					AudioSource.PlayClipAtPoint(fireLoopEnd, shotSpawn[spawnInt].position, 1);
+				}
+			}
+
+			if ((!abilityActive || abilityCharge <= 0f) && weaponSound && tankClass == 2)
 			{
 				if (weaponSound.isPlaying)
 				{
@@ -398,7 +408,11 @@ public class HoverCarControl : MonoBehaviour
 					
 					laserBeam.transform.localScale = new Vector3(laserBeam.transform.localScale.x, hit.distance/2, laserBeam.transform.localScale.z);
 					laserBeam.transform.position = (shotSpawn[0].position+hit.point) / 2;
-					
+
+					//sound
+					if (!weaponSound.isPlaying)
+						weaponSound.Play();
+
 					RaycastHit[] hits;
 					hits = Physics.RaycastAll(shotSpawn[0].position, shotSpawn[0].forward, hit.distance);
 					for (int i = 0; i < hits.Length; i++) {

@@ -3680,11 +3680,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 0c3005558a9e91046b75daf845f30029, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Priority: 128
   DopplerLevel: 1
@@ -4418,8 +4418,8 @@ MonoBehaviour:
   - {fileID: 19811614}
   fireRate: 1
   sfxFire: {fileID: 8300000, guid: a62ac33126b541746aa9c6a1c07858bd, type: 3}
-  fireLoopEnd: {fileID: 0}
-  weaponSound: {fileID: 0}
+  fireLoopEnd: {fileID: 8300000, guid: e7b0f7f15fa413d4fac063da6d9bdaf3, type: 3}
+  weaponSound: {fileID: 8233768}
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
