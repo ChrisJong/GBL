@@ -144,6 +144,10 @@ Prefab:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: energyCounter
+      value: 
+      objectReference: {fileID: 838156957}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 272088494}
@@ -171,6 +175,18 @@ Prefab:
       propertyPath: spawnAnimators.Array.data[2]
       value: 
       objectReference: {fileID: 215171860}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: crosshairRect
+      value: 
+      objectReference: {fileID: 599771653}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: crosshairImg
+      value: 
+      objectReference: {fileID: 599771654}
+    - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: energyCounter
+      value: 
+      objectReference: {fileID: 838156957}
     - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
       propertyPath: uiController
       value: 
@@ -199,66 +215,6 @@ Prefab:
       propertyPath: spawnAnimators.Array.data[2]
       value: 
       objectReference: {fileID: 215171860}
-    - target: {fileID: 154756, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2397516, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 23b0081f097146b4ea47d5a897f4bc07, type: 2}
-    - target: {fileID: 2397514, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 23b0081f097146b4ea47d5a897f4bc07, type: 2}
-    - target: {fileID: 2397518, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 0d4b187e090f8cf4989386e849739063, type: 2}
-    - target: {fileID: 2397520, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 0d4b187e090f8cf4989386e849739063, type: 2}
-    - target: {fileID: 465756, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: .707106829
-      objectReference: {fileID: 0}
-    - target: {fileID: 465756, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .707106709
-      objectReference: {fileID: 0}
-    - target: {fileID: 454756, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: .707106829
-      objectReference: {fileID: 0}
-    - target: {fileID: 454756, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .707106709
-      objectReference: {fileID: 0}
-    - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: energyCounter
-      value: 
-      objectReference: {fileID: 838156957}
-    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: energyCounter
-      value: 
-      objectReference: {fileID: 838156957}
-    - target: {fileID: 4512588, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: m_CustomSkybox
-      value: 
-      objectReference: {fileID: 2100000, guid: 15074e2b1277c5048b48dd5c6008543d, type: 2}
-    - target: {fileID: 4506252, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: m_CustomSkybox
-      value: 
-      objectReference: {fileID: 2100000, guid: 15074e2b1277c5048b48dd5c6008543d, type: 2}
-    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: killCheer
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
-      propertyPath: killCheer
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
   m_IsPrefabParent: 0
@@ -416,6 +372,10 @@ Prefab:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: energyCounter
+      value: 
+      objectReference: {fileID: 283906595}
+    - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 272088494}
@@ -444,6 +404,10 @@ Prefab:
       value: 
       objectReference: {fileID: 934286016}
     - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: energyCounter
+      value: 
+      objectReference: {fileID: 283906595}
+    - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 272088494}
@@ -471,54 +435,14 @@ Prefab:
       propertyPath: spawnAnimators.Array.data[2]
       value: 
       objectReference: {fileID: 934286016}
-    - target: {fileID: 173458, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2312200, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 6c03d56fb0591154aafba65cc77c4bb3, type: 2}
-    - target: {fileID: 2312202, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 6c03d56fb0591154aafba65cc77c4bb3, type: 2}
-    - target: {fileID: 131964, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2312206, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: fea59b4192aeac141afc721cdff6050c, type: 2}
-    - target: {fileID: 2312204, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: fea59b4192aeac141afc721cdff6050c, type: 2}
     - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
-      propertyPath: energyCounter
+      propertyPath: crosshairRect
       value: 
-      objectReference: {fileID: 283906595}
-    - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
-      propertyPath: energyCounter
-      value: 
-      objectReference: {fileID: 283906595}
-    - target: {fileID: 4592952, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
-      propertyPath: m_CustomSkybox
-      value: 
-      objectReference: {fileID: 2100000, guid: 15074e2b1277c5048b48dd5c6008543d, type: 2}
-    - target: {fileID: 4547630, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
-      propertyPath: m_CustomSkybox
-      value: 
-      objectReference: {fileID: 2100000, guid: 15074e2b1277c5048b48dd5c6008543d, type: 2}
-    - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
-      propertyPath: killCheer
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1636134460}
     - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
-      propertyPath: killCheer
+      propertyPath: crosshairImg
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1636134462}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
   m_IsPrefabParent: 0
@@ -736,8 +660,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 495642, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: energyCounter
+      value: 
+      objectReference: {fileID: 1216750203}
     - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
       propertyPath: uiController
       value: 
@@ -767,6 +695,10 @@ Prefab:
       value: 
       objectReference: {fileID: 213551542}
     - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: energyCounter
+      value: 
+      objectReference: {fileID: 1216750203}
+    - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 272088494}
@@ -794,70 +726,14 @@ Prefab:
       propertyPath: spawnAnimators.Array.data[2]
       value: 
       objectReference: {fileID: 213551542}
-    - target: {fileID: 195640, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2399320, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 22b7d6cf8697f4b4db42a77d8971ef67, type: 2}
-    - target: {fileID: 2399318, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 22b7d6cf8697f4b4db42a77d8971ef67, type: 2}
-    - target: {fileID: 150920, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2380752, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 43ac02f715efebe43ad0a85fa7d2aca3, type: 2}
-    - target: {fileID: 2380754, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 43ac02f715efebe43ad0a85fa7d2aca3, type: 2}
-    - target: {fileID: 450920, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: .707106829
-      objectReference: {fileID: 0}
-    - target: {fileID: 450920, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .707106709
-      objectReference: {fileID: 0}
-    - target: {fileID: 495640, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: .707106829
-      objectReference: {fileID: 0}
-    - target: {fileID: 495640, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .707106709
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: energyCounter
-      value: 
-      objectReference: {fileID: 1216750203}
     - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: energyCounter
+      propertyPath: crosshairRect
       value: 
-      objectReference: {fileID: 1216750203}
-    - target: {fileID: 4524056, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: m_CustomSkybox
-      value: 
-      objectReference: {fileID: 2100000, guid: 15074e2b1277c5048b48dd5c6008543d, type: 2}
-    - target: {fileID: 4514424, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: m_CustomSkybox
-      value: 
-      objectReference: {fileID: 2100000, guid: 15074e2b1277c5048b48dd5c6008543d, type: 2}
-    - target: {fileID: 11495662, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: killCheer
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 532403957}
     - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
-      propertyPath: killCheer
+      propertyPath: crosshairImg
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 532403958}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
   m_IsPrefabParent: 0
@@ -1190,6 +1066,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 16.1303062, y: 80.6515503, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!224 &532403957 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22484568, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2102534913}
+--- !u!114 &532403958 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11484576, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2102534913}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &547495143 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100036, guid: 1f220bed2d108bd479a76a9bc724ec5e, type: 3}
@@ -1421,6 +1308,17 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!224 &599771653 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22484580, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2102534913}
+--- !u!114 &599771654 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11484588, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2102534913}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &601760317 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 165040, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
@@ -2689,6 +2587,17 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300028, guid: 9b8ec6cb033592a4fa2d3658c3f17590, type: 3}
+--- !u!224 &1636134460 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22484570, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2102534913}
+--- !u!114 &1636134462 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11484578, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2102534913}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1643296923 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 148356, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
@@ -2824,6 +2733,10 @@ Prefab:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: energyCounter
+      value: 
+      objectReference: {fileID: 703877959}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 272088494}
@@ -2851,6 +2764,18 @@ Prefab:
       propertyPath: spawnAnimators.Array.data[2]
       value: 
       objectReference: {fileID: 897344754}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: crosshairRect
+      value: 
+      objectReference: {fileID: 1983154788}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: crosshairImg
+      value: 
+      objectReference: {fileID: 1983154790}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: energyCounter
+      value: 
+      objectReference: {fileID: 703877959}
     - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: uiController
       value: 
@@ -2879,50 +2804,6 @@ Prefab:
       propertyPath: spawnAnimators.Array.data[2]
       value: 
       objectReference: {fileID: 897344754}
-    - target: {fileID: 118014, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2357516, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 367e22a642845d44eaa779e541756ac4, type: 2}
-    - target: {fileID: 2357518, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 367e22a642845d44eaa779e541756ac4, type: 2}
-    - target: {fileID: 2357512, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: bdaae40023775484bb1ced331d78bd0c, type: 2}
-    - target: {fileID: 2357514, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: bdaae40023775484bb1ced331d78bd0c, type: 2}
-    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: energyCounter
-      value: 
-      objectReference: {fileID: 703877959}
-    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: energyCounter
-      value: 
-      objectReference: {fileID: 703877959}
-    - target: {fileID: 4598410, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_CustomSkybox
-      value: 
-      objectReference: {fileID: 2100000, guid: 15074e2b1277c5048b48dd5c6008543d, type: 2}
-    - target: {fileID: 4570406, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_CustomSkybox
-      value: 
-      objectReference: {fileID: 2100000, guid: 15074e2b1277c5048b48dd5c6008543d, type: 2}
-    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: killCheer
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: killCheer
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77192545805124c43902ecc06c78608f, type: 2}
   m_IsPrefabParent: 0
@@ -3242,6 +3123,17 @@ AudioSource:
 GameObject:
   m_PrefabParentObject: {fileID: 112588, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
   m_PrefabInternal: {fileID: 59346069}
+--- !u!224 &1983154788 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22484576, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2102534913}
+--- !u!114 &1983154790 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11484584, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2102534913}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1994976522 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 114424, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
