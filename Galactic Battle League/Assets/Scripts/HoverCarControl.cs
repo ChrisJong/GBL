@@ -653,6 +653,7 @@ public class HoverCarControl : MonoBehaviour
 				trackingFile = new StreamWriter(fileName, true);
 				trackingFile.WriteLine(playerNumber.ToString() + "\t" + damageData.playerNumber.ToString() + "\t" + damageSinceLastPrint.ToString() + "\t" + damageData.distance.ToString());
 				trackingFile.Close ();
+				uiController.DamageCaused(damageData.playerNumber, (int)damageSinceLastPrint);
 				damageSinceLastPrint = 0;
 			}
 		}

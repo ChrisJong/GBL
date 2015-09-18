@@ -41,5 +41,10 @@ public class StartGame : MonoBehaviour
 	{
 		Application.LoadLevel ("Controls");
 	}
+
+	public void BeginWinScreen()
+	{
+		Application.LoadLevel ("WinScreen");
+	}
 }
 
