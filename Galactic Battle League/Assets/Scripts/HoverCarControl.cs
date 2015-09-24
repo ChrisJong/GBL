@@ -120,7 +120,22 @@ public class HoverCarControl : MonoBehaviour
 	
 	void Start()
 	{
-		
+		if (energyCounter == null) {
+			energyCounter = GameObject.Find ("EnergyMeter" + playerNumber).GetComponent<EnergyCounter>();
+		}
+		if (uiController == null) {
+			uiController = GameObject.Find("GameUIRoot").GetComponent<UIController>();
+		}
+		if (healthCounter == null) {
+			healthCounter = GameObject.Find("HealthMeter" + playerNumber).GetComponent<HealthCounter>();
+		}
+		if (respawnMessage1 == null) {
+			respawnMessage1 = GameObject.Find("P" + playerNumber + "_RESPAWN_MSG1");
+		}
+		if (respawnMessage2 == null) {
+			respawnMessage2 = GameObject.Find("P" + playerNumber + "_RESPAWN_MSG2");
+		}
+
 		Directory.CreateDirectory("tracking");
 		fileName = "tracking\\" + DateTime.Now.ToString("ddMMyyyyHHmm") + "damage.txt";
 		trackingFile = new StreamWriter(fileName, true);
