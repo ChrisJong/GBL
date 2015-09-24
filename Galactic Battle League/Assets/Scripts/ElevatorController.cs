@@ -3,11 +3,14 @@ using System.Collections;
 
 public class ElevatorController : MonoBehaviour {
 
-	float doorCloseDelayTime = .5f;
-	float doorOpenDelayTime = 8;
-	float riseDelayTime = 1;
-	float descendDelayTime = 12;
+	float doorCloseDelayTime = 0.5f;
+	float doorOpenDelayTime = 4;
+	float riseDelayTime = 0.75f;
+	float descendDelayTime = 6;
 	bool elevatorAtBottom = true;
+	public Light lt;
+	public Color grn;
+	public Color rd;
 
 	// Use this for initialization
 	void Start () 
@@ -50,6 +53,7 @@ public class ElevatorController : MonoBehaviour {
 		}
 
 		Invoke ("RaiseElevator", riseDelayTime);
+		lt.color = rd;
 	}
 
 	void RaiseElevator()
@@ -97,5 +101,6 @@ public class ElevatorController : MonoBehaviour {
 		}
 
 		elevatorAtBottom = true;
+		lt.color = grn;
 	}
 }
