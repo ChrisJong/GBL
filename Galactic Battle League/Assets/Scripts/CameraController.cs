@@ -35,6 +35,8 @@ public class CameraController : MonoBehaviour {
 		}
 
 		if (cameraMode == CameraMode.FirstPerson) {
+			transform.parent = target;
+
 			if (target==targetHeavy) {
 				transform.position = target.TransformPoint(cameraPositionFirstPersonHeavy);
 			} else {
@@ -42,6 +44,7 @@ public class CameraController : MonoBehaviour {
 			}
 			transform.rotation = target.rotation;
 		} else {
+			transform.parent = null;
 			Vector3 wantedPosition = Vector3.zero;
 			Vector3 lookPosition = Vector3.zero;
 
