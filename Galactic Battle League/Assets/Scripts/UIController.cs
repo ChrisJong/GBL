@@ -85,6 +85,7 @@ public class UIController : MonoBehaviour
 	public void GameOver()
 	{
 		DetermineRankings ();
+
 		trackingFile = new StreamWriter (fileName, true);
 		trackingFile.WriteLine("Winner: " + PlayerPrefs.GetInt ("Position1Player"));
 		trackingFile.Close ();
