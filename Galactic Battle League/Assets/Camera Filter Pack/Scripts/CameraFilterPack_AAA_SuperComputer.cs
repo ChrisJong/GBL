@@ -30,7 +30,7 @@ public class CameraFilterPack_AAA_SuperComputer : MonoBehaviour
 	public Vector2 center = new Vector2(0.0f,0.0f);
 	public float Radius = 0.77f;
 	public static Vector2 Changecenter;
-	public static float ChangeRadius;
+	public float ChangeRadius;
 	#endregion
 	
 	#region Properties

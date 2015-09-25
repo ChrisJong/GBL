@@ -171,6 +171,9 @@ GameObject:
   - 45: {fileID: 4512588}
   - 114: {fileID: 11431260}
   - 114: {fileID: 11470024}
+  - 114: {fileID: 11406544}
+  - 114: {fileID: 11499326}
+  - 114: {fileID: 11490760}
   m_Layer: 0
   m_Name: Camera2
   m_TagString: Untagged
@@ -4191,6 +4194,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
+--- !u!114 &11406544
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112588}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697583c106da9224c93fccc7cddb18d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: d658b29263c0b634f91e0c3e2ab33459, type: 3}
+  _AlphaHexa: 1
+  ShapeFormula: 10
+  Shape: 1
+  _BorderSize: 1
+  _BorderColor: {r: 0, g: .200000003, b: 1, a: 1}
+  _SpotSize: 2.5
+  center: {x: 0, y: 0}
+  Radius: .769999981
+  ChangeRadius: .769999981
 --- !u!114 &11408736
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4359,7 +4383,6 @@ MonoBehaviour:
   abilityChargeRate: 50
   abilityUseRate: 100
   abilityPower: 25
-  energyCounter: {fileID: 0}
   playerNumber: 2
   tankClass: 2
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
@@ -4370,15 +4393,11 @@ MonoBehaviour:
   - {fileID: 19897520}
   - {fileID: 19897522}
   baseParticle: {fileID: 19859886}
-  uiController: {fileID: 0}
-  healthCounter: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 182872, guid: 614f2b7626b648d41bf91c287789ad1a, type: 2}
   deathParticle:
   - {fileID: 19805666}
   - {fileID: 19849376}
-  respawnMessage1: {fileID: 0}
-  respawnMessage2: {fileID: 0}
   maxHealth: 100
   hasRespawned: 1
   spawnAnimators:
@@ -4459,7 +4478,6 @@ MonoBehaviour:
   abilityChargeRate: 50
   abilityUseRate: 1000
   abilityPower: 5
-  energyCounter: {fileID: 0}
   playerNumber: 2
   tankClass: 1
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
@@ -4469,15 +4487,11 @@ MonoBehaviour:
   hoverParticles:
   - {fileID: 19897514}
   baseParticle: {fileID: 19842962}
-  uiController: {fileID: 0}
-  healthCounter: {fileID: 0}
   sfxDeath: {fileID: 8300000, guid: d2c41822c71345a4fb2edf8b9fe5cd07, type: 3}
   hitParticle: {fileID: 182872, guid: 614f2b7626b648d41bf91c287789ad1a, type: 2}
   deathParticle:
   - {fileID: 19834620}
   - {fileID: 19837570}
-  respawnMessage1: {fileID: 0}
-  respawnMessage2: {fileID: 0}
   maxHealth: 75
   hasRespawned: 1
   spawnAnimators:
@@ -4589,6 +4603,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
+--- !u!114 &11490760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112588}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 391bb2269ffce784795dc1ed18d36132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 967b2c228a173ca4987a8e3bf1118df2, type: 3}
+  Colorisation: 1
+  Parasite: 1
+  Noise: 1
 --- !u!114 &11492258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4715,6 +4744,18 @@ MonoBehaviour:
   loop: 1
   smoothFactor: 8
   addIntensity: 1
+--- !u!114 &11499326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112588}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10108a07306cec44a642fce55f0a5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 6c4912886dfcd564da449dd941df9045, type: 3}
 --- !u!124 &12412588
 Behaviour:
   m_ObjectHideFlags: 1

@@ -44,7 +44,7 @@ public class HoverCarControl : MonoBehaviour
 	public float abilityChargeRate;
 	public float abilityUseRate;
 	public float abilityPower;
-	public EnergyCounter energyCounter;
+	private EnergyCounter energyCounter;
 	
 	public int playerNumber; 
 	public int tankClass;
@@ -61,8 +61,8 @@ public class HoverCarControl : MonoBehaviour
 	private float particleLength;
 	
 	//Death/respawn variables
-	public UIController uiController;
-	public HealthCounter healthCounter;
+	private UIController uiController;
+	private HealthCounter healthCounter;
 	public AudioClip sfxDeath;
 	Vector3 initialPosition;
 	Quaternion initialRotation;
@@ -71,8 +71,8 @@ public class HoverCarControl : MonoBehaviour
 	private double spawnActiveTimer;
 
 
-	public GameObject respawnMessage1;
-	public GameObject respawnMessage2;
+	private GameObject respawnMessage1;
+	private GameObject respawnMessage2;
 	
 	private float tempHoverForce;
 	private float timer = 0.0f;
@@ -526,6 +526,7 @@ public class HoverCarControl : MonoBehaviour
 			ShotController shotControllerCopy = other.gameObject.GetComponent<ShotController>();
 			if (shotControllerCopy.playerNumber != playerNumber)
 			{
+				cameraController.RunGlitch();
 				AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position, 0.25f);
 				//Vector3 explosionPos = other.gameObject.transform.position;
 				//Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
@@ -661,6 +662,8 @@ public class HoverCarControl : MonoBehaviour
 		respawnMessage2.SetActive(true);
 		abilityCharge = maxAbilityCharge;
 		abilityActive = false;
+
+		cameraController.RunRespawn();
 	}
 	
 	void Rumble(float duration) {

@@ -20,13 +20,33 @@ public class CameraController : MonoBehaviour {
 	public float rotationStiffness;
 	public CameraMode cameraMode = CameraMode.Near;
 
+	private CameraFilterPack_AAA_SuperComputer respawnCam;
+	
+	private CameraFilterPack_TV_Artefact glitchCam;
+	private float stopGlitch;
 
 	// Use this for initialization
 	void Start () {
-	
+		glitchCam = GetComponent<CameraFilterPack_TV_Artefact>();
+		respawnCam = GetComponent<CameraFilterPack_AAA_SuperComputer>();
+		respawnCam.enabled = true;
+		respawnCam.ChangeRadius = 0;
 	}
-	
+
+	void Update()
+	{
+		if (respawnCam.enabled == true) 
+		{
+			respawnCam.ChangeRadius += 0.05f;
+			if (respawnCam.ChangeRadius >= 1.5f)
+				respawnCam.enabled = false;
+		}
+	}
+
 	void FixedUpdate () {
+		if (glitchCam.enabled == true && stopGlitch < Time.time)
+			glitchCam.enabled = false;
+
 		Transform target;
 		if (targetHeavy.gameObject.activeInHierarchy) {
 			target = targetHeavy;
@@ -81,5 +101,17 @@ public class CameraController : MonoBehaviour {
 			cameraMode = CameraMode.FirstPerson;
 		else 
 			cameraMode = CameraMode.Near;
+	}
+
+	public void RunGlitch()
+	{
+		glitchCam.enabled = true;
+		stopGlitch = Time.time + 0.5f;
+	}
+	
+	public void RunRespawn()
+	{
+		respawnCam.ChangeRadius = 0;
+		respawnCam.enabled = true;
 	}
 }
