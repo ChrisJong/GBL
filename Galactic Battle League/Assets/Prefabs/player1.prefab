@@ -150,7 +150,7 @@ GameObject:
   - 92: {fileID: 9214424}
   - 45: {fileID: 4514424}
   - 114: {fileID: 11458484}
-  - 114: {fileID: 11479640}
+  - 114: {fileID: 11444982}
   m_Layer: 0
   m_Name: Camera1
   m_TagString: Untagged
@@ -1904,8 +1904,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 114424}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.50999832, z: -9}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
+  m_LocalPosition: {x: -9, y: 3.50999832, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495642}
@@ -2443,7 +2443,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137860}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: 0, y: -1000, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: .25, y: 1, z: .25}
   m_Children: []
   m_Father: {fileID: 495640}
@@ -3193,7 +3193,7 @@ Camera:
     y: .5
     width: .5
     height: .5
-  near clip plane: .00999999978
+  near clip plane: 1
   far clip plane: 1000
   field of view: 55
   orthographic: 0
@@ -3984,6 +3984,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
+--- !u!114 &11444982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bfbeb32152f2b64d983410acdd36267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetHeavy: {fileID: 495640}
+  targetLight: {fileID: 450920}
+  cameraPosition: {x: 0, y: 3.5, z: -7}
+  damping: 100
+  rotationDamping: 100
+  lookOffset: {x: 0, y: 2, z: 10}
 --- !u!114 &11450906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4053,10 +4070,12 @@ MonoBehaviour:
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
   explosionPower: 150000
-  killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  killCheer: {fileID: 0}
   laserBeam: {fileID: 0}
   movingHoverPitch: 1.10000002
   hoverSound: {fileID: 8262506}
+  crosshairRect: {fileID: 0}
+  crosshairImg: {fileID: 0}
 --- !u!114 &11454702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4191,23 +4210,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
---- !u!114 &11479640
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 114424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bfbeb32152f2b64d983410acdd36267, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetHeavy: {fileID: 495640}
-  targetLight: {fileID: 450920}
-  cameraPosition: {x: 0, y: 3.5, z: -7}
-  damping: 100
-  rotationDamping: 100
-  lookOffset: {x: 0, y: 2, z: 10}
 --- !u!114 &11480390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4312,10 +4314,12 @@ MonoBehaviour:
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
   explosionPower: 1e+07
-  killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  killCheer: {fileID: 0}
   laserBeam: {fileID: 137860}
   movingHoverPitch: 1.125
   hoverSound: {fileID: 8229374}
+  crosshairRect: {fileID: 0}
+  crosshairImg: {fileID: 0}
 --- !u!114 &11499306
 MonoBehaviour:
   m_ObjectHideFlags: 1

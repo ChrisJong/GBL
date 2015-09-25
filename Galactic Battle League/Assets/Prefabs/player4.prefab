@@ -1445,7 +1445,7 @@ GameObject:
   - 92: {fileID: 9270406}
   - 45: {fileID: 4570406}
   - 114: {fileID: 11415740}
-  - 114: {fileID: 11421696}
+  - 114: {fileID: 11486226}
   m_Layer: 0
   m_Name: Camera4
   m_TagString: Untagged
@@ -3468,7 +3468,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 94ae137da7d32a946b8fe236e1bdcfdd, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -4001,27 +4001,12 @@ MonoBehaviour:
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
   explosionPower: 1e+07
-  killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  killCheer: {fileID: 0}
   laserBeam: {fileID: 185856}
   movingHoverPitch: 1.125
   hoverSound: {fileID: 8229374}
---- !u!114 &11421696
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 170406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bfbeb32152f2b64d983410acdd36267, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetHeavy: {fileID: 418014}
-  targetLight: {fileID: 461142}
-  cameraPosition: {x: 0, y: 3.5, z: -7}
-  damping: 100
-  rotationDamping: 100
-  lookOffset: {x: 0, y: 2, z: 10}
+  crosshairRect: {fileID: 0}
+  crosshairImg: {fileID: 0}
 --- !u!114 &11429154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4301,10 +4286,12 @@ MonoBehaviour:
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
   explosionPower: 1500000
-  killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  killCheer: {fileID: 0}
   laserBeam: {fileID: 0}
   movingHoverPitch: 1.10000002
   hoverSound: {fileID: 8299346}
+  crosshairRect: {fileID: 0}
+  crosshairImg: {fileID: 0}
 --- !u!114 &11466264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4382,6 +4369,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
+--- !u!114 &11486226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bfbeb32152f2b64d983410acdd36267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetHeavy: {fileID: 418014}
+  targetLight: {fileID: 461142}
+  cameraPosition: {x: 0, y: 3.5, z: -7}
+  damping: 100
+  rotationDamping: 100
+  lookOffset: {x: 0, y: 2, z: 10}
 --- !u!114 &11490110
 MonoBehaviour:
   m_ObjectHideFlags: 1

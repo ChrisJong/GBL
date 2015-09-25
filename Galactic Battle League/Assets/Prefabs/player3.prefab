@@ -1671,7 +1671,7 @@ GameObject:
   - 92: {fileID: 9292952}
   - 45: {fileID: 4592952}
   - 114: {fileID: 11453826}
-  - 114: {fileID: 11419148}
+  - 114: {fileID: 11434756}
   m_Layer: 0
   m_Name: Camera3
   m_TagString: Untagged
@@ -2270,7 +2270,7 @@ Transform:
   - {fileID: 447202}
   - {fileID: 419388}
   m_Father: {fileID: 473462}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &431966
 Transform:
   m_ObjectHideFlags: 1
@@ -2801,7 +2801,7 @@ Transform:
   - {fileID: 497242}
   - {fileID: 490344}
   m_Father: {fileID: 473462}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!4 &473462
 Transform:
   m_ObjectHideFlags: 1
@@ -2812,10 +2812,10 @@ Transform:
   m_LocalPosition: {x: -100, y: 29, z: 127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 492952}
   - {fileID: 473458}
   - {fileID: 431964}
   - {fileID: 492420}
+  - {fileID: 492952}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &473464
@@ -3079,7 +3079,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 473462}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!4 &492952
 Transform:
   m_ObjectHideFlags: 1
@@ -3087,11 +3087,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.75, z: -9}
+  m_LocalPosition: {x: -0, y: 3.75, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 473462}
-  m_RootOrder: 0
+  m_RootOrder: 3
 --- !u!4 &493076
 Transform:
   m_ObjectHideFlags: 1
@@ -4021,23 +4021,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
---- !u!114 &11419148
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 192952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bfbeb32152f2b64d983410acdd36267, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetHeavy: {fileID: 473458}
-  targetLight: {fileID: 431964}
-  cameraPosition: {x: 0, y: 3.5, z: -7}
-  damping: 100
-  rotationDamping: 100
-  lookOffset: {x: 0, y: 2, z: 10}
 --- !u!114 &11425806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4131,10 +4114,12 @@ MonoBehaviour:
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
   explosionPower: 1500000
-  killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  killCheer: {fileID: 0}
   laserBeam: {fileID: 0}
   movingHoverPitch: 1.10000002
   hoverSound: {fileID: 8212134}
+  crosshairRect: {fileID: 0}
+  crosshairImg: {fileID: 0}
 --- !u!114 &11433008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4183,6 +4168,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
+--- !u!114 &11434756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bfbeb32152f2b64d983410acdd36267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetHeavy: {fileID: 473458}
+  targetLight: {fileID: 431964}
+  cameraPosition: {x: 0, y: 3.5, z: -7}
+  damping: 100
+  rotationDamping: 100
+  lookOffset: {x: 0, y: 2, z: 10}
 --- !u!114 &11435220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4361,10 +4363,12 @@ MonoBehaviour:
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
   explosionPower: 1e+07
-  killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  killCheer: {fileID: 0}
   laserBeam: {fileID: 141794}
   movingHoverPitch: 1.125
   hoverSound: {fileID: 8229374}
+  crosshairRect: {fileID: 0}
+  crosshairImg: {fileID: 0}
 --- !u!114 &11474626
 MonoBehaviour:
   m_ObjectHideFlags: 1
