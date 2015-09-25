@@ -468,6 +468,14 @@ Prefab:
       propertyPath: spawnAnimators.Array.data[2]
       value: 
       objectReference: {fileID: 215171860}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: crosshairRect
+      value: 
+      objectReference: {fileID: 145484776}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: crosshairImg
+      value: 
+      objectReference: {fileID: 145484778}
     - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
       propertyPath: energyCounter
       value: 
@@ -841,6 +849,14 @@ Prefab:
       propertyPath: spawnAnimators.Array.data[2]
       value: 
       objectReference: {fileID: 934286016}
+    - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: crosshairRect
+      value: 
+      objectReference: {fileID: 1601092158}
+    - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: crosshairImg
+      value: 
+      objectReference: {fileID: 1601092160}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
   m_IsPrefabParent: 0
@@ -960,6 +976,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 300
+  warning: {fileID: 8300000, guid: 44a2f2c7aad405944b45785b84be7c3d, type: 3}
+  countdown: {fileID: 8300000, guid: 213526a8b9364764fb3b1c40737cd2f4, type: 3}
+  warningTime: 30
+  countdownTime: 10
 --- !u!114 &103339439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3071,6 +3091,14 @@ Prefab:
       propertyPath: spawnAnimators.Array.data[2]
       value: 
       objectReference: {fileID: 213551542}
+    - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: crosshairRect
+      value: 
+      objectReference: {fileID: 1807374857}
+    - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: crosshairImg
+      value: 
+      objectReference: {fileID: 1807374859}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
   m_IsPrefabParent: 0
@@ -8692,7 +8720,7 @@ CanvasRenderer:
 --- !u!1 &1161178931 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 118008, guid: 77192545805124c43902ecc06c78608f, type: 2}
-  m_PrefabInternal: {fileID: 1796543511}
+  m_PrefabInternal: {fileID: 1294332975}
 --- !u!1 &1165858310
 GameObject:
   m_ObjectHideFlags: 0
@@ -9288,6 +9316,120 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1289099452}
+--- !u!1001 &1294332975
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -127
+      objectReference: {fileID: 0}
+    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: energyCounter
+      value: 
+      objectReference: {fileID: 1600581894}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 272088494}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: healthCounter
+      value: 
+      objectReference: {fileID: 101512497}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: respawnMessage1
+      value: 
+      objectReference: {fileID: 1943774910}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: respawnMessage2
+      value: 
+      objectReference: {fileID: 1643296923}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: spawnAnimators.Array.data[0]
+      value: 
+      objectReference: {fileID: 1173625083}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: spawnAnimators.Array.data[1]
+      value: 
+      objectReference: {fileID: 353782460}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: spawnAnimators.Array.data[2]
+      value: 
+      objectReference: {fileID: 897344754}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: crosshairRect
+      value: 
+      objectReference: {fileID: 1674435865}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: crosshairImg
+      value: 
+      objectReference: {fileID: 1674435867}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: energyCounter
+      value: 
+      objectReference: {fileID: 1600581894}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 272088494}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: healthCounter
+      value: 
+      objectReference: {fileID: 101512497}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: respawnMessage1
+      value: 
+      objectReference: {fileID: 1943774910}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: respawnMessage2
+      value: 
+      objectReference: {fileID: 1643296923}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: spawnAnimators.Array.data[0]
+      value: 
+      objectReference: {fileID: 1173625083}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: spawnAnimators.Array.data[1]
+      value: 
+      objectReference: {fileID: 353782460}
+    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: spawnAnimators.Array.data[2]
+      value: 
+      objectReference: {fileID: 897344754}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 77192545805124c43902ecc06c78608f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1304560331
 GameObject:
   m_ObjectHideFlags: 0
@@ -11939,7 +12081,7 @@ BoxCollider:
 --- !u!4 &1691613748 stripped
 Transform:
   m_PrefabParentObject: {fileID: 428722, guid: 77192545805124c43902ecc06c78608f, type: 2}
-  m_PrefabInternal: {fileID: 1796543511}
+  m_PrefabInternal: {fileID: 1294332975}
 --- !u!1 &1693910852
 GameObject:
   m_ObjectHideFlags: 0
@@ -12601,7 +12743,7 @@ Light:
 --- !u!1 &1738474741 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 170406, guid: 77192545805124c43902ecc06c78608f, type: 2}
-  m_PrefabInternal: {fileID: 1796543511}
+  m_PrefabInternal: {fileID: 1294332975}
 --- !u!1 &1739137421 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100022, guid: 6a8ebfa3351ed04478f167c6b622596e, type: 3}
@@ -12820,112 +12962,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1789622387}
   m_Mesh: {fileID: 4300014, guid: dd25a143e47069c4084841dd719c463e, type: 3}
---- !u!1001 &1796543511
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 29
-      objectReference: {fileID: 0}
-    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -127
-      objectReference: {fileID: 0}
-    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 418016, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: energyCounter
-      value: 
-      objectReference: {fileID: 1600581894}
-    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: uiController
-      value: 
-      objectReference: {fileID: 272088494}
-    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: healthCounter
-      value: 
-      objectReference: {fileID: 101512497}
-    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: respawnMessage1
-      value: 
-      objectReference: {fileID: 1943774910}
-    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: respawnMessage2
-      value: 
-      objectReference: {fileID: 1643296923}
-    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: spawnAnimators.Array.data[0]
-      value: 
-      objectReference: {fileID: 1173625083}
-    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: spawnAnimators.Array.data[1]
-      value: 
-      objectReference: {fileID: 353782460}
-    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: spawnAnimators.Array.data[2]
-      value: 
-      objectReference: {fileID: 897344754}
-    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: energyCounter
-      value: 
-      objectReference: {fileID: 1600581894}
-    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: uiController
-      value: 
-      objectReference: {fileID: 272088494}
-    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: healthCounter
-      value: 
-      objectReference: {fileID: 101512497}
-    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: respawnMessage1
-      value: 
-      objectReference: {fileID: 1943774910}
-    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: respawnMessage2
-      value: 
-      objectReference: {fileID: 1643296923}
-    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: spawnAnimators.Array.data[0]
-      value: 
-      objectReference: {fileID: 1173625083}
-    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: spawnAnimators.Array.data[1]
-      value: 
-      objectReference: {fileID: 353782460}
-    - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
-      propertyPath: spawnAnimators.Array.data[2]
-      value: 
-      objectReference: {fileID: 897344754}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 77192545805124c43902ecc06c78608f, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1803774208
 GameObject:
   m_ObjectHideFlags: 0

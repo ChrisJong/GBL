@@ -37,6 +37,9 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+--- !u!127 &3
+LevelGameManager:
+  m_ObjectHideFlags: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -65,7 +68,6 @@ LightmapSettings:
     m_TextureCompression: 0
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
-    m_ReflectionCompression: 2
   m_LightmapSnapshot: {fileID: 112000000, guid: 3beb65fa0888e9c4193ea298157c3800,
     type: 2}
   m_RuntimeCPUUsage: 25
@@ -1239,7 +1241,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -1757,6 +1758,14 @@ Prefab:
       propertyPath: energyCounter
       value: 
       objectReference: {fileID: 1199276796}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: crosshairRect
+      value: 
+      objectReference: {fileID: 1099051623}
+    - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
+      propertyPath: crosshairImg
+      value: 
+      objectReference: {fileID: 1099051625}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
   m_IsPrefabParent: 0
@@ -1857,7 +1866,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -1991,7 +1999,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -3090,9 +3097,61 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11440576, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
+      propertyPath: warning
+      value: 
+      objectReference: {fileID: 8300000, guid: 44a2f2c7aad405944b45785b84be7c3d, type: 3}
+    - target: {fileID: 11440576, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
+      propertyPath: countdown
+      value: 
+      objectReference: {fileID: 8300000, guid: 213526a8b9364764fb3b1c40737cd2f4, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1099051620 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11484584, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1099051619}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1099051621 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11484578, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1099051619}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!224 &1099051622 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22484570, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1099051619}
+--- !u!224 &1099051623 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22484580, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1099051619}
+--- !u!224 &1099051624 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22484568, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1099051619}
+--- !u!114 &1099051625 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11484588, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1099051619}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1099051626 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11484576, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1099051619}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!224 &1099051627 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22484576, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1099051619}
 --- !u!1 &1115742193
 GameObject:
   m_ObjectHideFlags: 0
@@ -3201,7 +3260,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -3769,6 +3827,14 @@ Prefab:
       propertyPath: energyCounter
       value: 
       objectReference: {fileID: 90098982}
+    - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: crosshairRect
+      value: 
+      objectReference: {fileID: 1099051622}
+    - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
+      propertyPath: crosshairImg
+      value: 
+      objectReference: {fileID: 1099051621}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
   m_IsPrefabParent: 0
@@ -3819,7 +3885,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -4045,6 +4110,14 @@ Prefab:
       propertyPath: energyCounter
       value: 
       objectReference: {fileID: 758058541}
+    - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: crosshairRect
+      value: 
+      objectReference: {fileID: 1099051624}
+    - target: {fileID: 11450906, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
+      propertyPath: crosshairImg
+      value: 
+      objectReference: {fileID: 1099051626}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cef0f835f3608b243a1da485aac107c5, type: 2}
   m_IsPrefabParent: 0
@@ -4686,7 +4759,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -4920,6 +4992,14 @@ Prefab:
       propertyPath: energyCounter
       value: 
       objectReference: {fileID: 260404690}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: crosshairRect
+      value: 
+      objectReference: {fileID: 1099051627}
+    - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
+      propertyPath: crosshairImg
+      value: 
+      objectReference: {fileID: 1099051620}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77192545805124c43902ecc06c78608f, type: 2}
   m_IsPrefabParent: 0

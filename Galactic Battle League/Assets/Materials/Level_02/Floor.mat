@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Floor
-  m_Shader: {fileID: 4800000, guid: 9ec7ccbd4289d0543939f61121224d93, type: 3}
-  m_ShaderKeywords: TCP2_SPEC_TOON
+  m_Shader: {fileID: 4800000, guid: 6782973e3ca8b2543beddb0a3dc3175e, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -104,6 +104,10 @@ Material:
         second: .75
       data:
         first:
+          name: _Parallax
+        second: .0199999996
+      data:
+        first:
           name: _RampThreshold
         second: .5
       data:
@@ -112,8 +116,8 @@ Material:
         second: .100000001
       data:
         first:
-          name: _Parallax
-        second: .0199999996
+          name: _SpecSmooth
+        second: 1
       data:
         first:
           name: _ZWrite
@@ -146,10 +150,6 @@ Material:
         first:
           name: _Metallic
         second: 0
-      data:
-        first:
-          name: _SpecSmooth
-        second: 1
     m_Colors:
       data:
         first:
@@ -165,9 +165,9 @@ Material:
         second: {r: .117647052, g: .117647052, b: .117647052, a: 1}
       data:
         first:
-          name: _SColor
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
           name: _HColor
         second: {r: .0882353187, g: .0882353187, b: .0882353187, a: 1}
+      data:
+        first:
+          name: _SColor
+        second: {r: 0, g: 0, b: 0, a: 1}

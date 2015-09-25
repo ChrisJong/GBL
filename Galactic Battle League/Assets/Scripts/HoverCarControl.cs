@@ -117,6 +117,9 @@ public class HoverCarControl : MonoBehaviour
 	private string fileName;
 	private StreamWriter trackingFile;
 	private float damageSinceLastPrint;
+
+	public RectTransform crosshairRect;
+	public Image crosshairImg;
 	
 	void Start()
 	{
@@ -318,7 +321,11 @@ public class HoverCarControl : MonoBehaviour
 		if (currError > 0 && !inputDevice.RightTrigger.IsPressed) 
 			currError -= 1.0f * Time.deltaTime;
 
-
+		if (crosshairRect && crosshairImg) 
+		{
+			crosshairRect.localScale = new Vector3 (0.75f + (currError / 10.0f), 0.75f + (currError / 20.0f), 0.5f);
+			crosshairImg.color = new Color(1, (255-(currError*15))/255, (255-(currError*30))/255);
+		}
 	}
 	
 	void FixedUpdate()

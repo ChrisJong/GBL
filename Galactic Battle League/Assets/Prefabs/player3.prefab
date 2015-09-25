@@ -2843,8 +2843,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173462}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: -100, y: 29, z: 127}
+  m_LocalRotation: {x: 0, y: -.382683456, z: 0, w: .923879504}
+  m_LocalPosition: {x: 90, y: 36.0999985, z: -111}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 473458}
@@ -3470,7 +3470,7 @@ Skybox:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173454}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: b7bc589dbc06ff14ab2456cf37fd4440, type: 2}
+  m_CustomSkybox: {fileID: 2100000, guid: 15074e2b1277c5048b48dd5c6008543d, type: 2}
 --- !u!45 &4592952
 Skybox:
   m_ObjectHideFlags: 1
@@ -3478,7 +3478,7 @@ Skybox:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192952}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: b7bc589dbc06ff14ab2456cf37fd4440, type: 2}
+  m_CustomSkybox: {fileID: 2100000, guid: 15074e2b1277c5048b48dd5c6008543d, type: 2}
 --- !u!54 &5431996
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -4196,10 +4196,12 @@ MonoBehaviour:
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
   explosionPower: 1500000
-  killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  killCheer: {fileID: 0}
   laserBeam: {fileID: 0}
   movingHoverPitch: 1.10000002
   hoverSound: {fileID: 8212134}
+  crosshairRect: {fileID: 0}
+  crosshairImg: {fileID: 0}
 --- !u!114 &11433008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4447,10 +4449,12 @@ MonoBehaviour:
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
   explosionPower: 1e+07
-  killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
+  killCheer: {fileID: 0}
   laserBeam: {fileID: 141794}
   movingHoverPitch: 1.125
   hoverSound: {fileID: 8229374}
+  crosshairRect: {fileID: 0}
+  crosshairImg: {fileID: 0}
 --- !u!114 &11473618
 MonoBehaviour:
   m_ObjectHideFlags: 1
