@@ -48,10 +48,10 @@ public class UIController : MonoBehaviour
 		deaths [victim - 1]++;
 		
 		killedMessage[victim-1].SetActive(true);
-		killedMessage[victim-1].GetComponentsInChildren<Text>()[0].text = "PLAYER " + attacker.ToString() + " KILLED YOU!";
+		killedMessage[victim-1].GetComponentsInChildren<Text>()[0].text = "You were killed by \n" + getFactionName(attacker);
 		
 		killMessage[attacker-1].SetActive(true);
-		killMessage[attacker-1].GetComponentsInChildren<Text>()[0].text = "YOU KILLED PLAYER " + victim.ToString() + "!";
+		killMessage[attacker-1].GetComponentsInChildren<Text>()[0].text = "You killed \n" + getFactionName(victim);
 
 		if (File.Exists (fileName)) 
 		{
