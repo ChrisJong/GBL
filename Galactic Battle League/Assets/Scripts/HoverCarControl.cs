@@ -123,6 +123,8 @@ public class HoverCarControl : MonoBehaviour
 
 	public Vector3 centerOfMass = Vector3.zero;
 	public Vector3 inertiaTensor = new Vector3(1, 100, 1);
+
+	private CameraController cameraController;
 	
 	void Start()
 	{
@@ -141,6 +143,8 @@ public class HoverCarControl : MonoBehaviour
 		if (respawnMessage2 == null) {
 			respawnMessage2 = GameObject.Find("P" + playerNumber + "_RESPAWN_MSG2");
 		}
+
+		cameraController = transform.parent.GetComponentInChildren<CameraController> ();
 
 		Directory.CreateDirectory("tracking");
 		fileName = "tracking\\" + DateTime.Now.ToString("ddMMyyyyHHmm") + "damage.txt";
@@ -219,6 +223,14 @@ public class HoverCarControl : MonoBehaviour
 		healthCounter.maxHealth = maxHealth;
 		energyCounter.energy = abilityCharge;
 		energyCounter.maxEnergy = maxAbilityCharge;
+		
+		//camera
+		if (inputDevice != null) {
+			if (inputDevice.Action4.WasPressed) {
+				cameraController.ChangeMode();
+			}
+		}
+
 		if (hasRespawned && inputDevice != null) 
 		{
 			if (inputDevice.RightTrigger.IsPressed) 
@@ -357,7 +369,7 @@ public class HoverCarControl : MonoBehaviour
 			crosshairImg.color = new Color(1, (255-(currError*15))/255, (255-(currError*30))/255);
 		}
 	}
-	
+
 	void FixedUpdate()
 	{
 		

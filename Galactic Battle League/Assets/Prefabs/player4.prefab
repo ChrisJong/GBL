@@ -4682,10 +4682,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetHeavy: {fileID: 418014}
   targetLight: {fileID: 461142}
-  cameraPosition: {x: 0, y: 3.5, z: -7}
-  damping: 100
-  rotationDamping: 100
-  lookOffset: {x: 0, y: 2, z: 10}
+  cameraPositionNear: {x: 0, y: 3.5, z: -7}
+  lookOffsetNear: {x: 0, y: 2, z: 10}
+  cameraPositionFar: {x: 0, y: 6, z: -8}
+  lookOffsetFar: {x: 0, y: 2, z: 3}
+  cameraPositionFirstPersonLight: {x: 0, y: 2, z: 0}
+  cameraPositionFirstPersonHeavy: {x: 0, y: 2, z: 0}
+  stiffness: 100
+  rotationStiffness: 100
+  cameraMode: 0
 --- !u!114 &11490110
 MonoBehaviour:
   m_ObjectHideFlags: 1
