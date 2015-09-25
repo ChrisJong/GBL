@@ -25,7 +25,7 @@ public class ShotController : MonoBehaviour
 	
 	void OnTriggerEnter (Collider other)
 	{
-		if (other.tag != "Player") 
+		if (other.tag != "Player" && other.tag != "Pickup") 
 		{
 			AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position, 0.25f);
 			//Vector3 explosionPos = transform.position;

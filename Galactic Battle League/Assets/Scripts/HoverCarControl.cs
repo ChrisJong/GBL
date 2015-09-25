@@ -535,6 +535,21 @@ public class HoverCarControl : MonoBehaviour
 
 			}
 		}
+		if (other.tag == "Pickup" && health < maxHealth) 
+		{
+			health += 10;
+			if (health >= maxHealth)
+				health = maxHealth;
+			Destroy(other.gameObject);
+			Rumble (0.15f);
+			
+			if (health / maxHealth > .66f)
+				if (damage66)
+					damage66.Stop ();
+			if (health / maxHealth > .33f)
+				if (damage33)
+					damage33.Stop ();
+		}
 	}
 	
 	void OnCollisionEnter(Collision collision)
