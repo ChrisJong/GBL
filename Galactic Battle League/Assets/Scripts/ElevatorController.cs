@@ -4,9 +4,9 @@ using System.Collections;
 public class ElevatorController : MonoBehaviour {
 
 	float doorCloseDelayTime = 0.5f;
-	float doorOpenDelayTime = 4;
+	float doorOpenDelayTime = 1.5f;
 	float riseDelayTime = 0.75f;
-	float descendDelayTime = 6;
+	float descendDelayTime = 0.5f;
 	bool elevatorAtBottom = true;
 	public Light lt;
 	public Color grn;
@@ -32,6 +32,17 @@ public class ElevatorController : MonoBehaviour {
 			{
 				elevatorAtBottom = false;
 				Invoke ("CloseDoors", doorCloseDelayTime);
+			}
+		}
+	}
+
+	void OnTriggerExit(Collider collider)
+	{
+		if (collider.name == "Hover Car Heavy" || collider.name == "Hover Car Light") 
+		{
+			if (elevatorAtBottom == false) 
+			{
+				Invoke ("LowerElevator", descendDelayTime);
 			}
 		}
 	}
@@ -66,8 +77,6 @@ public class ElevatorController : MonoBehaviour {
 				anim.Play ("elevator_Floor_Rise");
 			}
 		}
-		
-		Invoke ("LowerElevator", descendDelayTime);
 	}
 	
 	void LowerElevator()
