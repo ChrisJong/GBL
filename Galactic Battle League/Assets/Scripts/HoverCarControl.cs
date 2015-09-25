@@ -120,6 +120,9 @@ public class HoverCarControl : MonoBehaviour
 
 	public RectTransform crosshairRect;
 	public Image crosshairImg;
+
+	public Vector3 centerOfMass = Vector3.zero;
+	public Vector3 inertiaTensor = new Vector3(1, 100, 1);
 	
 	void Start()
 	{
@@ -154,6 +157,18 @@ public class HoverCarControl : MonoBehaviour
 		spawnInt = 0;
 		holdingTrigger = false;
 		nextFire = 0;
+
+		if (centerOfMass != Vector3.zero)
+			m_body.centerOfMass = centerOfMass;
+		if (inertiaTensor != Vector3.zero) {
+			m_turnStrength *= inertiaTensor.y;
+			m_aimStrength *= inertiaTensor.x;
+
+			inertiaTensor.x *= m_body.inertiaTensor.x;
+			inertiaTensor.y *= m_body.inertiaTensor.y;
+			inertiaTensor.z *= m_body.inertiaTensor.z;
+			m_body.inertiaTensor = inertiaTensor;
+		}
 	}
 	
 	void OnDrawGizmos()
@@ -380,7 +395,7 @@ public class HoverCarControl : MonoBehaviour
 		if (m_currAim > 0) {
 			m_body.AddTorque (-transform.right * m_currAim * m_aimStrength);
 		} else if (m_currAim < 0) {
-			m_body.AddTorque (-transform.right * m_currAim * m_turnStrength / 2);
+			m_body.AddTorque (-transform.right * m_currAim * m_aimStrength);
 		}
 
 
