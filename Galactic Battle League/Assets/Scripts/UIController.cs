@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using System.IO;
 
@@ -8,6 +9,8 @@ public class UIController : MonoBehaviour
 {
 	public ScoreCounter[] scoreText;
 	public int[] score;
+	public int[] deaths;
+	public float[] damage;
 	public GameTimer timer;
 	
 	public GameObject[] killedMessage;
@@ -24,6 +27,9 @@ public class UIController : MonoBehaviour
 		trackingFile = new StreamWriter(fileName, true);
 		trackingFile.Close ();
 		timer = GameObject.Find ("TimerText").GetComponent<GameTimer> ();
+
+		deaths = new int[4];
+		damage = new float[4];
 	}
 	
 	// Update is called once per frame
@@ -39,6 +45,7 @@ public class UIController : MonoBehaviour
 	{
 		score [attacker - 1]++;
 		scoreText[attacker - 1].score++;
+		deaths [victim - 1]++;
 		
 		killedMessage[victim-1].SetActive(true);
 		killedMessage[victim-1].GetComponentsInChildren<Text>()[0].text = "PLAYER " + attacker.ToString() + " KILLED YOU!";
@@ -68,35 +75,119 @@ public class UIController : MonoBehaviour
 			trackingFile.WriteLine ("Time Remaining: " + timer.time.ToString());
 			trackingFile.Close();
 		}
-
 	}
 
+	public void DamageCaused(int attacker, float damageValue)
+	{
+		damage [attacker - 1] += damageValue;
+	}
 
-	// Ranks players and stores the 1st/2nd/3rd in the PlayerPrefs
 	public void GameOver()
 	{
+		DetermineRankings ();
 
-		int[] playerNumbers = {1,2,3,4};
-		//int highScore = -1;
-		//int highPlayer = 0;
-
-		//for (int i = 0; i < 4; i++) {
-		//	if (score[i] > highScore)
-		//	{
-		//		highScore = score[i];
-		//		highPlayer = i + 1;
-		//	}
-		//}
-
-
-		Array.Sort (score, playerNumbers);
-
-		PlayerPrefs.SetInt ("Winner", playerNumbers[3]);
-		PlayerPrefs.SetInt ("Second", playerNumbers[2]);
-		PlayerPrefs.SetInt ("Third", playerNumbers[1]);
 		trackingFile = new StreamWriter (fileName, true);
-		trackingFile.WriteLine("Winner: " + playerNumbers[3].ToString());
+		trackingFile.WriteLine("Winner: " + PlayerPrefs.GetInt ("Position1Player"));
 		trackingFile.Close ();
-		Application.LoadLevel("WinScreen");
+		Application.LoadLevel("WinScoreboard");
+	}
+
+	public void DetermineRankings()
+	{
+		Dictionary<int, int> scoreList = new Dictionary<int, int> ();
+		Dictionary<int, int> deathList = new Dictionary<int, int> ();
+		Dictionary<int, float> damageList = new Dictionary<int, float> ();
+		int position = 1;
+
+		for (int i = 0; i < 4; i++)
+		{
+			if (score[i] > 0 || deaths[i] > 0 || damage[i] > 0)
+			{
+				scoreList.Add (i + 1, score[i]);
+				deathList.Add (i + 1, deaths[i]);
+				damageList.Add(i + 1, damage[i]);
+			}
+
+			String keyName = "Position" + (i+1) + "Player";
+
+			if (PlayerPrefs.HasKey(keyName))
+			{
+				PlayerPrefs.DeleteKey(keyName);
+			}
+		}
+
+		while (scoreList.Count > 0) 
+		{
+			int topPlayer = -1;
+			int topScore = -1;
+			int topDeaths = -1;
+			float topDamage = -1;
+
+			foreach(KeyValuePair<int, int> sc in scoreList)
+			{
+				if (sc.Value > topScore)
+				{
+					topPlayer = sc.Key;
+					topScore = sc.Value;
+					deathList.TryGetValue(sc.Key, out topDeaths);
+					damageList.TryGetValue(sc.Key, out topDamage);
+				}
+				else if (sc.Value == topScore)
+				{
+					int currentDeaths;
+					deathList.TryGetValue(sc.Key, out currentDeaths);
+
+					if (currentDeaths < topDeaths)
+					{
+						topPlayer = sc.Key;
+						topScore = sc.Value;
+						deathList.TryGetValue(sc.Key, out topDeaths);
+						damageList.TryGetValue(sc.Key, out topDamage);
+					}
+					else if (currentDeaths == topDeaths)
+					{
+						float currentDamage;
+						damageList.TryGetValue(sc.Key, out currentDamage);
+
+						if (currentDamage > topDamage)
+						{
+							topPlayer = sc.Key;
+							topScore = sc.Value;
+							deathList.TryGetValue(sc.Key, out topDeaths);
+							damageList.TryGetValue(sc.Key, out topDamage);
+						}
+					}
+				}
+			}
+
+			PlayerPrefs.SetInt ("Position" + position + "Player", topPlayer);
+			PlayerPrefs.SetInt ("Position" + position + "Score", topScore);
+			PlayerPrefs.SetInt ("Position" + position + "Deaths", topDeaths);
+			PlayerPrefs.SetInt ("Position" + position + "Damage", (int)topDamage);
+
+			scoreList.Remove(topPlayer);
+			deathList.Remove(topPlayer);
+			damageList.Remove(topPlayer);
+			position++;
+		}
+	}
+
+	public static string getFactionName(int playerNumber)
+	{
+		string name = "";
+		
+		switch (playerNumber) 
+		{
+		case 1: name = "<color=red>PYRE REQUISTIONS</color>";
+			break;
+		case 2: name = "<color=blue>VALKYRIE TECHNOLOGIES</color>";
+			break;
+		case 3: name = "<color=green>JAVELIN DEFENSE</color>";
+			break;
+		case 4: name = "<color=orange>SHARD INDUSTRIES</color>";
+			break;
+		}
+		
+		return name;
 	}
 }
