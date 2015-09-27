@@ -101,6 +101,8 @@ public class HoverCarControl : MonoBehaviour
 	public float explosionPower = 25000.0F;
 	private float maxError = 7.0f;
 	private float currError = 0.0f;
+	private float prevError = 0.0f;
+	private float changeError = 0.0f;
 	private float fireTime;
 
 	private bool holdingTrigger;
@@ -118,8 +120,7 @@ public class HoverCarControl : MonoBehaviour
 	private StreamWriter trackingFile;
 	private float damageSinceLastPrint;
 
-	public RectTransform crosshairRect;
-	public Image crosshairImg;
+	private GameObject[] crosshairs;
 
 	public Vector3 centerOfMass = Vector3.zero;
 	public Vector3 inertiaTensor = new Vector3(1, 100, 1);
@@ -143,6 +144,11 @@ public class HoverCarControl : MonoBehaviour
 		if (respawnMessage2 == null) {
 			respawnMessage2 = GameObject.Find("P" + playerNumber + "_RESPAWN_MSG2");
 		}
+		crosshairs = new GameObject[4];
+		crosshairs[0] = GameObject.Find("P" + playerNumber + "_CrosshairTL");
+		crosshairs[1] = GameObject.Find("P" + playerNumber + "_CrosshairTR");
+		crosshairs[2] = GameObject.Find("P" + playerNumber + "_CrosshairBL");
+		crosshairs[3] = GameObject.Find("P" + playerNumber + "_CrosshairBR");
 
 		cameraController = transform.parent.GetComponentInChildren<CameraController> ();
 
@@ -361,12 +367,27 @@ public class HoverCarControl : MonoBehaviour
 		}
 
 		if (currError > 0 && !inputDevice.RightTrigger.IsPressed) 
-			currError -= 1.0f * Time.deltaTime;
+			currError -= 4.0f * Time.deltaTime;
 
-		if (crosshairRect && crosshairImg) 
+		if (currError < 0)
+			currError = 0;
+
+		if (crosshairs[0]) 
 		{
-			crosshairRect.localScale = new Vector3 (0.75f + (currError / 10.0f), 0.75f + (currError / 20.0f), 0.5f);
-			crosshairImg.color = new Color(1, (255-(currError*15))/255, (255-(currError*30))/255);
+			changeError = currError - prevError;
+			prevError = currError;
+
+			crosshairs[0].transform.position = new Vector3(crosshairs[0].transform.position.x - changeError, crosshairs[0].transform.position.y + (changeError/2));
+			crosshairs[1].transform.position = new Vector3(crosshairs[1].transform.position.x + changeError, crosshairs[1].transform.position.y + (changeError/2));
+			crosshairs[2].transform.position = new Vector3(crosshairs[2].transform.position.x - changeError, crosshairs[2].transform.position.y - (changeError/2));
+			crosshairs[3].transform.position = new Vector3(crosshairs[3].transform.position.x + changeError, crosshairs[3].transform.position.y - (changeError/2));
+
+
+			foreach(GameObject crosshair in crosshairs)
+			{
+				crosshair.GetComponent<RectTransform>().localScale = new Vector3 (0.75f + (currError / 10.0f), 0.75f + (currError / 20.0f), 0.5f);
+				crosshair.GetComponent<Image>().color = new Color(1, (255-(currError*15))/255, (255-(currError*30))/255);
+			}
 		}
 	}
 
@@ -526,7 +547,6 @@ public class HoverCarControl : MonoBehaviour
 			ShotController shotControllerCopy = other.gameObject.GetComponent<ShotController>();
 			if (shotControllerCopy.playerNumber != playerNumber)
 			{
-				cameraController.RunGlitch();
 				AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position, 0.25f);
 				//Vector3 explosionPos = other.gameObject.transform.position;
 				//Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
@@ -592,7 +612,7 @@ public class HoverCarControl : MonoBehaviour
 			Quaternion errorRotation = Quaternion.Euler(error.x/2, error.y, 0);
 			shotAngle = shotAngle * errorRotation;
 			if (currError < maxError)
-				currError += 0.15f;
+				currError += 0.5f;
 		}
 		GameObject zBullet = (GameObject)Instantiate (shot, shotSpawn[spawnInt].position, shotAngle);
 		zBullet.GetComponent<ShotController> ().SetVelocity ();
@@ -624,6 +644,25 @@ public class HoverCarControl : MonoBehaviour
 			particle.Stop();
 		}
 		baseParticle.Stop ();
+
+		currError = 0;
+		if (crosshairs[0]) 
+		{
+			changeError = currError - prevError;
+			prevError = currError;
+			
+			crosshairs[0].transform.position = new Vector3(crosshairs[0].transform.position.x - changeError, crosshairs[0].transform.position.y + (changeError/2));
+			crosshairs[1].transform.position = new Vector3(crosshairs[1].transform.position.x + changeError, crosshairs[1].transform.position.y + (changeError/2));
+			crosshairs[2].transform.position = new Vector3(crosshairs[2].transform.position.x - changeError, crosshairs[2].transform.position.y - (changeError/2));
+			crosshairs[3].transform.position = new Vector3(crosshairs[3].transform.position.x + changeError, crosshairs[3].transform.position.y - (changeError/2));
+			
+			
+			foreach(GameObject crosshair in crosshairs)
+			{
+				crosshair.GetComponent<RectTransform>().localScale = new Vector3 (0.75f + (currError / 10.0f), 0.75f + (currError / 20.0f), 0.5f);
+				crosshair.GetComponent<Image>().color = new Color(1, (255-(currError*15))/255, (255-(currError*30))/255);
+			}
+		}
 	}
 	
 	void Respawn()
@@ -723,6 +762,7 @@ public class HoverCarControl : MonoBehaviour
 				uiController.DamageCaused(damageData.playerNumber, (int)damageSinceLastPrint);
 				damageSinceLastPrint = 0;
 			}
+			cameraController.RunGlitch();
 		}
 	}
 	
