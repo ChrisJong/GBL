@@ -580,8 +580,11 @@ public class HoverCarControl : MonoBehaviour
 				if (damage66)
 					damage66.Stop ();
 			if (health / maxHealth > .33f)
+			{
+				cameraController.StopLowHealth();
 				if (damage33)
 					damage33.Stop ();
+			}
 		}
 	}
 	
@@ -703,6 +706,7 @@ public class HoverCarControl : MonoBehaviour
 		abilityActive = false;
 
 		cameraController.RunRespawn();
+		cameraController.StopLowHealth ();
 	}
 	
 	void Rumble(float duration) {
@@ -744,11 +748,14 @@ public class HoverCarControl : MonoBehaviour
 				Rumble (0.05f);
 			
 			if (health / maxHealth < .66f)
-			if (damage66)
-				damage66.Play ();
+				if (damage66)
+					damage66.Play ();
 			if (health / maxHealth < .33f)
-			if (damage33)
-				damage33.Play ();
+			{
+				cameraController.RunLowHealth();
+				if (damage33)
+					damage33.Play ();
+			}
 			if (health <= 0) {
 				health = 0;
 				uiController.PlayerKill (damageData.playerNumber, (int)damageData.damage, playerNumber, tankClass);

@@ -1481,6 +1481,7 @@ GameObject:
   - 114: {fileID: 11488992}
   - 114: {fileID: 11479162}
   - 114: {fileID: 11407718}
+  - 114: {fileID: 11419162}
   m_Layer: 0
   m_Name: Camera4
   m_TagString: Untagged
@@ -4314,10 +4315,20 @@ MonoBehaviour:
   laserBeam: {fileID: 185856}
   movingHoverPitch: 1.125
   hoverSound: {fileID: 8229374}
-  crosshairRect: {fileID: 0}
-  crosshairImg: {fileID: 0}
   centerOfMass: {x: 0, y: 0, z: 0}
   inertiaTensor: {x: 1, y: 100, z: 1}
+--- !u!114 &11419162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170406}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17af643e3a78ea40821bac0819a68fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 240c17d4cd1b7f34fb7191e55d511841, type: 3}
 --- !u!114 &11429154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4596,8 +4607,6 @@ MonoBehaviour:
   laserBeam: {fileID: 0}
   movingHoverPitch: 1.10000002
   hoverSound: {fileID: 8299346}
-  crosshairRect: {fileID: 0}
-  crosshairImg: {fileID: 0}
   centerOfMass: {x: 0, y: 0, z: 0}
   inertiaTensor: {x: 1, y: 100, z: 1}
 --- !u!114 &11466264

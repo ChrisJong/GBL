@@ -1707,6 +1707,7 @@ GameObject:
   - 114: {fileID: 11432460}
   - 114: {fileID: 11473452}
   - 114: {fileID: 11472776}
+  - 114: {fileID: 11431280}
   m_Layer: 0
   m_Name: Camera3
   m_TagString: Untagged
@@ -4344,6 +4345,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
+--- !u!114 &11431280
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192952}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17af643e3a78ea40821bac0819a68fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 240c17d4cd1b7f34fb7191e55d511841, type: 3}
 --- !u!114 &11431994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4412,8 +4425,6 @@ MonoBehaviour:
   laserBeam: {fileID: 0}
   movingHoverPitch: 1.10000002
   hoverSound: {fileID: 8212134}
-  crosshairRect: {fileID: 0}
-  crosshairImg: {fileID: 0}
   centerOfMass: {x: 0, y: 0, z: 0}
   inertiaTensor: {x: 1, y: 100, z: 1}
 --- !u!114 &11432460
@@ -4711,8 +4722,6 @@ MonoBehaviour:
   laserBeam: {fileID: 141794}
   movingHoverPitch: 1.125
   hoverSound: {fileID: 8229374}
-  crosshairRect: {fileID: 0}
-  crosshairImg: {fileID: 0}
   centerOfMass: {x: 0, y: 0, z: 0}
   inertiaTensor: {x: 1, y: 100, z: 1}
 --- !u!114 &11474626

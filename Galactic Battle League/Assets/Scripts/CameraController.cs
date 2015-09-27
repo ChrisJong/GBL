@@ -25,19 +25,22 @@ public class CameraController : MonoBehaviour {
 	private CameraFilterPack_TV_Artefact glitchCam;
 	private float stopGlitch;
 
+	private CameraFilterPack_TV_80 lowHealthCam;
+
 	// Use this for initialization
 	void Start () {
 		glitchCam = GetComponent<CameraFilterPack_TV_Artefact>();
 		respawnCam = GetComponent<CameraFilterPack_AAA_SuperComputer>();
 		respawnCam.enabled = true;
 		respawnCam.ChangeRadius = 0;
+		lowHealthCam = GetComponent<CameraFilterPack_TV_80> ();
 	}
 
 	void Update()
 	{
 		if (respawnCam.enabled == true) 
 		{
-			respawnCam.ChangeRadius += 0.05f;
+			respawnCam.ChangeRadius += 0.03f;
 			if (respawnCam.ChangeRadius >= 1.5f)
 				respawnCam.enabled = false;
 		}
@@ -113,5 +116,15 @@ public class CameraController : MonoBehaviour {
 	{
 		respawnCam.ChangeRadius = 0;
 		respawnCam.enabled = true;
+	}
+
+	public void RunLowHealth()
+	{
+		lowHealthCam.enabled = true;
+	}
+
+	public void StopLowHealth()
+	{
+		lowHealthCam.enabled = false;
 	}
 }
