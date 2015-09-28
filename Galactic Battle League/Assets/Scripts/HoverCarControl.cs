@@ -77,10 +77,10 @@ public class HoverCarControl : MonoBehaviour
 	private float damageIncreaseTime;
 	private float invincibilityTime;
 	private float signalJammedTime;
-	public float damageIncreaseDuration = 5;
-	public float invincibilityDuration = 5;
-	public float signalJammedDuration = 5;
-	public float damageIncreaseValue = 2;
+	private float damageIncreaseDuration = 5;
+	private float invincibilityDuration = 5;
+	private float signalJammedDuration = 5;
+	private float damageIncreaseValue = 2;
 
 	private GameObject respawnMessage1;
 	private GameObject respawnMessage2;
@@ -514,6 +514,8 @@ public class HoverCarControl : MonoBehaviour
 							damageData.damage = abilityPower * Time.deltaTime;
 							if (damageIncreased)
 								damageData.damage *= damageIncreaseValue;
+							if (hits[i].collider.GetComponent<HoverCarControl>().invincible)
+								damageData.damage = 0;
 							damageData.position = hits[i].point;
 							damageData.playerNumber = playerNumber;
 							damageData.distance = 0;
@@ -585,12 +587,13 @@ public class HoverCarControl : MonoBehaviour
 
 				DamageData damageData;
 				damageData.damage = shotControllerCopy.damage;
+				if (invincible)
+					damageData.damage = 0;
 				damageData.position = other.transform.position;
 				damageData.playerNumber = shotControllerCopy.playerNumber;
 				damageData.distance = Vector3.Distance(shotControllerCopy.startPoint, other.transform.position);
 
 				Damage(damageData);
-
 			}
 		}
 		if (other.tag == "Pickup") 
