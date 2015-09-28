@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 339aedad494558f42b0ad7f207c66937, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -32,13 +32,6 @@ Material:
       data:
         first:
           name: _DetailNormalMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Ramp
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -85,6 +78,13 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Ramp
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -102,18 +102,6 @@ Material:
         first:
           name: _Shininess
         second: .75
-      data:
-        first:
-          name: _RampThreshold
-        second: .5
-      data:
-        first:
-          name: _RampSmooth
-        second: .100000001
-      data:
-        first:
-          name: _SpecSmooth
-        second: 1
       data:
         first:
           name: _Parallax
@@ -150,6 +138,18 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _RampThreshold
+        second: .5
+      data:
+        first:
+          name: _RampSmooth
+        second: .100000001
+      data:
+        first:
+          name: _SpecSmooth
+        second: 1
     m_Colors:
       data:
         first:
@@ -158,7 +158,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .463235319, g: .463235319, b: .463235319, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _SpecColor
@@ -166,8 +166,8 @@ Material:
       data:
         first:
           name: _HColor
-        second: {r: .16911763, g: .16911763, b: .16911763, a: 1}
+        second: {r: .498039216, g: .498039216, b: .498039216, a: 1}
       data:
         first:
           name: _SColor
-        second: {r: .125, g: .125, b: .125, a: 1}
+        second: {r: 0, g: 0, b: 0, a: 1}

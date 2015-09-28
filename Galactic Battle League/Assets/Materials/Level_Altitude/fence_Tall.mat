@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 66df7d3028634d64eb163f1b7ad57eed, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -32,13 +32,6 @@ Material:
       data:
         first:
           name: _DetailNormalMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Ramp
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -85,6 +78,13 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Ramp
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -102,42 +102,6 @@ Material:
         first:
           name: _Shininess
         second: .100000001
-      data:
-        first:
-          name: _RampThreshold
-        second: .5
-      data:
-        first:
-          name: _RampSmooth
-        second: .100000001
-      data:
-        first:
-          name: _Outline
-        second: 3
-      data:
-        first:
-          name: _TexLod
-        second: 5
-      data:
-        first:
-          name: _ZSmooth
-        second: -.5
-      data:
-        first:
-          name: _Offset1
-        second: 0
-      data:
-        first:
-          name: _Offset2
-        second: 0
-      data:
-        first:
-          name: _SrcBlendOutline
-        second: 5
-      data:
-        first:
-          name: _DstBlendOutline
-        second: 10
       data:
         first:
           name: _Parallax
@@ -176,6 +140,42 @@ Material:
         second: 0
       data:
         first:
+          name: _Outline
+        second: 3
+      data:
+        first:
+          name: _RampThreshold
+        second: .5
+      data:
+        first:
+          name: _RampSmooth
+        second: .100000001
+      data:
+        first:
+          name: _TexLod
+        second: 5
+      data:
+        first:
+          name: _ZSmooth
+        second: -.5
+      data:
+        first:
+          name: _Offset1
+        second: 0
+      data:
+        first:
+          name: _Offset2
+        second: 0
+      data:
+        first:
+          name: _SrcBlendOutline
+        second: 5
+      data:
+        first:
+          name: _DstBlendOutline
+        second: 10
+      data:
+        first:
           name: _SpecSmooth
         second: .0500000007
     m_Colors:
@@ -186,20 +186,20 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: .356833905, g: .392081529, b: .441176474, a: 1}
       data:
         first:
           name: _SpecColor
         second: {r: .514705896, g: .484429091, b: .484429091, a: 1}
       data:
         first:
-          name: _SColor
-        second: {r: .176470578, g: .176470578, b: .176470578, a: 1}
+          name: _OutlineColor
+        second: {r: .200000003, g: .200000003, b: .200000003, a: 1}
       data:
         first:
           name: _HColor
         second: {r: .808823526, g: .808823526, b: .808823526, a: 1}
       data:
         first:
-          name: _OutlineColor
-        second: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+          name: _SColor
+        second: {r: .176470578, g: .176470578, b: .176470578, a: 1}
