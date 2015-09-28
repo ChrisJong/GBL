@@ -14,6 +14,8 @@ public class PickupController : MonoBehaviour
 	public float damageIncreaseWeighting;
 	public float invincibilityWeighting;
 	public float signalJammerWeighting;
+	public float speedBoostWeighting;
+	public float unlimitedEnergyWeighting;
 
 	// Use this for initialization
 	void Start () 
@@ -66,7 +68,7 @@ public class PickupController : MonoBehaviour
 	string SelectRandomPickup()
 	{
 		string pickupType;
-		float totalWeighting = healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting;
+		float totalWeighting = healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting + speedBoostWeighting + unlimitedEnergyWeighting;
 
 		float randNumber = Random.Range (0, totalWeighting);
 
@@ -89,6 +91,14 @@ public class PickupController : MonoBehaviour
 		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting)) 
 		{
 			pickupType = "PickupSignalJammer";
+		}
+		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting + speedBoostWeighting)) 
+		{
+			pickupType = "PickupSpeedBoost";
+		}
+		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting + speedBoostWeighting + unlimitedEnergyWeighting)) 
+		{
+			pickupType = "PickupUnlimitedEnergy";
 		} 
 		else 
 		{

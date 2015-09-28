@@ -74,13 +74,20 @@ public class HoverCarControl : MonoBehaviour
 	public bool damageIncreased = false;
 	public bool invincible = false;
 	public bool signalJammed = false;
+	public bool speedBoosted = false;
+	public bool unlimitedEnergy = false;
 	private float damageIncreaseTime;
 	private float invincibilityTime;
 	private float signalJammedTime;
-	private float damageIncreaseDuration = 5;
-	private float invincibilityDuration = 5;
-	private float signalJammedDuration = 5;
-	private float damageIncreaseValue = 2;
+	private float speedBoostedTime;
+	private float unlimitedEnergyTime;
+	private float damageIncreaseDuration = 5f;
+	private float invincibilityDuration = 5f;
+	private float signalJammedDuration = 5f;
+	private float speedBoostedDuration = 5f;
+	private float unlimitedEnergyDuration = 5f;
+	private float damageIncreaseValue = 2f;
+	private float speedBoostedValue = 1.25f;
 
 	private GameObject respawnMessage1;
 	private GameObject respawnMessage2;
@@ -407,6 +414,19 @@ public class HoverCarControl : MonoBehaviour
 		if (invincible && invincibilityTime < Time.time)
 			invincible = false;
 
+		if (speedBoosted && speedBoostedTime < Time.time)
+			speedBoosted = false;
+
+		if (unlimitedEnergy)
+		{
+			abilityCharge = maxAbilityCharge;
+
+			if (unlimitedEnergyTime < Time.time)
+			{
+				unlimitedEnergy = false;
+			}
+		}
+
 		if (signalJammed && signalJammedTime < Time.time)
 		{
 			signalJammed = false;
@@ -562,6 +582,12 @@ public class HoverCarControl : MonoBehaviour
 			{
 				Respawn();
 			}
+		}
+
+		if (speedBoosted)
+		{
+			m_body.AddForce(transform.forward * m_currThrust * speedBoostedValue);
+			m_body.AddForce(transform.right * m_currSideThrust * speedBoostedValue);
 		}
 	}
 	
@@ -727,6 +753,8 @@ public class HoverCarControl : MonoBehaviour
 
 		damageIncreased = false;
 		invincible = false;
+		speedBoosted = false;
+		unlimitedEnergy = false;
 		if (signalJammed) 
 		{
 			signalJammed = false;
@@ -839,6 +867,20 @@ public class HoverCarControl : MonoBehaviour
 		else if (pickupType == "PickupSignalJammer(Clone)")
 		{
 			ProcessSignalJammerPickup();
+			Destroy(pickup.gameObject);
+		}
+		else if (pickupType == "PickupSpeedBoost(Clone)")
+		{
+			speedBoosted = true;
+			speedBoostedTime = Time.time + speedBoostedDuration;
+			uiController.PickupTaken(playerNumber, "SPEED BOOST");
+			Destroy(pickup.gameObject);
+		}
+		else if (pickupType == "PickupUnlimitedEnergy(Clone)")
+		{
+			unlimitedEnergy = true;
+			unlimitedEnergyTime = Time.time + unlimitedEnergyDuration;
+			uiController.PickupTaken(playerNumber, "UNLIMITED ENERGY");
 			Destroy(pickup.gameObject);
 		}
 	}
