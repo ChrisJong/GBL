@@ -70,6 +70,17 @@ public class HoverCarControl : MonoBehaviour
 	public ParticleSystem[] deathParticle;
 	private double spawnActiveTimer;
 
+	// Pickup variables
+	public bool damageIncreased = false;
+	public bool invincible = false;
+	public bool signalJammed = false;
+	private float damageIncreaseTime;
+	private float invincibilityTime;
+	private float signalJammedTime;
+	public float damageIncreaseDuration = 20;
+	public float invincibilityDuration = 20;
+	public float signalJammedDuration = 20;
+	public float damageIncreaseValue = 5;
 
 	private GameObject respawnMessage1;
 	private GameObject respawnMessage2;
@@ -389,6 +400,18 @@ public class HoverCarControl : MonoBehaviour
 				crosshair.GetComponent<Image>().color = new Color(1, (255-(currError*15))/255, (255-(currError*30))/255);
 			}
 		}
+
+		if (damageIncreased && damageIncreaseTime < Time.time)
+			damageIncreased = false;
+
+		if (invincible && invincibilityTime < Time.time)
+			invincible = false;
+
+		if (signalJammed && signalJammedTime < Time.time)
+		{
+			signalJammed = false;
+			cameraController.StopSignalJammed ();
+		}
 	}
 
 	void FixedUpdate()
@@ -568,23 +591,9 @@ public class HoverCarControl : MonoBehaviour
 
 			}
 		}
-		if (other.tag == "Pickup" && health < maxHealth) 
+		if (other.tag == "Pickup") 
 		{
-			health += 10;
-			if (health >= maxHealth)
-				health = maxHealth;
-			Destroy(other.gameObject);
-			Rumble (0.15f);
-			
-			if (health / maxHealth > .66f)
-				if (damage66)
-					damage66.Stop ();
-			if (health / maxHealth > .33f)
-			{
-				cameraController.StopLowHealth();
-				if (damage33)
-					damage33.Stop ();
-			}
+			processPickup(other);
 		}
 	}
 	
@@ -705,6 +714,14 @@ public class HoverCarControl : MonoBehaviour
 		abilityCharge = maxAbilityCharge;
 		abilityActive = false;
 
+		damageIncreased = false;
+		invincible = false;
+		if (signalJammed) 
+		{
+			signalJammed = false;
+			cameraController.StopSignalJammed ();
+		}
+
 		cameraController.RunRespawn();
 		cameraController.StopLowHealth ();
 	}
@@ -772,7 +789,90 @@ public class HoverCarControl : MonoBehaviour
 			cameraController.RunGlitch();
 		}
 	}
-	
+
+	void processPickup(Collider pickup)
+	{
+		string pickupType = pickup.name;
+		Debug.Log (pickupType);
+
+		if (pickupType == "PickupHealthSmall(Clone)")
+		{
+			if (health < maxHealth)
+			{
+				processHealthPickup (10f);
+				Destroy(pickup.gameObject);
+			}
+		}
+		else if (pickupType == "PickupHealthLarge(Clone)")
+		{
+			if (health < maxHealth)
+			{
+				processHealthPickup (20f);
+				Destroy(pickup.gameObject);
+			}
+		}
+		else if (pickupType == "PickupDamageIncrease(Clone)")
+		{
+			damageIncreased = true;
+			damageIncreaseTime = Time.time + damageIncreaseDuration;
+			Destroy(pickup.gameObject);
+		}
+		else if (pickupType == "PickupInvincibility(Clone)")
+		{
+			invincible = true;
+			invincibilityTime = Time.time + invincibilityDuration;
+			Destroy(pickup.gameObject);
+		}
+		else if (pickupType == "PickupSignalJammer(Clone)")
+		{
+			processSignalJammerPickup();
+			Destroy(pickup.gameObject);
+		}
+	}
+
+	void processHealthPickup(float healthValue)
+	{
+		health += healthValue;
+		if (health >= maxHealth)
+			health = maxHealth;
+		Rumble (0.15f);
+		
+		if (health / maxHealth > .66f)
+			if (damage66)
+				damage66.Stop ();
+		if (health / maxHealth > .33f)
+		{
+			cameraController.StopLowHealth();
+			if (damage33)
+				damage33.Stop ();
+		}
+	}
+
+	void processSignalJammerPickup()
+	{
+		GameObject camera;
+		GameObject player;
+
+		for (int i = 1; i <= 4; i++)
+		{
+			if (i != playerNumber)
+			{
+				camera = GameObject.Find ("Camera" + i);
+				CameraController otherCamController = camera.GetComponent<CameraController>();
+				otherCamController.RunSignalJammed();
+
+				player = GameObject.Find ("player" + i);
+				HoverCarControl[] otherHoverControllers = player.GetComponentsInChildren<HoverCarControl>();
+
+				foreach (HoverCarControl hcControl in otherHoverControllers)
+				{
+					hcControl.signalJammed = true;
+					hcControl.signalJammedTime = Time.time + signalJammedDuration;
+				}
+			}
+		}
+	}
+
 	void OnEnable()
 	{
 		if (initialised) {

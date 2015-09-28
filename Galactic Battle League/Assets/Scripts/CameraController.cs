@@ -27,10 +27,13 @@ public class CameraController : MonoBehaviour {
 
 	private CameraFilterPack_TV_80 lowHealthCam;
 
+	private CameraFilterPack_FX_Glitch1 signalJammedCam;
+
 	// Use this for initialization
 	void Start () {
 		glitchCam = GetComponent<CameraFilterPack_TV_Artefact>();
 		respawnCam = GetComponent<CameraFilterPack_AAA_SuperComputer>();
+		signalJammedCam = GetComponent<CameraFilterPack_FX_Glitch1>();
 		respawnCam.enabled = true;
 		respawnCam.ChangeRadius = 0;
 		lowHealthCam = GetComponent<CameraFilterPack_TV_80> ();
@@ -126,5 +129,15 @@ public class CameraController : MonoBehaviour {
 	public void StopLowHealth()
 	{
 		lowHealthCam.enabled = false;
+	}
+
+	public void RunSignalJammed()
+	{
+		signalJammedCam.enabled = true;
+	}
+
+	public void StopSignalJammed()
+	{
+		signalJammedCam.enabled = false;
 	}
 }
