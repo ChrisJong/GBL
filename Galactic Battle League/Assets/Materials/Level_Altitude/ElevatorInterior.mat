@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ElevatorShell
+  m_Name: ElevatorInterior
   m_Shader: {fileID: 4800000, guid: 35b7c6ba7e7041445a6bcfab3a36db38, type: 3}
-  m_ShaderKeywords: OUTLINE_BLENDING
+  m_ShaderKeywords: OUTLINE_BLENDING TCP2_ZSMOOTH_ON
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -40,11 +40,11 @@ Material:
       data:
         first:
           name: _Shininess
-        second: .078125
+        second: .0700000003
       data:
         first:
           name: _Outline
-        second: 7.5
+        second: 3
       data:
         first:
           name: _RampThreshold
@@ -77,15 +77,19 @@ Material:
         first:
           name: _DstBlendOutline
         second: 0
+      data:
+        first:
+          name: _SpecSmooth
+        second: .0500000007
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .771950722, g: .840979576, b: .889705896, a: 1}
+        second: {r: .389705896, g: .389705896, b: .389705896, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: .5, g: .5, b: .5, a: 1}
+        second: {r: .404411793, g: .404411793, b: .404411793, a: 1}
       data:
         first:
           name: _OutlineColor
@@ -93,8 +97,8 @@ Material:
       data:
         first:
           name: _HColor
-        second: {r: .448529422, g: .408953309, b: .408953309, a: 1}
+        second: {r: .882352948, g: .882352948, b: .882352948, a: 1}
       data:
         first:
           name: _SColor
-        second: {r: .20588237, g: .20588237, b: .20588237, a: 1}
+        second: {r: .220588207, g: .220588207, b: .220588207, a: 1}
