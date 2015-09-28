@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: New Material
+  m_Name: Top level floor
   m_Shader: {fileID: 4800000, guid: 6782973e3ca8b2543beddb0a3dc3175e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -20,7 +20,7 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 2800000, guid: 2ebff023874ac294e89438a83e51d42d, type: 3}
-          m_Scale: {x: 5, y: 25}
+          m_Scale: {x: 5, y: 24}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -100,16 +100,16 @@ Material:
         second: .5
       data:
         first:
-          name: _Parallax
-        second: .0199999996
-      data:
-        first:
           name: _RampThreshold
         second: .5
       data:
         first:
           name: _RampSmooth
         second: .100000001
+      data:
+        first:
+          name: _Parallax
+        second: .0199999996
       data:
         first:
           name: _ZWrite
