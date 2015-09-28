@@ -15,6 +15,7 @@ public class UIController : MonoBehaviour
 	
 	public GameObject[] killedMessage;
 	public GameObject[] killMessage;
+	public GameObject[] pickupMessage;
 
 	private string fileName;
 	private StreamWriter trackingFile;
@@ -48,10 +49,10 @@ public class UIController : MonoBehaviour
 		deaths [victim - 1]++;
 		
 		killedMessage[victim-1].SetActive(true);
-		killedMessage[victim-1].GetComponentsInChildren<Text>()[0].text = "You were killed by \n" + getFactionName(attacker);
+		killedMessage[victim-1].GetComponentsInChildren<Text>()[0].text = "You were killed by \n" + GetFactionName(attacker);
 		
 		killMessage[attacker-1].SetActive(true);
-		killMessage[attacker-1].GetComponentsInChildren<Text>()[0].text = "You killed \n" + getFactionName(victim);
+		killMessage[attacker-1].GetComponentsInChildren<Text>()[0].text = "You killed \n" + GetFactionName(victim);
 
 		if (File.Exists (fileName)) 
 		{
@@ -80,6 +81,12 @@ public class UIController : MonoBehaviour
 	public void DamageCaused(int attacker, float damageValue)
 	{
 		damage [attacker - 1] += damageValue;
+	}
+
+	public void PickupTaken(int player, string message)
+	{
+		pickupMessage[player-1].SetActive(true);
+		pickupMessage[player-1].GetComponentsInChildren<Text>()[0].text = message;
 	}
 
 	public void GameOver()
@@ -172,7 +179,7 @@ public class UIController : MonoBehaviour
 		}
 	}
 
-	public static string getFactionName(int playerNumber)
+	public static string GetFactionName(int playerNumber)
 	{
 		string name = "";
 		

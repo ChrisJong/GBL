@@ -26,18 +26,19 @@ public class PickupController : MonoBehaviour
 	{
 		if (nextAppearTime < Time.time) 
 		{
-			Transform podium = selectRandomEmptyPodium();
+			Transform podium = SelectRandomEmptyPodium();
 
 			if (podium != null)
 			{
 				PickupPodiumController controller = podium.GetComponent<PickupPodiumController>();
-				controller.spawnPickup(selectRandomPickup());
-				nextAppearTime = Time.time + timeToAppearAvg + Random.Range (-timeToAppearRand, timeToAppearRand);
+				controller.SpawnPickup(SelectRandomPickup());
 			}
+
+			nextAppearTime = Time.time + timeToAppearAvg + Random.Range (-timeToAppearRand, timeToAppearRand);
 		}
 	}
 
-	Transform selectRandomEmptyPodium()
+	Transform SelectRandomEmptyPodium()
 	{
 		List<Transform> emptyPodiumList = new List<Transform> ();
 
@@ -62,7 +63,7 @@ public class PickupController : MonoBehaviour
 		}
 	}
 
-	string selectRandomPickup()
+	string SelectRandomPickup()
 	{
 		string pickupType;
 		float totalWeighting = healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting;

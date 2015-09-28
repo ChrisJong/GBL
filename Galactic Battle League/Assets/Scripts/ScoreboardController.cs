@@ -21,7 +21,7 @@ public class ScoreboardController : MonoBehaviour {
 				if (child.name == "Player")
 				{
 					player = child.GetComponent<Text>();
-					player.text = UIController.getFactionName(PlayerPrefs.GetInt(name + "Player"));
+					player.text = UIController.GetFactionName(PlayerPrefs.GetInt(name + "Player"));
 				}
 				else if (child.name == "Kills")
 				{

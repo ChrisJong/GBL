@@ -77,10 +77,10 @@ public class HoverCarControl : MonoBehaviour
 	private float damageIncreaseTime;
 	private float invincibilityTime;
 	private float signalJammedTime;
-	public float damageIncreaseDuration = 20;
-	public float invincibilityDuration = 20;
-	public float signalJammedDuration = 20;
-	public float damageIncreaseValue = 5;
+	public float damageIncreaseDuration = 5;
+	public float invincibilityDuration = 5;
+	public float signalJammedDuration = 5;
+	public float damageIncreaseValue = 2;
 
 	private GameObject respawnMessage1;
 	private GameObject respawnMessage2;
@@ -176,7 +176,7 @@ public class HoverCarControl : MonoBehaviour
 		
 		health = maxHealth;
 		abilityCharge = maxAbilityCharge;
-
+		
 		initialPosition = gameObject.transform.position;
 		initialRotation = gameObject.transform.rotation;
 		
@@ -512,6 +512,8 @@ public class HoverCarControl : MonoBehaviour
 						if (hits[i].collider.tag == "Player") {
 							DamageData damageData;
 							damageData.damage = abilityPower * Time.deltaTime;
+							if (damageIncreased)
+								damageData.damage *= damageIncreaseValue;
 							damageData.position = hits[i].point;
 							damageData.playerNumber = playerNumber;
 							damageData.distance = 0;
@@ -593,7 +595,7 @@ public class HoverCarControl : MonoBehaviour
 		}
 		if (other.tag == "Pickup") 
 		{
-			processPickup(other);
+			ProcessPickup(other);
 		}
 	}
 	
@@ -627,7 +629,13 @@ public class HoverCarControl : MonoBehaviour
 				currError += 0.5f;
 		}
 		GameObject zBullet = (GameObject)Instantiate (shot, shotSpawn[spawnInt].position, shotAngle);
-		zBullet.GetComponent<ShotController> ().SetVelocity ();
+		ShotController sController = zBullet.GetComponent<ShotController> ();
+		sController.SetVelocity ();
+		if (damageIncreased) 
+		{
+			float newDamage = sController.damage * damageIncreaseValue;
+			sController.damage = (int)newDamage;
+		}
 	}
 	
 	void Death()
@@ -790,7 +798,7 @@ public class HoverCarControl : MonoBehaviour
 		}
 	}
 
-	void processPickup(Collider pickup)
+	void ProcessPickup(Collider pickup)
 	{
 		string pickupType = pickup.name;
 		Debug.Log (pickupType);
@@ -799,7 +807,7 @@ public class HoverCarControl : MonoBehaviour
 		{
 			if (health < maxHealth)
 			{
-				processHealthPickup (10f);
+				ProcessHealthPickup (10f);
 				Destroy(pickup.gameObject);
 			}
 		}
@@ -807,7 +815,7 @@ public class HoverCarControl : MonoBehaviour
 		{
 			if (health < maxHealth)
 			{
-				processHealthPickup (20f);
+				ProcessHealthPickup (20f);
 				Destroy(pickup.gameObject);
 			}
 		}
@@ -815,22 +823,24 @@ public class HoverCarControl : MonoBehaviour
 		{
 			damageIncreased = true;
 			damageIncreaseTime = Time.time + damageIncreaseDuration;
+			uiController.PickupTaken(playerNumber, "DOUBLE DAMAGE");
 			Destroy(pickup.gameObject);
 		}
 		else if (pickupType == "PickupInvincibility(Clone)")
 		{
 			invincible = true;
 			invincibilityTime = Time.time + invincibilityDuration;
+			uiController.PickupTaken(playerNumber, "INVINCIBILITY");
 			Destroy(pickup.gameObject);
 		}
 		else if (pickupType == "PickupSignalJammer(Clone)")
 		{
-			processSignalJammerPickup();
+			ProcessSignalJammerPickup();
 			Destroy(pickup.gameObject);
 		}
 	}
 
-	void processHealthPickup(float healthValue)
+	void ProcessHealthPickup(float healthValue)
 	{
 		health += healthValue;
 		if (health >= maxHealth)
@@ -848,7 +858,7 @@ public class HoverCarControl : MonoBehaviour
 		}
 	}
 
-	void processSignalJammerPickup()
+	void ProcessSignalJammerPickup()
 	{
 		GameObject camera;
 		GameObject player;
