@@ -7,6 +7,11 @@ using System.IO;
 
 public class UIController : MonoBehaviour 
 {
+	public static Color player1Colour = new Color(0.75f, 0.13f, 0.15f, 1.0f);
+	public static Color player2Colour = new Color(0.10f, 0.31f, 0.55f, 1.0f);
+	public static Color player3Colour = new Color(0.31f, 0.55f, 0.29f, 1.0f);
+	public static Color player4Colour = new Color(0.97f, 0.62f, 0.14f, 1.0f);
+
 	public ScoreCounter[] scoreText;
 	public int[] score;
 	public int[] deaths;
@@ -15,6 +20,11 @@ public class UIController : MonoBehaviour
 	
 	public GameObject[] killedMessage;
 	public GameObject[] killMessage;
+	
+	public Color pyreReqColour = player1Colour;
+	public Color valkTechColour = player2Colour;
+	public Color javDefColour = player3Colour;
+	public Color shardIndColour = player4Colour;
 
 	private string fileName;
 	private StreamWriter trackingFile;
@@ -30,6 +40,23 @@ public class UIController : MonoBehaviour
 
 		deaths = new int[4];
 		damage = new float[4];
+
+		if (pyreReqColour != null) {
+			player1Colour = pyreReqColour;
+		}
+		
+		if (valkTechColour != null) {
+			player2Colour = valkTechColour;
+		}
+		
+		if (javDefColour != null) {
+			player3Colour = javDefColour;
+		}
+		
+		if (shardIndColour != null) {
+			player4Colour = shardIndColour;
+		}
+		
 	}
 	
 	// Update is called once per frame
@@ -226,13 +253,17 @@ public class UIController : MonoBehaviour
 
 		switch (playerNumber) 
 		{
-		case 1: colour = new Color(0.75f, 0.13f, 0.15f, 1.0f);
+		case 1: 
+			return player1Colour;
 			break;
-		case 2: colour = new Color(0.10f, 0.31f, 0.55f, 1.0f);
+		case 2:
+			return player2Colour;
 			break;
-		case 3: colour = new Color(0.31f, 0.55f, 0.29f, 1.0f);
+		case 3: 
+			return player3Colour;
 			break;
-		case 4: colour = new Color(0.97f, 0.62f, 0.14f, 1.0f);
+		case 4: 
+			return player4Colour;
 			break;
 		}
 
