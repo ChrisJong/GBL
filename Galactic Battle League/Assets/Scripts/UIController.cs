@@ -136,6 +136,15 @@ public class UIController : MonoBehaviour
 			}
 		}
 
+		// If nothing happens during the game, set player 1 as winnner
+		if (scoreList.Count == 0) 
+		{
+			PlayerPrefs.SetInt ("Position1Player", 1);
+			PlayerPrefs.SetInt ("Position1Score", 0);
+			PlayerPrefs.SetInt ("Position1Deaths", 0);
+			PlayerPrefs.SetInt ("Position1Damage", 0);
+		}
+
 		while (scoreList.Count > 0) 
 		{
 			int topPlayer = -1;

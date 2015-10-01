@@ -43,6 +43,12 @@ public class WinMessage : MonoBehaviour
 		secondText.text = UIController.getFactionName(PlayerPrefs.GetInt("Position2Player"));
 		secondText.color = UIController.getFactionColour (PlayerPrefs.GetInt ("Position2Player"));
 
+		if (PlayerPrefs.HasKey("Position2Player") == false)
+		{
+			MeshRenderer trophy = GameObject.Find ("2ndTrophy").GetComponent<MeshRenderer> ();
+			trophy.enabled = false;
+		}
+
 		thirdText = GameObject.Find ("ThirdText").GetComponent<Text> ();
 		thirdText.text = UIController.getFactionName(PlayerPrefs.GetInt("Position3Player"));
 		thirdText.color = UIController.getFactionColour (PlayerPrefs.GetInt ("Position2Player"));
