@@ -4,28 +4,26 @@ using System.Collections;
 public class PickupPodiumController : MonoBehaviour 
 {
 	public GameObject currentPickup;
+	public float initiatePickupTime;
+	public float respawnTimeDuration;
+	private float nextAppearTime;
 
 	// Use this for initialization
 	void Start () 
 	{
-		currentPickup = null;
+		nextAppearTime = Time.time + initiatePickupTime;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-	
-	}
-
-	public void SpawnPickup(string pickupName)
-	{
-		Vector3 spawnPosition = transform.position;
-		spawnPosition.y += 2.6f;
-
-		//Debug.Log (pickupName);
-		GameObject pickupObjectType = GameObject.Find (pickupName);
-
-		currentPickup = (GameObject)Instantiate (pickupObjectType, spawnPosition, pickupObjectType.transform.rotation);
-		currentPickup.GetComponent<Animator>().Play(0, -1, 0f);
+		if (nextAppearTime < Time.time) 
+		{
+			Vector3 spawnPosition = transform.position;
+			spawnPosition.y += 2.6f;
+			GameObject zPickup = (GameObject)Instantiate (currentPickup, spawnPosition, currentPickup.transform.rotation);
+			zPickup.GetComponent<Animator>().Play(0, -1, 0f);
+			nextAppearTime = Time.time + respawnTimeDuration;
+		}
 	}
 }

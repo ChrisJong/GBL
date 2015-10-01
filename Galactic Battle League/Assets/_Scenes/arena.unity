@@ -224,21 +224,11 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 12767248}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c574070cc77ec0f4ea34ee12d82a5fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToAppearInit: 10
-  timeToAppearAvg: 10
-  timeToAppearRand: 2
-  healthLargeWeighting: 100
-  healthSmallWeighting: 100
-  damageIncreaseWeighting: 100
-  invincibilityWeighting: 100
-  signalJammerWeighting: 100
-  speedBoostWeighting: 100
-  unlimitedEnergyWeighting: 100
 --- !u!1001 &59346069
 Prefab:
   m_ObjectHideFlags: 0
@@ -759,6 +749,18 @@ Prefab:
     - target: {fileID: 194806, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
       propertyPath: m_Name
       value: PickupPodium7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: currentPickup
+      value: 
+      objectReference: {fileID: 1223030093}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: initiatePickupTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: respawnTimeDuration
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
@@ -1822,6 +1824,18 @@ Prefab:
     - target: {fileID: 194806, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
       propertyPath: m_Name
       value: PickupPodium1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: currentPickup
+      value: 
+      objectReference: {fileID: 661568027}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: respawnTimeDuration
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: initiatePickupTime
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
@@ -3846,99 +3860,99 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22460372, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22460372, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22414974, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22414974, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22410780, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22410780, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22408416, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22408416, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22433262, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22433262, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22409420, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22409420, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22443622, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22443622, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22412802, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22412802, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22499386, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22499386, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22475818, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22475818, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22474184, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22474184, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22443958, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22443958, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
@@ -4063,6 +4077,18 @@ Prefab:
     - target: {fileID: 194806, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
       propertyPath: m_Name
       value: PickupPodium5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: currentPickup
+      value: 
+      objectReference: {fileID: 1603178547}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: initiatePickupTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: respawnTimeDuration
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
@@ -4453,6 +4479,18 @@ Prefab:
       propertyPath: m_Name
       value: PickupPodium2
       objectReference: {fileID: 0}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: currentPickup
+      value: 
+      objectReference: {fileID: 1628691979}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: initiatePickupTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: respawnTimeDuration
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
   m_IsPrefabParent: 0
@@ -4696,6 +4734,18 @@ Prefab:
     - target: {fileID: 194806, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
       propertyPath: m_Name
       value: PickupPodium3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: currentPickup
+      value: 
+      objectReference: {fileID: 10602764}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: initiatePickupTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: respawnTimeDuration
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
@@ -6614,6 +6664,18 @@ Prefab:
       propertyPath: m_Name
       value: PickupPodium6
       objectReference: {fileID: 0}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: currentPickup
+      value: 
+      objectReference: {fileID: 1621831594}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: initiatePickupTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: respawnTimeDuration
+      value: 45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
   m_IsPrefabParent: 0
@@ -7043,6 +7105,18 @@ Prefab:
     - target: {fileID: 194806, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
       propertyPath: m_Name
       value: PickupPodium4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: currentPickup
+      value: 
+      objectReference: {fileID: 1617112141}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: initiatePickupTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433452, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
+      propertyPath: respawnTimeDuration
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
