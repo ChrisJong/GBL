@@ -48,10 +48,30 @@ public class UIController : MonoBehaviour
 		deaths [victim - 1]++;
 		
 		killedMessage[victim-1].SetActive(true);
-		killedMessage[victim-1].GetComponentsInChildren<Text>()[0].text = "You were killed by \n" + getFactionName(attacker);
-		
+		Text[] messages = killedMessage[victim-1].GetComponentsInChildren<Text>();
+		foreach(Text msg in messages)
+		{
+			if (msg.name == "Heading")
+				msg.text = "You were killed by";
+			else if (msg.name == "FactionText")
+			{
+				msg.text = getFactionName(attacker);
+				msg.color = getFactionColour(attacker);
+			}
+		}
+
 		killMessage[attacker-1].SetActive(true);
-		killMessage[attacker-1].GetComponentsInChildren<Text>()[0].text = "You killed \n" + getFactionName(victim);
+		messages = killMessage[attacker - 1].GetComponentsInChildren<Text>();
+		foreach(Text msg in messages)
+		{
+			if (msg.name == "Heading")
+				msg.text = "You killed";
+			else if (msg.name == "FactionText")
+			{
+				msg.text = getFactionName(victim);
+				msg.color = getFactionColour(victim);
+			}
+		}
 
 		if (File.Exists (fileName)) 
 		{
@@ -178,16 +198,35 @@ public class UIController : MonoBehaviour
 		
 		switch (playerNumber) 
 		{
-		case 1: name = "<color=red>PYRE REQUISTIONS</color>";
+		case 1: name = "PYRE REQUISTIONS";
 			break;
-		case 2: name = "<color=blue>VALKYRIE TECHNOLOGIES</color>";
+		case 2: name = "VALKYRIE TECHNOLOGIES";
 			break;
-		case 3: name = "<color=green>JAVELIN DEFENSE</color>";
+		case 3: name = "JAVELIN DEFENSE";
 			break;
-		case 4: name = "<color=orange>SHARD INDUSTRIES</color>";
+		case 4: name = "SHARD INDUSTRIES";
 			break;
 		}
 		
 		return name;
+	}
+
+	public static Color getFactionColour(int playerNumber)
+	{
+		Color colour = new Color ();
+
+		switch (playerNumber) 
+		{
+		case 1: colour = new Color(0.75f, 0.13f, 0.15f, 1.0f);
+			break;
+		case 2: colour = new Color(0.10f, 0.31f, 0.55f, 1.0f);
+			break;
+		case 3: colour = new Color(0.31f, 0.55f, 0.29f, 1.0f);
+			break;
+		case 4: colour = new Color(0.97f, 0.62f, 0.14f, 1.0f);
+			break;
+		}
+
+		return colour;
 	}
 }
