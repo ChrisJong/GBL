@@ -37,12 +37,15 @@ public class WinMessage : MonoBehaviour
 
 		winnerText = GetComponent<Text> ();
 		winnerText.text = UIController.getFactionName (winner);
+		winnerText.color = UIController.getFactionColour (winner);
 		
 		secondText = GameObject.Find ("SecondText").GetComponent<Text> ();
 		secondText.text = UIController.getFactionName(PlayerPrefs.GetInt("Position2Player"));
+		secondText.color = UIController.getFactionColour (PlayerPrefs.GetInt ("Position2Player"));
 
 		thirdText = GameObject.Find ("ThirdText").GetComponent<Text> ();
 		thirdText.text = UIController.getFactionName(PlayerPrefs.GetInt("Position3Player"));
+		thirdText.color = UIController.getFactionColour (PlayerPrefs.GetInt ("Position2Player"));
 
 		if (PlayerPrefs.HasKey("Position3Player") == false)
 		{
