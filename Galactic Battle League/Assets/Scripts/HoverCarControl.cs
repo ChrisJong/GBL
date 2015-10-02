@@ -310,9 +310,15 @@ public class HoverCarControl : MonoBehaviour
 					holdingTrigger = true;
 				nextFire = Time.time + fireRate;
 				if (tankClass == 1)
+				{
 					Rumble(0.15f);
+					cameraController.RunQuake(currError/700.0f);
+				}
 				else
+				{
 					Rumble (0.3f);
+					cameraController.RunQuake(0.015f);
+				}
 				gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, shotSpawn[spawnInt].position, explosionRadius);
 				tankVelocity = GetComponent<Rigidbody>().velocity;
 				fireParticle[spawnInt].Play();
@@ -465,16 +471,18 @@ public class HoverCarControl : MonoBehaviour
 				//Boost ability
 				m_body.AddForce(transform.forward * m_currThrust * abilityPower);
 				m_body.AddForce(transform.right * m_currSideThrust * abilityPower);
-				
+				cameraController.RunQuake(0.01f);
 				foreach(ParticleSystem particle in hoverParticles)
 				{
 					particle.startLifetime = particleLength*4;
 				}
+				cameraController.RunDash();
 			} else {
 				//Laser ability
 				var layermask = 1 << 12;
 				layermask = ~layermask;
 				bool hitWall = false;
+				cameraController.RunQuake(0.003f);
 				if (Physics.Raycast(shotSpawn[0].position, shotSpawn[0].forward, out hit, Mathf.Infinity, layermask)) {
 					Debug.DrawLine (shotSpawn[0].position, hit.point, Color.cyan);
 					
@@ -513,7 +521,6 @@ public class HoverCarControl : MonoBehaviour
 		if (abilityCharge > maxAbilityCharge) {
 			abilityCharge = maxAbilityCharge;
 		}
-
 		
 		// Rumble
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
@@ -726,12 +733,23 @@ public class HoverCarControl : MonoBehaviour
 
 			//hitExplosion.startLifetime = (float)shotControllerCopy.damage/10.0f;
 			if (damageData.damage >= 10)
+			{
 				hitExplosion.startSize = 6;
+				Rumble (0.3f);
+				cameraController.RunQuake(0.015f);
+			}
 			else if (damageData.damage >=2)
+			{
 				hitExplosion.startSize = 3;
-			else {
+				Rumble (0.15f);
+				cameraController.RunQuake(0.008f);
+			}
+			else 
+			{
 				hitExplosion.startSize = 1;
 				Destroy(hitExplosion.transform.GetChild(0).gameObject);
+				Rumble (0.05f);
+				cameraController.RunQuake(0.005f);
 			}
 			
 			hitExplosion.Play ();
@@ -742,14 +760,6 @@ public class HoverCarControl : MonoBehaviour
 			
 			//}
 			health -= damageData.damage;
-			
-	
-			if (damageData.damage >= 10)
-				Rumble (0.3f);
-			else if (damageData.damage >= 2)
-				Rumble (0.15f);
-			else
-				Rumble (0.05f);
 			
 			if (health / maxHealth < .66f)
 				if (damage66)

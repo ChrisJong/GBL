@@ -34,6 +34,12 @@ public class CameraController : MonoBehaviour {
 
 	private CameraFilterPack_TV_80 lowHealthCam;
 
+	private CameraFilterPack_FX_EarthQuake quakeCam;
+	private float stopQuake;
+
+	private CameraFilterPack_Drawing_Manga_FlashWhite dashCam;
+	private float stopDash;
+	//NOTE TO SELF for BROKEN GLASS 2: do not use bullets 2, 3, or 6
 	// Use this for initialization
 	void Start () {
 		glitchCam = GetComponent<CameraFilterPack_TV_Artefact>();
@@ -41,7 +47,9 @@ public class CameraController : MonoBehaviour {
 		respawnCam.enabled = true;
 		respawnCam.ChangeRadius = 0;
 		lowHealthCam = GetComponent<CameraFilterPack_TV_80> ();
-
+		quakeCam = GetComponent<CameraFilterPack_FX_EarthQuake> ();
+		dashCam = GetComponent<CameraFilterPack_Drawing_Manga_FlashWhite> ();
+		dashCam.Speed = 10;
 		cameraDistanceNear = cameraPositionNear.magnitude;
 		cameraDistanceFar = cameraPositionFar.magnitude;
 		spawnCamera = true;
@@ -60,6 +68,12 @@ public class CameraController : MonoBehaviour {
 	void FixedUpdate () {
 		if (glitchCam.enabled == true && stopGlitch < Time.time)
 			glitchCam.enabled = false;
+
+		if (quakeCam.enabled == true && stopQuake < Time.time)
+			quakeCam.enabled = false;
+
+		if (dashCam.enabled == true && stopDash < Time.time)
+			dashCam.enabled = false;
 
 		Transform target;
 		if (targetHeavy.gameObject.activeInHierarchy) {
@@ -145,5 +159,21 @@ public class CameraController : MonoBehaviour {
 	public void StopLowHealth()
 	{
 		lowHealthCam.enabled = false;
+	}
+
+	public void RunQuake(float intensity)
+	{
+		if (quakeCam.enabled == true)
+			quakeCam.enabled = false;
+		quakeCam.X = intensity;
+		quakeCam.Y = intensity;
+		stopQuake = Time.time + 0.5f;
+		quakeCam.enabled = true;
+	}
+
+	public void RunDash()
+	{
+		dashCam.enabled = true;
+		stopDash = Time.time + 0.5f;
 	}
 }

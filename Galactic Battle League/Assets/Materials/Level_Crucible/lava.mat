@@ -20,7 +20,7 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 2800000, guid: f98af9b283bfece4fba90171da9ef90b, type: 3}
-          m_Scale: {x: 10, y: 10}
+          m_Scale: {x: 20, y: 20}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -104,6 +104,10 @@ Material:
         second: .100000001
       data:
         first:
+          name: _Parallax
+        second: .0199999996
+      data:
+        first:
           name: _RampThreshold
         second: .5
       data:
@@ -114,10 +118,6 @@ Material:
         first:
           name: _SpecSmooth
         second: .0500000007
-      data:
-        first:
-          name: _Parallax
-        second: .0199999996
       data:
         first:
           name: _ZWrite

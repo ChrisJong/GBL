@@ -1708,6 +1708,8 @@ GameObject:
   - 114: {fileID: 11473452}
   - 114: {fileID: 11472776}
   - 114: {fileID: 11431280}
+  - 114: {fileID: 11439134}
+  - 114: {fileID: 11482754}
   m_Layer: 0
   m_Name: Camera3
   m_TagString: Untagged
@@ -4532,6 +4534,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
+--- !u!114 &11439134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192952}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb438ad0b8379f49a274bfa973adeed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 43db037ba9bd2944a9d49c1919a47b0e, type: 3}
+  Speed: 15
+  X: .00800000038
+  Y: .00800000038
 --- !u!114 &11443498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4738,6 +4755,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
+--- !u!114 &11482754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192952}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1511efe63af4748a617def340d95bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 67bdeff028df2e4489715e91f6b4620f, type: 3}
+  Size: 1
+  Speed: 5
+  PosX: .5
+  PosY: .5
 --- !u!114 &11492952
 MonoBehaviour:
   m_ObjectHideFlags: 1
