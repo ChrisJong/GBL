@@ -71,8 +71,7 @@ public class HoverCarControl : MonoBehaviour
 	private double spawnActiveTimer;
 
 
-	private GameObject respawnMessage1;
-	private GameObject respawnMessage2;
+	private GameObject respawnMessage;
 	
 	private float tempHoverForce;
 	private float timer = 0.0f;
@@ -138,11 +137,8 @@ public class HoverCarControl : MonoBehaviour
 		if (healthCounter == null) {
 			healthCounter = GameObject.Find("HealthMeter" + playerNumber).GetComponent<HealthCounter>();
 		}
-		if (respawnMessage1 == null) {
-			respawnMessage1 = GameObject.Find("P" + playerNumber + "_RESPAWN_MSG1");
-		}
-		if (respawnMessage2 == null) {
-			respawnMessage2 = GameObject.Find("P" + playerNumber + "_RESPAWN_MSG2");
+		if (respawnMessage == null) {
+			respawnMessage = GameObject.Find("P" + playerNumber + "_RESPAWN_MSG1");
 		}
 		crosshairs = new GameObject[4];
 		crosshairs[0] = GameObject.Find("P" + playerNumber + "_CrosshairTL");
@@ -174,8 +170,7 @@ public class HoverCarControl : MonoBehaviour
 		m_layerMask = 1 << LayerMask.NameToLayer("Characters");
 		m_layerMask = ~m_layerMask;
 		
-		respawnMessage1.SetActive(true);
-		respawnMessage2.SetActive(true);
+		respawnMessage.SetActive(true);
 		
 		initialised = true;
 		particleLength = hoverParticles[0].startLifetime;
@@ -247,8 +242,7 @@ public class HoverCarControl : MonoBehaviour
 
 				cameraController.ChangeMode();
 
-				respawnMessage1.SetActive(false);
-				respawnMessage2.SetActive(false);
+				respawnMessage.SetActive(false);
 				spawnActiveTimer = Time.time + 1.0f;
 				hasRespawned = false;
 			}
@@ -711,8 +705,7 @@ public class HoverCarControl : MonoBehaviour
 		deathRun = false;
 		hasRespawned = true;
 		
-		respawnMessage1.SetActive(true);
-		respawnMessage2.SetActive(true);
+		respawnMessage.SetActive(true);
 		abilityCharge = maxAbilityCharge;
 		abilityActive = false;
 
