@@ -7,6 +7,11 @@ using System.IO;
 
 public class UIController : MonoBehaviour 
 {
+	public static Color player1Colour = new Color(0.75f, 0.13f, 0.15f, 1.0f);
+	public static Color player2Colour = new Color(0.10f, 0.31f, 0.55f, 1.0f);
+	public static Color player3Colour = new Color(0.31f, 0.55f, 0.29f, 1.0f);
+	public static Color player4Colour = new Color(0.97f, 0.62f, 0.14f, 1.0f);
+
 	public ScoreCounter[] scoreText;
 	public int[] score;
 	public int[] deaths;
@@ -16,6 +21,11 @@ public class UIController : MonoBehaviour
 	public GameObject[] killedMessage;
 	public GameObject[] killMessage;
 	public GameObject[] pickupMessage;
+	
+	public Color pyreReqColour = player1Colour;
+	public Color valkTechColour = player2Colour;
+	public Color javDefColour = player3Colour;
+	public Color shardIndColour = player4Colour;
 
 	private string fileName;
 	private StreamWriter trackingFile;
@@ -31,6 +41,23 @@ public class UIController : MonoBehaviour
 
 		deaths = new int[4];
 		damage = new float[4];
+
+		if (pyreReqColour != null) {
+			player1Colour = pyreReqColour;
+		}
+		
+		if (valkTechColour != null) {
+			player2Colour = valkTechColour;
+		}
+		
+		if (javDefColour != null) {
+			player3Colour = javDefColour;
+		}
+		
+		if (shardIndColour != null) {
+			player4Colour = shardIndColour;
+		}
+		
 	}
 	
 	// Update is called once per frame
@@ -49,10 +76,30 @@ public class UIController : MonoBehaviour
 		deaths [victim - 1]++;
 		
 		killedMessage[victim-1].SetActive(true);
-		killedMessage[victim-1].GetComponentsInChildren<Text>()[0].text = "You were killed by \n" + GetFactionName(attacker);
-		
+		Text[] messages = killedMessage[victim-1].GetComponentsInChildren<Text>();
+		foreach(Text msg in messages)
+		{
+			if (msg.name == "Heading")
+				msg.text = "You were killed by";
+			else if (msg.name == "FactionText")
+			{
+				msg.text = getFactionName(attacker);
+				msg.color = getFactionColour(attacker);
+			}
+		}
+
 		killMessage[attacker-1].SetActive(true);
-		killMessage[attacker-1].GetComponentsInChildren<Text>()[0].text = "You killed \n" + GetFactionName(victim);
+		messages = killMessage[attacker - 1].GetComponentsInChildren<Text>();
+		foreach(Text msg in messages)
+		{
+			if (msg.name == "Heading")
+				msg.text = "You killed";
+			else if (msg.name == "FactionText")
+			{
+				msg.text = getFactionName(victim);
+				msg.color = getFactionColour(victim);
+			}
+		}
 
 		if (File.Exists (fileName)) 
 		{
@@ -123,6 +170,15 @@ public class UIController : MonoBehaviour
 			}
 		}
 
+		// If nothing happens during the game, set player 1 as winnner
+		if (scoreList.Count == 0) 
+		{
+			PlayerPrefs.SetInt ("Position1Player", 1);
+			PlayerPrefs.SetInt ("Position1Score", 0);
+			PlayerPrefs.SetInt ("Position1Deaths", 0);
+			PlayerPrefs.SetInt ("Position1Damage", 0);
+		}
+
 		while (scoreList.Count > 0) 
 		{
 			int topPlayer = -1;
@@ -185,16 +241,39 @@ public class UIController : MonoBehaviour
 		
 		switch (playerNumber) 
 		{
-		case 1: name = "<color=red>PYRE REQUISTIONS</color>";
+		case 1: name = "PYRE REQUISTIONS";
 			break;
-		case 2: name = "<color=blue>VALKYRIE TECHNOLOGIES</color>";
+		case 2: name = "VALKYRIE TECHNOLOGIES";
 			break;
-		case 3: name = "<color=green>JAVELIN DEFENSE</color>";
+		case 3: name = "JAVELIN DEFENSE";
 			break;
-		case 4: name = "<color=orange>SHARD INDUSTRIES</color>";
+		case 4: name = "SHARD INDUSTRIES";
 			break;
 		}
 		
 		return name;
+	}
+
+	public static Color getFactionColour(int playerNumber)
+	{
+		Color colour = new Color ();
+
+		switch (playerNumber) 
+		{
+		case 1: 
+			return player1Colour;
+			break;
+		case 2:
+			return player2Colour;
+			break;
+		case 3: 
+			return player3Colour;
+			break;
+		case 4: 
+			return player4Colour;
+			break;
+		}
+
+		return colour;
 	}
 }

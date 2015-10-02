@@ -36,13 +36,22 @@ public class WinMessage : MonoBehaviour
 		winnerLogo2.enabled = true;
 
 		winnerText = GetComponent<Text> ();
-		winnerText.text = UIController.GetFactionName (winner);
-
+		winnerText.text = UIController.getFactionName (winner);
+		winnerText.color = UIController.getFactionColour (winner);
+		
 		secondText = GameObject.Find ("SecondText").GetComponent<Text> ();
-		secondText.text = UIController.GetFactionName(PlayerPrefs.GetInt("Position2Player"));
+		secondText.text = UIController.getFactionName(PlayerPrefs.GetInt("Position2Player"));
+		secondText.color = UIController.getFactionColour (PlayerPrefs.GetInt ("Position2Player"));
+
+		if (PlayerPrefs.HasKey("Position2Player") == false)
+		{
+			MeshRenderer trophy = GameObject.Find ("2ndTrophy").GetComponent<MeshRenderer> ();
+			trophy.enabled = false;
+		}
 
 		thirdText = GameObject.Find ("ThirdText").GetComponent<Text> ();
-		thirdText.text = UIController.GetFactionName(PlayerPrefs.GetInt("Position3Player"));
+		thirdText.text = UIController.getFactionName(PlayerPrefs.GetInt("Position3Player"));
+		thirdText.color = UIController.getFactionColour (PlayerPrefs.GetInt ("Position2Player"));
 
 		if (PlayerPrefs.HasKey("Position3Player") == false)
 		{
