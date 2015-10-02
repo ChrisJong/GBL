@@ -51,7 +51,7 @@ public class WinMessage : MonoBehaviour
 
 		thirdText = GameObject.Find ("ThirdText").GetComponent<Text> ();
 		thirdText.text = UIController.getFactionName(PlayerPrefs.GetInt("Position3Player"));
-		thirdText.color = UIController.getFactionColour (PlayerPrefs.GetInt ("Position2Player"));
+		thirdText.color = UIController.getFactionColour (PlayerPrefs.GetInt ("Position3Player"));
 
 		if (PlayerPrefs.HasKey("Position3Player") == false)
 		{
