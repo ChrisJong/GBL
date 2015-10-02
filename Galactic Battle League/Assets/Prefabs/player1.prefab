@@ -4119,6 +4119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SCShader: {fileID: 4800000, guid: 7f8be424aaf1faa40bc704f73202e1d6, type: 3}
+  TimeX: 1
   PosX: .5
   PosY: .5
   Speed: 1
@@ -4219,16 +4220,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetHeavy: {fileID: 495640}
   targetLight: {fileID: 450920}
-  cameraPositionNear: {x: 0, y: 3.5, z: -7}
-  lookOffsetNear: {x: 0, y: 2, z: 10}
-  cameraPositionFar: {x: 0, y: 6, z: -8}
-  lookOffsetFar: {x: 0, y: 2, z: 3}
-  cameraPositionSpawn: {x: -4.19999981, y: 2.5, z: 4}
-  lookOffsetSpawn: {x: 0, y: 1.75, z: 0}
-  cameraPositionFirstPersonLight: {x: 0, y: 2, z: 0}
-  cameraPositionFirstPersonHeavy: {x: 0, y: 2, z: 0}
-  stiffness: 100
+  cameraPositionOffset: {x: 0, y: 1.39999998, z: 0}
+  cameraPositionNear: {x: 0, y: 2, z: -7}
+  lookOffsetNear: {x: 0, y: .5, z: 10}
+  cameraPositionFar: {x: 0, y: 4.5, z: -8}
+  lookOffsetFar: {x: 0, y: .5, z: 3}
+  cameraPositionSpawn: {x: -4.19999981, y: 1, z: 4}
+  lookOffsetSpawn: {x: 0, y: .25, z: 0}
+  cameraPositionFirstPersonLight: {x: 0, y: 0, z: 0}
+  cameraPositionFirstPersonHeavy: {x: 0, y: 0, z: 0}
+  stiffness: 30
   rotationStiffness: 100
+  distanceStiffness: 1
   cameraMode: 0
 --- !u!114 &11450906
 MonoBehaviour:
