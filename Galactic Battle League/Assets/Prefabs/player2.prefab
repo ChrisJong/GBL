@@ -177,6 +177,7 @@ GameObject:
   - 114: {fileID: 11499570}
   - 114: {fileID: 11493750}
   - 114: {fileID: 11461262}
+  - 114: {fileID: 11468286}
   m_Layer: 0
   m_Name: Camera2
   m_TagString: Untagged
@@ -1665,23 +1666,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &197514
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 497514}
-  - 108: {fileID: 10897514}
-  - 114: {fileID: 11497514}
-  m_Layer: 0
-  m_Name: Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &197516
 GameObject:
   m_ObjectHideFlags: 1
@@ -1745,40 +1729,6 @@ GameObject:
   - 95: {fileID: 9597514}
   m_Layer: 0
   m_Name: Tank_Tech_Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &197526
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 497526}
-  - 108: {fileID: 10897516}
-  - 114: {fileID: 11497522}
-  m_Layer: 0
-  m_Name: Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &197528
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 497528}
-  - 108: {fileID: 10897518}
-  - 114: {fileID: 11497528}
-  m_Layer: 0
-  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3104,18 +3054,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 497518}
   m_RootOrder: 1
---- !u!4 &497514
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 197514}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -.0710000023}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 497516}
-  m_RootOrder: 0
 --- !u!4 &497516
 Transform:
   m_ObjectHideFlags: 1
@@ -3125,8 +3063,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
   m_LocalPosition: {x: 0, y: 1.71499991, z: -2.44799995}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 497514}
+  m_Children: []
   m_Father: {fileID: 497524}
   m_RootOrder: 3
 --- !u!4 &497518
@@ -3178,30 +3115,6 @@ Transform:
   - {fileID: 469758}
   m_Father: {fileID: 465756}
   m_RootOrder: 6
---- !u!4 &497526
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 197526}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: .400000006}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 497536}
-  m_RootOrder: 0
---- !u!4 &497528
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 197528}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: .400000006}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 497538}
-  m_RootOrder: 0
 --- !u!4 &497532
 Transform:
   m_ObjectHideFlags: 1
@@ -3237,8 +3150,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
   m_LocalPosition: {x: .5, y: 1.45000005, z: -3.17000008}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 497526}
+  m_Children: []
   m_Father: {fileID: 497540}
   m_RootOrder: 5
 --- !u!4 &497538
@@ -3250,8 +3162,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
   m_LocalPosition: {x: -.5, y: 1.45000005, z: -3.17000008}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 497528}
+  m_Children: []
   m_Father: {fileID: 497540}
   m_RootOrder: 4
 --- !u!4 &497540
@@ -4077,102 +3988,6 @@ TrailRenderer:
       rgba: 16777215
   m_MinVertexDistance: .5
   m_Autodestruct: 0
---- !u!108 &10897514
-Light:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 197514}
-  m_Enabled: 1
-  serializedVersion: 6
-  m_Type: 0
-  m_Color: {r: .996078432, g: .502880335, b: .235294119, a: 1}
-  m_Intensity: 4
-  m_Range: 4.5
-  m_SpotAngle: 80
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_Strength: 1
-    m_Bias: .0500000007
-    m_NormalBias: .400000006
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 1
-  m_BounceIntensity: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
---- !u!108 &10897516
-Light:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 197526}
-  m_Enabled: 1
-  serializedVersion: 6
-  m_Type: 0
-  m_Color: {r: .996078432, g: .502880335, b: .235294119, a: 1}
-  m_Intensity: 4
-  m_Range: 4.5
-  m_SpotAngle: 80
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_Strength: 1
-    m_Bias: .0500000007
-    m_NormalBias: .400000006
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 1
-  m_BounceIntensity: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
---- !u!108 &10897518
-Light:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 197528}
-  m_Enabled: 1
-  serializedVersion: 6
-  m_Type: 0
-  m_Color: {r: .996078432, g: .502880335, b: .235294119, a: 1}
-  m_Intensity: 4
-  m_Range: 4.5
-  m_SpotAngle: 80
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_Strength: 1
-    m_Bias: .0500000007
-    m_NormalBias: .400000006
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 1
-  m_BounceIntensity: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11402224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4536,6 +4351,21 @@ MonoBehaviour:
   hoverSound: {fileID: 8229540}
   centerOfMass: {x: 0, y: 0, z: 0}
   inertiaTensor: {x: 1, y: 100, z: 1}
+--- !u!114 &11468286
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112588}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad205fe945d2fb4c9538acd2cd4ee4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 7f8be424aaf1faa40bc704f73202e1d6, type: 3}
+  PosX: .5
+  PosY: .5
+  Speed: 1
 --- !u!114 &11469552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4686,20 +4516,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
---- !u!114 &11497514
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 197514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74eb290077a495b4f8489f895b2cc599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loop: 1
-  smoothFactor: 8
-  addIntensity: 1
 --- !u!114 &11497516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4716,20 +4532,6 @@ MonoBehaviour:
   HelpText: This effect uses Cartoon FX 4's special shader to make it look great over
     any kind of background color, including very bright backgrounds!
   MsgType: 1
---- !u!114 &11497522
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 197526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74eb290077a495b4f8489f895b2cc599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loop: 1
-  smoothFactor: 8
-  addIntensity: 1
 --- !u!114 &11497524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4762,20 +4564,6 @@ MonoBehaviour:
   HelpText: This effect uses Cartoon FX 4's special shader to make it look great over
     any kind of background color, including very bright backgrounds!
   MsgType: 1
---- !u!114 &11497528
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 197528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74eb290077a495b4f8489f895b2cc599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loop: 1
-  smoothFactor: 8
-  addIntensity: 1
 --- !u!114 &11499326
 MonoBehaviour:
   m_ObjectHideFlags: 1

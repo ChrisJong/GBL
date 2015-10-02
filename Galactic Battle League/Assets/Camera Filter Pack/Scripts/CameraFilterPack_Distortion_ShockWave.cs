@@ -8,7 +8,7 @@ using System.Collections;
 public class CameraFilterPack_Distortion_ShockWave : MonoBehaviour {
 #region Variables
 public Shader SCShader;
-private float TimeX = 1.0f;
+public float TimeX = 1.0f;
 private Vector4 ScreenResolution;
 private Material SCMaterial;
 [Range(-1.5f, 1.5f)]
@@ -75,8 +75,8 @@ void OnValidate(){ChangeValue=PosX;ChangeValue2=PosY;ChangeValue3=Speed;ChangeVa
 {
 if (Application.isPlaying)
 {
-PosX = ChangeValue;
-PosY = ChangeValue2;
+//PosX = ChangeValue;
+//PosY = ChangeValue2;
 Speed = ChangeValue3;
 Size = ChangeValue4;
 }
