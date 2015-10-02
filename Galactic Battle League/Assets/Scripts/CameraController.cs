@@ -34,6 +34,9 @@ public class CameraController : MonoBehaviour {
 
 	private CameraFilterPack_TV_80 lowHealthCam;
 
+	private CameraFilterPack_FX_EarthQuake quakeCam;
+	private float stopQuake;
+
 	// Use this for initialization
 	void Start () {
 		glitchCam = GetComponent<CameraFilterPack_TV_Artefact>();
@@ -41,6 +44,7 @@ public class CameraController : MonoBehaviour {
 		respawnCam.enabled = true;
 		respawnCam.ChangeRadius = 0;
 		lowHealthCam = GetComponent<CameraFilterPack_TV_80> ();
+		quakeCam = GetComponent<CameraFilterPack_FX_EarthQuake> ();
 
 		cameraDistanceNear = cameraPositionNear.magnitude;
 		cameraDistanceFar = cameraPositionFar.magnitude;
@@ -60,6 +64,9 @@ public class CameraController : MonoBehaviour {
 	void FixedUpdate () {
 		if (glitchCam.enabled == true && stopGlitch < Time.time)
 			glitchCam.enabled = false;
+
+		if (quakeCam.enabled == true && stopQuake < Time.time)
+			quakeCam.enabled = false;
 
 		Transform target;
 		if (targetHeavy.gameObject.activeInHierarchy) {
@@ -145,5 +152,15 @@ public class CameraController : MonoBehaviour {
 	public void StopLowHealth()
 	{
 		lowHealthCam.enabled = false;
+	}
+
+	public void runQuake(float intensity)
+	{
+		if (quakeCam.enabled == true)
+			quakeCam.enabled = false;
+		quakeCam.X = intensity;
+		quakeCam.Y = intensity;
+		stopQuake = Time.time + 0.5f;
+		quakeCam.enabled = true;
 	}
 }
