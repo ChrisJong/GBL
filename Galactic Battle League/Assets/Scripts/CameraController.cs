@@ -3,15 +3,21 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour {
 	public enum CameraMode {Near, Far, FirstPerson};
-	
+
 	public Transform targetHeavy = null;
 	public Transform targetLight = null;
 
 	public Vector3 cameraPositionNear = Vector3.zero;
+	float cameraDistanceNear;
 	public Vector3 lookOffsetNear = Vector3.zero;
 
 	public Vector3 cameraPositionFar = Vector3.zero;
+	float cameraDistanceFar;
 	public Vector3 lookOffsetFar = Vector3.zero;
+
+	public Vector3 cameraPositionSpawn = Vector3.zero;
+	float cameraDistanceSpawn;
+	public Vector3 lookOffsetSpawn = Vector3.zero;
 
 	public Vector3 cameraPositionFirstPersonLight = Vector3.zero;
 	public Vector3 cameraPositionFirstPersonHeavy = Vector3.zero;
@@ -19,6 +25,7 @@ public class CameraController : MonoBehaviour {
 	public float stiffness;
 	public float rotationStiffness;
 	public CameraMode cameraMode = CameraMode.Near;
+	bool spawnCamera;
 
 	private CameraFilterPack_AAA_SuperComputer respawnCam;
 	
@@ -34,6 +41,10 @@ public class CameraController : MonoBehaviour {
 		respawnCam.enabled = true;
 		respawnCam.ChangeRadius = 0;
 		lowHealthCam = GetComponent<CameraFilterPack_TV_80> ();
+
+		cameraDistanceNear = cameraPositionNear.magnitude;
+		cameraDistanceFar = cameraPositionFar.magnitude;
+		spawnCamera = true;
 	}
 
 	void Update()
@@ -57,7 +68,10 @@ public class CameraController : MonoBehaviour {
 			target = targetLight;
 		}
 
-		if (cameraMode == CameraMode.FirstPerson) {
+		if (spawnCamera) {
+			transform.position = target.TransformPoint (cameraPositionSpawn);
+			transform.rotation = Quaternion.LookRotation (target.TransformPoint(lookOffsetSpawn) - transform.position, Vector3.up);
+		} else if (cameraMode == CameraMode.FirstPerson) {
 			transform.parent = target;
 
 			if (target==targetHeavy) {
@@ -75,7 +89,7 @@ public class CameraController : MonoBehaviour {
 				wantedPosition = target.TransformPoint (cameraPositionNear);
 				
 				RaycastHit hit;
-				if (Physics.Raycast(target.TransformPoint(cameraPositionNear.x, cameraPositionNear.y, 0), target.TransformDirection(0, 0, cameraPositionNear.z), out hit, Mathf.Abs(cameraPositionNear.z))) {
+				if (Physics.Raycast(target.TransformPoint(cameraPositionNear.x, cameraPositionNear.y, 0), target.TransformDirection(0, 0, cameraPositionNear.z), out hit, cameraDistanceNear)) {
 					wantedPosition = hit.point;
 				}
 			
@@ -84,7 +98,7 @@ public class CameraController : MonoBehaviour {
 				wantedPosition = target.TransformPoint (cameraPositionFar);
 				
 				RaycastHit hit;
-				if (Physics.Raycast(target.TransformPoint(cameraPositionFar.x, cameraPositionFar.y, 0), target.TransformDirection(0, 0, cameraPositionFar.z), out hit, Mathf.Abs(cameraPositionFar.z))) {
+				if (Physics.Raycast(target.TransformPoint(cameraPositionFar.x, cameraPositionFar.y, 0), target.TransformDirection(0, 0, cameraPositionFar.z), out hit, cameraDistanceFar)) {
 					wantedPosition = hit.point;
 				}
 
@@ -98,12 +112,16 @@ public class CameraController : MonoBehaviour {
 	}
 
 	public void ChangeMode() {
-		if (cameraMode == CameraMode.Near)
-			cameraMode = CameraMode.Far;
-		else if (cameraMode == CameraMode.Far)
-			cameraMode = CameraMode.FirstPerson;
-		else 
-			cameraMode = CameraMode.Near;
+		if (spawnCamera) {
+			spawnCamera = false;
+		} else {
+			if (cameraMode == CameraMode.Near)
+				cameraMode = CameraMode.Far;
+			else if (cameraMode == CameraMode.Far)
+				cameraMode = CameraMode.FirstPerson;
+			else 
+				cameraMode = CameraMode.Near;
+		}
 	}
 
 	public void RunGlitch()
@@ -116,6 +134,7 @@ public class CameraController : MonoBehaviour {
 	{
 		respawnCam.ChangeRadius = 0;
 		respawnCam.enabled = true;
+		spawnCamera = true;
 	}
 
 	public void RunLowHealth()
