@@ -235,10 +235,17 @@ MonoBehaviour:
   healthLargeWeighting: 100
   healthSmallWeighting: 100
   damageIncreaseWeighting: 100
-  invincibilityWeighting: 100
+  invincibilityWeighting: 1000
   signalJammerWeighting: 100
   speedBoostWeighting: 100
   unlimitedEnergyWeighting: 100
+  damageIncreaseDuration: 5
+  invincibilityDuration: 5
+  signalJammedDuration: 5
+  speedBoostedDuration: 5
+  unlimitedEnergyDuration: 5
+  damageIncreaseValue: 2
+  speedBoostedValue: 1.20000005
 --- !u!1001 &59346069
 Prefab:
   m_ObjectHideFlags: 0
@@ -3916,6 +3923,18 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11411260, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
+      propertyPath: valkTechColour.r
+      value: .13745454
+      objectReference: {fileID: 0}
+    - target: {fileID: 11411260, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
+      propertyPath: valkTechColour.g
+      value: .426109105
+      objectReference: {fileID: 0}
+    - target: {fileID: 11411260, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
+      propertyPath: valkTechColour.b
+      value: .755999982
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
   m_IsPrefabParent: 0
@@ -5397,7 +5416,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
 --- !u!1 &1571458439 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100024, guid: 6a8ebfa3351ed04478f167c6b622596e, type: 3}
@@ -6008,7 +6027,7 @@ Transform:
   m_LocalScale: {x: 400, y: 1, z: 300}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!1 &1729353834
 GameObject:
   m_ObjectHideFlags: 0

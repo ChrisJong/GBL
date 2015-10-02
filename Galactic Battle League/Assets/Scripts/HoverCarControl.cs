@@ -71,23 +71,17 @@ public class HoverCarControl : MonoBehaviour
 	private double spawnActiveTimer;
 
 	// Pickup variables
-	public bool damageIncreased = false;
+	private PickupController pickupController;
+	private bool damageIncreased = false;
 	public bool invincible = false;
-	public bool signalJammed = false;
-	public bool speedBoosted = false;
-	public bool unlimitedEnergy = false;
+	private bool signalJammed = false;
+	private bool speedBoosted = false;
+	private bool unlimitedEnergy = false;
 	private float damageIncreaseTime;
 	private float invincibilityTime;
 	private float signalJammedTime;
 	private float speedBoostedTime;
 	private float unlimitedEnergyTime;
-	private float damageIncreaseDuration = 5f;
-	private float invincibilityDuration = 5f;
-	private float signalJammedDuration = 5f;
-	private float speedBoostedDuration = 5f;
-	private float unlimitedEnergyDuration = 5f;
-	private float damageIncreaseValue = 2f;
-	private float speedBoostedValue = 1.25f;
 
 	private GameObject respawnMessage1;
 	private GameObject respawnMessage2;
@@ -161,6 +155,9 @@ public class HoverCarControl : MonoBehaviour
 		}
 		if (respawnMessage2 == null) {
 			respawnMessage2 = GameObject.Find("P" + playerNumber + "_RESPAWN_MSG2");
+		}
+		if (pickupController == null) {
+			pickupController = GameObject.Find("PickupLocations").GetComponent<PickupController>();
 		}
 		crosshairs = new GameObject[4];
 		crosshairs[0] = GameObject.Find("P" + playerNumber + "_CrosshairTL");
@@ -533,7 +530,7 @@ public class HoverCarControl : MonoBehaviour
 							DamageData damageData;
 							damageData.damage = abilityPower * Time.deltaTime;
 							if (damageIncreased)
-								damageData.damage *= damageIncreaseValue;
+								damageData.damage *= pickupController.damageIncreaseValue;
 							if (hits[i].collider.GetComponent<HoverCarControl>().invincible)
 								damageData.damage = 0;
 							damageData.position = hits[i].point;
@@ -586,8 +583,8 @@ public class HoverCarControl : MonoBehaviour
 
 		if (speedBoosted)
 		{
-			m_body.AddForce(transform.forward * m_currThrust * speedBoostedValue);
-			m_body.AddForce(transform.right * m_currSideThrust * speedBoostedValue);
+			m_body.AddForce(transform.forward * m_currThrust * pickupController.speedBoostedValue);
+			m_body.AddForce(transform.right * m_currSideThrust * pickupController.speedBoostedValue);
 		}
 	}
 	
@@ -662,7 +659,7 @@ public class HoverCarControl : MonoBehaviour
 		sController.SetVelocity ();
 		if (damageIncreased) 
 		{
-			float newDamage = sController.damage * damageIncreaseValue;
+			float newDamage = sController.damage * pickupController.damageIncreaseValue;
 			sController.damage = (int)newDamage;
 		}
 	}
@@ -825,14 +822,14 @@ public class HoverCarControl : MonoBehaviour
 				uiController.DamageCaused(damageData.playerNumber, (int)damageSinceLastPrint);
 				damageSinceLastPrint = 0;
 			}
-			cameraController.RunGlitch();
+			if (damageData.damage > 0)
+				cameraController.RunGlitch();
 		}
 	}
 
 	void ProcessPickup(Collider pickup)
 	{
 		string pickupType = pickup.name;
-		Debug.Log (pickupType);
 
 		if (pickupType == "PickupHealthSmall(Clone)")
 		{
@@ -853,14 +850,14 @@ public class HoverCarControl : MonoBehaviour
 		else if (pickupType == "PickupDamageIncrease(Clone)")
 		{
 			damageIncreased = true;
-			damageIncreaseTime = Time.time + damageIncreaseDuration;
+			damageIncreaseTime = Time.time + pickupController.damageIncreaseDuration;
 			uiController.PickupTaken(playerNumber, "DOUBLE DAMAGE");
 			Destroy(pickup.gameObject);
 		}
 		else if (pickupType == "PickupInvincibility(Clone)")
 		{
 			invincible = true;
-			invincibilityTime = Time.time + invincibilityDuration;
+			invincibilityTime = Time.time + pickupController.invincibilityDuration;
 			uiController.PickupTaken(playerNumber, "INVINCIBILITY");
 			Destroy(pickup.gameObject);
 		}
@@ -872,14 +869,14 @@ public class HoverCarControl : MonoBehaviour
 		else if (pickupType == "PickupSpeedBoost(Clone)")
 		{
 			speedBoosted = true;
-			speedBoostedTime = Time.time + speedBoostedDuration;
+			speedBoostedTime = Time.time + pickupController.speedBoostedDuration;
 			uiController.PickupTaken(playerNumber, "SPEED BOOST");
 			Destroy(pickup.gameObject);
 		}
 		else if (pickupType == "PickupUnlimitedEnergy(Clone)")
 		{
 			unlimitedEnergy = true;
-			unlimitedEnergyTime = Time.time + unlimitedEnergyDuration;
+			unlimitedEnergyTime = Time.time + pickupController.unlimitedEnergyDuration;
 			uiController.PickupTaken(playerNumber, "UNLIMITED ENERGY");
 			Destroy(pickup.gameObject);
 		}
@@ -922,7 +919,7 @@ public class HoverCarControl : MonoBehaviour
 				foreach (HoverCarControl hcControl in otherHoverControllers)
 				{
 					hcControl.signalJammed = true;
-					hcControl.signalJammedTime = Time.time + signalJammedDuration;
+					hcControl.signalJammedTime = Time.time + pickupController.signalJammedDuration;
 				}
 			}
 		}

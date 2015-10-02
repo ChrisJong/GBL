@@ -17,6 +17,14 @@ public class PickupController : MonoBehaviour
 	public float speedBoostWeighting;
 	public float unlimitedEnergyWeighting;
 
+	public float damageIncreaseDuration;
+	public float invincibilityDuration;
+	public float signalJammedDuration;
+	public float speedBoostedDuration;
+	public float unlimitedEnergyDuration;
+	public float damageIncreaseValue;
+	public float speedBoostedValue;
+
 	// Use this for initialization
 	void Start () 
 	{
