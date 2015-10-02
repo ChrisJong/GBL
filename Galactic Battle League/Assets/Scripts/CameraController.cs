@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class CameraController : MonoBehaviour {
+	private Camera thisCamera;
+
 	public enum CameraMode {Near, Far, FirstPerson};
 
 	public Transform targetHeavy = null;
@@ -39,9 +41,13 @@ public class CameraController : MonoBehaviour {
 
 	private CameraFilterPack_Drawing_Manga_FlashWhite dashCam;
 	private float stopDash;
+
+	private CameraFilterPack_Distortion_ShockWave shockwaveCam;
+	private float stopShockwave;
 	//NOTE TO SELF for BROKEN GLASS 2: do not use bullets 2, 3, or 6
 	// Use this for initialization
 	void Start () {
+		thisCamera = GetComponent<Camera> ();
 		glitchCam = GetComponent<CameraFilterPack_TV_Artefact>();
 		respawnCam = GetComponent<CameraFilterPack_AAA_SuperComputer>();
 		respawnCam.enabled = true;
@@ -50,6 +56,9 @@ public class CameraController : MonoBehaviour {
 		quakeCam = GetComponent<CameraFilterPack_FX_EarthQuake> ();
 		dashCam = GetComponent<CameraFilterPack_Drawing_Manga_FlashWhite> ();
 		dashCam.Speed = 10;
+		shockwaveCam = GetComponent<CameraFilterPack_Distortion_ShockWave> ();
+		shockwaveCam.Speed = 2f;
+
 		cameraDistanceNear = cameraPositionNear.magnitude;
 		cameraDistanceFar = cameraPositionFar.magnitude;
 		spawnCamera = true;
@@ -74,6 +83,9 @@ public class CameraController : MonoBehaviour {
 
 		if (dashCam.enabled == true && stopDash < Time.time)
 			dashCam.enabled = false;
+		
+		if (shockwaveCam.enabled == true && stopShockwave < Time.time)
+			shockwaveCam.enabled = false;
 
 		Transform target;
 		if (targetHeavy.gameObject.activeInHierarchy) {
@@ -175,5 +187,15 @@ public class CameraController : MonoBehaviour {
 	{
 		dashCam.enabled = true;
 		stopDash = Time.time + 0.5f;
+	}
+
+	public void RunShockwave(Vector3 screenPoint)
+	{
+		shockwaveCam.TimeX = 1.0f;
+		shockwaveCam.PosY = 0.45f;
+		//shockwaveCam.PosX = thisCamera.WorldToScreenPoint (screenPoint).x;
+		//shockwaveCam.PosY = thisCamera.WorldToScreenPoint (screenPoint).y;
+		shockwaveCam.enabled = true;
+		stopShockwave = Time.time + 0.9f/shockwaveCam.Speed;
 	}
 }

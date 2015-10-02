@@ -312,6 +312,7 @@ public class HoverCarControl : MonoBehaviour
 				{
 					Rumble (0.3f);
 					cameraController.RunQuake(0.015f);
+					cameraController.RunShockwave(shotSpawn[spawnInt].position);
 				}
 				gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, shotSpawn[spawnInt].position, explosionRadius);
 				tankVelocity = GetComponent<Rigidbody>().velocity;
