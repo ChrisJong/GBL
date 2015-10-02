@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: f4614e6c5ae68a246b78088cd7d895bd, type: 3}
+          m_Texture: {fileID: 2800000, guid: ce271eac83b1e8d47b5a67882e3afa5b, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -32,6 +32,13 @@ Material:
       data:
         first:
           name: _DetailNormalMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Ramp
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -78,13 +85,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Ramp
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -102,6 +102,18 @@ Material:
         first:
           name: _Shininess
         second: 1.10000002
+      data:
+        first:
+          name: _RampThreshold
+        second: .5
+      data:
+        first:
+          name: _RampSmooth
+        second: .100000001
+      data:
+        first:
+          name: _SpecSmooth
+        second: .879999995
       data:
         first:
           name: _Parallax
@@ -138,18 +150,6 @@ Material:
         first:
           name: _Metallic
         second: 0
-      data:
-        first:
-          name: _RampThreshold
-        second: .5
-      data:
-        first:
-          name: _RampSmooth
-        second: .100000001
-      data:
-        first:
-          name: _SpecSmooth
-        second: .879999995
     m_Colors:
       data:
         first:
