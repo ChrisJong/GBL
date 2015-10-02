@@ -1433,6 +1433,7 @@ GameObject:
   - 114: {fileID: 11419162}
   - 114: {fileID: 11499518}
   - 114: {fileID: 11412906}
+  - 114: {fileID: 11414252}
   m_Layer: 0
   m_Name: Camera4
   m_TagString: Untagged
@@ -4054,6 +4055,21 @@ MonoBehaviour:
   Speed: 5
   PosX: .5
   PosY: .5
+--- !u!114 &11414252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170406}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad205fe945d2fb4c9538acd2cd4ee4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 7f8be424aaf1faa40bc704f73202e1d6, type: 3}
+  PosX: .5
+  PosY: .5
+  Speed: 1
 --- !u!114 &11415740
 MonoBehaviour:
   m_ObjectHideFlags: 1
