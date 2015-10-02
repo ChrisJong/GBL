@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour {
 
 	private CameraFilterPack_Drawing_Manga_FlashWhite dashCam;
 	private float stopDash;
-
+	//NOTE TO SELF for BROKEN GLASS 2: do not use bullets 2, 3, or 6
 	// Use this for initialization
 	void Start () {
 		glitchCam = GetComponent<CameraFilterPack_TV_Artefact>();
@@ -174,6 +174,6 @@ public class CameraController : MonoBehaviour {
 	public void RunDash()
 	{
 		dashCam.enabled = true;
-		stopDash = Time.time + 0.75f;
+		stopDash = Time.time + 0.5f;
 	}
 }
