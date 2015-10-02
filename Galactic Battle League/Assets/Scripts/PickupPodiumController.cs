@@ -22,7 +22,6 @@ public class PickupPodiumController : MonoBehaviour
 		Vector3 spawnPosition = transform.position;
 		spawnPosition.y += 2.6f;
 
-		//Debug.Log (pickupName);
 		GameObject pickupObjectType = GameObject.Find (pickupName);
 
 		currentPickup = (GameObject)Instantiate (pickupObjectType, spawnPosition, pickupObjectType.transform.rotation);

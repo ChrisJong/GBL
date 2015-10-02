@@ -262,16 +262,12 @@ public class UIController : MonoBehaviour
 		{
 		case 1: 
 			return player1Colour;
-			break;
 		case 2:
 			return player2Colour;
-			break;
 		case 3: 
 			return player3Colour;
-			break;
 		case 4: 
 			return player4Colour;
-			break;
 		}
 
 		return colour;

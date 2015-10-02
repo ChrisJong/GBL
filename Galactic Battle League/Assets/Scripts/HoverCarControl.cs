@@ -341,6 +341,7 @@ public class HoverCarControl : MonoBehaviour
 				if (spawnInt >= shotSpawn.Length)
 					spawnInt = 0;
 				fireTime = Time.time;
+				pickupController.ActivatePlayer(playerNumber);
 			}
 
 
@@ -836,6 +837,7 @@ public class HoverCarControl : MonoBehaviour
 			if (health < maxHealth)
 			{
 				ProcessHealthPickup (10f);
+				uiController.PickupTaken(playerNumber, "HEALED");
 				Destroy(pickup.gameObject);
 			}
 		}
@@ -844,6 +846,7 @@ public class HoverCarControl : MonoBehaviour
 			if (health < maxHealth)
 			{
 				ProcessHealthPickup (20f);
+				uiController.PickupTaken(playerNumber, "HEALED");
 				Destroy(pickup.gameObject);
 			}
 		}
@@ -864,6 +867,7 @@ public class HoverCarControl : MonoBehaviour
 		else if (pickupType == "PickupSignalJammer(Clone)")
 		{
 			ProcessSignalJammerPickup();
+			uiController.PickupTaken(playerNumber, "CAMERAS GLITCHED");
 			Destroy(pickup.gameObject);
 		}
 		else if (pickupType == "PickupSpeedBoost(Clone)")

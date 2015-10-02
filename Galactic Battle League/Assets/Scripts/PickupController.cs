@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class PickupController : MonoBehaviour 
 {
-	//public Vector3 spawnArea1, spawnArea2;
 	public float timeToAppearInit, timeToAppearAvg, timeToAppearRand;
 	private float nextAppearTime;
-	//public GameObject pickup;
+	private int activePlayerCount;
+	private bool[] activePlayers;
 
 	public float healthLargeWeighting;
 	public float healthSmallWeighting;
@@ -29,6 +29,7 @@ public class PickupController : MonoBehaviour
 	void Start () 
 	{
 		nextAppearTime = timeToAppearInit + Time.time;
+		activePlayers = new bool[4];
 	}
 	
 	// Update is called once per frame
@@ -44,7 +45,16 @@ public class PickupController : MonoBehaviour
 				controller.SpawnPickup(SelectRandomPickup());
 			}
 
-			nextAppearTime = Time.time + timeToAppearAvg + Random.Range (-timeToAppearRand, timeToAppearRand);
+			float modifiedTimeToAppear = timeToAppearAvg;
+
+			if (activePlayerCount == 3)
+				modifiedTimeToAppear /= 1.5f;
+			else if (activePlayerCount == 4)
+				modifiedTimeToAppear /= 2f;
+
+			nextAppearTime = Time.time + modifiedTimeToAppear + Random.Range (-timeToAppearRand, timeToAppearRand);
+
+			Debug.Log(activePlayerCount);
 		}
 	}
 
@@ -114,5 +124,14 @@ public class PickupController : MonoBehaviour
 		}
 
 		return pickupType;
+	}
+
+	public void ActivatePlayer(int playerNumber)
+	{
+		if (activePlayers [playerNumber - 1] == false) 
+		{
+			activePlayers [playerNumber - 1] = true;
+			activePlayerCount++;
+		}
 	}
 }
