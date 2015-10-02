@@ -310,9 +310,15 @@ public class HoverCarControl : MonoBehaviour
 					holdingTrigger = true;
 				nextFire = Time.time + fireRate;
 				if (tankClass == 1)
+				{
 					Rumble(0.15f);
+					cameraController.runQuake(currError/700.0f);
+				}
 				else
+				{
 					Rumble (0.3f);
+					cameraController.runQuake(0.015f);
+				}
 				gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, shotSpawn[spawnInt].position, explosionRadius);
 				tankVelocity = GetComponent<Rigidbody>().velocity;
 				fireParticle[spawnInt].Play();
@@ -367,7 +373,7 @@ public class HoverCarControl : MonoBehaviour
 		}
 
 		if (currError > 0 && !inputDevice.RightTrigger.IsPressed) 
-			currError -= 4.0f * Time.deltaTime;
+			currError -= 4.5f * Time.deltaTime;
 
 		if (currError < 0)
 			currError = 0;
@@ -471,6 +477,7 @@ public class HoverCarControl : MonoBehaviour
 				var layermask = 1 << 12;
 				layermask = ~layermask;
 				bool hitWall = false;
+				cameraController.runQuake(0.003f);
 				if (Physics.Raycast(shotSpawn[0].position, shotSpawn[0].forward, out hit, Mathf.Infinity, layermask)) {
 					Debug.DrawLine (shotSpawn[0].position, hit.point, Color.cyan);
 					
@@ -722,12 +729,23 @@ public class HoverCarControl : MonoBehaviour
 
 			//hitExplosion.startLifetime = (float)shotControllerCopy.damage/10.0f;
 			if (damageData.damage >= 10)
+			{
 				hitExplosion.startSize = 6;
+				Rumble (0.3f);
+				cameraController.runQuake(0.015f);
+			}
 			else if (damageData.damage >=2)
+			{
 				hitExplosion.startSize = 3;
-			else {
+				Rumble (0.15f);
+				cameraController.runQuake(0.008f);
+			}
+			else 
+			{
 				hitExplosion.startSize = 1;
 				Destroy(hitExplosion.transform.GetChild(0).gameObject);
+				Rumble (0.05f);
+				cameraController.runQuake(0.004f);
 			}
 			
 			hitExplosion.Play ();
@@ -738,15 +756,7 @@ public class HoverCarControl : MonoBehaviour
 			
 			//}
 			health -= damageData.damage;
-			
-	
-			if (damageData.damage >= 10)
-				Rumble (0.3f);
-			else if (damageData.damage >= 2)
-				Rumble (0.15f);
-			else
-				Rumble (0.05f);
-			
+						
 			if (health / maxHealth < .66f)
 				if (damage66)
 					damage66.Play ();
