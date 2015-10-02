@@ -4067,6 +4067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SCShader: {fileID: 4800000, guid: 7f8be424aaf1faa40bc704f73202e1d6, type: 3}
+  TimeX: 1
   PosX: .5
   PosY: .5
   Speed: 1
@@ -4129,6 +4130,10 @@ MonoBehaviour:
   tankClass: 2
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
   sfxBump: {fileID: 8300000, guid: 3d2e4b7cec6a54d4c9b97cb29301c076, type: 3}
+  laserHitSound: {fileID: 0}
+  laserHitVolume: 0
+  dashSound: {fileID: 0}
+  dashVolume: 0
   damage33: {fileID: 19826686}
   damage66: {fileID: 19886702}
   hoverParticles:
@@ -4378,6 +4383,10 @@ MonoBehaviour:
   tankClass: 1
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
   sfxBump: {fileID: 8300000, guid: 3d2e4b7cec6a54d4c9b97cb29301c076, type: 3}
+  laserHitSound: {fileID: 0}
+  laserHitVolume: 0
+  dashSound: {fileID: 8300000, guid: c44d2b8760fc52145a0f59ab616dde5c, type: 3}
+  dashVolume: .100000001
   damage33: {fileID: 19823578}
   damage66: {fileID: 19869548}
   hoverParticles:
@@ -81188,6 +81197,14 @@ Prefab:
       propertyPath: fireLoopEnd
       value: 
       objectReference: {fileID: 8300000, guid: 994fb3b3d70bd5e4ebbe8559ae568986, type: 3}
+    - target: {fileID: 0}
+      propertyPath: dashSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c44d2b8760fc52145a0f59ab616dde5c, type: 3}
+    - target: {fileID: 0}
+      propertyPath: dashVolume
+      value: .100000001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 118016}
