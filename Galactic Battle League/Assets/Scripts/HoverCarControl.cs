@@ -53,7 +53,13 @@ public class HoverCarControl : MonoBehaviour
 	
 	public GameObject sparkParticle;
 	public AudioClip sfxBump;
-	
+
+	public AudioClip laserHitSound;
+	public float laserHitVolume;
+
+	public AudioClip dashSound;
+	public float dashVolume;
+
 	public ParticleSystem damage33;
 	public ParticleSystem damage66;
 	public ParticleSystem[] hoverParticles;
@@ -466,6 +472,7 @@ public class HoverCarControl : MonoBehaviour
 				//Boost ability
 				m_body.AddForce(transform.forward * m_currThrust * abilityPower);
 				m_body.AddForce(transform.right * m_currSideThrust * abilityPower);
+				AudioSource.PlayClipAtPoint(dashSound, transform.position, dashVolume);
 				cameraController.RunQuake(0.01f);
 				foreach(ParticleSystem particle in hoverParticles)
 				{
@@ -501,6 +508,7 @@ public class HoverCarControl : MonoBehaviour
 							damageData.distance = 0;
 							hits[i].collider.gameObject.SendMessage("Damage", damageData);
 							Rumble(0.05f);
+							//AudioSource.PlayClipAtPoint(laserHitSound, transform.position, laserHitVolume);
 						}
 					}
 				} else {
