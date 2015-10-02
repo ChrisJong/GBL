@@ -83,7 +83,7 @@ public class UIController : MonoBehaviour
 				msg.text = "You were killed by";
 			else if (msg.name == "FactionText")
 			{
-				msg.text = getFactionName(attacker);
+				msg.text = GetFactionName(attacker);
 				msg.color = getFactionColour(attacker);
 			}
 		}
@@ -96,7 +96,7 @@ public class UIController : MonoBehaviour
 				msg.text = "You killed";
 			else if (msg.name == "FactionText")
 			{
-				msg.text = getFactionName(victim);
+				msg.text = GetFactionName(victim);
 				msg.color = getFactionColour(victim);
 			}
 		}
