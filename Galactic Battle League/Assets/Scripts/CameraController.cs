@@ -7,6 +7,8 @@ public class CameraController : MonoBehaviour {
 	public Transform targetHeavy = null;
 	public Transform targetLight = null;
 
+	public Vector3 cameraPositionOffset = new Vector3(0, 1.4f, 0);
+
 	public Vector3 cameraPositionNear = Vector3.zero;
 	float cameraDistanceNear;
 	public Vector3 lookOffsetNear = Vector3.zero;
@@ -24,6 +26,10 @@ public class CameraController : MonoBehaviour {
 
 	public float stiffness;
 	public float rotationStiffness;
+	public float distanceStiffness;
+
+	float cameraDistanceCurrent;
+
 	public CameraMode cameraMode = CameraMode.Near;
 	bool spawnCamera;
 
@@ -83,15 +89,15 @@ public class CameraController : MonoBehaviour {
 		}
 
 		if (spawnCamera) {
-			transform.position = target.TransformPoint (cameraPositionSpawn);
-			transform.rotation = Quaternion.LookRotation (target.TransformPoint(lookOffsetSpawn) - transform.position, Vector3.up);
+			transform.position = target.TransformPoint (cameraPositionOffset + cameraPositionSpawn);
+			transform.rotation = Quaternion.LookRotation (target.TransformPoint(cameraPositionOffset + lookOffsetSpawn) - transform.position, Vector3.up);
 		} else if (cameraMode == CameraMode.FirstPerson) {
 			transform.parent = target;
 
 			if (target==targetHeavy) {
-				transform.position = target.TransformPoint(cameraPositionFirstPersonHeavy);
+				transform.position = target.TransformPoint(cameraPositionOffset + cameraPositionFirstPersonHeavy);
 			} else {
-				transform.position = target.TransformPoint(cameraPositionFirstPersonLight);
+				transform.position = target.TransformPoint(cameraPositionOffset + cameraPositionFirstPersonLight);
 			}
 			transform.rotation = target.rotation;
 		} else {
@@ -100,23 +106,29 @@ public class CameraController : MonoBehaviour {
 			Vector3 lookPosition = Vector3.zero;
 
 			if (cameraMode == CameraMode.Near) {
-				wantedPosition = target.TransformPoint (cameraPositionNear);
-				
+				wantedPosition = target.TransformPoint (cameraPositionOffset + (cameraPositionNear * cameraDistanceCurrent / cameraDistanceNear));
+
 				RaycastHit hit;
-				if (Physics.Raycast(target.TransformPoint(cameraPositionNear.x, cameraPositionNear.y, 0), target.TransformDirection(0, 0, cameraPositionNear.z), out hit, cameraDistanceNear)) {
+				if (Physics.Raycast(target.TransformPoint(cameraPositionOffset) , target.TransformDirection(cameraPositionNear), out hit, cameraDistanceCurrent)) {
 					wantedPosition = hit.point;
+					cameraDistanceCurrent = hit.distance;
+				} else {
+					cameraDistanceCurrent = Mathf.Lerp(cameraDistanceCurrent, cameraDistanceNear, Time.deltaTime * distanceStiffness);
 				}
 			
-				lookPosition = target.TransformPoint (lookOffsetNear);
+				lookPosition = target.TransformPoint (cameraPositionOffset + lookOffsetNear);
 			} else if (cameraMode == CameraMode.Far) {
-				wantedPosition = target.TransformPoint (cameraPositionFar);
+				wantedPosition = target.TransformPoint (cameraPositionOffset + (cameraPositionFar * cameraDistanceCurrent / cameraDistanceFar));
 				
 				RaycastHit hit;
-				if (Physics.Raycast(target.TransformPoint(cameraPositionFar.x, cameraPositionFar.y, 0), target.TransformDirection(0, 0, cameraPositionFar.z), out hit, cameraDistanceFar)) {
+				if (Physics.Raycast(target.TransformPoint(cameraPositionOffset), target.TransformDirection(cameraPositionFar), out hit, cameraDistanceCurrent)) {
 					wantedPosition = hit.point;
+					cameraDistanceCurrent = hit.distance;
+				} else {
+					cameraDistanceCurrent = Mathf.Lerp(cameraDistanceCurrent, cameraDistanceFar, Time.deltaTime * distanceStiffness);
 				}
 
-				lookPosition = target.TransformPoint (lookOffsetFar);				
+				lookPosition = target.TransformPoint (cameraPositionOffset + lookOffsetFar);				
 			}
 
 			transform.position = Vector3.Lerp (transform.position, wantedPosition, Time.deltaTime * stiffness);
