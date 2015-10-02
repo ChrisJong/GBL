@@ -232,9 +232,7 @@ public class HoverCarControl : MonoBehaviour
 		
 		//camera
 		if (inputDevice != null) {
-			if (inputDevice.Action4.WasPressed) {
-				cameraController.ChangeMode();
-			}
+
 		}
 
 		if (hasRespawned && inputDevice != null) 
@@ -246,7 +244,9 @@ public class HoverCarControl : MonoBehaviour
 					anim.enabled = true;
 					anim.Play(0, -1, 0f);
 				}
-				
+
+				cameraController.ChangeMode();
+
 				respawnMessage1.SetActive(false);
 				respawnMessage2.SetActive(false);
 				spawnActiveTimer = Time.time + 1.0f;
@@ -355,6 +355,10 @@ public class HoverCarControl : MonoBehaviour
 				abilityActive = true;
 			else
 				abilityActive = false;
+
+			if (inputDevice.Action4.WasPressed) {
+				cameraController.ChangeMode();
+			}
 		}
 		else if(deathRun && weaponSound && Time.time > nextFire)
 		{
