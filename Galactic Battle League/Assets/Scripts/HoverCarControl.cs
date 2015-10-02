@@ -73,7 +73,7 @@ public class HoverCarControl : MonoBehaviour
 	// Pickup variables
 	private PickupController pickupController;
 	private bool damageIncreased = false;
-	public bool invincible = false;
+	private bool invincible = false;
 	private bool signalJammed = false;
 	private bool speedBoosted = false;
 	private bool unlimitedEnergy = false;
@@ -797,7 +797,7 @@ public class HoverCarControl : MonoBehaviour
 				Rumble (0.3f);
 			else if (damageData.damage >= 2)
 				Rumble (0.15f);
-			else
+			else if (damageData.damage > 0)
 				Rumble (0.05f);
 			
 			if (health / maxHealth < .66f)
