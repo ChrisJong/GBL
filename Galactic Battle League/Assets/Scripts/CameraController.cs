@@ -37,6 +37,9 @@ public class CameraController : MonoBehaviour {
 	private CameraFilterPack_FX_EarthQuake quakeCam;
 	private float stopQuake;
 
+	private CameraFilterPack_Drawing_Manga_FlashWhite dashCam;
+	private float stopDash;
+
 	// Use this for initialization
 	void Start () {
 		glitchCam = GetComponent<CameraFilterPack_TV_Artefact>();
@@ -45,7 +48,8 @@ public class CameraController : MonoBehaviour {
 		respawnCam.ChangeRadius = 0;
 		lowHealthCam = GetComponent<CameraFilterPack_TV_80> ();
 		quakeCam = GetComponent<CameraFilterPack_FX_EarthQuake> ();
-
+		dashCam = GetComponent<CameraFilterPack_Drawing_Manga_FlashWhite> ();
+		dashCam.Speed = 10;
 		cameraDistanceNear = cameraPositionNear.magnitude;
 		cameraDistanceFar = cameraPositionFar.magnitude;
 		spawnCamera = true;
@@ -67,6 +71,9 @@ public class CameraController : MonoBehaviour {
 
 		if (quakeCam.enabled == true && stopQuake < Time.time)
 			quakeCam.enabled = false;
+
+		if (dashCam.enabled == true && stopDash < Time.time)
+			dashCam.enabled = false;
 
 		Transform target;
 		if (targetHeavy.gameObject.activeInHierarchy) {
@@ -154,7 +161,7 @@ public class CameraController : MonoBehaviour {
 		lowHealthCam.enabled = false;
 	}
 
-	public void runQuake(float intensity)
+	public void RunQuake(float intensity)
 	{
 		if (quakeCam.enabled == true)
 			quakeCam.enabled = false;
@@ -162,5 +169,11 @@ public class CameraController : MonoBehaviour {
 		quakeCam.Y = intensity;
 		stopQuake = Time.time + 0.5f;
 		quakeCam.enabled = true;
+	}
+
+	public void RunDash()
+	{
+		dashCam.enabled = true;
+		stopDash = Time.time + 0.75f;
 	}
 }

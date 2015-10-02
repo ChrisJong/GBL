@@ -312,12 +312,12 @@ public class HoverCarControl : MonoBehaviour
 				if (tankClass == 1)
 				{
 					Rumble(0.15f);
-					cameraController.runQuake(currError/700.0f);
+					cameraController.RunQuake(currError/700.0f);
 				}
 				else
 				{
 					Rumble (0.3f);
-					cameraController.runQuake(0.015f);
+					cameraController.RunQuake(0.015f);
 				}
 				gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, shotSpawn[spawnInt].position, explosionRadius);
 				tankVelocity = GetComponent<Rigidbody>().velocity;
@@ -471,17 +471,18 @@ public class HoverCarControl : MonoBehaviour
 				//Boost ability
 				m_body.AddForce(transform.forward * m_currThrust * abilityPower);
 				m_body.AddForce(transform.right * m_currSideThrust * abilityPower);
-				cameraController.runQuake(0.005f);
+				cameraController.RunQuake(0.01f);
 				foreach(ParticleSystem particle in hoverParticles)
 				{
 					particle.startLifetime = particleLength*4;
 				}
+				cameraController.RunDash();
 			} else {
 				//Laser ability
 				var layermask = 1 << 12;
 				layermask = ~layermask;
 				bool hitWall = false;
-				cameraController.runQuake(0.003f);
+				cameraController.RunQuake(0.003f);
 				if (Physics.Raycast(shotSpawn[0].position, shotSpawn[0].forward, out hit, Mathf.Infinity, layermask)) {
 					Debug.DrawLine (shotSpawn[0].position, hit.point, Color.cyan);
 					
@@ -520,7 +521,6 @@ public class HoverCarControl : MonoBehaviour
 		if (abilityCharge > maxAbilityCharge) {
 			abilityCharge = maxAbilityCharge;
 		}
-
 		
 		// Rumble
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
@@ -736,20 +736,20 @@ public class HoverCarControl : MonoBehaviour
 			{
 				hitExplosion.startSize = 6;
 				Rumble (0.3f);
-				cameraController.runQuake(0.015f);
+				cameraController.RunQuake(0.015f);
 			}
 			else if (damageData.damage >=2)
 			{
 				hitExplosion.startSize = 3;
 				Rumble (0.15f);
-				cameraController.runQuake(0.008f);
+				cameraController.RunQuake(0.008f);
 			}
 			else 
 			{
 				hitExplosion.startSize = 1;
 				Destroy(hitExplosion.transform.GetChild(0).gameObject);
 				Rumble (0.05f);
-				cameraController.runQuake(0.005f);
+				cameraController.RunQuake(0.005f);
 			}
 			
 			hitExplosion.Play ();
