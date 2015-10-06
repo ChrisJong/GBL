@@ -2917,10 +2917,6 @@ Transform:
   - {fileID: 332342459}
   m_Father: {fileID: 325916499}
   m_RootOrder: 0
---- !u!1 &348676999 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 107882, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
-  m_PrefabInternal: {fileID: 870904736}
 --- !u!1 &349026776 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 9d1ff264f47dc9b489e1883ac175ccbd, type: 3}
@@ -3270,7 +3266,7 @@ Prefab:
     - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
       propertyPath: respawnMessage1
       value: 
-      objectReference: {fileID: 348676999}
+      objectReference: {fileID: 0}
     - target: {fileID: 11454752, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
       propertyPath: respawnMessage2
       value: 
@@ -3310,7 +3306,7 @@ Prefab:
     - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
       propertyPath: respawnMessage1
       value: 
-      objectReference: {fileID: 348676999}
+      objectReference: {fileID: 0}
     - target: {fileID: 11465754, guid: e850b6d29478ee242aea8be5a6893a06, type: 2}
       propertyPath: respawnMessage2
       value: 
@@ -3412,10 +3408,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 870904736}
   m_Script: {fileID: 11500000, guid: 2b676c7f4ac048a4b95c0ecd5e838a1c, type: 3}
---- !u!1 &432049082 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 107886, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
-  m_PrefabInternal: {fileID: 870904736}
 --- !u!95 &439637595 stripped
 Animator:
   m_PrefabParentObject: {fileID: 9530284, guid: c2a0a939f36307a4590c57320fc4fe02,
@@ -5450,7 +5442,7 @@ Prefab:
     - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: respawnMessage1
       value: 
-      objectReference: {fileID: 879577675}
+      objectReference: {fileID: 0}
     - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: respawnMessage2
       value: 
@@ -5490,7 +5482,7 @@ Prefab:
     - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: respawnMessage1
       value: 
-      objectReference: {fileID: 879577675}
+      objectReference: {fileID: 0}
     - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: respawnMessage2
       value: 
@@ -6469,10 +6461,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 811da9b23f9a3d549b020d2203fd074a, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &879577675 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 107890, guid: a5851be0fcc90504e86261d76d731d2e, type: 2}
-  m_PrefabInternal: {fileID: 870904736}
 --- !u!1 &889514991
 GameObject:
   m_ObjectHideFlags: 0
@@ -7425,6 +7413,7 @@ GameObject:
   - 4: {fileID: 1115877298}
   - 114: {fileID: 1115877300}
   - 82: {fileID: 1115877299}
+  - 114: {fileID: 1115877301}
   m_Layer: 0
   m_Name: MusicController
   m_TagString: Untagged
@@ -7540,6 +7529,17 @@ MonoBehaviour:
   maxVolTech: .600000024
   maxVolMilitary: .800000012
   maxVolIndustrial: .600000024
+--- !u!114 &1115877301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1115877297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00e96f52a7c7d349b61a978fff0f4a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1117707324
 GameObject:
   m_ObjectHideFlags: 0
@@ -11171,11 +11171,11 @@ Prefab:
     - target: {fileID: 11473454, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
       propertyPath: respawnMessage1
       value: 
-      objectReference: {fileID: 432049082}
+      objectReference: {fileID: 0}
     - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
       propertyPath: respawnMessage1
       value: 
-      objectReference: {fileID: 432049082}
+      objectReference: {fileID: 0}
     - target: {fileID: 11431994, guid: 3b8654d5f528b824c95bbcfe77c44a3e, type: 2}
       propertyPath: respawnMessage2
       value: 
