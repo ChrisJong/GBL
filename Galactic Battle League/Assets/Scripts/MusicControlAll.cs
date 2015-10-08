@@ -20,9 +20,16 @@ public class MusicControlAll : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		pirate.volume = (float)score1.score/(float)4.0 * maxVolPirate;
-		hiTech.volume = (float)score2.score/(float)4.0 * maxVolTech;
-		military.volume = (float)score3.score/(float)4.0 * maxVolMilitary;
-		industrial.volume = (float)score4.score/(float)4.0 * maxVolIndustrial;
+		if (MusicVolumeController.musicActive) {
+			pirate.volume = Mathf.Clamp((float)score1.score/4.0f * maxVolPirate * MusicVolumeController.musicVolume, 0, maxVolPirate * MusicVolumeController.musicVolume);
+			hiTech.volume = Mathf.Clamp((float)score2.score/4.0f * maxVolTech * MusicVolumeController.musicVolume, 0, maxVolTech * MusicVolumeController.musicVolume);
+			military.volume = Mathf.Clamp((float)score3.score/4.0f * maxVolMilitary * MusicVolumeController.musicVolume, 0, maxVolMilitary * MusicVolumeController.musicVolume);
+			industrial.volume = Mathf.Clamp((float)score4.score/4.0f * maxVolIndustrial * MusicVolumeController.musicVolume, 0, maxVolIndustrial * MusicVolumeController.musicVolume);
+		} else {
+			pirate.volume = 0;
+			hiTech.volume = 0;
+			military.volume = 0;
+			industrial.volume = 0;
+		}
 	}
 }

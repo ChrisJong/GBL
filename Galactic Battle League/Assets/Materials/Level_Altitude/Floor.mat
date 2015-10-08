@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Floor
-  m_Shader: {fileID: 4800000, guid: 6782973e3ca8b2543beddb0a3dc3175e, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: 9ec7ccbd4289d0543939f61121224d93, type: 3}
+  m_ShaderKeywords: TCP2_BUMP TCP2_SPEC_TOON
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -19,19 +19,26 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 339aedad494558f42b0ad7f207c66937, type: 3}
+          m_Texture: {fileID: 2800000, guid: ce271eac83b1e8d47b5a67882e3afa5b, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: d9bad9f4875799247bd6d14547d262e0, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _DetailNormalMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Ramp
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -78,13 +85,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Ramp
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -101,7 +101,19 @@ Material:
       data:
         first:
           name: _Shininess
-        second: .75
+        second: 1.10000002
+      data:
+        first:
+          name: _RampThreshold
+        second: .5
+      data:
+        first:
+          name: _RampSmooth
+        second: .100000001
+      data:
+        first:
+          name: _SpecSmooth
+        second: .879999995
       data:
         first:
           name: _Parallax
@@ -138,18 +150,6 @@ Material:
         first:
           name: _Metallic
         second: 0
-      data:
-        first:
-          name: _RampThreshold
-        second: .5
-      data:
-        first:
-          name: _RampSmooth
-        second: .100000001
-      data:
-        first:
-          name: _SpecSmooth
-        second: 1
     m_Colors:
       data:
         first:
@@ -158,16 +158,16 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: .588235259, g: .588235259, b: .588235259, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: .117647052, g: .117647052, b: .117647052, a: 1}
+        second: {r: .176470578, g: .176470578, b: .176470578, a: 1}
       data:
         first:
           name: _HColor
-        second: {r: .498039216, g: .498039216, b: .498039216, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _SColor
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: .132352948, g: .132352948, b: .132352948, a: 1}

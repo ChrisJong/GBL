@@ -53,7 +53,13 @@ public class HoverCarControl : MonoBehaviour
 	
 	public GameObject sparkParticle;
 	public AudioClip sfxBump;
-	
+
+	public AudioClip laserHitSound;
+	public float laserHitVolume;
+
+	public AudioClip dashSound;
+	public float dashVolume;
+
 	public ParticleSystem damage33;
 	public ParticleSystem damage66;
 	public ParticleSystem[] hoverParticles;
@@ -83,8 +89,7 @@ public class HoverCarControl : MonoBehaviour
 	private float speedBoostedTime;
 	private float unlimitedEnergyTime;
 
-	private GameObject respawnMessage1;
-	private GameObject respawnMessage2;
+	private GameObject respawnMessage;
 	
 	private float tempHoverForce;
 	private float timer = 0.0f;
@@ -150,11 +155,8 @@ public class HoverCarControl : MonoBehaviour
 		if (healthCounter == null) {
 			healthCounter = GameObject.Find("HealthMeter" + playerNumber).GetComponent<HealthCounter>();
 		}
-		if (respawnMessage1 == null) {
-			respawnMessage1 = GameObject.Find("P" + playerNumber + "_RESPAWN_MSG1");
-		}
-		if (respawnMessage2 == null) {
-			respawnMessage2 = GameObject.Find("P" + playerNumber + "_RESPAWN_MSG2");
+		if (respawnMessage == null) {
+			respawnMessage = GameObject.Find("P" + playerNumber + "_RESPAWN_MSG1");
 		}
 		if (pickupController == null) {
 			pickupController = GameObject.Find("PickupLocations").GetComponent<PickupController>();
@@ -189,8 +191,7 @@ public class HoverCarControl : MonoBehaviour
 		m_layerMask = 1 << LayerMask.NameToLayer("Characters");
 		m_layerMask = ~m_layerMask;
 		
-		respawnMessage1.SetActive(true);
-		respawnMessage2.SetActive(true);
+		respawnMessage.SetActive(true);
 		
 		initialised = true;
 		particleLength = hoverParticles[0].startLifetime;
@@ -247,9 +248,7 @@ public class HoverCarControl : MonoBehaviour
 		
 		//camera
 		if (inputDevice != null) {
-			if (inputDevice.Action4.WasPressed) {
-				cameraController.ChangeMode();
-			}
+
 		}
 
 		if (hasRespawned && inputDevice != null) 
@@ -261,9 +260,10 @@ public class HoverCarControl : MonoBehaviour
 					anim.enabled = true;
 					anim.Play(0, -1, 0f);
 				}
-				
-				respawnMessage1.SetActive(false);
-				respawnMessage2.SetActive(false);
+
+				cameraController.ChangeMode();
+
+				respawnMessage.SetActive(false);
 				spawnActiveTimer = Time.time + 1.0f;
 				hasRespawned = false;
 			}
@@ -325,9 +325,16 @@ public class HoverCarControl : MonoBehaviour
 					holdingTrigger = true;
 				nextFire = Time.time + fireRate;
 				if (tankClass == 1)
+				{
 					Rumble(0.15f);
+					cameraController.RunQuake(currError/700.0f);
+				}
 				else
+				{
 					Rumble (0.3f);
+					cameraController.RunQuake(0.015f);
+					cameraController.RunShockwave(shotSpawn[spawnInt].position);
+				}
 				gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, shotSpawn[spawnInt].position, explosionRadius);
 				tankVelocity = GetComponent<Rigidbody>().velocity;
 				fireParticle[spawnInt].Play();
@@ -371,6 +378,10 @@ public class HoverCarControl : MonoBehaviour
 				abilityActive = true;
 			else
 				abilityActive = false;
+
+			if (inputDevice.Action4.WasPressed) {
+				cameraController.ChangeMode();
+			}
 		}
 		else if(deathRun && weaponSound && Time.time > nextFire)
 		{
@@ -502,16 +513,19 @@ public class HoverCarControl : MonoBehaviour
 				//Boost ability
 				m_body.AddForce(transform.forward * m_currThrust * abilityPower);
 				m_body.AddForce(transform.right * m_currSideThrust * abilityPower);
-				
+				AudioSource.PlayClipAtPoint(dashSound, transform.position, dashVolume);
+				cameraController.RunQuake(0.01f);
 				foreach(ParticleSystem particle in hoverParticles)
 				{
 					particle.startLifetime = particleLength*4;
 				}
+				cameraController.RunDash();
 			} else {
 				//Laser ability
 				var layermask = 1 << 12;
 				layermask = ~layermask;
 				bool hitWall = false;
+				cameraController.RunQuake(0.003f);
 				if (Physics.Raycast(shotSpawn[0].position, shotSpawn[0].forward, out hit, Mathf.Infinity, layermask)) {
 					Debug.DrawLine (shotSpawn[0].position, hit.point, Color.cyan);
 					
@@ -539,6 +553,7 @@ public class HoverCarControl : MonoBehaviour
 							damageData.distance = 0;
 							hits[i].collider.gameObject.SendMessage("Damage", damageData);
 							Rumble(0.05f);
+							//AudioSource.PlayClipAtPoint(laserHitSound, transform.position, laserHitVolume);
 						}
 					}
 				} else {
@@ -554,7 +569,6 @@ public class HoverCarControl : MonoBehaviour
 		if (abilityCharge > maxAbilityCharge) {
 			abilityCharge = maxAbilityCharge;
 		}
-
 		
 		// Rumble
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
@@ -744,8 +758,7 @@ public class HoverCarControl : MonoBehaviour
 		deathRun = false;
 		hasRespawned = true;
 		
-		respawnMessage1.SetActive(true);
-		respawnMessage2.SetActive(true);
+		respawnMessage.SetActive(true);
 		abilityCharge = maxAbilityCharge;
 		abilityActive = false;
 
@@ -776,12 +789,23 @@ public class HoverCarControl : MonoBehaviour
 
 			//hitExplosion.startLifetime = (float)shotControllerCopy.damage/10.0f;
 			if (damageData.damage >= 10)
+			{
 				hitExplosion.startSize = 6;
+				Rumble (0.3f);
+				cameraController.RunQuake(0.015f);
+			}
 			else if (damageData.damage >=2)
+			{
 				hitExplosion.startSize = 3;
-			else {
+				Rumble (0.15f);
+				cameraController.RunQuake(0.008f);
+			}
+			else 
+			{
 				hitExplosion.startSize = 1;
 				Destroy(hitExplosion.transform.GetChild(0).gameObject);
+				Rumble (0.05f);
+				cameraController.RunQuake(0.005f);
 			}
 			
 			hitExplosion.Play ();
@@ -792,7 +816,6 @@ public class HoverCarControl : MonoBehaviour
 			
 			//}
 			health -= damageData.damage;
-			
 	
 			if (damageData.damage >= 10)
 				Rumble (0.3f);

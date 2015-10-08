@@ -82,6 +82,7 @@ void OnValidate()
 }
 void Update ()
 {
+/*
 if (Application.isPlaying)
 {
 			Speed = ChangeValue;
@@ -89,6 +90,7 @@ X = ChangeValue2;
 Y = ChangeValue3;
 Value4 = ChangeValue4;
 }
+*/
 #if UNITY_EDITOR
 if (Application.isPlaying!=true)
 {

@@ -2,23 +2,38 @@
 using System.Collections;
 
 public class CameraController : MonoBehaviour {
+	private Camera thisCamera;
+
 	public enum CameraMode {Near, Far, FirstPerson};
-	
+
 	public Transform targetHeavy = null;
 	public Transform targetLight = null;
 
+	public Vector3 cameraPositionOffset = new Vector3(0, 1.4f, 0);
+
 	public Vector3 cameraPositionNear = Vector3.zero;
+	float cameraDistanceNear;
 	public Vector3 lookOffsetNear = Vector3.zero;
 
 	public Vector3 cameraPositionFar = Vector3.zero;
+	float cameraDistanceFar;
 	public Vector3 lookOffsetFar = Vector3.zero;
+
+	public Vector3 cameraPositionSpawn = Vector3.zero;
+	float cameraDistanceSpawn;
+	public Vector3 lookOffsetSpawn = Vector3.zero;
 
 	public Vector3 cameraPositionFirstPersonLight = Vector3.zero;
 	public Vector3 cameraPositionFirstPersonHeavy = Vector3.zero;
 
 	public float stiffness;
 	public float rotationStiffness;
+	public float distanceStiffness;
+
+	float cameraDistanceCurrent;
+
 	public CameraMode cameraMode = CameraMode.Near;
+	bool spawnCamera;
 
 	private CameraFilterPack_AAA_SuperComputer respawnCam;
 	
@@ -29,14 +44,33 @@ public class CameraController : MonoBehaviour {
 
 	private CameraFilterPack_FX_Glitch1 signalJammedCam;
 
+	private CameraFilterPack_FX_EarthQuake quakeCam;
+	private float stopQuake;
+
+	private CameraFilterPack_Drawing_Manga_FlashWhite dashCam;
+	private float stopDash;
+
+	private CameraFilterPack_Distortion_ShockWave shockwaveCam;
+	private float stopShockwave;
+	//NOTE TO SELF for BROKEN GLASS 2: do not use bullets 2, 3, or 6
 	// Use this for initialization
 	void Start () {
+		thisCamera = GetComponent<Camera> ();
 		glitchCam = GetComponent<CameraFilterPack_TV_Artefact>();
 		respawnCam = GetComponent<CameraFilterPack_AAA_SuperComputer>();
 		signalJammedCam = GetComponent<CameraFilterPack_FX_Glitch1>();
 		respawnCam.enabled = true;
 		respawnCam.ChangeRadius = 0;
 		lowHealthCam = GetComponent<CameraFilterPack_TV_80> ();
+		quakeCam = GetComponent<CameraFilterPack_FX_EarthQuake> ();
+		dashCam = GetComponent<CameraFilterPack_Drawing_Manga_FlashWhite> ();
+		dashCam.Speed = 10;
+		shockwaveCam = GetComponent<CameraFilterPack_Distortion_ShockWave> ();
+		shockwaveCam.Speed = 2f;
+
+		cameraDistanceNear = cameraPositionNear.magnitude;
+		cameraDistanceFar = cameraPositionFar.magnitude;
+		spawnCamera = true;
 	}
 
 	void Update()
@@ -53,6 +87,15 @@ public class CameraController : MonoBehaviour {
 		if (glitchCam.enabled == true && stopGlitch < Time.time)
 			glitchCam.enabled = false;
 
+		if (quakeCam.enabled == true && stopQuake < Time.time)
+			quakeCam.enabled = false;
+
+		if (dashCam.enabled == true && stopDash < Time.time)
+			dashCam.enabled = false;
+		
+		if (shockwaveCam.enabled == true && stopShockwave < Time.time)
+			shockwaveCam.enabled = false;
+
 		Transform target;
 		if (targetHeavy.gameObject.activeInHierarchy) {
 			target = targetHeavy;
@@ -60,13 +103,16 @@ public class CameraController : MonoBehaviour {
 			target = targetLight;
 		}
 
-		if (cameraMode == CameraMode.FirstPerson) {
+		if (spawnCamera) {
+			transform.position = target.TransformPoint (cameraPositionOffset + cameraPositionSpawn);
+			transform.rotation = Quaternion.LookRotation (target.TransformPoint(cameraPositionOffset + lookOffsetSpawn) - transform.position, Vector3.up);
+		} else if (cameraMode == CameraMode.FirstPerson) {
 			transform.parent = target;
 
 			if (target==targetHeavy) {
-				transform.position = target.TransformPoint(cameraPositionFirstPersonHeavy);
+				transform.position = target.TransformPoint(cameraPositionOffset + cameraPositionFirstPersonHeavy);
 			} else {
-				transform.position = target.TransformPoint(cameraPositionFirstPersonLight);
+				transform.position = target.TransformPoint(cameraPositionOffset + cameraPositionFirstPersonLight);
 			}
 			transform.rotation = target.rotation;
 		} else {
@@ -75,23 +121,29 @@ public class CameraController : MonoBehaviour {
 			Vector3 lookPosition = Vector3.zero;
 
 			if (cameraMode == CameraMode.Near) {
-				wantedPosition = target.TransformPoint (cameraPositionNear);
-				
+				wantedPosition = target.TransformPoint (cameraPositionOffset + (cameraPositionNear * cameraDistanceCurrent / cameraDistanceNear));
+
 				RaycastHit hit;
-				if (Physics.Raycast(target.TransformPoint(cameraPositionNear.x, cameraPositionNear.y, 0), target.TransformDirection(0, 0, cameraPositionNear.z), out hit, Mathf.Abs(cameraPositionNear.z))) {
+				if (Physics.Raycast(target.TransformPoint(cameraPositionOffset) , target.TransformDirection(cameraPositionNear), out hit, cameraDistanceCurrent)) {
 					wantedPosition = hit.point;
+					cameraDistanceCurrent = hit.distance;
+				} else {
+					cameraDistanceCurrent = Mathf.Lerp(cameraDistanceCurrent, cameraDistanceNear, Time.deltaTime * distanceStiffness);
 				}
 			
-				lookPosition = target.TransformPoint (lookOffsetNear);
+				lookPosition = target.TransformPoint (cameraPositionOffset + lookOffsetNear);
 			} else if (cameraMode == CameraMode.Far) {
-				wantedPosition = target.TransformPoint (cameraPositionFar);
+				wantedPosition = target.TransformPoint (cameraPositionOffset + (cameraPositionFar * cameraDistanceCurrent / cameraDistanceFar));
 				
 				RaycastHit hit;
-				if (Physics.Raycast(target.TransformPoint(cameraPositionFar.x, cameraPositionFar.y, 0), target.TransformDirection(0, 0, cameraPositionFar.z), out hit, Mathf.Abs(cameraPositionFar.z))) {
+				if (Physics.Raycast(target.TransformPoint(cameraPositionOffset), target.TransformDirection(cameraPositionFar), out hit, cameraDistanceCurrent)) {
 					wantedPosition = hit.point;
+					cameraDistanceCurrent = hit.distance;
+				} else {
+					cameraDistanceCurrent = Mathf.Lerp(cameraDistanceCurrent, cameraDistanceFar, Time.deltaTime * distanceStiffness);
 				}
 
-				lookPosition = target.TransformPoint (lookOffsetFar);				
+				lookPosition = target.TransformPoint (cameraPositionOffset + lookOffsetFar);				
 			}
 
 			transform.position = Vector3.Lerp (transform.position, wantedPosition, Time.deltaTime * stiffness);
@@ -101,12 +153,16 @@ public class CameraController : MonoBehaviour {
 	}
 
 	public void ChangeMode() {
-		if (cameraMode == CameraMode.Near)
-			cameraMode = CameraMode.Far;
-		else if (cameraMode == CameraMode.Far)
-			cameraMode = CameraMode.FirstPerson;
-		else 
-			cameraMode = CameraMode.Near;
+		if (spawnCamera) {
+			spawnCamera = false;
+		} else {
+			if (cameraMode == CameraMode.Near)
+				cameraMode = CameraMode.Far;
+			else if (cameraMode == CameraMode.Far)
+				cameraMode = CameraMode.FirstPerson;
+			else 
+				cameraMode = CameraMode.Near;
+		}
 	}
 
 	public void RunGlitch()
@@ -119,6 +175,7 @@ public class CameraController : MonoBehaviour {
 	{
 		respawnCam.ChangeRadius = 0;
 		respawnCam.enabled = true;
+		spawnCamera = true;
 	}
 
 	public void RunLowHealth()
@@ -139,5 +196,31 @@ public class CameraController : MonoBehaviour {
 	public void StopSignalJammed()
 	{
 		signalJammedCam.enabled = false;
+	}
+
+	public void RunQuake(float intensity)
+	{
+		if (quakeCam.enabled == true)
+			quakeCam.enabled = false;
+		quakeCam.X = intensity;
+		quakeCam.Y = intensity;
+		stopQuake = Time.time + 0.5f;
+		quakeCam.enabled = true;
+	}
+
+	public void RunDash()
+	{
+		dashCam.enabled = true;
+		stopDash = Time.time + 0.5f;
+	}
+
+	public void RunShockwave(Vector3 screenPoint)
+	{
+		shockwaveCam.TimeX = 1.0f;
+		shockwaveCam.PosY = 0.45f;
+		//shockwaveCam.PosX = thisCamera.WorldToScreenPoint (screenPoint).x;
+		//shockwaveCam.PosY = thisCamera.WorldToScreenPoint (screenPoint).y;
+		shockwaveCam.enabled = true;
+		stopShockwave = Time.time + 0.9f/shockwaveCam.Speed;
 	}
 }
