@@ -137,6 +137,7 @@ public class HoverCarControl : MonoBehaviour
 	private StreamWriter trackingFile;
 	private float damageSinceLastPrint;
 
+	private GameObject crosshairCentre;
 	private GameObject[] crosshairs;
 
 	public Vector3 centerOfMass = Vector3.zero;
@@ -161,11 +162,18 @@ public class HoverCarControl : MonoBehaviour
 		if (pickupController == null) {
 			pickupController = GameObject.Find("PickupLocations").GetComponent<PickupController>();
 		}
+		crosshairCentre = GameObject.Find("P" + playerNumber + "_Crosshair");
 		crosshairs = new GameObject[4];
 		crosshairs[0] = GameObject.Find("P" + playerNumber + "_CrosshairTL");
 		crosshairs[1] = GameObject.Find("P" + playerNumber + "_CrosshairTR");
 		crosshairs[2] = GameObject.Find("P" + playerNumber + "_CrosshairBL");
 		crosshairs[3] = GameObject.Find("P" + playerNumber + "_CrosshairBR");
+
+		crosshairCentre.GetComponent<Image> ().enabled = false;
+		foreach(GameObject crosshair in crosshairs)
+		{
+			crosshair.GetComponent<Image>().enabled = false;
+		}
 
 		cameraController = transform.parent.GetComponentInChildren<CameraController> ();
 
@@ -262,7 +270,11 @@ public class HoverCarControl : MonoBehaviour
 				}
 
 				cameraController.ChangeMode();
-
+				crosshairCentre.GetComponent<Image> ().enabled = true;
+				foreach(GameObject crosshair in crosshairs)
+				{
+					crosshair.GetComponent<Image>().enabled = true;
+				}
 				respawnMessage.SetActive(false);
 				spawnActiveTimer = Time.time + 1.0f;
 				hasRespawned = false;
@@ -719,10 +731,12 @@ public class HoverCarControl : MonoBehaviour
 			crosshairs[3].transform.position = new Vector3(crosshairs[3].transform.position.x + changeError, crosshairs[3].transform.position.y - (changeError/2));
 			
 			
+			crosshairCentre.GetComponent<Image> ().enabled = false;
 			foreach(GameObject crosshair in crosshairs)
 			{
 				crosshair.GetComponent<RectTransform>().localScale = new Vector3 (0.75f + (currError / 10.0f), 0.75f + (currError / 20.0f), 0.5f);
 				crosshair.GetComponent<Image>().color = new Color(1, (255-(currError*15))/255, (255-(currError*30))/255);
+				crosshair.GetComponent<Image>().enabled = false;
 			}
 		}
 	}
