@@ -30,12 +30,16 @@ public class CameraController : MonoBehaviour {
 	public float rotationStiffness;
 	public float distanceStiffness;
 
+	public Color tankColour;
+
 	float cameraDistanceCurrent;
 
 	public CameraMode cameraMode = CameraMode.Near;
 	bool spawnCamera;
 
 	private CameraFilterPack_AAA_SuperComputer respawnCam;
+
+	private CameraFilterPack_AAA_SuperComputer laserCam;
 	
 	private CameraFilterPack_TV_Artefact glitchCam;
 	private float stopGlitch;
@@ -53,11 +57,14 @@ public class CameraController : MonoBehaviour {
 	private CameraFilterPack_Distortion_ShockWave shockwaveCam;
 	private float stopShockwave;
 	//NOTE TO SELF for BROKEN GLASS 2: do not use bullets 2, 3, or 6
+
 	// Use this for initialization
 	void Start () {
 		thisCamera = GetComponent<Camera> ();
 		glitchCam = GetComponent<CameraFilterPack_TV_Artefact>();
 		respawnCam = GetComponent<CameraFilterPack_AAA_SuperComputer>();
+		respawnCam._BorderColor = tankColour;
+		laserCam = GetComponent<CameraFilterPack_AAA_SuperComputer>();
 		signalJammedCam = GetComponent<CameraFilterPack_FX_Glitch1>();
 		respawnCam.enabled = true;
 		respawnCam.ChangeRadius = 0;
@@ -67,6 +74,7 @@ public class CameraController : MonoBehaviour {
 		dashCam.Speed = 10;
 		shockwaveCam = GetComponent<CameraFilterPack_Distortion_ShockWave> ();
 		shockwaveCam.Speed = 2f;
+
 
 		cameraDistanceNear = cameraPositionNear.magnitude;
 		cameraDistanceFar = cameraPositionFar.magnitude;
@@ -222,5 +230,10 @@ public class CameraController : MonoBehaviour {
 		//shockwaveCam.PosY = thisCamera.WorldToScreenPoint (screenPoint).y;
 		shockwaveCam.enabled = true;
 		stopShockwave = Time.time + 0.9f/shockwaveCam.Speed;
+	}
+
+	public void RunLaser()
+	{
+
 	}
 }

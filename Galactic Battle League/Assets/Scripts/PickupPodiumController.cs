@@ -4,6 +4,7 @@ using System.Collections;
 public class PickupPodiumController : MonoBehaviour 
 {
 	public GameObject currentPickup;
+	public float spawnHeight;
 
 	// Use this for initialization
 	void Start () 
@@ -20,7 +21,7 @@ public class PickupPodiumController : MonoBehaviour
 	public void SpawnPickup(string pickupName)
 	{
 		Vector3 spawnPosition = transform.position;
-		spawnPosition.y += 2.6f;
+		spawnPosition.y += spawnHeight;
 
 		GameObject pickupObjectType = GameObject.Find (pickupName);
 
