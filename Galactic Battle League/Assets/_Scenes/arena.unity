@@ -457,6 +457,12 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300008, guid: 6a8ebfa3351ed04478f167c6b622596e, type: 3}
+--- !u!114 &125080526 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11435058, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 235227858}
+  m_Script: {fileID: 11500000, guid: 4b8977724f9c01542b667b39bc52e7d2, type: 3}
 --- !u!1 &154230032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,8 +1266,8 @@ Transform:
   - {fileID: 605477428}
   - {fileID: 1513534762}
   - {fileID: 1569057782}
-  - {fileID: 1249450855}
   - {fileID: 1852111118}
+  - {fileID: 1249450855}
   m_Father: {fileID: 0}
   m_RootOrder: 18
 --- !u!1 &320669562
@@ -3561,6 +3567,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1743948743}
   m_RootOrder: 16
+--- !u!114 &721287703 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11435074, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 235227858}
+  m_Script: {fileID: 11500000, guid: 4b8977724f9c01542b667b39bc52e7d2, type: 3}
 --- !u!1 &726871253
 GameObject:
   m_ObjectHideFlags: 0
@@ -4911,14 +4923,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e549a3973aada54292949bedc8df338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pirate: {fileID: 0}
-  hiTech: {fileID: 0}
-  military: {fileID: 0}
-  industrial: {fileID: 0}
-  score1: {fileID: 0}
-  score2: {fileID: 0}
-  score3: {fileID: 0}
-  score4: {fileID: 0}
+  pirate: {fileID: 323843261}
+  hiTech: {fileID: 577896936}
+  military: {fileID: 1978778412}
+  industrial: {fileID: 1418212194}
+  score1: {fileID: 1501814437}
+  score2: {fileID: 125080526}
+  score3: {fileID: 1613495847}
+  score4: {fileID: 721287703}
   maxVolPirate: .400000006
   maxVolTech: .600000024
   maxVolMilitary: .800000012
@@ -5841,6 +5853,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 420980, guid: 9941c403d997c1541b71af2cad9bfe04, type: 2}
   m_PrefabInternal: {fileID: 1495630198}
+--- !u!114 &1501814437 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11435054, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 235227858}
+  m_Script: {fileID: 11500000, guid: 4b8977724f9c01542b667b39bc52e7d2, type: 3}
 --- !u!4 &1513534762 stripped
 Transform:
   m_PrefabParentObject: {fileID: 458550, guid: e855e56ec6a44004aa9910e25a298608, type: 2}
@@ -5964,6 +5982,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1469607183}
   m_RootOrder: 2
+--- !u!114 &1613495847 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11435046, guid: a5851be0fcc90504e86261d76d731d2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 235227858}
+  m_Script: {fileID: 11500000, guid: 4b8977724f9c01542b667b39bc52e7d2, type: 3}
 --- !u!1 &1624876652
 GameObject:
   m_ObjectHideFlags: 0

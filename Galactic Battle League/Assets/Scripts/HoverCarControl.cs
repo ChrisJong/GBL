@@ -167,7 +167,8 @@ public class HoverCarControl : MonoBehaviour
 		crosshairs[2] = GameObject.Find("P" + playerNumber + "_CrosshairBL");
 		crosshairs[3] = GameObject.Find("P" + playerNumber + "_CrosshairBR");
 
-		cameraController = transform.parent.GetComponentInChildren<CameraController> ();
+		cameraController = GameObject.Find ("Camera" + playerNumber).GetComponent<CameraController> ();
+	
 
 		Directory.CreateDirectory("tracking");
 		fileName = "tracking\\" + DateTime.Now.ToString("ddMMyyyyHHmm") + "damage.txt";

@@ -116,7 +116,7 @@ public class CameraController : MonoBehaviour {
 			}
 			transform.rotation = target.rotation;
 		} else {
-			transform.parent = null;
+			transform.parent = target.parent;
 			Vector3 wantedPosition = Vector3.zero;
 			Vector3 lookPosition = Vector3.zero;
 
