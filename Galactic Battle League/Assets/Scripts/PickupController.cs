@@ -1,16 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PickupController : MonoBehaviour 
 {
-	public Vector3 spawnArea1, spawnArea2;
 	public float timeToAppearInit, timeToAppearAvg, timeToAppearRand;
 	private float nextAppearTime;
-	public GameObject pickup;
+	private int activePlayerCount;
+	private bool[] activePlayers;
+
+	public float healthLargeWeighting;
+	public float healthSmallWeighting;
+	public float damageIncreaseWeighting;
+	public float invincibilityWeighting;
+	public float signalJammerWeighting;
+	public float speedBoostWeighting;
+	public float unlimitedEnergyWeighting;
+
+	public float damageIncreaseDuration;
+	public float invincibilityDuration;
+	public float signalJammedDuration;
+	public float speedBoostedDuration;
+	public float unlimitedEnergyDuration;
+	public float damageIncreaseValue;
+	public float speedBoostedValue;
+
 	// Use this for initialization
 	void Start () 
 	{
 		nextAppearTime = timeToAppearInit + Time.time;
+		activePlayers = new bool[4];
 	}
 	
 	// Update is called once per frame
@@ -18,13 +37,101 @@ public class PickupController : MonoBehaviour
 	{
 		if (nextAppearTime < Time.time) 
 		{
-			float spawnX = Random.Range(spawnArea1.x, spawnArea2.x);
-			float spawnY = Random.Range(spawnArea1.y, spawnArea2.y);
-			float spawnZ = Random.Range(spawnArea1.z, spawnArea2.z);
-			Vector3 pickupSpawn = new Vector3(spawnX, spawnY, spawnZ);
-			GameObject zPickup = (GameObject)Instantiate (pickup, pickupSpawn, pickup.transform.rotation);
-			zPickup.GetComponent<Animator>().Play(0, -1, 0f);;
-			nextAppearTime = Time.time + timeToAppearAvg + Random.Range (-timeToAppearRand, timeToAppearRand);
+			Transform podium = SelectRandomEmptyPodium();
+
+			if (podium != null)
+			{
+				PickupPodiumController controller = podium.GetComponent<PickupPodiumController>();
+				controller.SpawnPickup(SelectRandomPickup());
+			}
+
+			float modifiedTimeToAppear = timeToAppearAvg;
+
+			if (activePlayerCount == 3)
+				modifiedTimeToAppear /= 1.5f;
+			else if (activePlayerCount == 4)
+				modifiedTimeToAppear /= 2f;
+
+			nextAppearTime = Time.time + modifiedTimeToAppear + Random.Range (-timeToAppearRand, timeToAppearRand);
+
+			Debug.Log(activePlayerCount);
+		}
+	}
+
+	Transform SelectRandomEmptyPodium()
+	{
+		List<Transform> emptyPodiumList = new List<Transform> ();
+
+		foreach (Transform child in transform) 
+		{
+			PickupPodiumController controller = child.GetComponent<PickupPodiumController>();
+
+			if (controller.currentPickup == null)
+			{
+				emptyPodiumList.Add (child);
+			}
+		}
+
+		if (emptyPodiumList.Count > 0) 
+		{
+			int selection = Random.Range (0, emptyPodiumList.Count - 1);
+			return emptyPodiumList [selection];
+		} 
+		else 
+		{
+			return null;
+		}
+	}
+
+	string SelectRandomPickup()
+	{
+		string pickupType;
+		float totalWeighting = healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting + speedBoostWeighting + unlimitedEnergyWeighting;
+
+		float randNumber = Random.Range (0, totalWeighting);
+
+		if (randNumber < healthLargeWeighting) 
+		{
+			pickupType = "PickupHealthLarge";
+		} 
+		else if (randNumber < (healthLargeWeighting + healthSmallWeighting)) 
+		{
+			pickupType = "PickupHealthSmall";
+		}
+		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting)) 
+		{
+			pickupType = "PickupDamageIncrease";
+		} 
+		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting)) 
+		{
+			pickupType = "PickupInvincibility";
+		} 
+		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting)) 
+		{
+			pickupType = "PickupSignalJammer";
+		}
+		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting + speedBoostWeighting)) 
+		{
+			pickupType = "PickupSpeedBoost";
+		}
+		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting + speedBoostWeighting + unlimitedEnergyWeighting)) 
+		{
+			pickupType = "PickupUnlimitedEnergy";
+		} 
+		else 
+		{
+			pickupType = "PickupHealthSmall"; //default pickup
+		}
+
+		return pickupType;
+	}
+
+	public void ActivatePlayer(int playerNumber)
+	{
+		if (activePlayers [playerNumber - 1] == false) 
+		{
+			activePlayers [playerNumber - 1] = true;
+			activePlayerCount++;
 		}
 	}
 }

@@ -76,6 +76,18 @@ public class HoverCarControl : MonoBehaviour
 	public ParticleSystem[] deathParticle;
 	private double spawnActiveTimer;
 
+	// Pickup variables
+	private PickupController pickupController;
+	private bool damageIncreased = false;
+	private bool invincible = false;
+	private bool signalJammed = false;
+	private bool speedBoosted = false;
+	private bool unlimitedEnergy = false;
+	private float damageIncreaseTime;
+	private float invincibilityTime;
+	private float signalJammedTime;
+	private float speedBoostedTime;
+	private float unlimitedEnergyTime;
 
 	private GameObject respawnMessage;
 	
@@ -146,6 +158,9 @@ public class HoverCarControl : MonoBehaviour
 		if (respawnMessage == null) {
 			respawnMessage = GameObject.Find("P" + playerNumber + "_RESPAWN_MSG1");
 		}
+		if (pickupController == null) {
+			pickupController = GameObject.Find("PickupLocations").GetComponent<PickupController>();
+		}
 		crosshairs = new GameObject[4];
 		crosshairs[0] = GameObject.Find("P" + playerNumber + "_CrosshairTL");
 		crosshairs[1] = GameObject.Find("P" + playerNumber + "_CrosshairTR");
@@ -167,7 +182,7 @@ public class HoverCarControl : MonoBehaviour
 		
 		health = maxHealth;
 		abilityCharge = maxAbilityCharge;
-
+		
 		initialPosition = gameObject.transform.position;
 		initialRotation = gameObject.transform.rotation;
 		
@@ -333,6 +348,7 @@ public class HoverCarControl : MonoBehaviour
 				if (spawnInt >= shotSpawn.Length)
 					spawnInt = 0;
 				fireTime = Time.time;
+				pickupController.ActivatePlayer(playerNumber);
 			}
 
 
@@ -399,6 +415,31 @@ public class HoverCarControl : MonoBehaviour
 				crosshair.GetComponent<RectTransform>().localScale = new Vector3 (0.75f + (currError / 10.0f), 0.75f + (currError / 20.0f), 0.5f);
 				crosshair.GetComponent<Image>().color = new Color(1, (255-(currError*15))/255, (255-(currError*30))/255);
 			}
+		}
+
+		if (damageIncreased && damageIncreaseTime < Time.time)
+			damageIncreased = false;
+
+		if (invincible && invincibilityTime < Time.time)
+			invincible = false;
+
+		if (speedBoosted && speedBoostedTime < Time.time)
+			speedBoosted = false;
+
+		if (unlimitedEnergy)
+		{
+			abilityCharge = maxAbilityCharge;
+
+			if (unlimitedEnergyTime < Time.time)
+			{
+				unlimitedEnergy = false;
+			}
+		}
+
+		if (signalJammed && signalJammedTime < Time.time)
+		{
+			signalJammed = false;
+			cameraController.StopSignalJammed ();
 		}
 	}
 
@@ -503,6 +544,10 @@ public class HoverCarControl : MonoBehaviour
 						if (hits[i].collider.tag == "Player") {
 							DamageData damageData;
 							damageData.damage = abilityPower * Time.deltaTime;
+							if (damageIncreased)
+								damageData.damage *= pickupController.damageIncreaseValue;
+							if (hits[i].collider.GetComponent<HoverCarControl>().invincible)
+								damageData.damage = 0;
 							damageData.position = hits[i].point;
 							damageData.playerNumber = playerNumber;
 							damageData.distance = 0;
@@ -550,6 +595,12 @@ public class HoverCarControl : MonoBehaviour
 				Respawn();
 			}
 		}
+
+		if (speedBoosted)
+		{
+			m_body.AddForce(transform.forward * m_currThrust * pickupController.speedBoostedValue);
+			m_body.AddForce(transform.right * m_currSideThrust * pickupController.speedBoostedValue);
+		}
 	}
 	
 	void OnTriggerEnter (Collider other)
@@ -574,31 +625,18 @@ public class HoverCarControl : MonoBehaviour
 
 				DamageData damageData;
 				damageData.damage = shotControllerCopy.damage;
+				if (invincible)
+					damageData.damage = 0;
 				damageData.position = other.transform.position;
 				damageData.playerNumber = shotControllerCopy.playerNumber;
 				damageData.distance = Vector3.Distance(shotControllerCopy.startPoint, other.transform.position);
 
 				Damage(damageData);
-
 			}
 		}
-		if (other.tag == "Pickup" && health < maxHealth) 
+		if (other.tag == "Pickup") 
 		{
-			health += 10;
-			if (health >= maxHealth)
-				health = maxHealth;
-			Destroy(other.gameObject);
-			Rumble (0.15f);
-			
-			if (health / maxHealth > .66f)
-				if (damage66)
-					damage66.Stop ();
-			if (health / maxHealth > .33f)
-			{
-				cameraController.StopLowHealth();
-				if (damage33)
-					damage33.Stop ();
-			}
+			ProcessPickup(other);
 		}
 	}
 	
@@ -632,7 +670,13 @@ public class HoverCarControl : MonoBehaviour
 				currError += 0.5f;
 		}
 		GameObject zBullet = (GameObject)Instantiate (shot, shotSpawn[spawnInt].position, shotAngle);
-		zBullet.GetComponent<ShotController> ().SetVelocity ();
+		ShotController sController = zBullet.GetComponent<ShotController> ();
+		sController.SetVelocity ();
+		if (damageIncreased) 
+		{
+			float newDamage = sController.damage * pickupController.damageIncreaseValue;
+			sController.damage = (int)newDamage;
+		}
 	}
 	
 	void Death()
@@ -718,6 +762,16 @@ public class HoverCarControl : MonoBehaviour
 		abilityCharge = maxAbilityCharge;
 		abilityActive = false;
 
+		damageIncreased = false;
+		invincible = false;
+		speedBoosted = false;
+		unlimitedEnergy = false;
+		if (signalJammed) 
+		{
+			signalJammed = false;
+			cameraController.StopSignalJammed ();
+		}
+
 		cameraController.RunRespawn();
 		cameraController.StopLowHealth ();
 	}
@@ -762,6 +816,13 @@ public class HoverCarControl : MonoBehaviour
 			
 			//}
 			health -= damageData.damage;
+	
+			if (damageData.damage >= 10)
+				Rumble (0.3f);
+			else if (damageData.damage >= 2)
+				Rumble (0.15f);
+			else if (damageData.damage > 0)
+				Rumble (0.05f);
 			
 			if (health / maxHealth < .66f)
 				if (damage66)
@@ -785,10 +846,112 @@ public class HoverCarControl : MonoBehaviour
 				uiController.DamageCaused(damageData.playerNumber, (int)damageSinceLastPrint);
 				damageSinceLastPrint = 0;
 			}
-			cameraController.RunGlitch();
+			if (damageData.damage > 0)
+				cameraController.RunGlitch();
 		}
 	}
-	
+
+	void ProcessPickup(Collider pickup)
+	{
+		string pickupType = pickup.name;
+
+		if (pickupType == "PickupHealthSmall(Clone)")
+		{
+			if (health < maxHealth)
+			{
+				ProcessHealthPickup (10f);
+				uiController.PickupTaken(playerNumber, "HEALED");
+				Destroy(pickup.gameObject);
+			}
+		}
+		else if (pickupType == "PickupHealthLarge(Clone)")
+		{
+			if (health < maxHealth)
+			{
+				ProcessHealthPickup (20f);
+				uiController.PickupTaken(playerNumber, "HEALED");
+				Destroy(pickup.gameObject);
+			}
+		}
+		else if (pickupType == "PickupDamageIncrease(Clone)")
+		{
+			damageIncreased = true;
+			damageIncreaseTime = Time.time + pickupController.damageIncreaseDuration;
+			uiController.PickupTaken(playerNumber, "DOUBLE DAMAGE");
+			Destroy(pickup.gameObject);
+		}
+		else if (pickupType == "PickupInvincibility(Clone)")
+		{
+			invincible = true;
+			invincibilityTime = Time.time + pickupController.invincibilityDuration;
+			uiController.PickupTaken(playerNumber, "INVINCIBILITY");
+			Destroy(pickup.gameObject);
+		}
+		else if (pickupType == "PickupSignalJammer(Clone)")
+		{
+			ProcessSignalJammerPickup();
+			uiController.PickupTaken(playerNumber, "CAMERAS GLITCHED");
+			Destroy(pickup.gameObject);
+		}
+		else if (pickupType == "PickupSpeedBoost(Clone)")
+		{
+			speedBoosted = true;
+			speedBoostedTime = Time.time + pickupController.speedBoostedDuration;
+			uiController.PickupTaken(playerNumber, "SPEED BOOST");
+			Destroy(pickup.gameObject);
+		}
+		else if (pickupType == "PickupUnlimitedEnergy(Clone)")
+		{
+			unlimitedEnergy = true;
+			unlimitedEnergyTime = Time.time + pickupController.unlimitedEnergyDuration;
+			uiController.PickupTaken(playerNumber, "UNLIMITED ENERGY");
+			Destroy(pickup.gameObject);
+		}
+	}
+
+	void ProcessHealthPickup(float healthValue)
+	{
+		health += healthValue;
+		if (health >= maxHealth)
+			health = maxHealth;
+		Rumble (0.15f);
+		
+		if (health / maxHealth > .66f)
+			if (damage66)
+				damage66.Stop ();
+		if (health / maxHealth > .33f)
+		{
+			cameraController.StopLowHealth();
+			if (damage33)
+				damage33.Stop ();
+		}
+	}
+
+	void ProcessSignalJammerPickup()
+	{
+		GameObject camera;
+		GameObject player;
+
+		for (int i = 1; i <= 4; i++)
+		{
+			if (i != playerNumber)
+			{
+				camera = GameObject.Find ("Camera" + i);
+				CameraController otherCamController = camera.GetComponent<CameraController>();
+				otherCamController.RunSignalJammed();
+
+				player = GameObject.Find ("player" + i);
+				HoverCarControl[] otherHoverControllers = player.GetComponentsInChildren<HoverCarControl>();
+
+				foreach (HoverCarControl hcControl in otherHoverControllers)
+				{
+					hcControl.signalJammed = true;
+					hcControl.signalJammedTime = Time.time + pickupController.signalJammedDuration;
+				}
+			}
+		}
+	}
+
 	void OnEnable()
 	{
 		if (initialised) {

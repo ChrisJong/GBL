@@ -20,6 +20,7 @@ public class UIController : MonoBehaviour
 	
 	public GameObject[] killedMessage;
 	public GameObject[] killMessage;
+	public GameObject[] pickupMessage;
 	
 	public Color pyreReqColour = player1Colour;
 	public Color valkTechColour = player2Colour;
@@ -82,7 +83,7 @@ public class UIController : MonoBehaviour
 				msg.text = "You were killed by";
 			else if (msg.name == "FactionText")
 			{
-				msg.text = getFactionName(attacker);
+				msg.text = GetFactionName(attacker);
 				msg.color = getFactionColour(attacker);
 			}
 		}
@@ -95,7 +96,7 @@ public class UIController : MonoBehaviour
 				msg.text = "You killed";
 			else if (msg.name == "FactionText")
 			{
-				msg.text = getFactionName(victim);
+				msg.text = GetFactionName(victim);
 				msg.color = getFactionColour(victim);
 			}
 		}
@@ -127,6 +128,12 @@ public class UIController : MonoBehaviour
 	public void DamageCaused(int attacker, float damageValue)
 	{
 		damage [attacker - 1] += damageValue;
+	}
+
+	public void PickupTaken(int player, string message)
+	{
+		pickupMessage[player-1].SetActive(true);
+		pickupMessage[player-1].GetComponentsInChildren<Text>()[0].text = message;
 	}
 
 	public void GameOver()
@@ -228,7 +235,7 @@ public class UIController : MonoBehaviour
 		}
 	}
 
-	public static string getFactionName(int playerNumber)
+	public static string GetFactionName(int playerNumber)
 	{
 		string name = "";
 		
@@ -255,16 +262,12 @@ public class UIController : MonoBehaviour
 		{
 		case 1: 
 			return player1Colour;
-			break;
 		case 2:
 			return player2Colour;
-			break;
 		case 3: 
 			return player3Colour;
-			break;
 		case 4: 
 			return player4Colour;
-			break;
 		}
 
 		return colour;

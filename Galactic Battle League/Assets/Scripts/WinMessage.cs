@@ -36,11 +36,11 @@ public class WinMessage : MonoBehaviour
 		winnerLogo2.enabled = true;
 
 		winnerText = GetComponent<Text> ();
-		winnerText.text = UIController.getFactionName (winner);
+		winnerText.text = UIController.GetFactionName (winner);
 		winnerText.color = UIController.getFactionColour (winner);
 		
 		secondText = GameObject.Find ("SecondText").GetComponent<Text> ();
-		secondText.text = UIController.getFactionName(PlayerPrefs.GetInt("Position2Player"));
+		secondText.text = UIController.GetFactionName(PlayerPrefs.GetInt("Position2Player"));
 		secondText.color = UIController.getFactionColour (PlayerPrefs.GetInt ("Position2Player"));
 
 		if (PlayerPrefs.HasKey("Position2Player") == false)
@@ -50,7 +50,7 @@ public class WinMessage : MonoBehaviour
 		}
 
 		thirdText = GameObject.Find ("ThirdText").GetComponent<Text> ();
-		thirdText.text = UIController.getFactionName(PlayerPrefs.GetInt("Position3Player"));
+		thirdText.text = UIController.GetFactionName(PlayerPrefs.GetInt("Position3Player"));
 		thirdText.color = UIController.getFactionColour (PlayerPrefs.GetInt ("Position3Player"));
 
 		if (PlayerPrefs.HasKey("Position3Player") == false)
