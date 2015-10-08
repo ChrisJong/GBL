@@ -37,7 +37,7 @@ public class CameraController : MonoBehaviour {
 	public CameraMode cameraMode = CameraMode.Near;
 	bool spawnCamera;
 
-	private CameraFilterPack_AAA_SuperComputer respawnCam;
+	private CameraFilterPack_AAA_SuperHexagon respawnCam;
 
 	private CameraFilterPack_AAA_SuperComputer laserCam;
 	
@@ -62,12 +62,14 @@ public class CameraController : MonoBehaviour {
 	void Start () {
 		thisCamera = GetComponent<Camera> ();
 		glitchCam = GetComponent<CameraFilterPack_TV_Artefact>();
-		respawnCam = GetComponent<CameraFilterPack_AAA_SuperComputer>();
+		respawnCam = GetComponent<CameraFilterPack_AAA_SuperHexagon>();
 		respawnCam._BorderColor = tankColour;
+		respawnCam._HexaColor = tankColour;
 		laserCam = GetComponent<CameraFilterPack_AAA_SuperComputer>();
 		signalJammedCam = GetComponent<CameraFilterPack_FX_Glitch1>();
 		respawnCam.enabled = true;
 		respawnCam.ChangeRadius = 0;
+		respawnCam.Radius = 0;
 		lowHealthCam = GetComponent<CameraFilterPack_TV_80> ();
 		quakeCam = GetComponent<CameraFilterPack_FX_EarthQuake> ();
 		dashCam = GetComponent<CameraFilterPack_Drawing_Manga_FlashWhite> ();
@@ -85,11 +87,10 @@ public class CameraController : MonoBehaviour {
 	{
 		if (respawnCam.enabled == true) 
 		{
-			respawnCam.ChangeRadius += 0.03f;
+			respawnCam.ChangeRadius += 1.0f * Time.deltaTime;
 			if (respawnCam.ChangeRadius >= 1.5f)
 				respawnCam.enabled = false;
 		}
-		Debug.Log(cameraDistanceCurrent);
 	}
 
 	void FixedUpdate () {
