@@ -113,6 +113,7 @@ public class CameraController : MonoBehaviour {
 		}
 
 		if (spawnCamera) {
+			transform.parent = target.parent;
 			transform.position = target.TransformPoint (cameraPositionOffset + cameraPositionSpawn);
 			transform.rotation = Quaternion.LookRotation (target.TransformPoint(cameraPositionOffset + lookOffsetSpawn) - transform.position, Vector3.up);
 			cameraDistanceCurrent = (transform.position - target.position).magnitude;
