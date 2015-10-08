@@ -89,6 +89,7 @@ public class CameraController : MonoBehaviour {
 			if (respawnCam.ChangeRadius >= 1.5f)
 				respawnCam.enabled = false;
 		}
+		Debug.Log(cameraDistanceCurrent);
 	}
 
 	void FixedUpdate () {
@@ -114,6 +115,7 @@ public class CameraController : MonoBehaviour {
 		if (spawnCamera) {
 			transform.position = target.TransformPoint (cameraPositionOffset + cameraPositionSpawn);
 			transform.rotation = Quaternion.LookRotation (target.TransformPoint(cameraPositionOffset + lookOffsetSpawn) - transform.position, Vector3.up);
+			cameraDistanceCurrent = (transform.position - target.position).magnitude;
 		} else if (cameraMode == CameraMode.FirstPerson) {
 			transform.parent = target;
 
@@ -123,6 +125,7 @@ public class CameraController : MonoBehaviour {
 				transform.position = target.TransformPoint(cameraPositionOffset + cameraPositionFirstPersonLight);
 			}
 			transform.rotation = target.rotation;
+			cameraDistanceCurrent = 0;
 		} else {
 			transform.parent = target.parent;
 			Vector3 wantedPosition = Vector3.zero;
@@ -158,6 +161,7 @@ public class CameraController : MonoBehaviour {
 			Quaternion wantedRotation = Quaternion.LookRotation (lookPosition - transform.position, Vector3.up);
 			transform.rotation = Quaternion.Slerp (transform.rotation, wantedRotation, Time.deltaTime * rotationStiffness);
 		}
+
 	}
 
 	public void ChangeMode() {
