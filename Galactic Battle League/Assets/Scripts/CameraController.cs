@@ -40,6 +40,7 @@ public class CameraController : MonoBehaviour {
 	private CameraFilterPack_AAA_SuperHexagon respawnCam;
 
 	private CameraFilterPack_AAA_SuperComputer laserCam;
+	private bool laserCamActive;
 	
 	private CameraFilterPack_TV_Artefact glitchCam;
 	private float stopGlitch;
@@ -66,6 +67,9 @@ public class CameraController : MonoBehaviour {
 		respawnCam._BorderColor = tankColour;
 		respawnCam._HexaColor = tankColour;
 		laserCam = GetComponent<CameraFilterPack_AAA_SuperComputer>();
+		laserCam.ChangeRadius = 1.0f;
+		laserCam.Radius = 1.0f;
+		laserCam._BorderColor = tankColour;
 		signalJammedCam = GetComponent<CameraFilterPack_FX_Glitch1>();
 		respawnCam.enabled = true;
 		respawnCam.ChangeRadius = 0;
@@ -90,6 +94,19 @@ public class CameraController : MonoBehaviour {
 			respawnCam.ChangeRadius += 1.0f * Time.deltaTime;
 			if (respawnCam.ChangeRadius >= 1.5f)
 				respawnCam.enabled = false;
+		}
+
+		if (laserCam.enabled == true) 
+		{
+			if (laserCam.ChangeRadius >= 0.8f && laserCamActive == true)
+				laserCam.ChangeRadius -= 1.75f * Time.deltaTime;
+
+			if (laserCamActive == false)
+			{
+				laserCam.ChangeRadius += 1.75f * Time.deltaTime;
+				if (laserCam.ChangeRadius >= 1.0f)
+					laserCam.enabled = false;
+			}
 		}
 	}
 
@@ -240,6 +257,13 @@ public class CameraController : MonoBehaviour {
 
 	public void RunLaser()
 	{
+		laserCam.enabled = true;
+		laserCamActive = true;
+	}
+
+	public void StopLaser()
+	{
+		laserCamActive = false;
 
 	}
 }
