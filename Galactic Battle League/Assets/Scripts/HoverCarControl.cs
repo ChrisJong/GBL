@@ -526,6 +526,7 @@ public class HoverCarControl : MonoBehaviour
 				layermask = ~layermask;
 				bool hitWall = false;
 				cameraController.RunQuake(0.003f);
+
 				if (Physics.Raycast(shotSpawn[0].position, shotSpawn[0].forward, out hit, Mathf.Infinity, layermask)) {
 					Debug.DrawLine (shotSpawn[0].position, hit.point, Color.cyan);
 					

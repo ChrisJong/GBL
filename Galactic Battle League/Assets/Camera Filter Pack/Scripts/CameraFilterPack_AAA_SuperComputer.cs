@@ -111,7 +111,7 @@ public class CameraFilterPack_AAA_SuperComputer : MonoBehaviour
 			center = Changecenter;
 			Radius = ChangeRadius;
 			_BorderSize = ChangeBorderSize;
-			_BorderColor = ChangeBorderColor;
+			//_BorderColor = ChangeBorderColor;
 			_SpotSize = ChangeSpotSize;
 			_AlphaHexa = ChangeAlphaHexa;
 		}
