@@ -2180,8 +2180,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118016}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: 29, z: -127}
+  m_LocalRotation: {x: 0, y: .933208346, z: 0, w: .359335959}
+  m_LocalPosition: {x: -117.5, y: 35.5999985, z: 117.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 470406}
@@ -3437,7 +3437,7 @@ Skybox:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170406}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: b7bc589dbc06ff14ab2456cf37fd4440, type: 2}
+  m_CustomSkybox: {fileID: 2100000, guid: 15074e2b1277c5048b48dd5c6008543d, type: 2}
 --- !u!54 &5417994
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -4554,8 +4554,8 @@ MonoBehaviour:
   lookOffsetFar: {x: 0, y: .5, z: 3}
   cameraPositionSpawn: {x: -4.19999981, y: 1, z: 4}
   lookOffsetSpawn: {x: 0, y: .25, z: 0}
-  cameraPositionFirstPersonLight: {x: 0, y: 0, z: 0}
-  cameraPositionFirstPersonHeavy: {x: 0, y: 0, z: 0}
+  cameraPositionFirstPersonLight: {x: 0, y: 1.20000005, z: -.25}
+  cameraPositionFirstPersonHeavy: {x: 0, y: 1.10000002, z: -.449999988}
   stiffness: 30
   rotationStiffness: 100
   distanceStiffness: 1
