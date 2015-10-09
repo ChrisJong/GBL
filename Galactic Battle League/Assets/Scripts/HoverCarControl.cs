@@ -75,6 +75,8 @@ public class HoverCarControl : MonoBehaviour
 	public GameObject hitParticle;
 	public ParticleSystem[] deathParticle;
 	private double spawnActiveTimer;
+	private float respawnTime = 4.0f;
+
 
 	// Pickup variables
 	private PickupController pickupController;
@@ -283,6 +285,7 @@ public class HoverCarControl : MonoBehaviour
 		}
 		else if (!deathRun && inputDevice != null && spawnActiveTimer < Time.time) 
 		{
+
 			foreach(ParticleSystem particle in hoverParticles)
 				particle.startLifetime = particleLength;
 			
@@ -449,7 +452,7 @@ public class HoverCarControl : MonoBehaviour
 			}
 		}
 
-		if (signalJammed && signalJammedTime < Time.time)
+		if (signalJammed && signalJammedTime < Time.time && health < 0)
 		{
 			signalJammed = false;
 			cameraController.StopSignalJammed ();
@@ -606,9 +609,13 @@ public class HoverCarControl : MonoBehaviour
 			if (!deathRun)
 				Death ();
 			timer += Time.deltaTime;
-			if(timer > 5.0f)
+			if(timer > respawnTime)
 			{
 				Respawn();
+			}
+			else if(timer>respawnTime - 1)
+			{
+				cameraController.RunDeath();
 			}
 		}
 
@@ -697,6 +704,8 @@ public class HoverCarControl : MonoBehaviour
 	
 	void Death()
 	{
+		cameraController.RunSignalJammed();
+		signalJammed = true;
 		abilityCharge = 0f;
 		tempHoverForce = m_hoverForce;
 		m_hoverForce = 0.0f;

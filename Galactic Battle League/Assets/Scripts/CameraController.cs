@@ -38,7 +38,7 @@ public class CameraController : MonoBehaviour {
 	bool spawnCamera;
 
 	private CameraFilterPack_AAA_SuperHexagon respawnCam;
-
+	private bool respawned = true;
 	private CameraFilterPack_AAA_SuperComputer laserCam;
 	private bool laserCamActive;
 	
@@ -89,19 +89,24 @@ public class CameraController : MonoBehaviour {
 
 	void Update()
 	{
-		if (respawnCam.enabled == true) 
+		if (respawnCam.enabled && !respawned) 
+		{
+			if (respawnCam.ChangeRadius >= 0)
+				respawnCam.ChangeRadius -= 1.0f * Time.deltaTime;
+		}
+		else if (respawnCam.enabled && respawned) 
 		{
 			respawnCam.ChangeRadius += 1.0f * Time.deltaTime;
 			if (respawnCam.ChangeRadius >= 1.5f)
 				respawnCam.enabled = false;
 		}
 
-		if (laserCam.enabled == true) 
+		if (laserCam.enabled) 
 		{
 			if (laserCam.ChangeRadius >= 0.8f && laserCamActive == true)
 				laserCam.ChangeRadius -= 1.75f * Time.deltaTime;
 
-			if (laserCamActive == false)
+			if (!laserCamActive)
 			{
 				laserCam.ChangeRadius += 1.75f * Time.deltaTime;
 				if (laserCam.ChangeRadius >= 1.0f)
@@ -201,12 +206,23 @@ public class CameraController : MonoBehaviour {
 		glitchCam.enabled = true;
 		stopGlitch = Time.time + 0.5f;
 	}
-	
+
+	public void RunDeath()
+	{
+		if (respawned) 
+		{
+			respawnCam.ChangeRadius = 1.0f;
+			respawnCam.enabled = true;
+			respawned = false;
+		}
+	}
+
 	public void RunRespawn()
 	{
 		respawnCam.ChangeRadius = 0;
 		respawnCam.enabled = true;
 		spawnCamera = true;
+		respawned = true;
 	}
 
 	public void RunLowHealth()
@@ -222,11 +238,13 @@ public class CameraController : MonoBehaviour {
 	public void RunSignalJammed()
 	{
 		signalJammedCam.enabled = true;
+		print("true");
 	}
 
 	public void StopSignalJammed()
 	{
 		signalJammedCam.enabled = false;
+		print ("false");
 	}
 
 	public void RunQuake(float intensity)
