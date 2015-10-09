@@ -894,7 +894,7 @@ public class HoverCarControl : MonoBehaviour
 	void ProcessPickup(Collider pickup)
 	{
 		string pickupType = pickup.name;
-
+		cameraController.RunPickup ();
 		if (pickupType == "PickUps_HP(Clone)")
 		{
 			ProcessHealthPickup (20f);

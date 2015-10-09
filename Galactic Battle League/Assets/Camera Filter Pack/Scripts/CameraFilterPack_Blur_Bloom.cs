@@ -81,7 +81,7 @@ void OnValidate()
 		if (Application.isPlaying)
 		{
 			Amount 	= ChangeAmount;
-			Glow	= ChangeGlow;	
+//			Glow	= ChangeGlow;	
 
 		}
 

@@ -57,6 +57,9 @@ public class CameraController : MonoBehaviour {
 
 	private CameraFilterPack_Distortion_ShockWave shockwaveCam;
 	private float stopShockwave;
+
+	private CameraFilterPack_Blur_Bloom pickupCam;
+	private bool pickupCamExpanding;
 	//NOTE TO SELF for BROKEN GLASS 2: do not use bullets 2, 3, or 6
 
 	// Use this for initialization
@@ -81,7 +84,9 @@ public class CameraController : MonoBehaviour {
 		dashCam.Transparency = 0;
 		shockwaveCam = GetComponent<CameraFilterPack_Distortion_ShockWave> ();
 		shockwaveCam.Speed = 2f;
-
+		pickupCam = GetComponent<CameraFilterPack_Blur_Bloom> ();
+		pickupCam.Amount = 5.0f;
+		pickupCam.Glow = 0.0f;
 
 		cameraDistanceNear = cameraPositionNear.magnitude;
 		cameraDistanceFar = cameraPositionFar.magnitude;
@@ -112,6 +117,22 @@ public class CameraController : MonoBehaviour {
 				laserCam.ChangeRadius += 1.75f * Time.deltaTime;
 				if (laserCam.ChangeRadius >= 1.0f)
 					laserCam.enabled = false;
+			}
+		}
+
+		if (pickupCam.enabled) 
+		{
+			if (pickupCamExpanding)
+			{
+				pickupCam.Glow += 20 * Time.deltaTime;
+				if (pickupCam.Glow >= 5)
+					pickupCamExpanding = false;
+			}
+			else
+			{
+				pickupCam.Glow -= 20 * Time.deltaTime;
+				if (pickupCam.Glow <= 0)
+					pickupCam.enabled = false;
 			}
 		}
 	}
@@ -304,6 +325,12 @@ public class CameraController : MonoBehaviour {
 	public void StopLaser()
 	{
 		laserCamActive = false;
-
 	}
+
+	public void RunPickup()
+	{
+		pickupCam.enabled = true;
+		pickupCamExpanding = true;
+	}
+
 }
