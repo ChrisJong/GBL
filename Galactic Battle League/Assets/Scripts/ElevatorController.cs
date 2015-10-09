@@ -10,6 +10,7 @@ public class ElevatorController : MonoBehaviour {
 	bool elevatorAtBottom = true;
 	bool elevatorAtTop = false;
 	bool doorsClosing = false;
+	bool doorsPaused = false;
 	public Light lt;
 	public Color grn;
 	public Color rd;
@@ -32,6 +33,11 @@ public class ElevatorController : MonoBehaviour {
 				elevatorAtTop = false;
 			}
 		}
+
+		if (doorsClosing) 
+		{
+			CloseDoors();
+		}
 	}
 
 	public void BottomTriggered()
@@ -39,11 +45,11 @@ public class ElevatorController : MonoBehaviour {
 		if (elevatorAtBottom) 
 		{
 			elevatorAtBottom = false;
-			Invoke ("CloseDoors", doorCloseDelayTime);
+			Invoke ("BeginCloseDoors", doorCloseDelayTime);
 		}
 	}
 
-	void CloseDoors()
+	void BeginCloseDoors()
 	{
 		foreach (Transform child in transform) 
 		{
@@ -58,9 +64,50 @@ public class ElevatorController : MonoBehaviour {
 				anim.Play("elevator_Door_Right");
 			}
 		}
-
-		Invoke ("RaiseElevator", riseDelayTime);
+		
 		lt.color = rd;
+		doorsClosing = true;
+	}
+
+	void CloseDoors()
+	{
+		if (IsSafeToClose()) 
+		{
+			if (doorsPaused)
+			{
+				doorsPaused = false;
+
+				foreach (Transform child in transform) 
+				{
+					if (child.name == "elevatorDoor_Left" || child.name == "elevatorDoor_Right")
+					{
+						child.GetComponent<Animator>().enabled = true;
+					}
+				}
+			}
+		}
+		else
+		{
+			if (doorsPaused == false)
+			{
+				doorsPaused = true;
+
+				foreach (Transform child in transform) 
+				{
+					if (child.name == "elevatorDoor_Left" || child.name == "elevatorDoor_Right")
+					{
+						child.GetComponent<Animator>().enabled = false;
+					}
+				}
+			}
+		}
+
+		if (AreDoorsClosed()) 
+		{
+			doorsClosing = false;
+			doorsPaused = false;
+			Invoke ("RaiseElevator", riseDelayTime);
+		}
 	}
 
 	void RaiseElevator()
@@ -145,5 +192,52 @@ public class ElevatorController : MonoBehaviour {
 	void ElevatorDescended()
 	{
 		elevatorAtBottom = true;
+	}
+
+	bool IsSafeToClose()
+	{
+		foreach (Transform child in transform) 
+		{
+			if (child.name == "DoorCloseCollider") 
+			{
+				Collider collider = child.GetComponent<Collider>();
+				
+				foreach (GameObject player in players)
+				{
+					foreach (Transform playerComponent in player.transform)
+					{
+						if (playerComponent.name == "Hover Car Heavy" || playerComponent.name == "Hover Car Light")
+						{
+							if (collider.bounds.Contains(playerComponent.transform.position))
+							{
+								return false;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return true;
+	}
+
+	bool AreDoorsClosed()
+	{
+		foreach (Transform child in transform) 
+		{
+			if (child.name == "elevatorDoor_Left")
+			{
+				Animator anim = child.GetComponent<Animator>();
+
+				//if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 3 && anim.GetCurrentAnimatorStateInfo(0).IsName ("elevatorDoor_Left") == false)
+				if (anim.GetCurrentAnimatorStateInfo(0).IsName ("elevatorDoor_Left") == false)
+				{
+					Debug.Log ("true");
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 }
