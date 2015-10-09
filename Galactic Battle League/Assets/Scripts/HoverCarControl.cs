@@ -516,11 +516,6 @@ public class HoverCarControl : MonoBehaviour
 
 
 		// ability stuff
-		if (laserBeam != null) {
-			laserBeam.transform.localScale = new Vector3(laserBeam.transform.localScale.x, 0, laserBeam.transform.localScale.z);
-			laserBeam.transform.position = new Vector3(0, 0, -10000);
-		}
-
 		if (abilityActive && abilityCharge > 0f) {
 			abilityCharge -= abilityUseRate * Time.deltaTime;
 			
@@ -548,6 +543,10 @@ public class HoverCarControl : MonoBehaviour
 					
 					laserBeam.transform.localScale = new Vector3 (laserBeam.transform.localScale.x, hit.distance / 2, laserBeam.transform.localScale.z);
 					laserBeam.transform.position = (shotSpawn [0].position + hit.point) / 2;
+
+					if (!laserBeam.activeInHierarchy) {
+						laserBeam.SetActive(true);
+					}
 
 					//sound
 					if (!weaponSound.isPlaying)
@@ -580,6 +579,11 @@ public class HoverCarControl : MonoBehaviour
 		else 
 		{
 			cameraController.StopLaser ();
+			if (laserBeam != null) {
+				if (laserBeam.activeInHierarchy) {
+					laserBeam.SetActive(false);
+				}
+			}
 		}
 
 		if (!abilityActive && abilityCharge <= maxAbilityCharge) {
