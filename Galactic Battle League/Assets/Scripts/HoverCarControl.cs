@@ -452,7 +452,7 @@ public class HoverCarControl : MonoBehaviour
 			}
 		}
 
-		if (signalJammed && signalJammedTime < Time.time && health < 0)
+		if (signalJammed && signalJammedTime < Time.time && health > 0)
 		{
 			signalJammed = false;
 			cameraController.StopSignalJammed ();
@@ -887,7 +887,7 @@ public class HoverCarControl : MonoBehaviour
 			if (health < maxHealth)
 			{
 				ProcessHealthPickup (20f);
-				uiController.PickupTaken(playerNumber, "HEALED");
+				uiController.PickupTaken(playerNumber, "REPAIRED");
 				Destroy(pickup.gameObject);
 			}
 		}
@@ -895,7 +895,7 @@ public class HoverCarControl : MonoBehaviour
 		{
 			damageIncreased = true;
 			damageIncreaseTime = Time.time + pickupController.damageIncreaseDuration;
-			uiController.PickupTaken(playerNumber, "2X DAMAGE");
+			uiController.PickupTaken(playerNumber, "2x DAMAGE");
 			Destroy(pickup.gameObject);
 		}
 		else if (pickupType == "PickUps_Shield(Clone)")
