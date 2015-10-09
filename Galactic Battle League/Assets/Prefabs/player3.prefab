@@ -1661,6 +1661,7 @@ GameObject:
   - 114: {fileID: 11482754}
   - 114: {fileID: 11431902}
   - 114: {fileID: 11445246}
+  - 114: {fileID: 11415468}
   m_Layer: 12
   m_Name: Camera3
   m_TagString: Untagged
@@ -2842,8 +2843,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173462}
-  m_LocalRotation: {x: 0, y: -.382683486, z: 0, w: .923879564}
-  m_LocalPosition: {x: 117.500038, y: 35.5999985, z: -117.500061}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
+  m_LocalPosition: {x: -100, y: 29, z: 127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 473458}
@@ -4049,6 +4050,20 @@ MonoBehaviour:
   HelpText: This effect uses Cartoon FX 4's special shader to make it look great over
     any kind of background color, including very bright backgrounds!
   MsgType: 1
+--- !u!114 &11415468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192952}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd022fb1ee840aa498e3b8f6fa81b49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 2ea74d4ebbae9d9428819f6027175bd1, type: 3}
+  Amount: 4.5
+  Glow: 0
 --- !u!114 &11415978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4133,6 +4148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SCShader: {fileID: 4800000, guid: 240c17d4cd1b7f34fb7191e55d511841, type: 3}
+  Transparency: 0
 --- !u!114 &11431902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4593,6 +4609,7 @@ MonoBehaviour:
   Speed: 5
   PosX: .5
   PosY: .5
+  Transparency: 0
 --- !u!114 &11492952
 MonoBehaviour:
   m_ObjectHideFlags: 1
