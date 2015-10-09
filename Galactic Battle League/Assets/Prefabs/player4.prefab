@@ -3437,7 +3437,7 @@ Skybox:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170406}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: 15074e2b1277c5048b48dd5c6008543d, type: 2}
+  m_CustomSkybox: {fileID: 2100000, guid: b7bc589dbc06ff14ab2456cf37fd4440, type: 2}
 --- !u!54 &5417994
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -4522,6 +4522,7 @@ MonoBehaviour:
   _SpotSize: 2.5
   center: {x: .5, y: .5}
   Radius: .850000024
+  ChangeRadius: .850000024
 --- !u!114 &11484768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81229,6 +81230,10 @@ Prefab:
       propertyPath: dashVolume
       value: .100000001
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_CustomSkybox
+      value: 
+      objectReference: {fileID: 2100000, guid: b7bc589dbc06ff14ab2456cf37fd4440, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 118016}
