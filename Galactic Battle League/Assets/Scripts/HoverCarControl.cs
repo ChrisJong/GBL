@@ -884,12 +884,15 @@ public class HoverCarControl : MonoBehaviour
 
 		if (pickupType == "PickUps_HP(Clone)")
 		{
-			if (health < maxHealth)
-			{
-				ProcessHealthPickup (20f);
-				uiController.PickupTaken(playerNumber, "REPAIRED");
-				Destroy(pickup.gameObject);
-			}
+			ProcessHealthPickup (20f);
+			uiController.PickupTaken(playerNumber, "REPAIRED");
+			ParticleSystem smoke = pickup.GetComponentInChildren<ParticleSystem> ();
+			smoke.enableEmission = true;
+			smoke.Play();
+			smoke.transform.parent=null;
+			Destroy(smoke, 3);
+			Destroy(pickup.gameObject);
+		
 		}
 		else if (pickupType == "PickUps_DoubleDamage(Clone)")
 		{
