@@ -246,9 +246,10 @@ public class CameraController : MonoBehaviour {
 		respawned = true;
 	}
 
-	public void RunLowHealth()
+	public void RunLowHealth(float transparency)
 	{
 		lowHealthCam.enabled = true;
+		lowHealthCam.Transparency = transparency;
 	}
 
 	public void StopLowHealth()

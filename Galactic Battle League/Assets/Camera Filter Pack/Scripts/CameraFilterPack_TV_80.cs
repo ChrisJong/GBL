@@ -10,6 +10,7 @@ using System.Collections;
 public class CameraFilterPack_TV_80 : MonoBehaviour {
 	#region Variables
 	public Shader SCShader;
+	public float Transparency;
 	private float TimeX = 1.0f;
 	private Vector4 ScreenResolution;
 	private Material SCMaterial;
@@ -48,6 +49,7 @@ public class CameraFilterPack_TV_80 : MonoBehaviour {
 			if (TimeX>100)  TimeX=0;
 			material.SetFloat("_TimeX", TimeX);
 			material.SetVector("_ScreenResolution",new Vector4(sourceTexture.width,sourceTexture.height,0.0f,0.0f));
+			material.SetFloat ("_Transparency", Transparency);
 			Graphics.Blit(sourceTexture, destTexture, material);
 		}
 		else

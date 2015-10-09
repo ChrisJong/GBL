@@ -27,6 +27,7 @@ Shader "CameraFilterPack/TV_80" {
 			uniform float _TimeX;
 			uniform float _Distortion;
 			uniform float4 _ScreenResolution;
+			uniform float _Transparency;
 			
 		       struct appdata_t
             {
@@ -77,19 +78,19 @@ fixed4 frag (v2f i) : COLOR
     float2 uv = q;
   //  uv = curve( uv );
     float3 col;
-	float x =  sin(0.3*_TimeX+uv.y*21.0)*sin(0.7*_TimeX+uv.y*29.0)*sin(0.3+0.33*_TimeX+uv.y*31.0)*0.0017;
+	float x = sin(0.3*_TimeX+uv.y*21.0)*sin(0.7*_TimeX+uv.y*29.0)*sin(0.3+0.33*_TimeX+uv.y*31.0)*0.0017;
 	float4 text = tex2D(_MainTex,float2(x+uv.x+0.001,uv.y+0.001));
 	col.rgb = text.xyz + 0.05;
 	text = tex2D(_MainTex,0.75*float2(x+0.025, -0.02)+float2(uv.x+0.001,uv.y+0.001));
-    col.r += 0.08*text.x;
-    col.g += 0.05*text.y;
-    col.b += 0.08*text.z;   
+    col.r += (0.08*_Transparency)*text.x;//TRANSPARENCY HERE
+    col.g += (0.05*_Transparency)*text.y;//TRANSPARENCY HERE
+    col.b += (0.08*_Transparency)*text.z;//TRANSPARENCY HERE 
     col = clamp(col*0.6+0.4*col*col,0.0,1.0);
     float vig = (0.0 + 16.0*uv.x*uv.y*(1.0-uv.x)*(1.0-uv.y));
 	col *= pow(vig,0.3);
     col *= float3(3.66,2.94,2.66);
 	//col *= col.brg;//float3(0.66,0.94,0.66);
-	float scans = clamp( 0.35+0.35*sin(3.5*_TimeX+uv.y*_ScreenResolution.y*1.5), 0.0, 1.0);
+	float scans = clamp( 0.35+0.35*sin(3.5*_TimeX+uv.y*_ScreenResolution.y*1.5), 0.0, 1.0)*_Transparency;//TRANSPARENCY HERE
 	float s = pow(scans,1.7);
 	col = col*(0.4+0.7*s) ;
 	
@@ -100,10 +101,10 @@ fixed4 frag (v2f i) : COLOR
 	float cx=clamp(rand(float2(floor(uv.x * pixelDensity * 1.0), floor(uv.y * pixelDensity)) *_TimeX / 1000.) + 1. - noiseIntensity, 0., 1.);
 	float3 colorx = float3(cx,cx,cx);	
 	
-   	float barHeight = 6.;
+   	float barHeight = 6.0;
 	float barSpeed = 2.6;
 	float barOverflow = 1.2;
-	float bar = clamp(floor(sin(uv.y * 6. + _TimeX * 2.6) + 1.95), 0., 1.1);
+	float bar = clamp(floor(sin(uv.y * 6. + _TimeX * 2.6) + 1.95), 0., 1.1)*_Transparency;//TRANSPARENCY HERE
 	
 	 col *= 1.0+0.01*sin(110.0*_TimeX)+bar/4;
 	if (uv.x < 0.0 || uv.x > 1.0)
