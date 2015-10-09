@@ -19,6 +19,7 @@ public int Speed = 5;
 public float PosX = 0.5f;
 [Range(-1f, 1f)]
 public float PosY = 0.5f;
+public float Transparency;
 public static float ChangeValue;
 public static int ChangeValue2;
 public static float ChangeValue3;
@@ -44,7 +45,7 @@ ChangeValue = Size;
 ChangeValue2 = Speed;
 ChangeValue3 = PosX;
 ChangeValue4 = PosY;
-		SCShader = Shader.Find("CameraFilterPack/Drawing_Manga_FlashWhite");
+SCShader = Shader.Find("CameraFilterPack/Drawing_Manga_FlashWhite");
 if(!SystemInfo.supportsImageEffects)
 {
 enabled = false;
@@ -64,6 +65,7 @@ material.SetFloat("_Value2", (float)Speed);
 material.SetFloat("_Value3", PosX);
 material.SetFloat("_Value4", PosY);
 material.SetVector("_ScreenResolution",new Vector4(sourceTexture.width,sourceTexture.height,0.0f,0.0f));
+material.SetFloat("_Transparency", Transparency);
 Graphics.Blit(sourceTexture, destTexture, material);
 }
 else
@@ -83,7 +85,7 @@ PosY = ChangeValue4;
 #if UNITY_EDITOR
 if (Application.isPlaying!=true)
 {
-			SCShader = Shader.Find("CameraFilterPack/Drawing_Manga_FlashWhite");
+SCShader = Shader.Find("CameraFilterPack/Drawing_Manga_FlashWhite");
 }
 #endif
 }

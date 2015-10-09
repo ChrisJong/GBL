@@ -78,6 +78,7 @@ public class CameraController : MonoBehaviour {
 		quakeCam = GetComponent<CameraFilterPack_FX_EarthQuake> ();
 		dashCam = GetComponent<CameraFilterPack_Drawing_Manga_FlashWhite> ();
 		dashCam.Speed = 10;
+		dashCam.Transparency = 0;
 		shockwaveCam = GetComponent<CameraFilterPack_Distortion_ShockWave> ();
 		shockwaveCam.Speed = 2f;
 
@@ -122,8 +123,28 @@ public class CameraController : MonoBehaviour {
 		if (quakeCam.enabled == true && stopQuake < Time.time)
 			quakeCam.enabled = false;
 
-		if (dashCam.enabled == true && stopDash < Time.time)
-			dashCam.enabled = false;
+		if (dashCam.enabled == true) 
+		{
+
+			if(stopDash < Time.time)
+			{
+				if (dashCam.Transparency > 0)
+					dashCam.Transparency -= 5 * Time.deltaTime;
+				if (dashCam.Transparency <= 0)
+				{
+					dashCam.Transparency = 0;
+					dashCam.enabled = false;
+				}
+			}
+			else
+			{
+				if (dashCam.Transparency < 1)
+					dashCam.Transparency += 5 * Time.deltaTime;
+				else
+					dashCam.Transparency = 1;
+			}
+
+		}
 		
 		if (shockwaveCam.enabled == true && stopShockwave < Time.time)
 			shockwaveCam.enabled = false;

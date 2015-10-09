@@ -28,6 +28,7 @@ uniform float _Value;
 uniform float _Value2;
 uniform float _Value3;
 uniform float _Value4;
+uniform float _Transparency;
 uniform float4 _ScreenResolution;
 struct appdata_t
 {
@@ -78,7 +79,7 @@ float4 frag (v2f i) : COLOR
     float c = l > ran ? abs(l - ran) : 0.0;
     
 	float4 v=tex2D(_MainTex,i.texcoord);
-	v=v+c; 
+	v=v+(c*_Transparency); 
     return  float4( v );
 }
 ENDCG
