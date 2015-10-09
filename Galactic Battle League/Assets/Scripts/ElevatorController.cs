@@ -8,9 +8,12 @@ public class ElevatorController : MonoBehaviour {
 	float riseDelayTime = 0.75f;
 	float descendDelayTime = 0.5f;
 	bool elevatorAtBottom = true;
+	bool elevatorAtTop = false;
+	bool doorsClosing = false;
 	public Light lt;
 	public Color grn;
 	public Color rd;
+	public GameObject[] players;
 
 	// Use this for initialization
 	void Start () 
@@ -21,29 +24,22 @@ public class ElevatorController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-
-	}
-
-	void OnTriggerEnter(Collider collider)
-	{
-		if (collider.name == "Hover Car Heavy" || collider.name == "Hover Car Light") 
+		if (elevatorAtTop) 
 		{
-			if (elevatorAtBottom) 
+			if (CheckIfEmpty())
 			{
-				elevatorAtBottom = false;
-				Invoke ("CloseDoors", doorCloseDelayTime);
+				Invoke ("LowerElevator", descendDelayTime);
+				elevatorAtTop = false;
 			}
 		}
 	}
 
-	void OnTriggerExit(Collider collider)
+	public void BottomTriggered()
 	{
-		if (collider.name == "Hover Car Heavy" || collider.name == "Hover Car Light") 
+		if (elevatorAtBottom) 
 		{
-			if (elevatorAtBottom == false) 
-			{
-				Invoke ("LowerElevator", descendDelayTime);
-			}
+			elevatorAtBottom = false;
+			Invoke ("CloseDoors", doorCloseDelayTime);
 		}
 	}
 
@@ -75,10 +71,43 @@ public class ElevatorController : MonoBehaviour {
 			{
 				Animator anim = child.GetComponent<Animator> ();
 				anim.Play ("elevator_Floor_Rise");
+				Invoke ("ElevatorRisen", 3);
 			}
 		}
 	}
-	
+
+	void ElevatorRisen()
+	{
+		elevatorAtTop = true;
+	}
+
+	bool CheckIfEmpty()
+	{
+		foreach (Transform child in transform) 
+		{
+			if (child.name == "TopCollider") 
+			{
+				Collider collider = child.GetComponent<Collider>();
+
+				foreach (GameObject player in players)
+				{
+					foreach (Transform playerComponent in player.transform)
+					{
+						if (playerComponent.name == "Hover Car Heavy" || playerComponent.name == "Hover Car Light")
+						{
+							if (collider.bounds.Contains(playerComponent.transform.position))
+							{
+								return false;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return true;
+	}
+
 	void LowerElevator()
 	{
 		foreach (Transform child in transform) 
@@ -108,8 +137,13 @@ public class ElevatorController : MonoBehaviour {
 				anim.Play("elevator_Door_Right_Open");
 			}
 		}
-
-		elevatorAtBottom = true;
+	
 		lt.color = grn;
+		Invoke ("ElevatorDescended", 3);
+	}
+
+	void ElevatorDescended()
+	{
+		elevatorAtBottom = true;
 	}
 }

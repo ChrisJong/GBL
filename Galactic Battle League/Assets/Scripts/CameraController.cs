@@ -89,7 +89,7 @@ public class CameraController : MonoBehaviour {
 			if (respawnCam.ChangeRadius >= 1.5f)
 				respawnCam.enabled = false;
 		}
-		Debug.Log(cameraDistanceCurrent);
+		//Debug.Log(cameraDistanceCurrent);
 	}
 
 	void FixedUpdate () {

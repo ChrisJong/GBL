@@ -21,7 +21,7 @@ public class BeginningCamera : MonoBehaviour {
 		fadeBlack.color = fadeControl;
 		if (fadeControl.a >= 0.0f && fadeControl.a <= 1.0f) {
 			fadeControl.a = (fadeControl.a + (fadeSpeed * fadeWay));
-			Debug.Log (fadeControl.a);
+			//Debug.Log (fadeControl.a);
 		}
 		//allows skipping after an amount of time
 		if (timer >= TimeUntilSkippable && skipped == false) {
