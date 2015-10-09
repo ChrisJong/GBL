@@ -32,7 +32,7 @@ public class CameraFilterPack_AAA_SuperHexagon : MonoBehaviour {
 	public float Radius = 0.25f;
 
 	public static Vector2 Changecenter;
-	public static float ChangeRadius;
+	public float ChangeRadius;
 	
 
 	#endregion
@@ -117,8 +117,8 @@ public class CameraFilterPack_AAA_SuperHexagon : MonoBehaviour {
 			center = Changecenter;
 			Radius = ChangeRadius;
 			_BorderSize = ChangeBorderSize;
-			_BorderColor = ChangeBorderColor;
-			_HexaColor = ChangeHexaColor;
+//			_BorderColor = ChangeBorderColor;
+//			_HexaColor = ChangeHexaColor;
 			_SpotSize = ChangeSpotSize;
 			_AlphaHexa = ChangeAlphaHexa;
 		}

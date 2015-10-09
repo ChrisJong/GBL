@@ -92,35 +92,32 @@ public class PickupController : MonoBehaviour
 
 		if (randNumber < healthLargeWeighting) 
 		{
-			pickupType = "PickupHealthLarge";
+			pickupType = "PickUps_HP";
 		} 
 		else if (randNumber < (healthLargeWeighting + healthSmallWeighting)) 
 		{
-			pickupType = "PickupHealthSmall";
-		}
-		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting)) 
-		{
-			pickupType = "PickupDamageIncrease";
+			pickupType = "PickUps_DoubleDamage";
 		} 
 		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting)) 
 		{
-			pickupType = "PickupInvincibility";
+			pickupType = "PickUps_Shield";
 		} 
 		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting)) 
 		{
-			pickupType = "PickupSignalJammer";
+			pickupType = "PickUps_Scrambler";
 		}
 		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting + speedBoostWeighting)) 
 		{
-			pickupType = "PickupSpeedBoost";
+			pickupType = "PickUps_Boost";
 		}
 		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting + speedBoostWeighting + unlimitedEnergyWeighting)) 
 		{
-			pickupType = "PickupUnlimitedEnergy";
+			pickupType = "PickUps_Energy";
 		} 
+
 		else 
 		{
-			pickupType = "PickupHealthSmall"; //default pickup
+			pickupType = "PickUps_HP"; //default pickup
 		}
 
 		return pickupType;

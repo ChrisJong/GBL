@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 464072}
   - 33: {fileID: 3311718}
-  - 64: {fileID: 6402880}
   - 23: {fileID: 2382500}
   m_Layer: 0
   m_Name: Quad_Scramber
@@ -27,7 +26,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 456396}
   - 33: {fileID: 3347020}
-  - 64: {fileID: 6490600}
   - 23: {fileID: 2369182}
   m_Layer: 0
   m_Name: Quad_Scramber
@@ -182,30 +180,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173258}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &6402880
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 158664}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &6490600
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173258}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!95 &9565140
 Animator:
   serializedVersion: 3
@@ -262,7 +236,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 177280}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.5
@@ -277,6 +251,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Name
       value: Quad_Scramber
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

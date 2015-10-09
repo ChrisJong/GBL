@@ -2435,8 +2435,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154752}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: 29, z: -127}
+  m_LocalRotation: {x: 0, y: .382683456, z: 0, w: .923879504}
+  m_LocalPosition: {x: -117.5, y: 35.5999985, z: -117.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 454756}
@@ -4095,6 +4095,7 @@ MonoBehaviour:
   _SpotSize: 2.5
   center: {x: .5, y: .5}
   Radius: .850000024
+  ChangeRadius: .850000024
 --- !u!114 &11416398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4428,8 +4429,8 @@ MonoBehaviour:
   lookOffsetFar: {x: 0, y: .5, z: 3}
   cameraPositionSpawn: {x: -4.19999981, y: 1, z: 4}
   lookOffsetSpawn: {x: 0, y: .25, z: 0}
-  cameraPositionFirstPersonLight: {x: 0, y: 0, z: 0}
-  cameraPositionFirstPersonHeavy: {x: 0, y: 0, z: 0}
+  cameraPositionFirstPersonLight: {x: 0, y: .870000005, z: -.479999989}
+  cameraPositionFirstPersonHeavy: {x: 0, y: 1.10000002, z: -.25}
   stiffness: 30
   rotationStiffness: 100
   distanceStiffness: 1
@@ -81229,6 +81230,10 @@ Prefab:
       propertyPath: dashVolume
       value: .100000001
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_CustomSkybox
+      value: 
+      objectReference: {fileID: 2100000, guid: b7bc589dbc06ff14ab2456cf37fd4440, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 154752}

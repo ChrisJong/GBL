@@ -37,9 +37,10 @@ public class CameraController : MonoBehaviour {
 	public CameraMode cameraMode = CameraMode.Near;
 	bool spawnCamera;
 
-	private CameraFilterPack_AAA_SuperComputer respawnCam;
-
+	private CameraFilterPack_AAA_SuperHexagon respawnCam;
+	private bool respawned = true;
 	private CameraFilterPack_AAA_SuperComputer laserCam;
+	private bool laserCamActive;
 	
 	private CameraFilterPack_TV_Artefact glitchCam;
 	private float stopGlitch;
@@ -62,16 +63,22 @@ public class CameraController : MonoBehaviour {
 	void Start () {
 		thisCamera = GetComponent<Camera> ();
 		glitchCam = GetComponent<CameraFilterPack_TV_Artefact>();
-		respawnCam = GetComponent<CameraFilterPack_AAA_SuperComputer>();
+		respawnCam = GetComponent<CameraFilterPack_AAA_SuperHexagon>();
 		respawnCam._BorderColor = tankColour;
+		respawnCam._HexaColor = tankColour;
 		laserCam = GetComponent<CameraFilterPack_AAA_SuperComputer>();
+		laserCam.ChangeRadius = 1.0f;
+		laserCam.Radius = 1.0f;
+		laserCam._BorderColor = tankColour;
 		signalJammedCam = GetComponent<CameraFilterPack_FX_Glitch1>();
 		respawnCam.enabled = true;
 		respawnCam.ChangeRadius = 0;
+		respawnCam.Radius = 0;
 		lowHealthCam = GetComponent<CameraFilterPack_TV_80> ();
 		quakeCam = GetComponent<CameraFilterPack_FX_EarthQuake> ();
 		dashCam = GetComponent<CameraFilterPack_Drawing_Manga_FlashWhite> ();
 		dashCam.Speed = 10;
+		dashCam.Transparency = 0;
 		shockwaveCam = GetComponent<CameraFilterPack_Distortion_ShockWave> ();
 		shockwaveCam.Speed = 2f;
 
@@ -83,13 +90,30 @@ public class CameraController : MonoBehaviour {
 
 	void Update()
 	{
-		if (respawnCam.enabled == true) 
+		if (respawnCam.enabled && !respawned) 
 		{
-			respawnCam.ChangeRadius += 0.03f;
+			if (respawnCam.ChangeRadius >= 0)
+				respawnCam.ChangeRadius -= 1.0f * Time.deltaTime;
+		}
+		else if (respawnCam.enabled && respawned) 
+		{
+			respawnCam.ChangeRadius += 1.0f * Time.deltaTime;
 			if (respawnCam.ChangeRadius >= 1.5f)
 				respawnCam.enabled = false;
 		}
-		//Debug.Log(cameraDistanceCurrent);
+
+		if (laserCam.enabled) 
+		{
+			if (laserCam.ChangeRadius >= 0.8f && laserCamActive == true)
+				laserCam.ChangeRadius -= 1.75f * Time.deltaTime;
+
+			if (!laserCamActive)
+			{
+				laserCam.ChangeRadius += 1.75f * Time.deltaTime;
+				if (laserCam.ChangeRadius >= 1.0f)
+					laserCam.enabled = false;
+			}
+		}
 	}
 
 	void FixedUpdate () {
@@ -99,8 +123,28 @@ public class CameraController : MonoBehaviour {
 		if (quakeCam.enabled == true && stopQuake < Time.time)
 			quakeCam.enabled = false;
 
-		if (dashCam.enabled == true && stopDash < Time.time)
-			dashCam.enabled = false;
+		if (dashCam.enabled == true) 
+		{
+
+			if(stopDash < Time.time)
+			{
+				if (dashCam.Transparency > 0)
+					dashCam.Transparency -= 5 * Time.deltaTime;
+				if (dashCam.Transparency <= 0)
+				{
+					dashCam.Transparency = 0;
+					dashCam.enabled = false;
+				}
+			}
+			else
+			{
+				if (dashCam.Transparency < 1)
+					dashCam.Transparency += 5 * Time.deltaTime;
+				else
+					dashCam.Transparency = 1;
+			}
+
+		}
 		
 		if (shockwaveCam.enabled == true && stopShockwave < Time.time)
 			shockwaveCam.enabled = false;
@@ -113,6 +157,7 @@ public class CameraController : MonoBehaviour {
 		}
 
 		if (spawnCamera) {
+			transform.parent = target.parent;
 			transform.position = target.TransformPoint (cameraPositionOffset + cameraPositionSpawn);
 			transform.rotation = Quaternion.LookRotation (target.TransformPoint(cameraPositionOffset + lookOffsetSpawn) - transform.position, Vector3.up);
 			cameraDistanceCurrent = (transform.position - target.position).magnitude;
@@ -182,12 +227,23 @@ public class CameraController : MonoBehaviour {
 		glitchCam.enabled = true;
 		stopGlitch = Time.time + 0.5f;
 	}
-	
+
+	public void RunDeath()
+	{
+		if (respawned) 
+		{
+			respawnCam.ChangeRadius = 1.0f;
+			respawnCam.enabled = true;
+			respawned = false;
+		}
+	}
+
 	public void RunRespawn()
 	{
 		respawnCam.ChangeRadius = 0;
 		respawnCam.enabled = true;
 		spawnCamera = true;
+		respawned = true;
 	}
 
 	public void RunLowHealth()
@@ -203,11 +259,13 @@ public class CameraController : MonoBehaviour {
 	public void RunSignalJammed()
 	{
 		signalJammedCam.enabled = true;
+		print("true");
 	}
 
 	public void StopSignalJammed()
 	{
 		signalJammedCam.enabled = false;
+		print ("false");
 	}
 
 	public void RunQuake(float intensity)
@@ -238,6 +296,13 @@ public class CameraController : MonoBehaviour {
 
 	public void RunLaser()
 	{
+		laserCam.enabled = true;
+		laserCamActive = true;
+	}
+
+	public void StopLaser()
+	{
+		laserCamActive = false;
 
 	}
 }

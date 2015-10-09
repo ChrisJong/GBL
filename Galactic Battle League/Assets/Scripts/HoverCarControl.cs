@@ -75,6 +75,8 @@ public class HoverCarControl : MonoBehaviour
 	public GameObject hitParticle;
 	public ParticleSystem[] deathParticle;
 	private double spawnActiveTimer;
+	private float respawnTime = 4.0f;
+
 
 	// Pickup variables
 	private PickupController pickupController;
@@ -283,6 +285,7 @@ public class HoverCarControl : MonoBehaviour
 		}
 		else if (!deathRun && inputDevice != null && spawnActiveTimer < Time.time) 
 		{
+
 			foreach(ParticleSystem particle in hoverParticles)
 				particle.startLifetime = particleLength;
 			
@@ -449,7 +452,7 @@ public class HoverCarControl : MonoBehaviour
 			}
 		}
 
-		if (signalJammed && signalJammedTime < Time.time)
+		if (signalJammed && signalJammedTime < Time.time && health > 0)
 		{
 			signalJammed = false;
 			cameraController.StopSignalJammed ();
@@ -518,63 +521,65 @@ public class HoverCarControl : MonoBehaviour
 			laserBeam.transform.position = new Vector3(0, 0, -10000);
 		}
 
-		if (abilityActive && abilityCharge > 0f)
-		{
+		if (abilityActive && abilityCharge > 0f) {
 			abilityCharge -= abilityUseRate * Time.deltaTime;
 			
 			if (tankClass == 1) {
 				//Boost ability
-				m_body.AddForce(transform.forward * m_currThrust * abilityPower);
-				m_body.AddForce(transform.right * m_currSideThrust * abilityPower);
-				AudioSource.PlayClipAtPoint(dashSound, transform.position, dashVolume);
-				cameraController.RunQuake(0.01f);
-				foreach(ParticleSystem particle in hoverParticles)
-				{
-					particle.startLifetime = particleLength*4;
+				m_body.AddForce (transform.forward * m_currThrust * abilityPower);
+				m_body.AddForce (transform.right * m_currSideThrust * abilityPower);
+				AudioSource.PlayClipAtPoint (dashSound, transform.position, dashVolume);
+				cameraController.RunQuake (0.01f);
+				foreach (ParticleSystem particle in hoverParticles) {
+					particle.startLifetime = particleLength * 4;
 				}
-				cameraController.RunDash();
+				cameraController.RunDash ();
 			} else {
 				//Laser ability
 				var layermask = 1 << 12;
 				layermask = ~layermask;
 				bool hitWall = false;
-				cameraController.RunQuake(0.003f);
-
-				if (Physics.Raycast(shotSpawn[0].position, shotSpawn[0].forward, out hit, Mathf.Infinity, layermask)) {
-					Debug.DrawLine (shotSpawn[0].position, hit.point, Color.cyan);
+				cameraController.RunQuake (0.003f);
+				cameraController.RunLaser ();
+				if (Physics.Raycast (shotSpawn [0].position, shotSpawn [0].forward, out hit, Mathf.Infinity, layermask)) {
+					Debug.DrawLine (shotSpawn [0].position, hit.point, Color.cyan);
 					
 					//draw laser
 					
-					laserBeam.transform.localScale = new Vector3(laserBeam.transform.localScale.x, hit.distance/2, laserBeam.transform.localScale.z);
-					laserBeam.transform.position = (shotSpawn[0].position+hit.point) / 2;
+					laserBeam.transform.localScale = new Vector3 (laserBeam.transform.localScale.x, hit.distance / 2, laserBeam.transform.localScale.z);
+					laserBeam.transform.position = (shotSpawn [0].position + hit.point) / 2;
 
 					//sound
 					if (!weaponSound.isPlaying)
-						weaponSound.Play();
+						weaponSound.Play ();
 
 					RaycastHit[] hits;
-					hits = Physics.RaycastAll(shotSpawn[0].position, shotSpawn[0].forward, hit.distance);
+					hits = Physics.RaycastAll (shotSpawn [0].position, shotSpawn [0].forward, hit.distance);
 					for (int i = 0; i < hits.Length; i++) {
-						if (hits[i].collider.tag == "Player") {
+						if (hits [i].collider.tag == "Player") {
 							DamageData damageData;
 							damageData.damage = abilityPower * Time.deltaTime;
 							if (damageIncreased)
 								damageData.damage *= pickupController.damageIncreaseValue;
-							if (hits[i].collider.GetComponent<HoverCarControl>().invincible)
+							if (hits [i].collider.GetComponent<HoverCarControl> ().invincible)
 								damageData.damage = 0;
-							damageData.position = hits[i].point;
+							damageData.position = hits [i].point;
 							damageData.playerNumber = playerNumber;
 							damageData.distance = 0;
-							hits[i].collider.gameObject.SendMessage("Damage", damageData);
-							Rumble(0.05f);
+							hits [i].collider.gameObject.SendMessage ("Damage", damageData);
+							Rumble (0.05f);
 							//AudioSource.PlayClipAtPoint(laserHitSound, transform.position, laserHitVolume);
 						}
 					}
 				} else {
-					laserBeam.transform.localScale = new Vector3(laserBeam.transform.localScale.x, 500, laserBeam.transform.localScale.z);
-					laserBeam.transform.position = (shotSpawn[0].position+shotSpawn[0].forward * 500);
+					laserBeam.transform.localScale = new Vector3 (laserBeam.transform.localScale.x, 500, laserBeam.transform.localScale.z);
+					laserBeam.transform.position = (shotSpawn [0].position + shotSpawn [0].forward * 500);
 				}
 			}
+		} 
+		else 
+		{
+			cameraController.StopLaser ();
 		}
 
 		if (!abilityActive && abilityCharge <= maxAbilityCharge) {
@@ -604,9 +609,13 @@ public class HoverCarControl : MonoBehaviour
 			if (!deathRun)
 				Death ();
 			timer += Time.deltaTime;
-			if(timer > 5.0f)
+			if(timer > respawnTime)
 			{
 				Respawn();
+			}
+			else if(timer>respawnTime - 1)
+			{
+				cameraController.RunDeath();
 			}
 		}
 
@@ -695,6 +704,8 @@ public class HoverCarControl : MonoBehaviour
 	
 	void Death()
 	{
+		cameraController.RunSignalJammed();
+		signalJammed = true;
 		abilityCharge = 0f;
 		tempHoverForce = m_hoverForce;
 		m_hoverForce = 0.0f;
@@ -871,56 +882,47 @@ public class HoverCarControl : MonoBehaviour
 	{
 		string pickupType = pickup.name;
 
-		if (pickupType == "PickupHealthSmall(Clone)")
-		{
-			if (health < maxHealth)
-			{
-				ProcessHealthPickup (10f);
-				uiController.PickupTaken(playerNumber, "HEALED");
-				Destroy(pickup.gameObject);
-			}
-		}
-		else if (pickupType == "PickupHealthLarge(Clone)")
+		if (pickupType == "PickUps_HP(Clone)")
 		{
 			if (health < maxHealth)
 			{
 				ProcessHealthPickup (20f);
-				uiController.PickupTaken(playerNumber, "HEALED");
+				uiController.PickupTaken(playerNumber, "REPAIRED");
 				Destroy(pickup.gameObject);
 			}
 		}
-		else if (pickupType == "PickupDamageIncrease(Clone)")
+		else if (pickupType == "PickUps_DoubleDamage(Clone)")
 		{
 			damageIncreased = true;
 			damageIncreaseTime = Time.time + pickupController.damageIncreaseDuration;
-			uiController.PickupTaken(playerNumber, "DOUBLE DAMAGE");
+			uiController.PickupTaken(playerNumber, "2x DAMAGE");
 			Destroy(pickup.gameObject);
 		}
-		else if (pickupType == "PickupInvincibility(Clone)")
+		else if (pickupType == "PickUps_Shield(Clone)")
 		{
 			invincible = true;
 			invincibilityTime = Time.time + pickupController.invincibilityDuration;
-			uiController.PickupTaken(playerNumber, "INVINCIBILITY");
+			uiController.PickupTaken(playerNumber, "SHIELD");
 			Destroy(pickup.gameObject);
 		}
-		else if (pickupType == "PickupSignalJammer(Clone)")
+		else if (pickupType == "PickUps_Scrambler(Clone)")
 		{
 			ProcessSignalJammerPickup();
-			uiController.PickupTaken(playerNumber, "CAMERAS GLITCHED");
+			uiController.PickupTaken(playerNumber, "SCRAMBLER");
 			Destroy(pickup.gameObject);
 		}
-		else if (pickupType == "PickupSpeedBoost(Clone)")
+		else if (pickupType == "PickUps_Boost(Clone)")
 		{
 			speedBoosted = true;
 			speedBoostedTime = Time.time + pickupController.speedBoostedDuration;
-			uiController.PickupTaken(playerNumber, "SPEED BOOST");
+			uiController.PickupTaken(playerNumber, "BOOST");
 			Destroy(pickup.gameObject);
 		}
-		else if (pickupType == "PickupUnlimitedEnergy(Clone)")
+		else if (pickupType == "PickUps_Energy(Clone)")
 		{
 			unlimitedEnergy = true;
 			unlimitedEnergyTime = Time.time + pickupController.unlimitedEnergyDuration;
-			uiController.PickupTaken(playerNumber, "UNLIMITED ENERGY");
+			uiController.PickupTaken(playerNumber, "ENERGY");
 			Destroy(pickup.gameObject);
 		}
 	}
