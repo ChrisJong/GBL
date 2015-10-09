@@ -871,16 +871,7 @@ public class HoverCarControl : MonoBehaviour
 	{
 		string pickupType = pickup.name;
 
-		if (pickupType == "PickupHealthSmall(Clone)")
-		{
-			if (health < maxHealth)
-			{
-				ProcessHealthPickup (10f);
-				uiController.PickupTaken(playerNumber, "HEALED");
-				Destroy(pickup.gameObject);
-			}
-		}
-		else if (pickupType == "PickupHealthLarge(Clone)")
+		if (pickupType == "PickUps_HP(Clone)")
 		{
 			if (health < maxHealth)
 			{
@@ -889,38 +880,38 @@ public class HoverCarControl : MonoBehaviour
 				Destroy(pickup.gameObject);
 			}
 		}
-		else if (pickupType == "PickupDamageIncrease(Clone)")
+		else if (pickupType == "PickUps_DoubleDamage(Clone)")
 		{
 			damageIncreased = true;
 			damageIncreaseTime = Time.time + pickupController.damageIncreaseDuration;
-			uiController.PickupTaken(playerNumber, "DOUBLE DAMAGE");
+			uiController.PickupTaken(playerNumber, "2X DAMAGE");
 			Destroy(pickup.gameObject);
 		}
-		else if (pickupType == "PickupInvincibility(Clone)")
+		else if (pickupType == "PickUps_Shield(Clone)")
 		{
 			invincible = true;
 			invincibilityTime = Time.time + pickupController.invincibilityDuration;
-			uiController.PickupTaken(playerNumber, "INVINCIBILITY");
+			uiController.PickupTaken(playerNumber, "SHIELD");
 			Destroy(pickup.gameObject);
 		}
-		else if (pickupType == "PickupSignalJammer(Clone)")
+		else if (pickupType == "PickUps_Scrambler(Clone)")
 		{
 			ProcessSignalJammerPickup();
-			uiController.PickupTaken(playerNumber, "CAMERAS GLITCHED");
+			uiController.PickupTaken(playerNumber, "SCRAMBLER");
 			Destroy(pickup.gameObject);
 		}
-		else if (pickupType == "PickupSpeedBoost(Clone)")
+		else if (pickupType == "PickUps_Boost(Clone)")
 		{
 			speedBoosted = true;
 			speedBoostedTime = Time.time + pickupController.speedBoostedDuration;
-			uiController.PickupTaken(playerNumber, "SPEED BOOST");
+			uiController.PickupTaken(playerNumber, "BOOST");
 			Destroy(pickup.gameObject);
 		}
-		else if (pickupType == "PickupUnlimitedEnergy(Clone)")
+		else if (pickupType == "PickUps_Energy(Clone)")
 		{
 			unlimitedEnergy = true;
 			unlimitedEnergyTime = Time.time + pickupController.unlimitedEnergyDuration;
-			uiController.PickupTaken(playerNumber, "UNLIMITED ENERGY");
+			uiController.PickupTaken(playerNumber, "ENERGY");
 			Destroy(pickup.gameObject);
 		}
 	}
