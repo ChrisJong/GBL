@@ -90,27 +90,27 @@ public class PickupController : MonoBehaviour
 
 		float randNumber = Random.Range (0, totalWeighting);
 
-		if (randNumber < healthLargeWeighting) 
+		if (randNumber <= healthLargeWeighting) 
 		{
 			pickupType = "PickUps_HP";
 		} 
-		else if (randNumber < (healthLargeWeighting + healthSmallWeighting)) 
+		else if (randNumber <= (healthLargeWeighting + healthSmallWeighting)) 
 		{
-			pickupType = "PickUps_DoubleDamage";
+			pickupType = "PickUps_HP";
 		} 
-		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting)) 
+		else if (randNumber <= (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting)) 
 		{
 			pickupType = "PickUps_Shield";
 		} 
-		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting)) 
+		else if (randNumber <= (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting)) 
 		{
 			pickupType = "PickUps_Scrambler";
 		}
-		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting + speedBoostWeighting)) 
+		else if (randNumber <= (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting + speedBoostWeighting)) 
 		{
 			pickupType = "PickUps_Boost";
 		}
-		else if (randNumber < (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting + speedBoostWeighting + unlimitedEnergyWeighting)) 
+		else if (randNumber <= (healthLargeWeighting + healthSmallWeighting + damageIncreaseWeighting + invincibilityWeighting + signalJammerWeighting + speedBoostWeighting + unlimitedEnergyWeighting)) 
 		{
 			pickupType = "PickUps_Energy";
 		} 

@@ -95,7 +95,7 @@ fixed4 frag (v2f i) : COLOR
 	
 	//col.rgb = dot(col.rgb, float3(.222, .707, .071));
 	
-	float noiseIntensity = .75;
+	float noiseIntensity = 0.75;
 	float pixelDensity = 250.;
 	float cx=clamp(rand(float2(floor(uv.x * pixelDensity * 1.0), floor(uv.y * pixelDensity)) *_TimeX / 1000.) + 1. - noiseIntensity, 0., 1.);
 	float3 colorx = float3(cx,cx,cx);	
