@@ -825,50 +825,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 709286023}
---- !u!1 &711280103
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 711280105}
-  - 114: {fileID: 711280104}
-  m_Layer: 0
-  m_Name: music
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &711280104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 711280103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89657f6673992b04191a0cab6c4e8d6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pirateSting: {fileID: 8300000, guid: eec21d5a063c0924abfa65b61407154e, type: 3}
-  techSting: {fileID: 8300000, guid: ef961f50c70e2504c8085bfc67639b88, type: 3}
-  militarySting: {fileID: 8300000, guid: c06cf10f002058449bd999f158df941d, type: 3}
-  industrialSting: {fileID: 8300000, guid: d6a34c6804e634947a456dde1982f03c, type: 3}
-  music: {fileID: 8300000, guid: 2b13c080e65e813498f8355b9dae107a, type: 3}
---- !u!4 &711280105
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 711280103}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
 --- !u!1 &739730959
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,6 +2095,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1050862129}
   - 82: {fileID: 1050862128}
+  - 114: {fileID: 1050862130}
   m_Layer: 0
   m_Name: AudioSource
   m_TagString: Untagged
@@ -2226,7 +2183,26 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
+--- !u!114 &1050862130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1050862127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89657f6673992b04191a0cab6c4e8d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pirateSting: {fileID: 8300000, guid: eec21d5a063c0924abfa65b61407154e, type: 3}
+  techSting: {fileID: 8300000, guid: ef961f50c70e2504c8085bfc67639b88, type: 3}
+  militarySting: {fileID: 8300000, guid: c06cf10f002058449bd999f158df941d, type: 3}
+  industrialSting: {fileID: 8300000, guid: d6a34c6804e634947a456dde1982f03c, type: 3}
+  music: {fileID: 8300000, guid: 2b13c080e65e813498f8355b9dae107a, type: 3}
+  soundVolume: .200000003
+  musicMaxVolume: .200000003
+  fadeTime: 5
 --- !u!1 &1180908708
 GameObject:
   m_ObjectHideFlags: 0

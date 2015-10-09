@@ -13,14 +13,23 @@ public class WinScreenMusicController : MonoBehaviour {
 	
 	public AudioClip music;
 
-	float soundVolume;
+	public float soundVolume;
+
+	public float musicMaxVolume;
+
+	float audio2volume;
+
+	AudioClip sting;
+
+	public float fadeTime;
 
 	// Use this for initialization
-	IEnumerator Start () {
+	void Start () {
+		audio2volume = musicMaxVolume;
 		audio = GetComponent<AudioSource>();
 		audio.volume = soundVolume;
 
-		AudioClip sting = pirateSting;
+		sting = pirateSting;
 
 		int winner = PlayerPrefs.GetInt ("Position1Player");
 
@@ -42,21 +51,29 @@ public class WinScreenMusicController : MonoBehaviour {
 
 		audio.clip = sting;
 		audio.Play ();
-		yield return new WaitForSeconds(audio.clip.length);
-		audio.volume = 0;
-		audio.clip = music;
-		audio.Play ();
-		fadeIn ();
+		Invoke ("fadeIn", sting.length);
+
+		
+	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (audio2volume < musicMaxVolume) {
+			audio2volume += Time.deltaTime / fadeTime;
+			audio.volume = audio2volume;
+		}
 	}
 
 	void fadeIn(){
-		if (audio.volume < 1) {
-			audio.volume += 1 *Time.deltaTime;
-		}
+		audio2volume = 0;
+		audio.volume = 0;
+		audio.clip = music;
+		
+		
+		audio.Play ();
+
 	}
+
+
 }
