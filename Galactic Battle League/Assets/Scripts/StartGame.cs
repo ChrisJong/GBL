@@ -14,6 +14,31 @@ public class StartGame : MonoBehaviour
 		Application.LoadLevel ("LevelSelectMenu");
 	}
 
+	public void BeginPyre () 
+	{
+		Application.LoadLevel ("Bckdrp_pyre");
+	}
+
+	public void BeginValk () 
+	{
+		Application.LoadLevel ("Bckdrp_Valk");
+	}
+
+	public void BeginJav () 
+	{
+		Application.LoadLevel ("Bckdrp_Jav");
+	}
+
+	public void BeginShard () 
+	{
+		Application.LoadLevel ("Bckdrp_Shard");
+	}
+
+	public void BeginBlank () 
+	{
+		Application.LoadLevel ("Bckdrp_Blank");
+	}
+
 	public void BeginMainStage () 
 	{
 		GameObject.Destroy(GameObject.Find("MenuMusic"));
