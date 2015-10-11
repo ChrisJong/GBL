@@ -617,7 +617,7 @@ public class HoverCarControl : MonoBehaviour
 			{
 				Respawn();
 			}
-			else if(timer>respawnTime - 1)
+			else if(timer>respawnTime - 1.5)
 			{
 				cameraController.RunDeath();
 			}
