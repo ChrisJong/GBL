@@ -10,7 +10,6 @@ public class ElevatorController : MonoBehaviour {
 	bool elevatorAtBottom = true;
 	bool elevatorAtTop = false;
 	bool doorsClosing = false;
-	bool doorsPaused = false;
 	public Light lt;
 	public Color grn;
 	public Color rd;
@@ -33,7 +32,7 @@ public class ElevatorController : MonoBehaviour {
 				elevatorAtTop = false;
 			}
 		}
-
+		
 		if (doorsClosing) 
 		{
 			CloseDoors();
@@ -51,21 +50,6 @@ public class ElevatorController : MonoBehaviour {
 
 	void BeginCloseDoors()
 	{
-		foreach (Transform child in transform) 
-		{
-			if (child.name == "elevatorDoor_Left")
-			{
-				Animator anim = child.GetComponent<Animator>();
-				anim.Play("elevator_Door_Left");
-			}
-			else if (child.name == "elevatorDoor_Right")
-			{
-				Animator anim = child.GetComponent<Animator>();
-				anim.Play("elevator_Door_Right");
-			}
-		}
-		
-		lt.color = rd;
 		doorsClosing = true;
 	}
 
@@ -73,39 +57,24 @@ public class ElevatorController : MonoBehaviour {
 	{
 		if (IsSafeToClose()) 
 		{
-			if (doorsPaused)
-			{
-				doorsPaused = false;
-
-				foreach (Transform child in transform) 
-				{
-					if (child.name == "elevatorDoor_Left" || child.name == "elevatorDoor_Right")
-					{
-						child.GetComponent<Animator>().enabled = true;
-					}
-				}
-			}
-		}
-		else
-		{
-			if (doorsPaused == false)
-			{
-				doorsPaused = true;
-
-				foreach (Transform child in transform) 
-				{
-					if (child.name == "elevatorDoor_Left" || child.name == "elevatorDoor_Right")
-					{
-						child.GetComponent<Animator>().enabled = false;
-					}
-				}
-			}
-		}
-
-		if (AreDoorsClosed()) 
-		{
 			doorsClosing = false;
-			doorsPaused = false;
+
+			foreach (Transform child in transform) 
+			{
+				if (child.name == "elevatorDoor_Left")
+				{
+					Animator anim = child.GetComponent<Animator>();
+					anim.Play("elevator_Door_Left");
+				}
+				else if (child.name == "elevatorDoor_Right")
+				{
+					Animator anim = child.GetComponent<Animator>();
+					anim.Play("elevator_Door_Right");
+				}
+			}
+			
+			lt.color = rd;
+
 			Invoke ("RaiseElevator", riseDelayTime);
 		}
 	}
@@ -219,25 +188,5 @@ public class ElevatorController : MonoBehaviour {
 		}
 
 		return true;
-	}
-
-	bool AreDoorsClosed()
-	{
-		foreach (Transform child in transform) 
-		{
-			if (child.name == "elevatorDoor_Left")
-			{
-				Animator anim = child.GetComponent<Animator>();
-
-				//if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 3 && anim.GetCurrentAnimatorStateInfo(0).IsName ("elevatorDoor_Left") == false)
-				if (anim.GetCurrentAnimatorStateInfo(0).IsName ("elevatorDoor_Left") == false)
-				{
-					Debug.Log ("true");
-					return true;
-				}
-			}
-		}
-
-		return false;
 	}
 }

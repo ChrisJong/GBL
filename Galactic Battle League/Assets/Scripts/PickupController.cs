@@ -53,8 +53,6 @@ public class PickupController : MonoBehaviour
 				modifiedTimeToAppear /= 2f;
 
 			nextAppearTime = Time.time + modifiedTimeToAppear + Random.Range (-timeToAppearRand, timeToAppearRand);
-
-			Debug.Log(activePlayerCount);
 		}
 	}
 
