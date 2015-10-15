@@ -2344,7 +2344,7 @@ GameObject:
   - 65: {fileID: 215139171}
   m_Layer: 0
   m_Name: TopCollider
-  m_TagString: Pickup
+  m_TagString: TriggerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3767,7 +3767,7 @@ GameObject:
   - 65: {fileID: 410629157}
   m_Layer: 0
   m_Name: TopCollider
-  m_TagString: Pickup
+  m_TagString: TriggerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4326,7 +4326,7 @@ GameObject:
   - 65: {fileID: 519834364}
   m_Layer: 0
   m_Name: TopCollider
-  m_TagString: Pickup
+  m_TagString: TriggerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7202,7 +7202,7 @@ GameObject:
   - 65: {fileID: 907217935}
   m_Layer: 0
   m_Name: TopCollider
-  m_TagString: Pickup
+  m_TagString: TriggerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7841,6 +7841,46 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 870904736}
   m_Script: {fileID: 11500000, guid: 2b676c7f4ac048a4b95c0ecd5e838a1c, type: 3}
+--- !u!1 &1078658679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1078658680}
+  - 65: {fileID: 1078658681}
+  m_Layer: 0
+  m_Name: DoorCloseCollider
+  m_TagString: TriggerCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1078658680
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1078658679}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1043843567}
+  m_RootOrder: 9
+--- !u!65 &1078658681
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1078658679}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11, y: 6, z: 7}
+  m_Center: {x: 0, y: 3, z: .5}
 --- !u!1 &1083363871
 GameObject:
   m_ObjectHideFlags: 0
@@ -8030,9 +8070,9 @@ GameObject:
   - 65: {fileID: 1104648334}
   - 65: {fileID: 1104648333}
   - 114: {fileID: 1104648332}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: BottomCollider
-  m_TagString: Pickup
+  m_TagString: TriggerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8476,6 +8516,46 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7b0280213c7f2e4099f071359c32085, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &1140540386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1140540387}
+  - 65: {fileID: 1140540388}
+  m_Layer: 0
+  m_Name: DoorCloseCollider
+  m_TagString: TriggerCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1140540387
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1140540386}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 79890196}
+  m_RootOrder: 9
+--- !u!65 &1140540388
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1140540386}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11, y: 6, z: 7}
+  m_Center: {x: 0, y: 3, z: .5}
 --- !u!95 &1150739517 stripped
 Animator:
   m_PrefabParentObject: {fileID: 9530288, guid: c2a0a939f36307a4590c57320fc4fe02,
@@ -9075,7 +9155,7 @@ GameObject:
   - 65: {fileID: 1238813184}
   m_Layer: 0
   m_Name: TopCollider
-  m_TagString: Pickup
+  m_TagString: TriggerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10968,9 +11048,9 @@ GameObject:
   - 65: {fileID: 1599526220}
   - 65: {fileID: 1599526219}
   - 114: {fileID: 1599526218}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: BottomCollider
-  m_TagString: Pickup
+  m_TagString: TriggerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12559,7 +12639,7 @@ GameObject:
   - 65: {fileID: 1929791046}
   m_Layer: 0
   m_Name: TopCollider
-  m_TagString: Pickup
+  m_TagString: TriggerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

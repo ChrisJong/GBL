@@ -97,8 +97,10 @@ public class CameraController : MonoBehaviour {
 	{
 		if (respawnCam.enabled && !respawned) 
 		{
-			if (respawnCam.ChangeRadius >= 0)
+			if (respawnCam.ChangeRadius >= -.5f)
 				respawnCam.ChangeRadius -= 1.0f * Time.deltaTime;
+			else
+				respawnCam.ChangeRadius = -.5f;
 		}
 		else if (respawnCam.enabled && respawned) 
 		{
@@ -261,7 +263,7 @@ public class CameraController : MonoBehaviour {
 
 	public void RunRespawn()
 	{
-		respawnCam.ChangeRadius = 0;
+		respawnCam.ChangeRadius = -.5f;
 		respawnCam.enabled = true;
 		spawnCamera = true;
 		respawned = true;
