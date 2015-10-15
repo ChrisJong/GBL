@@ -520,7 +520,7 @@ RectTransform:
   - {fileID: 1423896465}
   - {fileID: 1389244591}
   m_Father: {fileID: 1351908254}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2182,8 +2182,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_Father: {fileID: 1351908254}
+  m_RootOrder: 0
 --- !u!114 &1050862130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2200,8 +2200,8 @@ MonoBehaviour:
   militarySting: {fileID: 8300000, guid: c06cf10f002058449bd999f158df941d, type: 3}
   industrialSting: {fileID: 8300000, guid: d6a34c6804e634947a456dde1982f03c, type: 3}
   music: {fileID: 8300000, guid: 2b13c080e65e813498f8355b9dae107a, type: 3}
-  soundVolume: .200000003
-  musicMaxVolume: .200000003
+  soundVolume: 1
+  musicMaxVolume: 1
   fadeTime: 5
 --- !u!1 &1180908708
 GameObject:
@@ -2428,6 +2428,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1050862129}
   - {fileID: 458297002}
   m_Father: {fileID: 0}
   m_RootOrder: 0
