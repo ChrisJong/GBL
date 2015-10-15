@@ -17,7 +17,12 @@ public class MusicControlAll : MonoBehaviour {
 	public float maxVolTech = 0.6f;
 	public float maxVolMilitary = 0.8f;
 	public float maxVolIndustrial = 0.6f;
-	
+
+	void Start()
+	{
+		GameObject.Destroy (GameObject.Find ("MenuMusic"));
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (MusicVolumeController.musicActive) {

@@ -16,26 +16,26 @@ public class StartGame : MonoBehaviour
 
 	public void BeginMainStage () 
 	{
-		GameObject.Destroy(GameObject.Find("MenuMusic"));
-		Application.LoadLevel ("arena");
+		PlayerPrefs.SetString ("Level", "arena");
+		Application.LoadLevel ("LoadScreen");
 	}
 
 	public void BeginAltitude () 
 	{
-		GameObject.Destroy(GameObject.Find("MenuMusic"));
-		Application.LoadLevel ("Altitude");
+		PlayerPrefs.SetString ("Level", "Altitude");
+		Application.LoadLevel ("LoadScreen");
 	}
 
 	public void BeginCityscape ()
 	{
-		GameObject.Destroy(GameObject.Find("MenuMusic"));
-		Application.LoadLevel ("arena04");
+		PlayerPrefs.SetString ("Level", "arena04");
+		Application.LoadLevel ("LoadScreen");
 	}
 
 	public void BeginCrucible ()
 	{
-		GameObject.Destroy(GameObject.Find("MenuMusic"));
-		Application.LoadLevel ("Crucible");
+		PlayerPrefs.SetString ("Level", "Crucible");
+		Application.LoadLevel ("LoadScreen");
 	}
 
 	public void BeginMainMenu () 
