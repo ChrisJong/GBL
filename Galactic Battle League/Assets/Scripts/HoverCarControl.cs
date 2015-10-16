@@ -125,7 +125,13 @@ public class HoverCarControl : MonoBehaviour
 	private float fireTime;
 	
 	private bool holdingTrigger;
-	private float rumbleTime;
+	private float rumbleTimeHigh;
+	private float rumbleTimeMed;
+	private float rumbleTimeLow;
+
+	public float rumbleHigh;
+	public float rumbleMed;
+	public float rumbleLow;
 	
 	public AudioClip killCheer = null;
 	
@@ -605,10 +611,13 @@ public class HoverCarControl : MonoBehaviour
 		
 		// Rumble
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
-		if (inputDevice !=null && Time.time < rumbleTime)
-		{
-			inputDevice.Vibrate(1.0f, 1.0f);
-		} else if (inputDevice != null) {
+		if (inputDevice != null && Time.time < rumbleTimeHigh) {
+			inputDevice.Vibrate (rumbleHigh, rumbleHigh);
+		} else if (inputDevice != null && Time.time < rumbleTimeMed) {
+			inputDevice.Vibrate (rumbleMed, rumbleMed);
+		} else if (inputDevice != null && Time.time < rumbleTimeLow) {
+		inputDevice.Vibrate (rumbleLow, rumbleLow);
+		}else if (inputDevice != null) {
 			inputDevice.Vibrate(0.0f, 0.0f);
 		}
 		
@@ -833,9 +842,14 @@ public class HoverCarControl : MonoBehaviour
 		cameraController.StopLowHealth ();
 	}
 	
-	void Rumble(float duration) {
-		if (rumbleTime < Time.time + duration)
-			rumbleTime = Time.time + duration;
+	void Rumble(float duration, int intensity = 2) {
+		if (rumbleTimeHigh < Time.time + duration && intensity == 2){
+			rumbleTimeHigh = Time.time + duration;
+		}else if (rumbleTimeMed < Time.time + duration && intensity == 1){
+			rumbleTimeMed = Time.time + duration;
+		}else if (rumbleTimeLow < Time.time + duration && intensity == 0){
+			rumbleTimeLow = Time.time + duration;
+		}
 	}
 	
 	void Damage(DamageData damageData) {
@@ -1034,7 +1048,9 @@ public class HoverCarControl : MonoBehaviour
 	void OnDisable()
 	{
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
-		rumbleTime = 0.0f;
+		rumbleTimeHigh = 0.0f;
+		rumbleTimeMed = 0.0f;
+		rumbleTimeLow = 0.0f;
 		if (inputDevice != null) {
 			inputDevice.Vibrate(0.0f, 0.0f);
 		}
