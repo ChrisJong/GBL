@@ -37,9 +37,20 @@ public class GameTimer : MonoBehaviour {
 
 		if (time == warningTime) {
 			AudioSource.PlayClipAtPoint(warning, Vector3.zero);
+			gameTime.color = Color.red;
 		}
+
 		if (time < countdownTime && time > 0) {
 			AudioSource.PlayClipAtPoint(countdown, Vector3.zero);
+
+			if (time % 2 == 1){
+				GetComponentInParent<Image>().sprite = Resources.Load<Sprite>("MenuTitleBarRed");
+				gameTime.color = Color.black;
+			}
+			else{
+				GetComponentInParent<Image>().sprite = Resources.Load<Sprite>("MenuTitleBar");
+				gameTime.color = Color.red;
+			}
 		}
 	}
 
