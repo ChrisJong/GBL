@@ -30,6 +30,8 @@ public class CameraController : MonoBehaviour {
 	public float rotationStiffness;
 	public float distanceStiffness;
 
+	public float safetyBuffer;
+
 	public Color tankColour;
 
 	float cameraDistanceCurrent;
@@ -203,9 +205,9 @@ public class CameraController : MonoBehaviour {
 				wantedPosition = target.TransformPoint (cameraPositionOffset + (cameraPositionNear * cameraDistanceCurrent / cameraDistanceNear));
 
 				RaycastHit hit;
-				if (Physics.Raycast(target.TransformPoint(cameraPositionOffset) , target.TransformDirection(cameraPositionNear), out hit, cameraDistanceCurrent)) {
-					wantedPosition = hit.point;
-					cameraDistanceCurrent = hit.distance;
+				if (Physics.Raycast(target.TransformPoint(cameraPositionOffset) , target.TransformDirection(cameraPositionNear), out hit, cameraDistanceCurrent + safetyBuffer)) {
+					wantedPosition = hit.point + (target.TransformPoint(cameraPositionOffset) - hit.point).normalized * safetyBuffer;
+					cameraDistanceCurrent = hit.distance - safetyBuffer;
 				} else {
 					cameraDistanceCurrent = Mathf.Lerp(cameraDistanceCurrent, cameraDistanceNear, Time.deltaTime * distanceStiffness);
 				}
@@ -215,9 +217,9 @@ public class CameraController : MonoBehaviour {
 				wantedPosition = target.TransformPoint (cameraPositionOffset + (cameraPositionFar * cameraDistanceCurrent / cameraDistanceFar));
 				
 				RaycastHit hit;
-				if (Physics.Raycast(target.TransformPoint(cameraPositionOffset), target.TransformDirection(cameraPositionFar), out hit, cameraDistanceCurrent)) {
-					wantedPosition = hit.point;
-					cameraDistanceCurrent = hit.distance;
+				if (Physics.Raycast(target.TransformPoint(cameraPositionOffset), target.TransformDirection(cameraPositionFar), out hit, cameraDistanceCurrent + safetyBuffer)) {
+					wantedPosition = hit.point + (target.TransformPoint(cameraPositionOffset) - hit.point).normalized * safetyBuffer;
+					cameraDistanceCurrent = hit.distance - safetyBuffer;
 				} else {
 					cameraDistanceCurrent = Mathf.Lerp(cameraDistanceCurrent, cameraDistanceFar, Time.deltaTime * distanceStiffness);
 				}
