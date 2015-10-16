@@ -2182,7 +2182,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: 29, z: -127}
+  m_LocalPosition: {x: 100, y: 30.2900009, z: -127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 470406}
@@ -3027,7 +3027,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185856}
   m_LocalRotation: {x: -3.09086197e-08, y: .707106709, z: -.707106829, w: -3.09086161e-08}
-  m_LocalPosition: {x: 0, y: -1000, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .25, y: 1, z: .249999985}
   m_Children: []
   m_Father: {fileID: 418014}
@@ -4148,6 +4148,8 @@ MonoBehaviour:
   deathParticle:
   - {fileID: 19835936}
   - {fileID: 19807044}
+  invincible: 0
+  invincibilityTime: 0
   maxHealth: 100
   hasRespawned: 1
   spawnAnimators:
@@ -4415,6 +4417,8 @@ MonoBehaviour:
   deathParticle:
   - {fileID: 19888172}
   - {fileID: 19847162}
+  invincible: 0
+  invincibilityTime: 0
   maxHealth: 75
   hasRespawned: 1
   spawnAnimators:
