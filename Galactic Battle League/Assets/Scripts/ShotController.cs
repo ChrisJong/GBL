@@ -11,6 +11,8 @@ public class ShotController : MonoBehaviour
 	public int playerNumber;
 	private ParticleSystem smoke;
 	public Vector3 startPoint;
+	private HoverCarControl parentTank;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -22,7 +24,11 @@ public class ShotController : MonoBehaviour
 	{
 		GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed;
 	}
-	
+
+	public void SetTank (HoverCarControl tank)
+	{
+		parentTank = tank;
+	}
 	void OnTriggerEnter (Collider other)
 	{
 		if (other.tag != "Player" && other.tag != "Pickup" && other.tag != "TriggerCollider") 
@@ -43,4 +49,11 @@ public class ShotController : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
+
+	public void Hit(int playerNumber)
+	{
+		if (parentTank)
+			parentTank.ShowHitMarker (playerNumber);
+	}
+
 }

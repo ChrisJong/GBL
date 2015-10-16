@@ -32,7 +32,7 @@ public class HoverCarControl : MonoBehaviour
 	
 	public float m_turnStrength = 10f;
 	float m_currTurn = 0.0f;
-
+	
 	public float m_aimStrength = 10f;
 	float m_currAim = 0.0f;
 	
@@ -53,13 +53,13 @@ public class HoverCarControl : MonoBehaviour
 	
 	public GameObject sparkParticle;
 	public AudioClip sfxBump;
-
+	
 	public AudioClip laserHitSound;
 	public float laserHitVolume;
-
+	
 	public AudioClip dashSound;
 	public float dashVolume;
-
+	
 	public ParticleSystem damage33;
 	public ParticleSystem damage66;
 	public ParticleSystem[] hoverParticles;
@@ -76,8 +76,8 @@ public class HoverCarControl : MonoBehaviour
 	public ParticleSystem[] deathParticle;
 	private double spawnActiveTimer;
 	private float respawnTime = 4.0f;
-
-
+	
+	
 	// Pickup variables
 	private PickupController pickupController;
 	private bool damageIncreased = false;
@@ -90,7 +90,7 @@ public class HoverCarControl : MonoBehaviour
 	private float signalJammedTime;
 	private float speedBoostedTime;
 	private float unlimitedEnergyTime;
-
+	
 	private GameObject respawnMessage;
 	
 	private float tempHoverForce;
@@ -123,28 +123,30 @@ public class HoverCarControl : MonoBehaviour
 	private float prevError = 0.0f;
 	private float changeError = 0.0f;
 	private float fireTime;
-
+	
 	private bool holdingTrigger;
 	private float rumbleTime;
 	
 	public AudioClip killCheer = null;
-
+	
 	public GameObject laserBeam = null;
-
+	
 	private bool abilityActive = false;
 	public float movingHoverPitch;
 	public AudioSource hoverSound;
-
+	
 	private string fileName;
 	private StreamWriter trackingFile;
 	private float damageSinceLastPrint;
-
+	
 	private GameObject crosshairCentre;
 	private GameObject[] crosshairs;
-
+	private GameObject crosshairHit;
+	private float crosshairHitDisappearTime = 0.0f;
+	
 	public Vector3 centerOfMass = Vector3.zero;
 	public Vector3 inertiaTensor = new Vector3(1, 100, 1);
-
+	
 	private CameraController cameraController;
 	
 	void Start()
@@ -165,27 +167,29 @@ public class HoverCarControl : MonoBehaviour
 			pickupController = GameObject.Find("PickupLocations").GetComponent<PickupController>();
 		}
 		crosshairCentre = GameObject.Find("P" + playerNumber + "_Crosshair");
+		crosshairHit = GameObject.Find("P" + playerNumber + "_CrosshairHitMarker");
+		crosshairHit.GetComponent<Image> ().enabled = false;
 		crosshairs = new GameObject[4];
 		crosshairs[0] = GameObject.Find("P" + playerNumber + "_CrosshairTL");
 		crosshairs[1] = GameObject.Find("P" + playerNumber + "_CrosshairTR");
 		crosshairs[2] = GameObject.Find("P" + playerNumber + "_CrosshairBL");
 		crosshairs[3] = GameObject.Find("P" + playerNumber + "_CrosshairBR");
-
+		
 		cameraController = GameObject.Find ("Camera" + playerNumber).GetComponent<CameraController> ();
 		crosshairCentre.GetComponent<Image> ().enabled = false;
 		foreach(GameObject crosshair in crosshairs)
 		{
 			crosshair.GetComponent<Image>().enabled = false;
 		}
-
+		
 		cameraController = transform.parent.GetComponentInChildren<CameraController> ();
-
+		
 		Directory.CreateDirectory("tracking");
 		fileName = "tracking\\" + DateTime.Now.ToString("ddMMyyyyHHmm") + "damage.txt";
 		trackingFile = new StreamWriter(fileName, true);
 		trackingFile.Close ();
 		damageSinceLastPrint = 0;
-
+		
 		foreach (Animator anim in spawnAnimators) 
 		{
 			anim.enabled = false;
@@ -209,13 +213,13 @@ public class HoverCarControl : MonoBehaviour
 		spawnInt = 0;
 		holdingTrigger = false;
 		nextFire = 0;
-
+		
 		if (centerOfMass != Vector3.zero)
 			m_body.centerOfMass = centerOfMass;
 		if (inertiaTensor != Vector3.zero) {
 			m_turnStrength *= inertiaTensor.y;
 			m_aimStrength *= inertiaTensor.x;
-
+			
 			inertiaTensor.x *= m_body.inertiaTensor.x;
 			inertiaTensor.y *= m_body.inertiaTensor.y;
 			inertiaTensor.z *= m_body.inertiaTensor.z;
@@ -250,6 +254,9 @@ public class HoverCarControl : MonoBehaviour
 	
 	void Update()
 	{
+		if (crosshairHitDisappearTime < Time.time)
+			crosshairHit.GetComponent<Image> ().enabled = false;
+		
 		hoverSound.pitch = 1;
 		var inputDevice = (InputManager.Devices.Count + 1 > playerNumber) ? InputManager.Devices[playerNumber - 1] : null;
 		healthCounter.health = health;
@@ -259,9 +266,9 @@ public class HoverCarControl : MonoBehaviour
 		
 		//camera
 		if (inputDevice != null) {
-
+			
 		}
-
+		
 		if (hasRespawned && inputDevice != null) 
 		{
 			if (inputDevice.RightTrigger.IsPressed) 
@@ -271,7 +278,7 @@ public class HoverCarControl : MonoBehaviour
 					anim.enabled = true;
 					anim.Play(0, -1, 0f);
 				}
-
+				
 				cameraController.ChangeMode();
 				crosshairCentre.GetComponent<Image> ().enabled = true;
 				foreach(GameObject crosshair in crosshairs)
@@ -285,7 +292,7 @@ public class HoverCarControl : MonoBehaviour
 		}
 		else if (!deathRun && inputDevice != null && spawnActiveTimer < Time.time) 
 		{
-
+			
 			foreach(ParticleSystem particle in hoverParticles)
 				particle.startLifetime = particleLength;
 			
@@ -326,12 +333,12 @@ public class HoverCarControl : MonoBehaviour
 			float turnAxis = inputDevice.RightStickX * inputDevice.RightStickX * inputDevice.RightStickX;
 			if (Mathf.Abs (turnAxis) > m_deadZone)
 				m_currTurn = turnAxis;
-
+			
 			// up/down aiming
 			m_currAim = 0.0f;
 			float aimAxis = inputDevice.RightStickY * inputDevice.RightStickY * inputDevice.RightStickY;
 			if (Mathf.Abs(aimAxis) > m_deadZone)
-			    m_currAim = aimAxis;
+				m_currAim = aimAxis;
 			
 			
 			// Firing
@@ -366,8 +373,8 @@ public class HoverCarControl : MonoBehaviour
 				fireTime = Time.time;
 				pickupController.ActivatePlayer(playerNumber);
 			}
-
-
+			
+			
 			//Firing cancellation
 			if (!inputDevice.RightTrigger.IsPressed && weaponSound && Time.time > nextFire && tankClass == 1)
 			{
@@ -378,7 +385,7 @@ public class HoverCarControl : MonoBehaviour
 					AudioSource.PlayClipAtPoint(fireLoopEnd, shotSpawn[spawnInt].position, 1);
 				}
 			}
-
+			
 			if ((!abilityActive || abilityCharge <= 0f) && weaponSound && tankClass == 2)
 			{
 				if (weaponSound.isPlaying)
@@ -388,13 +395,13 @@ public class HoverCarControl : MonoBehaviour
 					AudioSource.PlayClipAtPoint(fireLoopEnd, shotSpawn[spawnInt].position, 1);
 				}
 			}
-
+			
 			//Ability
 			if (inputDevice.LeftTrigger.IsPressed)
 				abilityActive = true;
 			else
 				abilityActive = false;
-
+			
 			if (inputDevice.Action4.WasPressed) {
 				cameraController.ChangeMode();
 			}
@@ -408,57 +415,57 @@ public class HoverCarControl : MonoBehaviour
 				AudioSource.PlayClipAtPoint(fireLoopEnd, shotSpawn[spawnInt].position, 1);
 			}
 		}
-
+		
 		if (currError > 0 && !inputDevice.RightTrigger.IsPressed) 
 			currError -= 4.0f * Time.deltaTime;
-
+		
 		if (currError < 0)
 			currError = 0;
-
+		
 		if (crosshairs[0]) 
 		{
 			changeError = currError - prevError;
 			prevError = currError;
-
+			
 			crosshairs[0].transform.position = new Vector3(crosshairs[0].transform.position.x - changeError, crosshairs[0].transform.position.y + (changeError/2));
 			crosshairs[1].transform.position = new Vector3(crosshairs[1].transform.position.x + changeError, crosshairs[1].transform.position.y + (changeError/2));
 			crosshairs[2].transform.position = new Vector3(crosshairs[2].transform.position.x - changeError, crosshairs[2].transform.position.y - (changeError/2));
 			crosshairs[3].transform.position = new Vector3(crosshairs[3].transform.position.x + changeError, crosshairs[3].transform.position.y - (changeError/2));
-
-
+			
+			
 			foreach(GameObject crosshair in crosshairs)
 			{
 				crosshair.GetComponent<RectTransform>().localScale = new Vector3 (0.75f + (currError / 10.0f), 0.75f + (currError / 20.0f), 0.5f);
 				crosshair.GetComponent<Image>().color = new Color(1, (255-(currError*15))/255, (255-(currError*30))/255);
 			}
 		}
-
+		
 		if (damageIncreased && damageIncreaseTime < Time.time)
 			damageIncreased = false;
-
+		
 		if (invincible && invincibilityTime < Time.time)
 			invincible = false;
-
+		
 		if (speedBoosted && speedBoostedTime < Time.time)
 			speedBoosted = false;
-
+		
 		if (unlimitedEnergy)
 		{
 			abilityCharge = maxAbilityCharge;
-
+			
 			if (unlimitedEnergyTime < Time.time)
 			{
 				unlimitedEnergy = false;
 			}
 		}
-
+		
 		if (signalJammed && signalJammedTime < Time.time && health > 0)
 		{
 			signalJammed = false;
 			cameraController.StopSignalJammed ();
 		}
 	}
-
+	
 	void FixedUpdate()
 	{
 		
@@ -505,16 +512,16 @@ public class HoverCarControl : MonoBehaviour
 		{
 			m_body.AddRelativeTorque(Vector3.up * m_currTurn * m_turnStrength);
 		}
-
+		
 		// up down aiming
-
+		
 		if (m_currAim > 0) {
 			m_body.AddTorque (-transform.right * m_currAim * m_aimStrength);
 		} else if (m_currAim < 0) {
 			m_body.AddTorque (-transform.right * m_currAim * m_aimStrength);
 		}
-
-
+		
+		
 		// ability stuff
 		if (abilityActive && abilityCharge > 0f) {
 			abilityCharge -= abilityUseRate * Time.deltaTime;
@@ -543,28 +550,31 @@ public class HoverCarControl : MonoBehaviour
 					
 					laserBeam.transform.localScale = new Vector3 (laserBeam.transform.localScale.x, hit.distance / 2, laserBeam.transform.localScale.z);
 					laserBeam.transform.position = (shotSpawn [0].position + hit.point) / 2;
-
+					
 					if (!laserBeam.activeInHierarchy) {
 						laserBeam.SetActive(true);
 					}
-
+					
 					//sound
 					if (!weaponSound.isPlaying)
 						weaponSound.Play ();
-
+					
 					RaycastHit[] hits;
 					hits = Physics.RaycastAll (shotSpawn [0].position, shotSpawn [0].forward, hit.distance);
 					for (int i = 0; i < hits.Length; i++) {
 						if (hits [i].collider.tag == "Player") {
 							DamageData damageData;
 							damageData.damage = abilityPower * Time.deltaTime;
+							/*
 							if (damageIncreased)
 								damageData.damage *= pickupController.damageIncreaseValue;
 							if (hits [i].collider.GetComponent<HoverCarControl> ().invincible)
 								damageData.damage = 0;
+							*/
 							damageData.position = hits [i].point;
 							damageData.playerNumber = playerNumber;
 							damageData.distance = 0;
+							ShowHitMarker( hits[i].collider.gameObject.GetComponent<HoverCarControl>().playerNumber);
 							hits [i].collider.gameObject.SendMessage ("Damage", damageData);
 							Rumble (0.05f);
 							//AudioSource.PlayClipAtPoint(laserHitSound, transform.position, laserHitVolume);
@@ -585,7 +595,7 @@ public class HoverCarControl : MonoBehaviour
 				}
 			}
 		}
-
+		
 		if (!abilityActive && abilityCharge <= maxAbilityCharge) {
 			abilityCharge += abilityChargeRate * Time.deltaTime;
 		}
@@ -601,7 +611,7 @@ public class HoverCarControl : MonoBehaviour
 		} else if (inputDevice != null) {
 			inputDevice.Vibrate(0.0f, 0.0f);
 		}
-
+		
 		if (gameObject.transform.position.y <= -100) 
 		{
 			Death ();
@@ -622,7 +632,7 @@ public class HoverCarControl : MonoBehaviour
 				cameraController.RunDeath();
 			}
 		}
-
+		
 		if (speedBoosted)
 		{
 			m_body.AddForce(transform.forward * m_currThrust * pickupController.speedBoostedValue);
@@ -640,16 +650,17 @@ public class HoverCarControl : MonoBehaviour
 			if (shotControllerCopy.playerNumber != playerNumber)
 			{
 				AudioSource.PlayClipAtPoint(sfxHit, gameObject.transform.position, 0.25f);
+				other.SendMessage("Hit", playerNumber);
 				//Vector3 explosionPos = other.gameObject.transform.position;
 				//Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
-
+				
 				//Destroy other shot and smoke trail properly
 				ParticleSystem smoke = other.GetComponentInChildren<ParticleSystem> ();
 				smoke.enableEmission = false;
 				smoke.transform.parent=null;
 				Destroy(smoke, 3);
 				Destroy (other.gameObject);
-
+				
 				DamageData damageData;
 				damageData.damage = shotControllerCopy.damage;
 				if (invincible)
@@ -657,7 +668,7 @@ public class HoverCarControl : MonoBehaviour
 				damageData.position = other.transform.position;
 				damageData.playerNumber = shotControllerCopy.playerNumber;
 				damageData.distance = Vector3.Distance(shotControllerCopy.startPoint, other.transform.position);
-
+				
 				Damage(damageData);
 			}
 		}
@@ -673,7 +684,7 @@ public class HoverCarControl : MonoBehaviour
 		{
 			AudioSource.PlayClipAtPoint(sfxBump, this.transform.position, 2);
 		}
-
+		
 		foreach (ContactPoint contact in collision.contacts) 
 		{
 			if (contact.otherCollider.tag != "Shot" + playerNumber)
@@ -699,11 +710,26 @@ public class HoverCarControl : MonoBehaviour
 		GameObject zBullet = (GameObject)Instantiate (shot, shotSpawn[spawnInt].position, shotAngle);
 		ShotController sController = zBullet.GetComponent<ShotController> ();
 		sController.SetVelocity ();
+		sController.SetTank (this);
 		if (damageIncreased) 
 		{
 			float newDamage = sController.damage * pickupController.damageIncreaseValue;
 			sController.damage = (int)newDamage;
 		}
+	}
+	
+	public void ShowHitMarker (int otherPlayerNumber)
+	{
+		if (otherPlayerNumber == 1)
+			crosshairHit.GetComponent<Image>().color = new Color(1,0,0);
+		if (otherPlayerNumber == 2)
+			crosshairHit.GetComponent<Image>().color = new Color(0.133f ,0.3125f,1);
+		if (otherPlayerNumber == 3)
+			crosshairHit.GetComponent<Image>().color = new Color(0.309f,1,0.309f);
+		if (otherPlayerNumber == 4)
+			crosshairHit.GetComponent<Image>().color = new Color(1,1,0.176f);
+		crosshairHit.GetComponent<Image> ().enabled = true;
+		crosshairHitDisappearTime = Time.time + 0.3f;
 	}
 	
 	void Death()
@@ -725,16 +751,16 @@ public class HoverCarControl : MonoBehaviour
 		deathRun = true;
 		Vector3 point = gameObject.transform.position;
 		point.y += 4;
-
+		
 		foreach (ParticleSystem deathExplosion in deathParticle)
 			deathExplosion.Play();
-
+		
 		foreach (ParticleSystem particle in hoverParticles) 
 		{
 			particle.Stop();
 		}
 		baseParticle.Stop ();
-
+		
 		currError = 0;
 		if (crosshairs[0]) 
 		{
@@ -772,7 +798,7 @@ public class HoverCarControl : MonoBehaviour
 		{
 			deathExplosion.Stop ();
 		}
-
+		
 		gameObject.transform.position = initialPosition;
 		gameObject.transform.rotation = initialRotation;
 		m_body.velocity = Vector3.zero;
@@ -792,7 +818,7 @@ public class HoverCarControl : MonoBehaviour
 		respawnMessage.SetActive(true);
 		abilityCharge = maxAbilityCharge;
 		abilityActive = false;
-
+		
 		damageIncreased = false;
 		invincible = false;
 		speedBoosted = false;
@@ -802,7 +828,7 @@ public class HoverCarControl : MonoBehaviour
 			signalJammed = false;
 			cameraController.StopSignalJammed ();
 		}
-
+		
 		cameraController.RunRespawn();
 		cameraController.StopLowHealth ();
 	}
@@ -811,13 +837,13 @@ public class HoverCarControl : MonoBehaviour
 		if (rumbleTime < Time.time + duration)
 			rumbleTime = Time.time + duration;
 	}
-
+	
 	void Damage(DamageData damageData) {
 		if (deathRun)
 			return;
 		else {
 			ParticleSystem hitExplosion = ((GameObject)Instantiate (hitParticle, damageData.position, shotSpawn [0].rotation)).GetComponent<ParticleSystem> ();
-
+			
 			//hitExplosion.startLifetime = (float)shotControllerCopy.damage/10.0f;
 			if (damageData.damage >= 10)
 			{
@@ -847,14 +873,14 @@ public class HoverCarControl : MonoBehaviour
 			
 			//}
 			health -= damageData.damage;
-	
+			
 			if (damageData.damage >= 10)
 				Rumble (0.3f);
 			else if (damageData.damage >= 2)
 				Rumble (0.15f);
 			else if (damageData.damage > 0)
 				Rumble (0.05f);
-
+			
 			float healthRatio = health/maxHealth;
 			if (healthRatio < .66f)
 				if (damage66)
@@ -890,7 +916,7 @@ public class HoverCarControl : MonoBehaviour
 				cameraController.RunGlitch();
 		}
 	}
-
+	
 	void ProcessPickup(Collider pickup)
 	{
 		string pickupType = pickup.name;
@@ -905,7 +931,7 @@ public class HoverCarControl : MonoBehaviour
 			smoke.transform.parent=null;
 			Destroy(smoke, 3);
 			Destroy(pickup.gameObject);
-		
+			
 		}
 		else if (pickupType == "PickUps_DoubleDamage(Clone)")
 		{
@@ -942,14 +968,14 @@ public class HoverCarControl : MonoBehaviour
 			Destroy(pickup.gameObject);
 		}
 	}
-
+	
 	void ProcessHealthPickup(float healthValue)
 	{
 		health += healthValue;
 		if (health >= maxHealth)
 			health = maxHealth;
 		Rumble (0.15f);
-
+		
 		float healthRatio = health / maxHealth;
 		if (healthRatio > .66f)
 			if (damage66)
@@ -971,12 +997,12 @@ public class HoverCarControl : MonoBehaviour
 				damage33.Stop ();
 		}
 	}
-
+	
 	void ProcessSignalJammerPickup()
 	{
 		GameObject camera;
 		GameObject player;
-
+		
 		for (int i = 1; i <= 4; i++)
 		{
 			if (i != playerNumber)
@@ -984,10 +1010,10 @@ public class HoverCarControl : MonoBehaviour
 				camera = GameObject.Find ("Camera" + i);
 				CameraController otherCamController = camera.GetComponent<CameraController>();
 				otherCamController.RunSignalJammed();
-
+				
 				player = GameObject.Find ("player" + i);
 				HoverCarControl[] otherHoverControllers = player.GetComponentsInChildren<HoverCarControl>();
-
+				
 				foreach (HoverCarControl hcControl in otherHoverControllers)
 				{
 					hcControl.signalJammed = true;
@@ -996,7 +1022,7 @@ public class HoverCarControl : MonoBehaviour
 			}
 		}
 	}
-
+	
 	void OnEnable()
 	{
 		if (initialised) {
