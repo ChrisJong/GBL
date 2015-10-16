@@ -53,7 +53,6 @@ public class WinScreenMusicController : MonoBehaviour {
 			audio2volume += Time.deltaTime / fadeTime;
 			audio.volume = audio2volume;
 		}
-		Debug.Log (Time.time.ToString ());
 	}
 
 	void fadeIn(){
