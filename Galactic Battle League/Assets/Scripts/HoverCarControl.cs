@@ -81,12 +81,12 @@ public class HoverCarControl : MonoBehaviour
 	// Pickup variables
 	private PickupController pickupController;
 	private bool damageIncreased = false;
-	private bool invincible = false;
+	public bool invincible = false;
 	private bool signalJammed = false;
 	private bool speedBoosted = false;
 	private bool unlimitedEnergy = false;
 	private float damageIncreaseTime;
-	private float invincibilityTime;
+	public float invincibilityTime;
 	private float signalJammedTime;
 	private float speedBoostedTime;
 	private float unlimitedEnergyTime;

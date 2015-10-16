@@ -21,6 +21,8 @@ public class UIController : MonoBehaviour
 	public GameObject[] killedMessage;
 	public GameObject[] killMessage;
 	public GameObject[] pickupMessage;
+	public GameObject[] timeExpiredMessage;
+	public GameObject[] players;
 	
 	public Color pyreReqColour = player1Colour;
 	public Color valkTechColour = player2Colour;
@@ -138,12 +140,33 @@ public class UIController : MonoBehaviour
 
 	public void GameOver()
 	{
+		foreach (GameObject player in players)
+		{
+			HoverCarControl[] hoverControllers = player.GetComponentsInChildren<HoverCarControl>();
+			
+			foreach (HoverCarControl hcControl in hoverControllers)
+			{
+				hcControl.invincible = true;
+				hcControl.invincibilityTime = Time.time + 20;
+			}
+		}
+		
+		foreach (GameObject msg in timeExpiredMessage) 
+		{
+			msg.SetActive(true);
+		}
+
 		DetermineRankings ();
 
 		trackingFile = new StreamWriter (fileName, true);
 		trackingFile.WriteLine("Winner: " + PlayerPrefs.GetInt ("Position1Player"));
 		trackingFile.Close ();
-		Application.LoadLevel("WinScoreboard");
+		Invoke ("LoadWinScreen", 5);
+	}
+
+	void LoadWinScreen()
+	{
+		Application.LoadLevel("WinScreen");
 	}
 
 	public void DetermineRankings()

@@ -52,5 +52,10 @@ public class StartGame : MonoBehaviour
 	{
 		Application.LoadLevel ("WinScreen");
 	}
+
+	public void BeginWinScoreboard()
+	{
+		Application.LoadLevel ("WinScoreboard");
+	}
 }
 
