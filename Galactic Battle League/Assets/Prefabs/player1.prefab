@@ -3504,7 +3504,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2c82ac60056fc7c46beb053e093f12fe, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3e0066ad220ef8b459d218fb4d54fcde, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -4316,13 +4316,16 @@ MonoBehaviour:
   - {fileID: 19882242}
   - {fileID: 19862056}
   fireRate: .100000001
-  sfxFire: {fileID: 8300000, guid: d1eaf090483e4f745b1f5d87dad22fad, type: 3}
-  fireLoopEnd: {fileID: 8300000, guid: d2bf6237087f7bd4aa9d1297c2165647, type: 3}
+  sfxFire: {fileID: 8300000, guid: e5702e63cd879e842a5cf674568ae3e7, type: 3}
+  fireLoopEnd: {fileID: 8300000, guid: ae904d4540a9dd940af41ddf11e10087, type: 3}
   weaponSound: {fileID: 8215132}
   tankVelocity: {x: 0, y: 0, z: 0}
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
   explosionPower: 150000
+  rumbleHigh: 0
+  rumbleMed: 0
+  rumbleLow: 0
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
   laserBeam: {fileID: 0}
   movingHoverPitch: 1.10000002
@@ -4633,6 +4636,9 @@ MonoBehaviour:
   sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
   explosionRadius: 4
   explosionPower: 1e+07
+  rumbleHigh: 0
+  rumbleMed: 0
+  rumbleLow: 0
   killCheer: {fileID: 8300000, guid: 07a530219a1af2b48bc1fa9e9228eb3d, type: 3}
   laserBeam: {fileID: 137860}
   movingHoverPitch: 1.125
@@ -81282,11 +81288,11 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: ddd1a50219e677d418cfa587ae2b5dff, type: 3}
+      objectReference: {fileID: 8300000, guid: 3e0066ad220ef8b459d218fb4d54fcde, type: 3}
     - target: {fileID: 0}
       propertyPath: fireLoopEnd
       value: 
-      objectReference: {fileID: 8300000, guid: 994fb3b3d70bd5e4ebbe8559ae568986, type: 3}
+      objectReference: {fileID: 8300000, guid: ae904d4540a9dd940af41ddf11e10087, type: 3}
     - target: {fileID: 0}
       propertyPath: dashSound
       value: 
@@ -81299,6 +81305,10 @@ Prefab:
       propertyPath: m_CustomSkybox
       value: 
       objectReference: {fileID: 2100000, guid: b7bc589dbc06ff14ab2456cf37fd4440, type: 2}
+    - target: {fileID: 0}
+      propertyPath: sfxFire
+      value: 
+      objectReference: {fileID: 8300000, guid: e5702e63cd879e842a5cf674568ae3e7, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 195642}
