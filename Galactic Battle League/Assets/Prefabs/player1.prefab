@@ -4245,7 +4245,7 @@ MonoBehaviour:
   lookOffsetFar: {x: 0, y: .5, z: 3}
   cameraPositionSpawn: {x: -4.19999981, y: 1, z: 4}
   lookOffsetSpawn: {x: 0, y: .25, z: 0}
-  cameraPositionFirstPersonLight: {x: 0, y: 1.01999998, z: -.850000024}
+  cameraPositionFirstPersonLight: {x: 0, y: .699999988, z: 0}
   cameraPositionFirstPersonHeavy: {x: 0, y: 1.45000005, z: .100000001}
   stiffness: 30
   rotationStiffness: 100
@@ -81309,6 +81309,14 @@ Prefab:
       propertyPath: sfxFire
       value: 
       objectReference: {fileID: 8300000, guid: e5702e63cd879e842a5cf674568ae3e7, type: 3}
+    - target: {fileID: 0}
+      propertyPath: cameraPositionFirstPersonLight.y
+      value: .699999988
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cameraPositionFirstPersonLight.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 195642}
