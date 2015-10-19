@@ -2062,7 +2062,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 20
 --- !u!1001 &256388083
 Prefab:
   m_ObjectHideFlags: 0
@@ -2576,11 +2576,6 @@ Transform:
   - {fileID: 332342459}
   m_Father: {fileID: 1083363872}
   m_RootOrder: 1
---- !u!95 &353782460 stripped
-Animator:
-  m_PrefabParentObject: {fileID: 9566914, guid: 0424a9bf4c8a6674a9b4ad8d9844e327,
-    type: 2}
-  m_PrefabInternal: {fileID: 256388083}
 --- !u!1 &370489030
 GameObject:
   m_ObjectHideFlags: 0
@@ -2802,7 +2797,7 @@ Transform:
   m_Children:
   - {fileID: 1229009614}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
 --- !u!1 &417860264
 GameObject:
   m_ObjectHideFlags: 0
@@ -3318,6 +3313,11 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300002, guid: 6a8ebfa3351ed04478f167c6b622596e, type: 3}
+--- !u!95 &544202181 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9548514, guid: 3f127336c42191146b4ae28384bf9e19,
+    type: 2}
+  m_PrefabInternal: {fileID: 634571010}
 --- !u!1 &550085028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3378,6 +3378,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1469607183}
   m_RootOrder: 0
+--- !u!95 &556959072 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9506542, guid: 3f127336c42191146b4ae28384bf9e19,
+    type: 2}
+  m_PrefabInternal: {fileID: 634571010}
 --- !u!1 &577896934
 GameObject:
   m_ObjectHideFlags: 0
@@ -3722,6 +3727,10 @@ Prefab:
     - target: {fileID: 191586, guid: 3f127336c42191146b4ae28384bf9e19, type: 2}
       propertyPath: m_Name
       value: RespawnHangar_Industrial
+      objectReference: {fileID: 0}
+    - target: {fileID: 9506542, guid: 3f127336c42191146b4ae28384bf9e19, type: 2}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f127336c42191146b4ae28384bf9e19, type: 2}
@@ -5328,11 +5337,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1743948743}
   m_RootOrder: 28
---- !u!95 &897344754 stripped
-Animator:
-  m_PrefabParentObject: {fileID: 9566912, guid: 0424a9bf4c8a6674a9b4ad8d9844e327,
-    type: 2}
-  m_PrefabInternal: {fileID: 256388083}
 --- !u!1 &899233191
 GameObject:
   m_ObjectHideFlags: 0
@@ -5572,7 +5576,7 @@ Transform:
   - {fileID: 1495630199}
   - {fileID: 2117919835}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
 --- !u!114 &994684784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6598,11 +6602,11 @@ Prefab:
     - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: spawnAnimators.Array.data[1]
       value: 
-      objectReference: {fileID: 353782460}
+      objectReference: {fileID: 544202181}
     - target: {fileID: 11461128, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: spawnAnimators.Array.data[2]
       value: 
-      objectReference: {fileID: 897344754}
+      objectReference: {fileID: 556959072}
     - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: spawnAnimators.Array.data[0]
       value: 
@@ -6610,11 +6614,11 @@ Prefab:
     - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: spawnAnimators.Array.data[1]
       value: 
-      objectReference: {fileID: 353782460}
+      objectReference: {fileID: 544202181}
     - target: {fileID: 11417996, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: spawnAnimators.Array.data[2]
       value: 
-      objectReference: {fileID: 897344754}
+      objectReference: {fileID: 556959072}
     - target: {fileID: 117446, guid: 77192545805124c43902ecc06c78608f, type: 2}
       propertyPath: m_Layer
       value: 0
