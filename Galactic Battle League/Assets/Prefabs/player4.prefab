@@ -4132,7 +4132,7 @@ MonoBehaviour:
   playerNumber: 4
   tankClass: 2
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
-  sfxBump: {fileID: 8300000, guid: 3d2e4b7cec6a54d4c9b97cb29301c076, type: 3}
+  sfxBump: {fileID: 8300000, guid: 635bd1c8746c2fc46b6808faac6d350c, type: 3}
   laserHitSound: {fileID: 0}
   laserHitVolume: 0
   dashSound: {fileID: 0}
@@ -4405,7 +4405,7 @@ MonoBehaviour:
   playerNumber: 4
   tankClass: 1
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
-  sfxBump: {fileID: 8300000, guid: 3d2e4b7cec6a54d4c9b97cb29301c076, type: 3}
+  sfxBump: {fileID: 8300000, guid: 804b25b04a6c25c419efe1a70340a71f, type: 3}
   laserHitSound: {fileID: 0}
   laserHitVolume: 0
   dashSound: {fileID: 8300000, guid: c44d2b8760fc52145a0f59ab616dde5c, type: 3}
@@ -81278,6 +81278,10 @@ Prefab:
       propertyPath: cameraPositionFirstPersonHeavy.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sfxBump
+      value: 
+      objectReference: {fileID: 8300000, guid: 804b25b04a6c25c419efe1a70340a71f, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 118016}
