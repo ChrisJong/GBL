@@ -35,6 +35,7 @@ public class PickupController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		/*
 		if (nextAppearTime < Time.time) 
 		{
 			Transform podium = SelectRandomEmptyPodium();
@@ -54,6 +55,7 @@ public class PickupController : MonoBehaviour
 
 			nextAppearTime = Time.time + modifiedTimeToAppear + Random.Range (-timeToAppearRand, timeToAppearRand);
 		}
+		*/
 	}
 
 	Transform SelectRandomEmptyPodium()
