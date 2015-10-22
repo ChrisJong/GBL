@@ -6,8 +6,6 @@ public class PickupController : MonoBehaviour
 {
 	public float timeToAppearInit, timeToAppearAvg, timeToAppearRand;
 	private float nextAppearTime;
-	private int activePlayerCount;
-	private bool[] activePlayers;
 
 	public float healthLargeWeighting;
 	public float healthSmallWeighting;
@@ -29,7 +27,6 @@ public class PickupController : MonoBehaviour
 	void Start () 
 	{
 		nextAppearTime = timeToAppearInit + Time.time;
-		activePlayers = new bool[4];
 	}
 	
 	// Update is called once per frame
@@ -121,14 +118,5 @@ public class PickupController : MonoBehaviour
 		}
 
 		return pickupType;
-	}
-
-	public void ActivatePlayer(int playerNumber)
-	{
-		if (activePlayers [playerNumber - 1] == false) 
-		{
-			activePlayers [playerNumber - 1] = true;
-			activePlayerCount++;
-		}
 	}
 }
