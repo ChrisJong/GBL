@@ -376,7 +376,6 @@ public class HoverCarControl : MonoBehaviour
 				if (spawnInt >= shotSpawn.Length)
 					spawnInt = 0;
 				fireTime = Time.time;
-				pickupController.ActivatePlayer(playerNumber);
 			}
 			
 			

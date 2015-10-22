@@ -227,6 +227,13 @@ public class CameraController : MonoBehaviour {
 				lookPosition = target.TransformPoint (cameraPositionOffset + lookOffsetFar);				
 			}
 
+			RaycastHit backHit;
+			if (Physics.Linecast((wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized * 5 + target.TransformPoint(cameraPositionOffset), transform.position, out backHit)) {
+				transform.position = (wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized + backHit.point;
+				wantedPosition = (wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized + backHit.point;
+				cameraDistanceCurrent = (target.TransformPoint(cameraPositionOffset) - transform.position).magnitude;
+			}
+
 			transform.position = Vector3.Lerp (transform.position, wantedPosition, Time.deltaTime * stiffness);
 			Quaternion wantedRotation = Quaternion.LookRotation (lookPosition - transform.position, Vector3.up);
 			transform.rotation = Quaternion.Slerp (transform.rotation, wantedRotation, Time.deltaTime * rotationStiffness);
