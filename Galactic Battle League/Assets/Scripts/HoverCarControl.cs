@@ -355,12 +355,12 @@ public class HoverCarControl : MonoBehaviour
 				nextFire = Time.time + fireRate;
 				if (tankClass == 1)
 				{
-					Rumble(0.15f);
+					Rumble(0.15f, 0);
 					cameraController.RunQuake(currError/700.0f);
 				}
 				else
 				{
-					Rumble (0.3f);
+					Rumble (0.3f, 2);
 					cameraController.RunQuake(0.015f);
 					cameraController.RunShockwave(shotSpawn[spawnInt].position);
 				}
@@ -582,7 +582,7 @@ public class HoverCarControl : MonoBehaviour
 							damageData.distance = 0;
 							ShowHitMarker( hits[i].collider.gameObject.GetComponent<HoverCarControl>().playerNumber);
 							hits [i].collider.gameObject.SendMessage ("Damage", damageData);
-							Rumble (0.05f);
+							Rumble (0.05f, 1);
 							//AudioSource.PlayClipAtPoint(laserHitSound, transform.position, laserHitVolume);
 						}
 					}
@@ -700,7 +700,7 @@ public class HoverCarControl : MonoBehaviour
 			{
 				ParticleEmitter sparks = ((GameObject)Instantiate(sparkParticle, contact.point, shotSpawn[0].rotation)).GetComponent<ParticleEmitter>();
 				sparks.Emit();
-				Rumble(0.1f);
+				Rumble(0.1f, 1);
 			}
 		}
 	}
@@ -862,20 +862,20 @@ public class HoverCarControl : MonoBehaviour
 			if (damageData.damage >= 10)
 			{
 				hitExplosion.startSize = 6;
-				Rumble (0.3f);
+				Rumble (0.3f,2);
 				cameraController.RunQuake(0.015f);
 			}
 			else if (damageData.damage >=2)
 			{
 				hitExplosion.startSize = 3;
-				Rumble (0.15f);
+				Rumble (0.15f,1);
 				cameraController.RunQuake(0.008f);
 			}
 			else 
 			{
 				hitExplosion.startSize = 1;
 				Destroy(hitExplosion.transform.GetChild(0).gameObject);
-				Rumble (0.05f);
+				Rumble (0.05f,0);
 				cameraController.RunQuake(0.005f);
 			}
 			
@@ -889,11 +889,11 @@ public class HoverCarControl : MonoBehaviour
 			health -= damageData.damage;
 			
 			if (damageData.damage >= 10)
-				Rumble (0.3f);
+				Rumble (0.3f, 2);
 			else if (damageData.damage >= 2)
-				Rumble (0.15f);
+				Rumble (0.15f,1);
 			else if (damageData.damage > 0)
-				Rumble (0.05f);
+				Rumble (0.05f,0);
 			
 			float healthRatio = health/maxHealth;
 			if (healthRatio < .66f)
@@ -988,7 +988,7 @@ public class HoverCarControl : MonoBehaviour
 		health += healthValue;
 		if (health >= maxHealth)
 			health = maxHealth;
-		Rumble (0.15f);
+		Rumble (0.15f,0);
 		
 		float healthRatio = health / maxHealth;
 		if (healthRatio > .66f)
