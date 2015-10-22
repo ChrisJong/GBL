@@ -57,8 +57,7 @@ public class HoverCarControl : MonoBehaviour
 	public AudioClip laserHitSound;
 	public float laserHitVolume;
 	
-	public AudioClip dashSound;
-	public float dashVolume;
+	public AudioSource dashSound;
 	
 	public ParticleSystem damage33;
 	public ParticleSystem damage66;
@@ -536,7 +535,8 @@ public class HoverCarControl : MonoBehaviour
 				//Boost ability
 				m_body.AddForce (transform.forward * m_currThrust * abilityPower);
 				m_body.AddForce (transform.right * m_currSideThrust * abilityPower);
-				AudioSource.PlayClipAtPoint (dashSound, transform.position, dashVolume);
+				if (!dashSound.isPlaying)
+					dashSound.Play();
 				cameraController.RunQuake (0.01f);
 				foreach (ParticleSystem particle in hoverParticles) {
 					particle.startLifetime = particleLength * 4;

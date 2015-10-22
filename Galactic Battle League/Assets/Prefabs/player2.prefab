@@ -1209,6 +1209,7 @@ GameObject:
   - 65: {fileID: 6565754}
   - 82: {fileID: 8229540}
   - 82: {fileID: 8232732}
+  - 82: {fileID: 8288098}
   m_Layer: 0
   m_Name: Hover Car Light
   m_TagString: Player
@@ -2437,7 +2438,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: 30.2900009, z: -127}
+  m_LocalPosition: {x: -100, y: 16.5, z: -90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 454756}
@@ -3769,6 +3770,75 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!82 &8288098
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165756}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c44d2b8760fc52145a0f59ab616dde5c, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!92 &9212588
 Behaviour:
   m_ObjectHideFlags: 1
@@ -4231,7 +4301,6 @@ MonoBehaviour:
   laserHitSound: {fileID: 0}
   laserHitVolume: 0
   dashSound: {fileID: 0}
-  dashVolume: 0
   damage33: {fileID: 19808866}
   damage66: {fileID: 19883218}
   hoverParticles:
@@ -4349,8 +4418,7 @@ MonoBehaviour:
   sfxBump: {fileID: 8300000, guid: 804b25b04a6c25c419efe1a70340a71f, type: 3}
   laserHitSound: {fileID: 0}
   laserHitVolume: 0
-  dashSound: {fileID: 8300000, guid: c44d2b8760fc52145a0f59ab616dde5c, type: 3}
-  dashVolume: .100000001
+  dashSound: {fileID: 8288098}
   damage33: {fileID: 19824050}
   damage66: {fileID: 19824626}
   hoverParticles:
