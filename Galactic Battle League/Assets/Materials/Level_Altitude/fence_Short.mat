@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: fence_Short
   m_Shader: {fileID: 4800000, guid: d6a8acbf22ad87b468b8f2b8aa8ec97e, type: 3}
-  m_ShaderKeywords: OUTLINE_BLENDING TCP2_SPEC TCP2_ZSMOOTH_ON
+  m_ShaderKeywords: OUTLINE_BLENDING TCP2_SPEC_TOON TCP2_ZSMOOTH_ON
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -101,7 +101,7 @@ Material:
       data:
         first:
           name: _Shininess
-        second: .5
+        second: .300000012
       data:
         first:
           name: _Parallax
@@ -177,7 +177,7 @@ Material:
       data:
         first:
           name: _SpecSmooth
-        second: 0
+        second: .5
     m_Colors:
       data:
         first:
@@ -186,7 +186,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .183823526, g: .183823526, b: .183823526, a: 1}
+        second: {r: .0980392173, g: .0980392173, b: .0980392173, a: 1}
       data:
         first:
           name: _SpecColor
@@ -198,7 +198,7 @@ Material:
       data:
         first:
           name: _HColor
-        second: {r: .757352948, g: .757352948, b: .757352948, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _SColor

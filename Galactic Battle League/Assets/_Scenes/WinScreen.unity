@@ -2094,8 +2094,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1050862129}
-  - 82: {fileID: 1050862128}
   - 114: {fileID: 1050862130}
+  - 82: {fileID: 1050862128}
   m_Layer: 0
   m_Name: AudioSource
   m_TagString: Untagged
@@ -2179,7 +2179,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1050862127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2200,8 +2200,8 @@ MonoBehaviour:
   militarySting: {fileID: 8300000, guid: c06cf10f002058449bd999f158df941d, type: 3}
   industrialSting: {fileID: 8300000, guid: d6a34c6804e634947a456dde1982f03c, type: 3}
   music: {fileID: 8300000, guid: 2b13c080e65e813498f8355b9dae107a, type: 3}
-  soundVolume: .200000003
-  musicMaxVolume: .200000003
+  soundVolume: 1
+  musicMaxVolume: 1
   fadeTime: 5
 --- !u!1 &1180908708
 GameObject:
@@ -2641,7 +2641,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1468229748}
-        m_MethodName: BeginMainMenu
+        m_MethodName: BeginWinScoreboard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4007,7 +4007,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PLAY AGAIN
+  m_Text: CONTINUE
 --- !u!222 &1675076142
 CanvasRenderer:
   m_ObjectHideFlags: 0

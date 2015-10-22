@@ -9,7 +9,13 @@ public class MusicVolumeController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		music = GetComponent<AudioSource>();		
+		music = GetComponent<AudioSource>();
+		WinScreenMusicController winScreenMusic = GameObject.FindObjectOfType<WinScreenMusicController> ();
+
+		if (winScreenMusic != null) {
+			winScreenMusic.StopMusic();
+			Destroy (winScreenMusic);
+		}
 	}
 	
 	// Update is called once per frame
