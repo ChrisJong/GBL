@@ -37,9 +37,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2125170961}
---- !u!127 &3
-LevelGameManager:
-  m_ObjectHideFlags: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -68,6 +65,7 @@ LightmapSettings:
     m_TextureCompression: 0
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
+    m_ReflectionCompression: 2
   m_LightmapSnapshot: {fileID: 112000000, guid: 3beb65fa0888e9c4193ea298157c3800,
     type: 2}
   m_RuntimeCPUUsage: 25
@@ -1142,6 +1140,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -4168,6 +4167,22 @@ Prefab:
       propertyPath: m_ScaleInLightmap
       value: .400000006
       objectReference: {fileID: 0}
+    - target: {fileID: 10826900, guid: 7638f4264ec94354ca68ac328123f71a, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10876090, guid: 7638f4264ec94354ca68ac328123f71a, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10894634, guid: 7638f4264ec94354ca68ac328123f71a, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10869690, guid: 7638f4264ec94354ca68ac328123f71a, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7638f4264ec94354ca68ac328123f71a, type: 2}
   m_IsPrefabParent: 0
@@ -4310,6 +4325,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -7976,6 +7992,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -8477,6 +8494,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -8635,6 +8653,22 @@ Prefab:
     - target: {fileID: 2306390, guid: 3f127336c42191146b4ae28384bf9e19, type: 2}
       propertyPath: m_ScaleInLightmap
       value: .400000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 10815060, guid: 3f127336c42191146b4ae28384bf9e19, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10836058, guid: 3f127336c42191146b4ae28384bf9e19, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10856220, guid: 3f127336c42191146b4ae28384bf9e19, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10844124, guid: 3f127336c42191146b4ae28384bf9e19, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f127336c42191146b4ae28384bf9e19, type: 2}
@@ -10878,7 +10912,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -12802,6 +12836,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -14717,6 +14752,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -16417,6 +16453,22 @@ Prefab:
       propertyPath: m_ScaleInLightmap
       value: .400000006
       objectReference: {fileID: 0}
+    - target: {fileID: 10837686, guid: 2dd76c78ac7bf1e4882a655106136a91, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10891902, guid: 2dd76c78ac7bf1e4882a655106136a91, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10810850, guid: 2dd76c78ac7bf1e4882a655106136a91, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10853972, guid: 2dd76c78ac7bf1e4882a655106136a91, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd76c78ac7bf1e4882a655106136a91, type: 2}
   m_IsPrefabParent: 0
@@ -17133,6 +17185,22 @@ Prefab:
       propertyPath: m_ScaleInLightmap
       value: .400000006
       objectReference: {fileID: 0}
+    - target: {fileID: 10816808, guid: f3760c05715d2b14cad2c2fc107e97d8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10837848, guid: f3760c05715d2b14cad2c2fc107e97d8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10847314, guid: f3760c05715d2b14cad2c2fc107e97d8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10871190, guid: f3760c05715d2b14cad2c2fc107e97d8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3760c05715d2b14cad2c2fc107e97d8, type: 2}
   m_IsPrefabParent: 0
@@ -17654,6 +17722,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -18245,7 +18314,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_BounceIntensity: .699999988
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -18305,7 +18374,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
