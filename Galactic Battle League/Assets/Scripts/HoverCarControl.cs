@@ -573,9 +573,10 @@ public class HoverCarControl : MonoBehaviour
 							/*
 							if (damageIncreased)
 								damageData.damage *= pickupController.damageIncreaseValue;
+							*/
 							if (hits [i].collider.GetComponent<HoverCarControl> ().invincible)
 								damageData.damage = 0;
-							*/
+
 							damageData.position = hits [i].point;
 							damageData.playerNumber = playerNumber;
 							damageData.distance = 0;
