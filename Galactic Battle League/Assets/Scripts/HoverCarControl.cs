@@ -77,18 +77,9 @@ public class HoverCarControl : MonoBehaviour
 	
 	
 	// Pickup variables
-	private PickupController pickupController;
-	private bool damageIncreased = false;
 	public bool invincible = false;
-	private bool signalJammed = false;
-	private bool speedBoosted = false;
-	private bool unlimitedEnergy = false;
-	private float damageIncreaseTime;
 	public float invincibilityTime;
-	private float signalJammedTime;
-	private float speedBoostedTime;
-	private float unlimitedEnergyTime;
-	
+
 	private GameObject respawnMessage;
 	
 	private float tempHoverForce;
@@ -166,9 +157,6 @@ public class HoverCarControl : MonoBehaviour
 		}
 		if (respawnMessage == null) {
 			respawnMessage = GameObject.Find("P" + playerNumber + "_RESPAWN_MSG1");
-		}
-		if (pickupController == null) {
-			pickupController = GameObject.Find("PickupLocations").GetComponent<PickupController>();
 		}
 		crosshairCentre = GameObject.Find("P" + playerNumber + "_Crosshair");
 		crosshairHit = GameObject.Find("P" + playerNumber + "_CrosshairHitMarker");
@@ -442,31 +430,9 @@ public class HoverCarControl : MonoBehaviour
 				crosshair.GetComponent<Image>().color = new Color(1, (255-(currError*15))/255, (255-(currError*30))/255);
 			}
 		}
-		
-		if (damageIncreased && damageIncreaseTime < Time.time)
-			damageIncreased = false;
-		
+
 		if (invincible && invincibilityTime < Time.time)
 			invincible = false;
-		
-		if (speedBoosted && speedBoostedTime < Time.time)
-			speedBoosted = false;
-		
-		if (unlimitedEnergy)
-		{
-			abilityCharge = maxAbilityCharge;
-			
-			if (unlimitedEnergyTime < Time.time)
-			{
-				unlimitedEnergy = false;
-			}
-		}
-		
-		if (signalJammed && signalJammedTime < Time.time && health > 0)
-		{
-			signalJammed = false;
-			cameraController.StopSignalJammed ();
-		}
 	}
 	
 	void FixedUpdate()
@@ -569,10 +535,6 @@ public class HoverCarControl : MonoBehaviour
 						if (hits [i].collider.tag == "Player") {
 							DamageData damageData;
 							damageData.damage = abilityPower * Time.deltaTime;
-							/*
-							if (damageIncreased)
-								damageData.damage *= pickupController.damageIncreaseValue;
-							*/
 							if (hits [i].collider.GetComponent<HoverCarControl> ().invincible)
 								damageData.damage = 0;
 
@@ -639,12 +601,6 @@ public class HoverCarControl : MonoBehaviour
 			{
 				cameraController.RunDeath();
 			}
-		}
-		
-		if (speedBoosted)
-		{
-			m_body.AddForce(transform.forward * m_currThrust * pickupController.speedBoostedValue);
-			m_body.AddForce(transform.right * m_currSideThrust * pickupController.speedBoostedValue);
 		}
 	}
 	
@@ -719,11 +675,6 @@ public class HoverCarControl : MonoBehaviour
 		ShotController sController = zBullet.GetComponent<ShotController> ();
 		sController.SetVelocity ();
 		sController.SetTank (this);
-		if (damageIncreased) 
-		{
-			float newDamage = sController.damage * pickupController.damageIncreaseValue;
-			sController.damage = (int)newDamage;
-		}
 	}
 	
 	public void ShowHitMarker (int otherPlayerNumber)
@@ -743,7 +694,6 @@ public class HoverCarControl : MonoBehaviour
 	void Death()
 	{
 		cameraController.RunSignalJammed();
-		signalJammed = true;
 		abilityCharge = 0f;
 		tempHoverForce = m_hoverForce;
 		m_hoverForce = 0.0f;
@@ -826,17 +776,8 @@ public class HoverCarControl : MonoBehaviour
 		respawnMessage.SetActive(true);
 		abilityCharge = maxAbilityCharge;
 		abilityActive = false;
-		
-		damageIncreased = false;
 		invincible = false;
-		speedBoosted = false;
-		unlimitedEnergy = false;
-		if (signalJammed) 
-		{
-			signalJammed = false;
-			cameraController.StopSignalJammed ();
-		}
-		
+
 		cameraController.RunRespawn();
 		cameraController.StopLowHealth ();
 	}
@@ -940,46 +881,12 @@ public class HoverCarControl : MonoBehaviour
 		{
 			ProcessHealthPickup (20f);
 			uiController.PickupTaken(playerNumber, "REPAIRED");
+			pickup.GetComponent<PickupController>().podium.pickupTaken();
 			ParticleSystem smoke = pickup.GetComponentInChildren<ParticleSystem> ();
 			smoke.enableEmission = true;
 			smoke.Play();
 			smoke.transform.parent=null;
 			Destroy(smoke, 3);
-			Destroy(pickup.gameObject);
-			
-		}
-		else if (pickupType == "PickUps_DoubleDamage(Clone)")
-		{
-			damageIncreased = true;
-			damageIncreaseTime = Time.time + pickupController.damageIncreaseDuration;
-			uiController.PickupTaken(playerNumber, "2x DAMAGE");
-			Destroy(pickup.gameObject);
-		}
-		else if (pickupType == "PickUps_Shield(Clone)")
-		{
-			invincible = true;
-			invincibilityTime = Time.time + pickupController.invincibilityDuration;
-			uiController.PickupTaken(playerNumber, "SHIELD");
-			Destroy(pickup.gameObject);
-		}
-		else if (pickupType == "PickUps_Scrambler(Clone)")
-		{
-			ProcessSignalJammerPickup();
-			uiController.PickupTaken(playerNumber, "SCRAMBLER");
-			Destroy(pickup.gameObject);
-		}
-		else if (pickupType == "PickUps_Boost(Clone)")
-		{
-			speedBoosted = true;
-			speedBoostedTime = Time.time + pickupController.speedBoostedDuration;
-			uiController.PickupTaken(playerNumber, "BOOST");
-			Destroy(pickup.gameObject);
-		}
-		else if (pickupType == "PickUps_Energy(Clone)")
-		{
-			unlimitedEnergy = true;
-			unlimitedEnergyTime = Time.time + pickupController.unlimitedEnergyDuration;
-			uiController.PickupTaken(playerNumber, "ENERGY");
 			Destroy(pickup.gameObject);
 		}
 	}
@@ -1010,31 +917,6 @@ public class HoverCarControl : MonoBehaviour
 		{
 			if (damage33)
 				damage33.Stop ();
-		}
-	}
-	
-	void ProcessSignalJammerPickup()
-	{
-		GameObject camera;
-		GameObject player;
-		
-		for (int i = 1; i <= 4; i++)
-		{
-			if (i != playerNumber)
-			{
-				camera = GameObject.Find ("Camera" + i);
-				CameraController otherCamController = camera.GetComponent<CameraController>();
-				otherCamController.RunSignalJammed();
-				
-				player = GameObject.Find ("player" + i);
-				HoverCarControl[] otherHoverControllers = player.GetComponentsInChildren<HoverCarControl>();
-				
-				foreach (HoverCarControl hcControl in otherHoverControllers)
-				{
-					hcControl.signalJammed = true;
-					hcControl.signalJammedTime = Time.time + pickupController.signalJammedDuration;
-				}
-			}
 		}
 	}
 	

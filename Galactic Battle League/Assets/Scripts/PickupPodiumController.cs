@@ -26,19 +26,14 @@ public class PickupPodiumController : MonoBehaviour
 
 			currentPickup = (GameObject)Instantiate (pickupType, spawnPosition, pickupType.transform.rotation);
 			currentPickup.GetComponent<Animator>().Play(0, -1, 0f);
+			currentPickup.GetComponent<PickupController>().podium = this;
 
-			nextRespawnTime = Time.time + respawnTime;
+			nextRespawnTime = Time.time + 1000;
 		}
 	}
 
-	public void SpawnPickup(string pickupName)
+	public void pickupTaken()
 	{
-		Vector3 spawnPosition = transform.position;
-		spawnPosition.y += spawnHeight;
-
-		GameObject pickupObjectType = GameObject.Find (pickupName);
-
-		currentPickup = (GameObject)Instantiate (pickupObjectType, spawnPosition, pickupObjectType.transform.rotation);
-		currentPickup.GetComponent<Animator>().Play(0, -1, 0f);
+		nextRespawnTime = Time.time + respawnTime;
 	}
 }
