@@ -777,7 +777,7 @@ public class HoverCarControl : MonoBehaviour
 		abilityCharge = maxAbilityCharge;
 		abilityActive = false;
 		invincible = false;
-
+		cameraController.StopSignalJammed();
 		cameraController.RunRespawn();
 		cameraController.StopLowHealth ();
 	}
