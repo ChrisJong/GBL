@@ -11,7 +11,7 @@ GameObject:
   - 198: {fileID: 19803286}
   - 199: {fileID: 19903286}
   m_Layer: 0
-  m_Name: CFX3 Electricity
+  m_Name: electric arc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ GameObject:
   - 198: {fileID: 19803288}
   - 199: {fileID: 19903288}
   m_Layer: 0
-  m_Name: CFX3 Sparkles
+  m_Name: sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103286}
-  lengthInSec: 1
+  lengthInSec: .200000003
   startDelay: 0
   speed: 1
   randomSeed: 0
@@ -243,7 +243,7 @@ ParticleSystem:
         rgba: 3023874815
       maxColor:
         serializedVersion: 2
-        rgba: 3362502325
+        rgba: 3365928958
       minMaxState: 0
     startSize:
       scalar: .75
@@ -344,12 +344,12 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 0
-    cnt0: 12
-    cnt1: 12
+    cnt0: 5
+    cnt1: 5
     cnt2: 30
     cnt3: 30
     time0: 0
-    time1: .200000003
+    time1: .100000001
     time2: .300000012
     time3: 0
     m_BurstCount: 2
@@ -1078,7 +1078,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103288}
-  lengthInSec: 1
+  lengthInSec: .200000003
   startDelay: 0
   speed: 1
   randomSeed: 0
@@ -1226,10 +1226,10 @@ ParticleSystem:
         rgba: 1680735995
       maxColor:
         serializedVersion: 2
-        rgba: 4284678143
+        rgba: 4291814371
       minMaxState: 0
     startSize:
-      scalar: .25
+      scalar: .5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1244,13 +1244,13 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .666666627
+          value: .400000006
           inSlope: 0
           outSlope: 0
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-      minMaxState: 0
+      minMaxState: 3
     startRotation:
       scalar: 6.28318501
       maxCurve:
@@ -1276,7 +1276,7 @@ ParticleSystem:
       minMaxState: 3
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 100
+    maxNumParticles: 50
   ShapeModule:
     serializedVersion: 2
     enabled: 1
@@ -1332,7 +1332,7 @@ ParticleSystem:
     cnt2: 30
     cnt3: 30
     time0: 0
-    time1: .200000003
+    time1: .100000001
     time2: .300000012
     time3: 0
     m_BurstCount: 2
@@ -2196,13 +2196,13 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minColor:
         serializedVersion: 2
-        rgba: 3023874815
+        rgba: 3034416267
       maxColor:
         serializedVersion: 2
-        rgba: 4294491058
-      minMaxState: 0
+        rgba: 4294960095
+      minMaxState: 2
     startSize:
-      scalar: 2
+      scalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2217,7 +2217,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .75
+          value: .666666687
           inSlope: 0
           outSlope: 0
           tangentMode: 0
