@@ -838,9 +838,13 @@ public class HoverCarControl : MonoBehaviour
 				Rumble (0.05f,0);
 			
 			float healthRatio = health/maxHealth;
-			if (healthRatio < .66f)
+			if (healthRatio < .33f)
 				if (damage66)
+				{
+				damage66.emissionRate = (int)(1/healthRatio*20);
+				damage66.maxParticles = (int)(1/healthRatio*200);
 					damage66.Play ();
+				}
 			if (healthRatio < .5f && healthRatio > .33f)
 			{
 				//linear transparency
@@ -850,7 +854,7 @@ public class HoverCarControl : MonoBehaviour
 				float transparency =-5.882f* (healthRatio) + 2.941f;
 				cameraController.RunLowHealth(transparency);
 			}
-			if (healthRatio < .33f)
+			if (healthRatio < .66f)
 			{
 				if (damage33)
 					damage33.Play ();
@@ -899,9 +903,20 @@ public class HoverCarControl : MonoBehaviour
 		Rumble (0.15f,0);
 		
 		float healthRatio = health / maxHealth;
-		if (healthRatio > .66f)
+		if (healthRatio > .33f) 
+		{
 			if (damage66)
 				damage66.Stop ();
+		}
+		else 
+		{
+			if (damage66)
+			{
+				damage66.emissionRate = (int)(1/healthRatio*20);
+				damage66.maxParticles = (int)(1/healthRatio*200);
+				damage66.Play();
+			}
+		}
 		if (healthRatio > 0.5f)
 			cameraController.StopLowHealth ();
 		if (healthRatio < .5f && healthRatio > .33f)
@@ -913,7 +928,7 @@ public class HoverCarControl : MonoBehaviour
 			float transparency =-5.882f* (healthRatio) + 2.941f;
 			cameraController.RunLowHealth(transparency);
 		}
-		if (healthRatio > .33f)
+		if (healthRatio > .66f)
 		{
 			if (damage33)
 				damage33.Stop ();
