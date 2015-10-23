@@ -37,9 +37,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1737600234}
---- !u!127 &3
-LevelGameManager:
-  m_ObjectHideFlags: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -68,7 +65,9 @@ LightmapSettings:
     m_TextureCompression: 0
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
-  m_LightmapSnapshot: {fileID: 0}
+    m_ReflectionCompression: 2
+  m_LightmapSnapshot: {fileID: 112000001, guid: 16d23e219e81cc441967f09ea50b6bb7,
+    type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &5
 NavMeshSettings:
@@ -1562,7 +1561,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_BounceIntensity: .25
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1638,7 +1637,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_BounceIntensity: .25
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2122,6 +2121,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -2380,6 +2380,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -3454,6 +3455,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -3788,6 +3790,18 @@ Prefab:
       propertyPath: m_ScaleInLightmap
       value: .600000024
       objectReference: {fileID: 0}
+    - target: {fileID: 10828264, guid: 3f127336c42191146b4ae28384bf9e19, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10849538, guid: 3f127336c42191146b4ae28384bf9e19, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10803718, guid: 3f127336c42191146b4ae28384bf9e19, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f127336c42191146b4ae28384bf9e19, type: 2}
   m_IsPrefabParent: 0
@@ -3850,6 +3864,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -5110,6 +5125,18 @@ Prefab:
       propertyPath: m_ScaleInLightmap
       value: .600000024
       objectReference: {fileID: 0}
+    - target: {fileID: 10888982, guid: f3760c05715d2b14cad2c2fc107e97d8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10877814, guid: f3760c05715d2b14cad2c2fc107e97d8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10803778, guid: f3760c05715d2b14cad2c2fc107e97d8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3760c05715d2b14cad2c2fc107e97d8, type: 2}
   m_IsPrefabParent: 0
@@ -5235,6 +5262,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1743948743}
   m_RootOrder: 14
+--- !u!1 &853845279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 853845281}
+  - 108: {fileID: 853845280}
+  m_Layer: 0
+  m_Name: Area Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &853845280
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 853845279}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 3
+  m_Color: {r: .980730236, g: 1, b: .860294104, a: 1}
+  m_Intensity: .899999976
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 2
+  m_BounceIntensity: .5
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 250, y: 100}
+--- !u!4 &853845281
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 853845279}
+  m_LocalRotation: {x: .251975715, y: .590032756, z: -.234187514, w: .730428576}
+  m_LocalPosition: {x: -240.100006, y: 174.199997, z: -49.2999992}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
 --- !u!1 &857885202
 GameObject:
   m_ObjectHideFlags: 0
@@ -5552,7 +5639,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_BounceIntensity: .25
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -6127,6 +6214,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -6343,6 +6431,18 @@ Prefab:
     - target: {fileID: 2324006, guid: 2dd76c78ac7bf1e4882a655106136a91, type: 2}
       propertyPath: m_ScaleInLightmap
       value: .600000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 10846254, guid: 2dd76c78ac7bf1e4882a655106136a91, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10869576, guid: 2dd76c78ac7bf1e4882a655106136a91, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10817708, guid: 2dd76c78ac7bf1e4882a655106136a91, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd76c78ac7bf1e4882a655106136a91, type: 2}
@@ -7475,6 +7575,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -8117,7 +8218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1737600233
 Transform:
   m_ObjectHideFlags: 0
@@ -8146,7 +8247,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 0
     m_Resolution: -1
     m_Strength: 1
     m_Bias: .0500000007
@@ -8158,7 +8259,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_BounceIntensity: .5
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -8259,7 +8360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1764869520
 Transform:
   m_ObjectHideFlags: 0
@@ -8288,7 +8389,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_Strength: 1
     m_Bias: .0500000007
@@ -8300,7 +8401,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_BounceIntensity: .5
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -8507,6 +8608,18 @@ Prefab:
     - target: {fileID: 2390350, guid: 7638f4264ec94354ca68ac328123f71a, type: 2}
       propertyPath: m_ScaleInLightmap
       value: .600000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 10887022, guid: 7638f4264ec94354ca68ac328123f71a, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10850736, guid: 7638f4264ec94354ca68ac328123f71a, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10831630, guid: 7638f4264ec94354ca68ac328123f71a, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7638f4264ec94354ca68ac328123f71a, type: 2}
@@ -9061,6 +9174,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -9827,7 +9941,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_BounceIntensity: .25
   m_ShadowRadius: 0
   m_ShadowAngle: 0
