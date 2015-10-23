@@ -54,8 +54,7 @@ public class HoverCarControl : MonoBehaviour
 	public GameObject sparkParticle;
 	public AudioClip sfxBump;
 	
-	public AudioClip laserHitSound;
-	public float laserHitVolume;
+	public AudioSource laserHitSound;
 	
 	public AudioSource dashSound;
 	
@@ -877,6 +876,8 @@ public class HoverCarControl : MonoBehaviour
 				Destroy(hitExplosion.transform.GetChild(0).gameObject);
 				Rumble (0.05f,0);
 				cameraController.RunQuake(0.005f);
+				if(!laserHitSound.isPlaying)
+					laserHitSound.Play();
 			}
 			
 			hitExplosion.Play ();

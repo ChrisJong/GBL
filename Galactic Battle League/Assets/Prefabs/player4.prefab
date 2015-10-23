@@ -255,6 +255,7 @@ GameObject:
   - 65: {fileID: 6517994}
   - 82: {fileID: 8229374}
   - 82: {fileID: 8281576}
+  - 82: {fileID: 8292884}
   m_Layer: 0
   m_Name: Hover Car Heavy
   m_TagString: Player
@@ -1141,6 +1142,7 @@ GameObject:
   - 82: {fileID: 8299346}
   - 82: {fileID: 8239506}
   - 82: {fileID: 8297088}
+  - 82: {fileID: 8246266}
   m_Layer: 0
   m_Name: Hover Car Light
   m_TagString: Player
@@ -3632,6 +3634,75 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!82 &8246266
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161142}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 386dc878a96382e4187a57ee8cd8a947, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!82 &8281576
 AudioSource:
   m_ObjectHideFlags: 1
@@ -3646,6 +3717,75 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!82 &8292884
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118014}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 386dc878a96382e4187a57ee8cd8a947, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
   Mute: 0
   Priority: 128
   DopplerLevel: 1
@@ -4203,8 +4343,7 @@ MonoBehaviour:
   tankClass: 2
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
   sfxBump: {fileID: 8300000, guid: 635bd1c8746c2fc46b6808faac6d350c, type: 3}
-  laserHitSound: {fileID: 0}
-  laserHitVolume: 0
+  laserHitSound: {fileID: 8292884}
   dashSound: {fileID: 0}
   damage33: {fileID: 19826686}
   damage66: {fileID: 19886702}
@@ -4235,7 +4374,7 @@ MonoBehaviour:
   fireLoopEnd: {fileID: 8300000, guid: 994fb3b3d70bd5e4ebbe8559ae568986, type: 3}
   weaponSound: {fileID: 8281576}
   tankVelocity: {x: 0, y: 0, z: 0}
-  sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
+  sfxHit: {fileID: 8300000, guid: 86a0d8ae57caff5448040c334dd9beab, type: 3}
   explosionRadius: 4
   explosionPower: 1e+07
   rumbleHigh: 1
@@ -4475,8 +4614,7 @@ MonoBehaviour:
   tankClass: 1
   sparkParticle: {fileID: 100000, guid: 7a598717ded698c4dbdd57c2260fa1e1, type: 2}
   sfxBump: {fileID: 8300000, guid: 804b25b04a6c25c419efe1a70340a71f, type: 3}
-  laserHitSound: {fileID: 0}
-  laserHitVolume: 0
+  laserHitSound: {fileID: 8246266}
   dashSound: {fileID: 8297088}
   damage33: {fileID: 19823578}
   damage66: {fileID: 19869548}
@@ -4508,7 +4646,7 @@ MonoBehaviour:
   fireLoopEnd: {fileID: 8300000, guid: 6c965f09dbe57fb48ab6b64cc6b03721, type: 3}
   weaponSound: {fileID: 8239506}
   tankVelocity: {x: 0, y: 0, z: 0}
-  sfxHit: {fileID: 8300000, guid: 01acd8f77c8b32b46aaf59415f0a0d95, type: 3}
+  sfxHit: {fileID: 8300000, guid: 86a0d8ae57caff5448040c334dd9beab, type: 3}
   explosionRadius: 4
   explosionPower: 1500000
   rumbleHigh: 1
@@ -81350,6 +81488,10 @@ Prefab:
       propertyPath: sfxBump
       value: 
       objectReference: {fileID: 8300000, guid: 804b25b04a6c25c419efe1a70340a71f, type: 3}
+    - target: {fileID: 0}
+      propertyPath: sfxHit
+      value: 
+      objectReference: {fileID: 8300000, guid: 86a0d8ae57caff5448040c334dd9beab, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 118016}
