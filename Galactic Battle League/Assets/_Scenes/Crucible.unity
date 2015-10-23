@@ -37,6 +37,9 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 99966542}
+--- !u!127 &3
+LevelGameManager:
+  m_ObjectHideFlags: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -65,7 +68,6 @@ LightmapSettings:
     m_TextureCompression: 0
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
-    m_ReflectionCompression: 2
   m_LightmapSnapshot: {fileID: 0}
   m_RuntimeCPUUsage: 25
 --- !u!196 &5
@@ -109,7 +111,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 26814268}
-  - 114: {fileID: 26814269}
   m_Layer: 0
   m_Name: PickupLocations
   m_TagString: Untagged
@@ -138,34 +139,6 @@ Transform:
   - {fileID: 761036883}
   m_Father: {fileID: 0}
   m_RootOrder: 15
---- !u!114 &26814269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 26814267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c574070cc77ec0f4ea34ee12d82a5fd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToAppearInit: 15
-  timeToAppearAvg: 20
-  timeToAppearRand: 2
-  healthLargeWeighting: 100
-  healthSmallWeighting: 100
-  damageIncreaseWeighting: 0
-  invincibilityWeighting: 0
-  signalJammerWeighting: 0
-  speedBoostWeighting: 0
-  unlimitedEnergyWeighting: 0
-  damageIncreaseDuration: 5
-  invincibilityDuration: 5
-  signalJammedDuration: 5
-  speedBoostedDuration: 5
-  unlimitedEnergyDuration: 5
-  damageIncreaseValue: 2
-  speedBoostedValue: 1.20000005
 --- !u!1 &43594781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,7 +1006,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 1
-  m_Color: {r: 1, g: .860294104, b: .984584153, a: 1}
+  m_Color: {r: 1, g: .93833673, b: .860294104, a: 1}
   m_Intensity: 2.0999999
   m_Range: 10
   m_SpotAngle: 30
@@ -1698,7 +1671,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -2156,7 +2128,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -3077,7 +3048,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -4368,6 +4338,18 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 163218, guid: fa0d2dc709d2c5e429af92df7b7ce0a7, type: 2}
   m_PrefabInternal: {fileID: 814519050}
+--- !u!114 &814519052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 814519051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c574070cc77ec0f4ea34ee12d82a5fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  podium: {fileID: 0}
 --- !u!1 &827141412
 GameObject:
   m_ObjectHideFlags: 0
@@ -5070,7 +5052,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -7208,7 +7189,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
@@ -7893,7 +7873,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
 --- !u!95 &1567582871 stripped
 Animator:
   m_PrefabParentObject: {fileID: 9505222, guid: f3760c05715d2b14cad2c2fc107e97d8,
@@ -9017,7 +8997,6 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -9712,7 +9691,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 100
   DopplerLevel: 1
   MinDistance: 1
