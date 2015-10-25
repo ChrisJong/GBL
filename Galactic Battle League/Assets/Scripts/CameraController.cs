@@ -204,8 +204,9 @@ public class CameraController : MonoBehaviour {
 			if (cameraMode == CameraMode.Near) {
 				wantedPosition = target.TransformPoint (cameraPositionOffset + (cameraPositionNear * cameraDistanceCurrent / cameraDistanceNear));
 
+				var layermask = 1 << 12;
 				RaycastHit backHit;
-				if (Physics.Linecast((wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized * 3 + target.TransformPoint(cameraPositionOffset), transform.position, out backHit)) {
+				if (Physics.Linecast((wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized * 2 + target.TransformPoint(cameraPositionOffset), transform.position, out backHit)) {
 					transform.position = backHit.point;
 					wantedPosition = backHit.point;
 					cameraDistanceCurrent = (target.TransformPoint(cameraPositionOffset) - transform.position).magnitude;
@@ -223,8 +224,9 @@ public class CameraController : MonoBehaviour {
 			} else if (cameraMode == CameraMode.Far) {
 				wantedPosition = target.TransformPoint (cameraPositionOffset + (cameraPositionFar * cameraDistanceCurrent / cameraDistanceFar));
 
+				var layermask = 1 << 12;
 				RaycastHit backHit;
-				if (Physics.Linecast((wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized * 3 + target.TransformPoint(cameraPositionOffset), transform.position, out backHit)) {
+				if (Physics.Linecast((wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized * 2 + target.TransformPoint(cameraPositionOffset), transform.position, out backHit, layermask)) {
 					transform.position = (wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized + backHit.point;
 					wantedPosition = (wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized + backHit.point;
 					cameraDistanceCurrent = (target.TransformPoint(cameraPositionOffset) - transform.position).magnitude;
