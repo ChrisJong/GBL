@@ -897,7 +897,7 @@ public class HoverCarControl : MonoBehaviour
 	
 	void ProcessHealthPickup(float healthValue)
 	{
-		health += healthValue;
+		health += (int)(maxHealth*healthValue/100);
 		if (health >= maxHealth)
 			health = maxHealth;
 		Rumble (0.15f,0);
