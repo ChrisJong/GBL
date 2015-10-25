@@ -45,6 +45,8 @@ public class HoverCarControl : MonoBehaviour
 	public float abilityUseRate;
 	public float abilityPower;
 	private EnergyCounter energyCounter;
+	public ParticleSystem dashParticle;
+	private float stopDash;
 	
 	public int playerNumber; 
 	public int tankClass;
@@ -433,6 +435,29 @@ public class HoverCarControl : MonoBehaviour
 
 		if (invincible && invincibilityTime < Time.time)
 			invincible = false;
+
+		if (dashParticle) 
+		{
+			if(dashParticle.isPlaying)  
+			{
+				if(stopDash < Time.time)
+				{
+					dashParticle.Stop();
+				}
+				else
+				{
+					//Calculate correct angle of particle effect
+					Vector3 velocity = GetComponent<Rigidbody> ().velocity.normalized;
+					if (velocity.z<=0)
+						dashParticle.transform.localEulerAngles = new Vector3(-velocity.y*90, -velocity.x*90);
+					else if (-velocity.x >=0)
+						dashParticle.transform.localEulerAngles = new Vector3(-velocity.y*90, 180 - -velocity.x*90);
+					else
+						dashParticle.transform.localEulerAngles = new Vector3(-velocity.y*90, -180 - -velocity.x*90);
+				}
+			}
+		}
+
 	}
 	
 	void FixedUpdate()
@@ -499,6 +524,19 @@ public class HoverCarControl : MonoBehaviour
 				//Boost ability
 				m_body.AddForce (transform.forward * m_currThrust * abilityPower);
 				m_body.AddForce (transform.right * m_currSideThrust * abilityPower);
+
+				//Calculate correct angle of particle effect
+				Vector3 velocity = GetComponent<Rigidbody> ().velocity.normalized;
+				if (velocity.z<=0)
+					dashParticle.transform.localEulerAngles = new Vector3(-velocity.y*90, -velocity.x*90);
+				else if (-velocity.x >=0)
+					dashParticle.transform.localEulerAngles = new Vector3(-velocity.y*90, 180 - -velocity.x*90);
+				else
+					dashParticle.transform.localEulerAngles = new Vector3(-velocity.y*90, -180 - -velocity.x*90);
+
+				dashParticle.Play ();
+				stopDash = Time.time + 0.5f;
+
 				if (!dashSound.isPlaying)
 					dashSound.Play();
 				cameraController.RunQuake (0.01f);
