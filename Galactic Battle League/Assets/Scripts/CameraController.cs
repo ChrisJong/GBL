@@ -204,6 +204,13 @@ public class CameraController : MonoBehaviour {
 			if (cameraMode == CameraMode.Near) {
 				wantedPosition = target.TransformPoint (cameraPositionOffset + (cameraPositionNear * cameraDistanceCurrent / cameraDistanceNear));
 
+				RaycastHit backHit;
+				if (Physics.Linecast((wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized * 3 + target.TransformPoint(cameraPositionOffset), transform.position, out backHit)) {
+					transform.position = backHit.point;
+					wantedPosition = backHit.point;
+					cameraDistanceCurrent = (target.TransformPoint(cameraPositionOffset) - transform.position).magnitude;
+				}
+
 				RaycastHit hit;
 				if (Physics.Raycast(target.TransformPoint(cameraPositionOffset) , target.TransformDirection(cameraPositionNear), out hit, cameraDistanceCurrent + safetyBuffer)) {
 					wantedPosition = hit.point + (target.TransformPoint(cameraPositionOffset) - hit.point).normalized * safetyBuffer;
@@ -215,7 +222,14 @@ public class CameraController : MonoBehaviour {
 				lookPosition = target.TransformPoint (cameraPositionOffset + lookOffsetNear);
 			} else if (cameraMode == CameraMode.Far) {
 				wantedPosition = target.TransformPoint (cameraPositionOffset + (cameraPositionFar * cameraDistanceCurrent / cameraDistanceFar));
-				
+
+				RaycastHit backHit;
+				if (Physics.Linecast((wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized * 3 + target.TransformPoint(cameraPositionOffset), transform.position, out backHit)) {
+					transform.position = (wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized + backHit.point;
+					wantedPosition = (wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized + backHit.point;
+					cameraDistanceCurrent = (target.TransformPoint(cameraPositionOffset) - transform.position).magnitude;
+				}
+
 				RaycastHit hit;
 				if (Physics.Raycast(target.TransformPoint(cameraPositionOffset), target.TransformDirection(cameraPositionFar), out hit, cameraDistanceCurrent + safetyBuffer)) {
 					wantedPosition = hit.point + (target.TransformPoint(cameraPositionOffset) - hit.point).normalized * safetyBuffer;
@@ -227,12 +241,7 @@ public class CameraController : MonoBehaviour {
 				lookPosition = target.TransformPoint (cameraPositionOffset + lookOffsetFar);				
 			}
 
-			RaycastHit backHit;
-			if (Physics.Linecast((wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized * 5 + target.TransformPoint(cameraPositionOffset), transform.position, out backHit)) {
-				transform.position = (wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized + backHit.point;
-				wantedPosition = (wantedPosition - target.TransformPoint(cameraPositionOffset)).normalized + backHit.point;
-				cameraDistanceCurrent = (target.TransformPoint(cameraPositionOffset) - transform.position).magnitude;
-			}
+
 
 			transform.position = Vector3.Lerp (transform.position, wantedPosition, Time.deltaTime * stiffness);
 			Quaternion wantedRotation = Quaternion.LookRotation (lookPosition - transform.position, Vector3.up);

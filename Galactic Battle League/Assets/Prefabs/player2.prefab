@@ -4640,15 +4640,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetHeavy: {fileID: 454756}
   targetLight: {fileID: 465756}
-  cameraPositionOffset: {x: 0, y: 1.39999998, z: 0}
-  cameraPositionNear: {x: 0, y: 2, z: -7}
-  lookOffsetNear: {x: 0, y: .5, z: 10}
-  cameraPositionFar: {x: 0, y: 4.5, z: -8}
-  lookOffsetFar: {x: 0, y: .5, z: 3}
-  cameraPositionSpawn: {x: -4.19999981, y: 1, z: 4}
-  lookOffsetSpawn: {x: 0, y: .25, z: 0}
-  cameraPositionFirstPersonLight: {x: 0, y: .870000005, z: -.479999989}
-  cameraPositionFirstPersonHeavy: {x: 0, y: 1.10000002, z: -.25}
+  cameraPositionOffset: {x: 0, y: 2.4000001, z: 0}
+  cameraPositionNear: {x: 0, y: 1, z: -7}
+  lookOffsetNear: {x: 0, y: -.5, z: 10}
+  cameraPositionFar: {x: 0, y: 3.5, z: -8}
+  lookOffsetFar: {x: 0, y: -.5, z: 3}
+  cameraPositionSpawn: {x: -4.19999981, y: 0, z: 4}
+  lookOffsetSpawn: {x: 0, y: -.75, z: 0}
+  cameraPositionFirstPersonLight: {x: 0, y: -.129999995, z: -.479999989}
+  cameraPositionFirstPersonHeavy: {x: 0, y: .100000001, z: -.25}
   stiffness: 30
   rotationStiffness: 100
   distanceStiffness: 1
@@ -81480,6 +81480,42 @@ Prefab:
       propertyPath: sfxHit
       value: 
       objectReference: {fileID: 8300000, guid: 86a0d8ae57caff5448040c334dd9beab, type: 3}
+    - target: {fileID: 0}
+      propertyPath: cameraPositionOffset.y
+      value: 2.4000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cameraPositionNear.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lookOffsetNear.y
+      value: -.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cameraPositionFar.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lookOffsetFar.y
+      value: -.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cameraPositionSpawn.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lookOffsetSpawn.y
+      value: -.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cameraPositionFirstPersonHeavy.y
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cameraPositionFirstPersonLight.y
+      value: -.129999995
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 154752}
