@@ -546,7 +546,7 @@ public class HoverCarControl : MonoBehaviour
 				cameraController.RunDash ();
 			} else {
 				//Laser ability
-				var layermask = 1 << 12;
+				var layermask = 1 << 13;
 				layermask = ~layermask;
 				bool hitWall = false;
 				cameraController.RunQuake (0.003f);
