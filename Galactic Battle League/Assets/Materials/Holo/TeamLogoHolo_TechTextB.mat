@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: TeamLogoHolo_TechTextB
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ALPHATEST_ON
+  m_ShaderKeywords: _ALPHATEST_ON _EMISSION
   m_LightmapFlags: 0
   m_CustomRenderQueue: 2450
   stringTagMap:
@@ -98,7 +98,7 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: .575999975
+        second: .379999995
       data:
         first:
           name: _Parallax
@@ -143,7 +143,7 @@ Material:
       data:
         first:
           name: _EmissionColor
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _Color
