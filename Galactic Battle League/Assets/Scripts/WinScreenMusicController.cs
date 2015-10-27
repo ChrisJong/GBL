@@ -59,6 +59,7 @@ public class WinScreenMusicController : MonoBehaviour {
 		audio2volume = 0;
 		audio.volume = 0;
 		audio.clip = music;
+		audio.loop = true;
 		
 		audio.Play ();
 	}

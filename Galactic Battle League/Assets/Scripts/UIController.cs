@@ -29,6 +29,8 @@ public class UIController : MonoBehaviour
 	public Color javDefColour = player3Colour;
 	public Color shardIndColour = player4Colour;
 
+	public AudioClip endHorn;
+
 	private string fileName;
 	private StreamWriter trackingFile;
 
@@ -140,6 +142,8 @@ public class UIController : MonoBehaviour
 
 	public void GameOver()
 	{
+		if (endHorn)
+			AudioSource.PlayClipAtPoint (endHorn, Vector3.zero);
 		foreach (GameObject player in players)
 		{
 			HoverCarControl[] hoverControllers = player.GetComponentsInChildren<HoverCarControl>();

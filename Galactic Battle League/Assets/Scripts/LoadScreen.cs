@@ -5,12 +5,12 @@ public class LoadScreen : MonoBehaviour
 {
 
 	private bool loading = false;
-	private int frame = 0;
+	private float loadDelay;
 
 	// Use this for initialization
 	void Start () 
 	{
-
+		loadDelay = Time.time + 3;
 	}
 
 	IEnumerator LoadLevel()
@@ -24,8 +24,7 @@ public class LoadScreen : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		frame ++;
-		if (!loading && frame >= 10) 
+		if (!loading && loadDelay < Time.time) 
 		{
 			AsyncController async;// = new AsyncController();
 			async = (AsyncController)ScriptableObject.CreateInstance("AsyncController");

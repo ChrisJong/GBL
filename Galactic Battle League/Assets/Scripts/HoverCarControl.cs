@@ -47,6 +47,7 @@ public class HoverCarControl : MonoBehaviour
 	private EnergyCounter energyCounter;
 	public ParticleSystem dashParticle;
 	private float stopDash;
+	public float dashRequiredRotation;
 	
 	public int playerNumber; 
 	public int tankClass;
@@ -446,14 +447,15 @@ public class HoverCarControl : MonoBehaviour
 				}
 				else
 				{
+					print(gameObject.transform.localEulerAngles.y.ToString());
 					//Calculate correct angle of particle effect
 					Vector3 velocity = GetComponent<Rigidbody> ().velocity.normalized;
 					if (velocity.z<=0)
-						dashParticle.transform.localEulerAngles = new Vector3(-velocity.y*90, -velocity.x*90);
+						dashParticle.transform.localEulerAngles = new Vector3(-velocity.y*90, -velocity.x*90 - gameObject.transform.localEulerAngles.y);
 					else if (-velocity.x >=0)
-						dashParticle.transform.localEulerAngles = new Vector3(-velocity.y*90, 180 - -velocity.x*90);
+						dashParticle.transform.localEulerAngles = new Vector3(-velocity.y*90, 180 - -velocity.x*90 - gameObject.transform.localEulerAngles.y);
 					else
-						dashParticle.transform.localEulerAngles = new Vector3(-velocity.y*90, -180 - -velocity.x*90);
+						dashParticle.transform.localEulerAngles = new Vector3(-velocity.y*90, -180 - -velocity.x*90 - gameObject.transform.localEulerAngles.y);
 				}
 			}
 		}
@@ -534,7 +536,7 @@ public class HoverCarControl : MonoBehaviour
 				else
 					dashParticle.transform.localEulerAngles = new Vector3(-velocity.y*90, -180 - -velocity.x*90);
 
-				dashParticle.Play ();
+				//dashParticle.Play ();
 				stopDash = Time.time + 0.5f;
 
 				if (!dashSound.isPlaying)
