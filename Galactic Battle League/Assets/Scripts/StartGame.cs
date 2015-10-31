@@ -40,6 +40,10 @@ public class StartGame : MonoBehaviour
 
 	public void BeginMainMenu () 
 	{
+		GameObject music = GameObject.Find("MenuMusic");
+		if (music) {
+			GameObject.Destroy(music);
+		}
 		Application.LoadLevel ("MainMenu");
 	}
 
@@ -56,6 +60,16 @@ public class StartGame : MonoBehaviour
 	public void BeginWinScoreboard()
 	{
 		Application.LoadLevel ("WinScoreboard");
+	}
+
+	public void BeginCredits()
+	{
+		Application.LoadLevel ("Credits");
+	}
+
+	public void EndGame()
+	{
+		Application.Quit();
 	}
 }
 
