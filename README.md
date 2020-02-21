@@ -1,6 +1,6 @@
 # Galactic Battle League (MT3) (Unity v5.0)
 
-$$ Games & Interactivity Project 1 & 2 (Swinburne)
+## Games & Interactivity Project 1 & 2 (Swinburne)
 
 A four player split screen local (hover)tank shooter for Swinburne Games Lab 2015 developed in Unity3D.
 
