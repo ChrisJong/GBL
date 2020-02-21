@@ -1,2 +1,1 @@
-# MT3
-Games Lab Monday Team 3
+# Galactic Battle League (MT3) (Unity v5.0)
